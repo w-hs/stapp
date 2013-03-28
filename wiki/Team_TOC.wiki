@@ -8,4 +8,4 @@ Hier werden alle Dokumente, die die Arbeitsweise und Organisation des Teams betr
 
 = Inhaltsverzeichnis =
 
-# [Team_Scrum Einführung in Scrum]
+  # [Team_Scrum Einführung in Scrum]
