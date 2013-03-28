@@ -56,17 +56,17 @@ Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue
 
 === Kategorisierung ===
 
-  * Type-´UserStory´: User-Story
+  * Type-`UserStory`: User-Story
   * Type-Bug: Fehler
   * Type-Task: Technische Aufgabe (Task)
   * Type-Test: Manueller Test
 
 === Ablage ===
 
-  * PartOf-ProductBacklog: User-Story im Product-Backlog
-  * PartOf-SprintBackog: User-Story oder Fehler im Sprint-Backlog
-  * PartOf-OpenBugs: Offene Fehler
-  * PartOf-OpenTasks: Offene Tasks
+  * `PartOf`-ProductBacklog: User-Story im Product-Backlog
+  * `PartOf`-SprintBackog: User-Story oder Fehler im Sprint-Backlog
+  * `PartOf`-OpenBugs: Offene Fehler
+  * `PartOf`-OpenTasks: Offene Tasks
 
 === Priorisierung ===
 
