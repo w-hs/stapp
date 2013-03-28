@@ -18,4 +18,6 @@ Der Product Owner vertritt den Kunden im Team. Er ist verantwortlich dafür, das
 
 Das Entwicklungsteam ist dafür verantwortlich am Ende eines Sprints ein auslieferungsfähiges Produkt bereitzustellen (Continuous Delivery). Die Team-Mitglieder arbeiten krossfunktional, d.h. die Aufgaben eines einzelnen Mitglieds umfassen Analyse, Entwurf, Implementierung, Test, Dokumentation, usw. Das Team arbeitet größtenteils selbst organisiert.
 
-== ScrumMaster ==
+== Scrum Master ==
+
+Der Scrum Master sorgt dafür, dass die Tesm-Mitglieder in der Erfüllung ihrer Aufgaben nicht behindert werden. Außerdem ist er dafür verantwortlich, dass die Regeln des Scrum-Prozesses eingehalten werden. Ziel des Scrum Masters ist es, dass die Team-Mitglieder sich auf die anstehenden Aufgaben konzentrieren können.
