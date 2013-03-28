@@ -1,0 +1,36 @@
+#summary Abbildung von Scrum auf Google Code Tools
+#labels Doc-Team
+
+= Abbildung auf die Tools =
+
+== Issue Tracking ==
+
+Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue Tracking System von Google Code. Die Kategorisierung und Priorisierung erfolgt dabei über selbst definierte Labels.
+
+=== Kategorisierung ===
+
+  * `Type-UserStory`: User-Story
+  * `Type-Bug`: Fehler
+  * `Type-Task`: Technische Aufgabe (Task)
+  * `Type-Test`: Manueller Test
+
+=== Ablage ===
+
+  * `PartOf-ProductBacklog`: User-Story im Product-Backlog
+  * `PartOf-SprintBackog`: User-Story oder Fehler im Sprint-Backlog
+  * `PartOf-OpenBugs`: Offene Fehler
+  * `PartOf-OpenTasks`: Offene Tasks
+
+=== Priorisierung ===
+
+  * `Priority-Critical`: Umsetzung ist sofort erforderlich, da das Team sonst nicht weiter arbeiten kann (sollte nicht auftreten)
+  * `Priority-High`: Umsetzung innerhalb des nächsten Sprints gewünscht
+  * `Priority-Low`: Umsetzung kann beliebig verschoben werden
+
+== Wiki ==
+
+In dem Wiki von Google Code legen wir unsere Dokumentation ab. Dazu zählt die Projektdokumentation, Technische Dokumentation und die Bedierungsanleitung.
+
+  * `Doc-Team`: Projekt oder Arbeitsweise
+  * `Doc-Technical`:  Technische Dokumentation
+  * `Doc-Manual`: Bedienungsanleitung
