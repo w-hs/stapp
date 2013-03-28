@@ -1,4 +1,6 @@
+#summary Coding Convetions Motivation, Checkstyle
 #labels Doc-Team
+
 =Coding Conventions=
 ==Einleitung==
 
@@ -7,4 +9,3 @@ Bei der Softwareentwicklung im Team sollen Code Konventionen dazu beitragen, im 
 
 ===Checkstyle===
 Damit die Konventionen nicht zur Last und automatisch von jedem Developer eingehalten werden, werden wir in diesem Projekt Checkstyle einsetzen.
-
