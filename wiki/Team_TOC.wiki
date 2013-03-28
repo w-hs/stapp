@@ -1,0 +1,9 @@
+#summary Inhaltsverzeichnis für die Team-Dokumentation.
+#labels Doc-Team
+
+= Einleitung =
+
+Hier werden alle Dokumente, die die Arbeitsweise und Organisation des Teams betreffen aufgelistet. Betreffende Wiki-Artikel sollten mit dem Label "Doc-Team" versehen werden.
+
+
+= Inhaltsverzeichnis =
