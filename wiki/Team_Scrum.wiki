@@ -1,0 +1,9 @@
+#summary Einführung in Scrum
+#labels Doc-Team
+
+= Einleitung =
+
+Auf dieser Seite wird die agile Arbeitsweise in unserem Team und die Abbildung von Scrum-Methoden auf die zur Verfügung stehenden Tools vorgestellt.
+
+
+= Rollen =
