@@ -56,7 +56,7 @@ Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue
 
 === Kategorisierung ===
 
-  * Type-'UserStory': User-Story
+  * Type-´UserStory´: User-Story
   * Type-Bug: Fehler
   * Type-Task: Technische Aufgabe (Task)
   * Type-Test: Manueller Test
