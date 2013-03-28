@@ -40,5 +40,10 @@ Ein Sprint ist ein fester Zeitraum (bei uns zwei Wochen) in dem ein "verbesserte
 
 Liste von User-Stories und u.U. Fehlern, die im aktuellen Sprint bearbeitet werden. Nur das Entwicklungsteam darf das Sprint-Backlog während eines Sprints verändern. D.h. neue Anforderungen können frühestens beim nächsten Sprint berücksichtigt werden.
 
+== Tasks ==
 
+Nachdem die User-Stories für den nächsten Sprint ausgewählt wurden, werden diese vom Entwicklungsteam in Technische Aufgaben (Tasks) aufgeteilt. Dies erfolgt in Eigenverantwortung und wird nicht vom Product Owner vorgeschrieben, da dieser nur die Anforderungen aus Kundensicht definiert. Zur Aufteilung in Tasks ist auch kein Meeting erforderlich. Diese Aufgabe wird von den zuständigen Entwicklern übernommen.
 
+== Review == 
+
+Am Ende eines Sprints wird ein Review durchgeführt. Dort stellt das Entwicklungsteam dem Product Owner die umgesetzten User-Stories vor. Der Product Owner entscheidet dann, ob die Anforderungen aus Kundensicht erfüllt wurden. Unvollständige Arbeit kann nicht präsentiert oder abgenommen werden.
