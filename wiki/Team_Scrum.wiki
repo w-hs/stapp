@@ -47,3 +47,16 @@ Nachdem die User-Stories für den nächsten Sprint ausgewählt wurden, werden di
 == Review == 
 
 Am Ende eines Sprints wird ein Review durchgeführt. Dort stellt das Entwicklungsteam dem Product Owner die umgesetzten User-Stories vor. Der Product Owner entscheidet dann, ob die Anforderungen aus Kundensicht erfüllt wurden. Unvollständige Arbeit kann nicht präsentiert oder abgenommen werden.
+
+= Abbildung auf die Tools =
+
+== Issue Tracking ==
+
+Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue Tracking System von Google Code. Die Kategorisierung und Priorisierung erfolgt dabei über selbst definierte Labels.
+
+=== Kategorisierung ===
+
+  * Type-UserStory: User-Story
+  * Type-Bug: Fehler
+  * Type-Task: Technische Aufgabe (Task)
+  * Type-Test: Manueller Test
