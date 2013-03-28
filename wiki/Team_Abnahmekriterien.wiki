@@ -12,3 +12,4 @@ Neben den speziellen Abnahmekriterien für eine User-Story gibt es allgemeine Kr
   * Integrationstests erfolgreich (vom QS-Verantwortlichen durchgeführt)
   * Abnahme wurde gegen veröffentlichtes Produkt durchgeführt (im Download-Portal heruntergeladen und installiert)
   * Keine offensichtlichen Fehler bei der Präsentation
+  * Funktionalität wird in Bedienungsanleitung erläutert (im Wiki exisitert ein enstprechender Artikel)
