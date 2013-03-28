@@ -7,15 +7,34 @@
 ===Warum Coding Conventions?===
 Bei der Softwareentwicklung im Team sollen Code Konventionen dazu beitragen, im einheitlichen Stiel zu coden. Zudem erhöhen die Konventionen die Lesbarkeit und damit auch die Verständlichkeit des Codes, was für die Arbeit im Team enorm wichtig ist.
 
-===Checkstyle===
+==Checkstyle==
 Damit die Konventionen nicht zur Last und automatisch von jedem Developer eingehalten werden, werden wir in diesem Projekt Checkstyle einsetzen.
 
 
-==Checkstyle einrichten==
+===Checkstyle einrichten===
 Einrichtung in Eclipse folgt.
 Wahrscheinlich ist eine Einrichtung gar nicht nötig, da die Checkstyle Konfiguration direkt im Projekt (also auch im SVN) liegt.
 
 
 ==Code Conventions==
-Die Code Konventionen orientieren sich stark an den Java Konventionen.
-Weitere folgen.
+
+===Language===
+Code wird ausschließlich in englischer Sprache verfasst. Deutsche Bezeichner sind nicht erlaubt. Kommentare werden in Deutsch geschrieben.
+
+===Packages===
+Paketnamen sind ebenfalls Bezeichner und werden daher in Englisch verfasst. Pakete gruppieren logische bzw. zusammenhängende Bereiche.
+
+Als Namespace wird folgender Bezeichner verwendet: {{{de.whs.stapp.PackageName}}}
+
+===Source Files===
+Pro Source File wird genau eine Typ- bzw. Klassendeklaration abgelegt. Damit sind mehrere Klassen in einer Datei nicht erlaubt.
+
+===Comments===
+Kommentare werden mit JavaDoc in deutsch verfasst. Dokumentiert werden alle Klassen, Funktionen und Enums unabhängig von ihrem Zugriffsmodifikator!
+Nicht dokumentiert werden Variablen bzw. Membervariablen.
+
+*Kommentare im Code:*
+Allgemein gilt, dass sich gut geschriebener (sauberer) Code selbst erklärt. Sollte es dennoch Code Stellen geben, an denen dies aus bestimmten Gründen nicht der Fall ist, wird das in einem Kommentar begründet.
+
+===Naming / Wording===
+ 
