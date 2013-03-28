@@ -11,9 +11,10 @@ Damit die Konventionen nicht zur Last und automatisch von jedem Developer eingeh
 
 
 ===Checkstyle einrichten===
-Einrichtung in Eclipse folgt.
-Wahrscheinlich ist eine Einrichtung gar nicht nötig, da die Checkstyle Konfiguration direkt im Projekt (also auch im SVN) liegt.
+Um Checkstyle in Eurem Eclipse installieren zu können geht Ihr wie gewohnt auf _Install New Software_ und tragt folgende Update Site ein:
+[http://eclipse-cs.sf.net/update/]
 
+Die Checkstyle Konfiguration nehme ich dann selbst am Projekt vor.
 
 ==Code Conventions==
 
