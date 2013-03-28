@@ -21,3 +21,24 @@ Das Entwicklungsteam ist dafür verantwortlich am Ende eines Sprints ein auslief
 == Scrum Master ==
 
 Der Scrum Master sorgt dafür, dass die Tesm-Mitglieder in der Erfüllung ihrer Aufgaben nicht behindert werden. Außerdem ist er dafür verantwortlich, dass die Regeln des Scrum-Prozesses eingehalten werden. Ziel des Scrum Masters ist es, dass die Team-Mitglieder sich auf die anstehenden Aufgaben konzentrieren können.
+
+= Schlüsselbegriffe =
+
+== Product Backlog ==
+
+Das Product Backlog wird vom Product Owner Anforderungen in Form von User-Stories gefüllt. 
+
+== User Story ==
+
+Eine User-Story beschreibt eine gewünschte Funktionalität aus Kundensicht und ist deshalb vollkommen frei von technischen Details. Die Story wird vom Product Owner priorisiert und kann für den nächsten Sprint vorgemerkt werden.
+
+== Sprint ==
+
+Ein Sprint ist ein fester Zeitraum (bei uns zwei Wochen) in dem ein "verbessertes" Produkt vom Entwicklungsteam erstellt wird. Ein Sprint beginnt mit einem Planning Meeting, in dem sich der Product Owner die Umsetzung von bestimmten User-Stories aus dem Product-Backlog wünscht. Das Entwicklungsteam entscheidet, welche User-Stories im kommenden Sprint angegangen werden können. Hierbei müssen auch Altlasten, wie z.B. offene Fehler beachtet werden. Die ausgewählten User-Stories werden vom Product-Backlog ins Sprint-Backlog verschoben. Das Team arbeitet während des Sprints an der Umsetzung der User-Stories. Kann eine oder mehrere User-Stories nicht umgesetzt werden, dann landen diese wieder ím Product-Backlog. Halbfertige Implementierung fließen nicht in das fertige Produkt ein.
+
+== Sprint Backlog ==
+
+Liste von User-Stories und u.U. Fehlern, die im aktuellen Sprint bearbeitet werden. Nur das Entwicklungsteam darf das Sprint-Backlog während eines Sprints verändern. D.h. neue Anforderungen können frühestens beim nächsten Sprint berücksichtigt werden.
+
+
+
