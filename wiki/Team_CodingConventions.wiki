@@ -9,3 +9,13 @@ Bei der Softwareentwicklung im Team sollen Code Konventionen dazu beitragen, im 
 
 ===Checkstyle===
 Damit die Konventionen nicht zur Last und automatisch von jedem Developer eingehalten werden, werden wir in diesem Projekt Checkstyle einsetzen.
+
+
+==Checkstyle einrichten==
+Einrichtung in Eclipse folgt.
+Wahrscheinlich ist eine Einrichtung gar nicht nötig, da die Checkstyle Konfiguration direkt im Projekt (also auch im SVN) liegt.
+
+
+==Code Conventions==
+Die Code Konventionen orientieren sich stark an den Java Konventionen.
+Weitere folgen.
