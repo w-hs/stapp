@@ -2,9 +2,8 @@
 #labels Doc-Team
 
 =Coding Conventions=
-==Einleitung==
 
-===Warum Coding Conventions?===
+==Warum Coding Conventions?==
 Bei der Softwareentwicklung im Team sollen Code Konventionen dazu beitragen, im einheitlichen Stiel zu coden. Zudem erhöhen die Konventionen die Lesbarkeit und damit auch die Verständlichkeit des Codes, was für die Arbeit im Team enorm wichtig ist.
 
 ==Checkstyle==
