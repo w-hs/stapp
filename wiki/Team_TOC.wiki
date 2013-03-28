@@ -7,3 +7,5 @@ Hier werden alle Dokumente, die die Arbeitsweise und Organisation des Teams betr
 
 
 = Inhaltsverzeichnis =
+
+# Einführung in Scrum [https://code.google.com/p/stapp/wiki/Team_Scrum]
