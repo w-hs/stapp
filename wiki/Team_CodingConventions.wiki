@@ -36,4 +36,5 @@ Nicht dokumentiert werden Variablen bzw. Membervariablen.
 Allgemein gilt, dass sich gut geschriebener (sauberer) Code selbst erklärt. Sollte es dennoch Code Stellen geben, an denen dies aus bestimmten Gründen nicht der Fall ist, wird das in einem Kommentar begründet.
 
 ===Naming / Wording===
- 
+Bei der Namensgebung halten wir uns an die Java Code Conventions:
+[http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-135099.html#367]
