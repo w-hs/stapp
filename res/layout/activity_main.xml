@@ -8,9 +8,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
+    <Button
+        android:id="@+id/btnStartRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Lauf starten" />
+
+    <Button
+        android:id="@+id/btnStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnStartRun"
+        android:layout_alignRight="@+id/btnStartRun"
+        android:layout_below="@+id/btnStartRun"
+        android:text="Statistiken" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnStats"
+        android:layout_alignRight="@+id/btnStats"
+        android:layout_below="@+id/btnStats"
+        android:text="Einstellungen" />
+
+  
 
 </RelativeLayout>
