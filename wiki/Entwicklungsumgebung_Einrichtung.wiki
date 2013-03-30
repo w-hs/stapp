@@ -1,0 +1,9 @@
+= Eclipse und ADK=
+
+Daniel hat einen USB Stick im allen nötigen Programmen.
+
+Beim Start von Eclipse muss dann das sdk Ordner angegeben werden.
+
+Für diejenigen die kein Android Handy besitzen oder ihres nicht zur Entwicklung nutzen wollen, müssen im AVD Manager noch ein "Virtual Device" erstellen.
+
+Für weitere Fragen steht Daniel immer zu Verfügung.
