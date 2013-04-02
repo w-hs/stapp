@@ -5,28 +5,29 @@
 1. Folgenden Link Besuchen: http://developer.android.com/sdk/index.html
 http://www.danielhardes.de/swt2/1.PNG
 
-2.2
-3.3
+2. http://www.danielhardes.de/swt2/2.PNG
+3. http://www.danielhardes.de/swt2/3.PNG
 
 4. Archiv entpacken und "SDK Manager.exe" Starten
-4,5
+http://www.danielhardes.de/swt2/4.PNG
+http://www.danielhardes.de/swt2/5.PNG
 
 5. Nach erfolgreichem Download Eclipse aus den eclipse Ordner starten und die Startseite schließen
 
 6. Folgenden Link http://subclipse.tigris.org/update_1.8.x bei "HELP->INSTALL NEW SOFTWARE..." eintragen
-6
+http://www.danielhardes.de/swt2/6.PNG
 bei allen Dialogen auf weiter oder OK
 
 7.  Folgenden Link http://eclipse-cs.sf.net/update/ bei "HELP->INSTALL NEW SOFTWARE..." eintragen
-7
+http://www.danielhardes.de/swt2/7.PNG
 bei allen Dialogen auf weiter oder OK
 
 8. File -> New
 
-8
+http://www.danielhardes.de/swt2/8.PNG
 Repository URL: https://stapp.googlecode.com/svn/trunk/
-9
-10
+http://www.danielhardes.de/swt2/9.PNG
+http://www.danielhardes.de/swt2/10.PNG
 
 
 Checkstyle passend konfigurieren.
