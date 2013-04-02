@@ -2,9 +2,36 @@
 
 = Eclipse und ADK=
 
-Daniel hat einen USB Stick im allen nötigen Programmen.
+1. Folgenden Link Besuchen: http://developer.android.com/sdk/index.html
+http://danielhardes.de/swt2/1
 
-Beim Start von Eclipse muss dann das sdk Ordner angegeben werden.
+2.2
+3.3
+
+4. Archiv entpacken und "SDK Manager.exe" Starten
+4,5
+
+5. Nach erfolgreichem Download Eclipse aus den eclipse Ordner starten und die Startseite schließen
+
+6. Folgenden Link http://subclipse.tigris.org/update_1.8.x bei "HELP->INSTALL NEW SOFTWARE..." eintragen
+6
+bei allen Dialogen auf weiter oder OK
+
+7.  Folgenden Link http://eclipse-cs.sf.net/update/ bei "HELP->INSTALL NEW SOFTWARE..." eintragen
+7
+bei allen Dialogen auf weiter oder OK
+
+8. File -> New
+
+8
+Repository URL: https://stapp.googlecode.com/svn/trunk/
+9
+10
+
+
+Checkstyle passend konfigurieren.
+FERTIG!
+
 
 Für diejenigen die kein Android Handy besitzen oder ihres nicht zur Entwicklung nutzen wollen, müssen im AVD Manager noch ein "Virtual Device" erstellen.
 
