@@ -3,7 +3,7 @@
 = Eclipse und ADK=
 
 1. Folgenden Link Besuchen: http://developer.android.com/sdk/index.html
-http://danielhardes.de/swt2/1.png
+http://www.danielhardes.de/swt2/1.PNG
 
 2.2
 3.3
