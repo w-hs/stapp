@@ -16,7 +16,7 @@ http://www.danielhardes.de/swt2/5.PNG
 
 6. Folgenden Link http://subclipse.tigris.org/update_1.8.x bei "HELP->INSTALL NEW SOFTWARE..." eintragen
 http://www.danielhardes.de/swt2/6.PNG
-bei allen Dialogen auf weiter oder OK
+bei allen Dialogen auf weiter oder OK.
 
 7.  Folgenden Link http://eclipse-cs.sf.net/update/ bei "HELP->INSTALL NEW SOFTWARE..." eintragen
 http://www.danielhardes.de/swt2/7.PNG
