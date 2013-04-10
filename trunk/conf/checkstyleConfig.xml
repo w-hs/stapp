@@ -70,7 +70,9 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="RedundantThrows">
       <property name="suppressLoadErrors" value="true"/>
     </module>
-    <module name="RequireThis"/>
+    <module name="RequireThis">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="ReturnCount">
       <property name="max" value="4"/>
     </module>
