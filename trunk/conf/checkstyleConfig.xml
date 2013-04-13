@@ -38,7 +38,9 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="IllegalImport"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
-    <module name="LineLength"/>
+    <module name="LineLength">
+      <property name="max" value="120"/>
+    </module>
     <module name="MethodLength">
       <property name="max" value="80"/>
     </module>
@@ -54,15 +56,22 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="AvoidNestedBlocks"/>
     <module name="EmptyBlock"/>
     <module name="EmptyStatement"/>
-    <module name="IllegalCatch"/>
+    <module name="IllegalCatch">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="IllegalThrows"/>
     <module name="JUnitTestCase"/>
     <module name="MagicNumber"/>
     <module name="ModifiedControlVariable"/>
-    <module name="MultipleStringLiterals"/>
+    <module name="MultipleStringLiterals">
+      <property name="allowedDuplicates" value="10"/>
+    </module>
     <module name="MultipleVariableDeclarations"/>
     <module name="NestedForDepth"/>
-    <module name="NestedIfDepth"/>
+    <module name="NestedIfDepth">
+      <property name="max" value="3"/>
+    </module>
     <module name="NestedTryDepth"/>
     <module name="NoFinalizer"/>
     <module name="PackageDeclaration"/>
@@ -72,6 +81,7 @@ The checkstyle configuration file for our project. Maintained by Chris.
     </module>
     <module name="RequireThis">
       <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="ReturnCount">
       <property name="max" value="4"/>
