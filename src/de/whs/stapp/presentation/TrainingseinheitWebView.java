@@ -48,11 +48,17 @@ public class TrainingseinheitWebView extends StappWebView {
 		this.loadUrl("javascript:stapp.startTraining()");
 	}
 	
+	/**
+	 * Aufruf der Javascript-Funktion um das Training zu pausieren.
+	 */
 	public void pauseTraining(){
 
 		this.loadUrl("javascript:stapp.pauseTraining()");
 	}
 	
+	/**
+	 * Aufruf der Javascript-Funktion um das Training zu stoppen.
+	 */
 	public void stopTraining(){
 
 		this.loadUrl("javascript:stapp.stopTraining()");
