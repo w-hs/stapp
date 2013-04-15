@@ -11,7 +11,13 @@ The checkstyle configuration file for our project. Maintained by Chris.
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
+  <module name="SuppressionCommentFilter"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="${basedir}/conf/suppressions.xml"/>
+  </module>
+  
   <module name="TreeWalker">
+    
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="SuppressWarnings"/>
