@@ -1,10 +1,7 @@
 package de.whs.stapp.liveDataTracking;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
-import de.whs.stapp.helper.Constants;
 
 import zephyr.android.HxMBT.BTClient;
 import zephyr.android.HxMBT.ConnectListenerImpl;
@@ -22,7 +19,7 @@ import android.util.Log;
  */
 class HxMConnectedListener extends ConnectListenerImpl {
 
-	private List<BTCommunicationListener> listeners = new ArrayList<BTCommunicationListener>();
+	private List<TrackedDataListener> listeners = new ArrayList<TrackedDataListener>();
 
 	
 	private HRSpeedDistPacketInfo heartRateSpeedDistancePacket =
@@ -62,7 +59,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 					byte cRCFailStatus = msg.getCRCStatus();
 					byte rcvdBytes = msg.getNumRvcdBytes();
 					
-					if (msg.getMsgID() == Constants.HR_SPD_DIST_PACKET){
+					if (msg.getMsgID() == BTConstants.HR_SPD_DIST_PACKET){
 					
 						byte[] dataArray = msg.getBytes();
 						
@@ -91,8 +88,8 @@ class HxMConnectedListener extends ConnectListenerImpl {
 						dataContainer.setStrides(heartRateSpeedDistancePacket.
 								GetStrides(dataArray));
 						
-						BTCommunicationEvent dataCarrier = 
-								new BTCommunicationEvent(this, dataContainer); 
+						TrackedDataEvent dataCarrier = 
+								new TrackedDataEvent(this, dataContainer); 
 						
 						notifyBTCommunicationListeners(dataCarrier);
 						
@@ -110,7 +107,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 	 * 
 	 * @param listener - BTCommunicationListener
 	 */
-	public synchronized void registerListener(BTCommunicationListener listener) {
+	public synchronized void registerListener(TrackedDataListener listener) {
 		listeners.add(listener);
 	}
 
@@ -120,7 +117,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 	 * 
 	 * @param listener - BTCommunicationListener
 	 */
-	public synchronized void unregisterListener(BTCommunicationListener listener) {
+	public synchronized void unregisterListener(TrackedDataListener listener) {
 		if (listeners.contains(listener))
 			listeners.remove(listener);
 	}
@@ -131,11 +128,11 @@ class HxMConnectedListener extends ConnectListenerImpl {
 	 * 
 	 * @param dataCarrier - BTCommunicationEvent
 	 */
-	private synchronized void notifyBTCommunicationListeners(BTCommunicationEvent dataCarrier) {
-		for (BTCommunicationListener listener : listeners) {
+	private synchronized void notifyBTCommunicationListeners(TrackedDataEvent dataCarrier) {
+		for (TrackedDataListener listener : listeners) {
 			if (listener == null)
 				continue;
-			listener.getHxMData(dataCarrier);
+			listener.getTrackedData(dataCarrier);
 		}		
 	}
 
