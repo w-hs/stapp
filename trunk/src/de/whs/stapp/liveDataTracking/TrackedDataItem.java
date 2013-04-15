@@ -43,10 +43,13 @@ public class TrackedDataItem {
 	 * @param speed -
 	 * @param strides -
 	 */
+	//CHECKSTYLE:OFF
 	public TrackedDataItem(String firmwareId, String firmwareVersion,
 			String hardwareId, String hardwareVersion, byte batteryChargeInd,
 			byte heartRate, byte heartBeatNumber, int[] heartBeatTimestamps,
-			double distance, double speed, byte strides) {
+			double distance, double speed, byte strides) 
+	//CHECKSTYLE:ON
+	{
 		this.firmwareId = firmwareId;
 		this.firmwareVersion = firmwareVersion;
 		this.hardwareId = hardwareId;
@@ -71,20 +74,15 @@ public class TrackedDataItem {
 	}
 
 	/**
-	 * 
 	 * Setter-Methode für firmwareId.
-	 * 
-	 * @param firmwareId
-	 *            - Firmware ID
+	 * @param firmwareId - Firmware ID
 	 */
 	public void setFirmwareId(String firmwareId) {
 		this.firmwareId = firmwareId;
 	}
 
 	/**
-	 * 
 	 * Getter-Methode für.
-	 * 
 	 * @return firmwareVersion - Firmware Version
 	 */
 	public String getFirmwareVersion() {
@@ -92,20 +90,15 @@ public class TrackedDataItem {
 	}
 
 	/**
-	 * 
 	 * Setter-Methode für firmwareVersion.
-	 * 
-	 * @param firmwareVersion
-	 *            - Firmware Version
+	 * @param firmwareVersion - Firmware Version
 	 */
 	public void setFirmwareVersion(String firmwareVersion) {
 		this.firmwareVersion = firmwareVersion;
 	}
 
 	/**
-	 * 
 	 * Getter-Methode für HardwareId.
-	 * 
 	 * @return hardwareId - Hardware ID
 	 */
 	public String getHardwareId() {

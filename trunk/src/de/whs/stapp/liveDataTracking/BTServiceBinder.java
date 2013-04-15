@@ -3,20 +3,16 @@ package de.whs.stapp.liveDataTracking;
 import android.os.Binder;
 
 /**
- *
- * Diese Klasse stellt den vom BTCommunicationService
- * benötigten Binder dar.
- * 
  * @author Dennis Miller
+ * Diese Klasse stellt den vom BTCommunicationService benötigten 
+ * Binder dar.
  */
 public class BTServiceBinder extends Binder {
 	
 	private BTCommunicationService serviceInstance; 
 	
 	/**
-	 * 
 	 * Dies ist der Konstruktor des Binders. 
-	 * 
 	 * @param serviceInstance - Instanz des dazugehörigen Services.
 	 */
 	public BTServiceBinder (BTCommunicationService serviceInstance){
@@ -25,11 +21,9 @@ public class BTServiceBinder extends Binder {
 	
 	/**
 	 * Gibt die Instanz des BTCommunicationServices zurück.
-	 * 
 	 * @return serviceInstance
 	 */
-	public BTCommunicationService getService(){
-		
+	public BTCommunicationService getService() {
 		return serviceInstance;
 	}
 }
