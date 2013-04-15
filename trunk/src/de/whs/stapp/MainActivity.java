@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import de.whs.stapp.liveDataTracking.BTCommunicationEvent;
+import de.whs.stapp.liveDataTracking.BTCommunicationListener;
+import de.whs.stapp.liveDataTracking.BTCommunicationService;
+import de.whs.stapp.liveDataTracking.BTServiceBinder;
 import de.whs.stapp.presentation.TrainingseinheitWebView;
 import android.os.Handler;
 import android.os.IBinder;
@@ -18,10 +22,6 @@ import android.content.ServiceConnection;
 import android.widget.Toast;
 
 import de.whs.stapp.helper.Constants;
-import de.whs.stapp.services.BTCommunicationEvent;
-import de.whs.stapp.services.BTCommunicationListener;
-import de.whs.stapp.services.BTCommunicationService;
-import de.whs.stapp.services.BTServiceBinder;
 
 /**
  * The applications MainActivity.
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 	 	 * 
 	 	 * @param msg - Anzuzeigende Textnachricht
 	 	 */
-	 	private void postToastMessage(final String msg)
+	 	public void postToastMessage(final String msg)
 	 	{
 	 		mainThreadHandler.post(new Runnable() {
 	 			public void run() {
@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
 		};
 		
 	 	/**
-	 	 * Diese Methode ist von Nöten um den BTService zu binden.
+	 	 * Diese Klasse ist von Nöten um den BTService zu binden.
 		 **/
 		class BTServiceConnection implements ServiceConnection {
 			
