@@ -2,17 +2,56 @@ package de.whs.stapp.database;
 
 
 /**
- * 
  * @author Christoph Inhestern
  * Class to represent the Data from one Training session.
  */
-public class TrainingUnit{
-	public int sessionID;	
-	public int distance;
-	public long date;
-
+public class TrainingUnit {
+	private int sessionID;	
+	private int distance;
+	private long date;
+		
+	/**
+	 * @return the sessionID
+	 */
+	public int getSessionID() {
+		return sessionID;
+	}
+	
+	/**
+	 * @param sessionID the sessionID to set
+	 */
+	public void setSessionID(int sessionID) {
+		this.sessionID = sessionID;
+	}	
+	
+	/**
+	 * @return the distance
+	 */
+	public int getDistance() {
+		return distance;
+	}
+	
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+	
+	/**
+	 * @return the date
+	 */
+	public long getDate() {
+		return date;
+	}
+	
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(long date) {
+		this.date = date;
+	}
 }
-
 
 //Andere Möglichkeit wäre in einem Training alle werte aufzunehmen 
 //und mit einer Liste dieser zu arbeiten. sessionID dann redundant
