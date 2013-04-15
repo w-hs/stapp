@@ -39,3 +39,6 @@ Allgemein gilt, dass sich gut geschriebener (sauberer) Code selbst erklärt. Sol
 ===Naming / Wording===
 Bei der Namensgebung halten wir uns an die Java Code Conventions:
 [http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-135099.html#367]
+
+== Check Ins ==
+Bei jedem Check In *muss* ein Kommentar angegeben werden! Der Kommentar wird auf Deutsch verfasst. Bezieht sich der Check In auf einen Technical Task so wird seine Id in der Form #id "Task Caption" angegeben. Wichtig ist, dass neben der Id auch die Bezeichnung für den Task angegeben wird, da der Text wesentlich sprechender ist, als die Id.
