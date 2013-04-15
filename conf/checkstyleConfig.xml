@@ -11,17 +11,13 @@ The checkstyle configuration file for our project. Maintained by Chris.
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
-  <module name="SuppressionCommentFilter"/>
-  <module name="SuppressionFilter">
-    <property name="file" value="${basedir}/conf/suppressions.xml"/>
-  </module>
-  
   <module name="TreeWalker">
-    
+    <module name="FileContentsHolder"/>
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="SuppressWarnings"/>
     <module name="JavadocMethod">
+      <property name="scope" value="public"/>
       <property name="allowMissingReturnTag" value="true"/>
       <property name="suppressLoadErrors" value="true"/>
     </module>
@@ -111,6 +107,7 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="TrailingComment"/>
     <module name="OuterTypeFilename"/>
   </module>
+  <module name="SuppressionCommentFilter"/>
   <module name="FileLength">
     <property name="max" value="1500"/>
   </module>
