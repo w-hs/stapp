@@ -9,8 +9,8 @@ import java.math.BigDecimal;
  */
 public class Trainingseinheit extends StappViewModel {
 	
-	private BigDecimal distance;
-	private int heartfrequence;
+	private String distance;
+	private String heartfrequence;
 	
 	/**
 	 * Konstruktor zum Erzeugen einer Trainingseinheit.
@@ -20,39 +20,23 @@ public class Trainingseinheit extends StappViewModel {
 	 */
 	public Trainingseinheit(BigDecimal distance, int heartfrequence) {
 		super();
-		this.distance = distance;
-		this.heartfrequence = heartfrequence;
+		this.distance = distance.toString();
+		this.heartfrequence = Integer.toString(heartfrequence);
 	}
 	
 	/**
 	 * Gibt die zurückgelegte Distanz der Trainingseinheit zurück.
 	 * @return Zurückgelegte Distanz.
 	 */
-	public BigDecimal getDistance() {
+	public String getDistance() {
 		return distance;
-	}
-
-	/**
-	 * Speichert die zurückgelegte Distanz der Trainingseinheit.
-	 * @param distance Zurückgelegte Distanz
-	 */
-	public void setDistance(BigDecimal distance) {
-		this.distance = distance;
 	}
 
 	/**
 	 * Gibt die Herzfrequenz der Trainingseinheit zurück.
 	 * @return Aktuelle Herzfrequenz.
 	 */
-	public int getHeartfrequence() {
+	public String getHeartfrequence() {
 		return heartfrequence;
-	}
-
-	/**
-	 * Speichert die Herzfrequenz der aktuellen Trainingseinheit.
-	 * @param heartfrequence Aktuelle Herzfrequenz.
-	 */
-	public void setHeartfrequence(int heartfrequence) {
-		this.heartfrequence = heartfrequence;
 	}
 }
