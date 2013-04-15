@@ -6,9 +6,9 @@ package de.whs.stapp.database;
  * Class to represent the Data from one Training session.
  */
 public class TrainingUnit {
-	private int sessionID;	
-	private int distance;
-	private long date;
+	protected int sessionID;	
+	protected int distance;
+	protected long date;
 		
 	/**
 	 * @return the sessionID
