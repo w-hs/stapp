@@ -36,7 +36,7 @@ public class TrainingseinheitWebView extends StappWebView {
 	public void updateTrainingData(Trainingseinheit trainingData) {
 
 		String functionCall = trainingData
-			.getJavascriptFunctionCall("stapp.updateTraining()");
+			.getJavascriptFunctionCall("stapp.updateTraining");
 		this.loadUrl(functionCall);
 	}
 	

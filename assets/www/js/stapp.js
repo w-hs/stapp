@@ -7,6 +7,8 @@ var stapp =
             console.log(jsonStr);
             var t = JSON.parse(jsonStr);
             var training = new training(t.distance, t.heartfrequence);
+            $('#distance > .DataContent').html(training.distance + "km");
+            $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
         },
         startTraining: function () {
             this.timerValue = 0;
