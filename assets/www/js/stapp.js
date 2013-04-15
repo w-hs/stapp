@@ -10,11 +10,15 @@ var stapp =
             $('#distance > .DataContent').html(training.distance + "km");
             $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
         },
-        startTraining: function () {
-            this.timerValue = 0;
-            console.log("startTraining");
+        startTraining: function () {        	
             this.trainingTimer = window.setInterval(function () { stapp.updateStopWatch() }, this.timerInterval);
-            console.log(this.trainingTimer);
+        },
+        stopTraining: function(){        	
+        	this.timerValue = 0;
+        	window.clearInterval(this.trainingTimer);
+        },
+        pauseTraining: function(){        	
+        	window.clearInterval(this.trainingTimer);        	
         },
         updateStopWatch: function () {
             this.timerValue += this.timerInterval;
