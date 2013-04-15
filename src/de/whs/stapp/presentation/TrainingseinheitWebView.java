@@ -21,7 +21,7 @@ public class TrainingseinheitWebView extends StappWebView {
 	public TrainingseinheitWebView(Context context) {
 		super(context);
 
-		//TODO: Laden der Webseite von einem Server
+		//TODO Laden der Webseite von einem Server
 		// Abhängigkeit von der Internetverbindung einbauen
 		this.loadUrl("file:///android_asset/www/Trainingseinheit.html");
 	}
