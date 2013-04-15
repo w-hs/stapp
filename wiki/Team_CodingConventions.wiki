@@ -16,6 +16,15 @@ Um Checkstyle in Eurem Eclipse installieren zu können geht Ihr wie gewohnt auf 
 
 Die Checkstyle Konfiguration nehme ich dann selbst am Projekt vor.
 
+
+===Checkstyle abschnittsweise deaktivieren===
+Unter Umständen gibt es Bereiche im Code, die von Checkstyle nicht überprüft werden sollen. Beispielsweise, weil die Namensgebung von einem SDK vorgegeben sind...
+In diesem Fall kann die Checkstyle Überprüfung wie folgt deaktiviert werden:
+{{{
+//CHECKSTYLE:OFF
+Code Abschnitt
+//CHECKSTYLE:ON
+}}}
 ==Code Conventions==
 
 ===Language===
