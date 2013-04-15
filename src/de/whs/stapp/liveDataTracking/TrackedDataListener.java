@@ -9,7 +9,7 @@ import java.util.EventListener;
  * 
  * @author Dennis Miller
  */
-public interface BTCommunicationListener extends EventListener {
+public interface TrackedDataListener extends EventListener {
 
 	/**
 	 * 
@@ -18,6 +18,6 @@ public interface BTCommunicationListener extends EventListener {
 	 * 
 	 * @param e - BTCommunicationEvent
 	 */
-	void getHxMData(BTCommunicationEvent e);
+	void getTrackedData(TrackedDataEvent e);
 	
 }

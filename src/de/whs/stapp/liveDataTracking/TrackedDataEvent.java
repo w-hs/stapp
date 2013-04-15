@@ -9,9 +9,9 @@ import java.util.EventObject;
  * 
  * @author Dennis Miller
  */
-public class BTCommunicationEvent extends EventObject {
+public class TrackedDataEvent extends EventObject {
 	
-	private TrackedDataItem conti;
+	private TrackedDataItem dataItem;
 
 	private static final long serialVersionUID = -1722444854946271633L;
 
@@ -22,9 +22,9 @@ public class BTCommunicationEvent extends EventObject {
 	 * @param source - das Objekt, welches das Event feuert.
 	 * @param dataContainer - Container, welcher die Daten enthält.
 	 */
-	public BTCommunicationEvent(Object source, TrackedDataItem dataContainer) {
+	public TrackedDataEvent(Object source, TrackedDataItem dataContainer) {
 		super(source);
-		conti =  dataContainer;
+		dataItem =  dataContainer;
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class BTCommunicationEvent extends EventObject {
 	 * 
 	 * @return conti - Live-Daten-Container
 	 */
-	public TrackedDataItem getConti() {
-		return conti;
+	public TrackedDataItem getDataItem() {
+		return dataItem;
 	}
 
 }

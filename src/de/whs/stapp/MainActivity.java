@@ -1,27 +1,18 @@
 package de.whs.stapp;
 
-import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import de.whs.stapp.liveDataTracking.BTCommunicationEvent;
-import de.whs.stapp.liveDataTracking.BTCommunicationListener;
 import de.whs.stapp.liveDataTracking.BTCommunicationService;
-import de.whs.stapp.liveDataTracking.BTServiceBinder;
+import de.whs.stapp.liveDataTracking.BTServiceConnection;
 import de.whs.stapp.presentation.TrainingseinheitWebView;
-import android.os.Handler;
-import android.os.IBinder;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.widget.Toast;
-
-import de.whs.stapp.helper.Constants;
 
 /**
  * The applications MainActivity.
@@ -31,27 +22,8 @@ import de.whs.stapp.helper.Constants;
 public class MainActivity extends Activity {
 
 		private TrainingseinheitWebView mTrainingseinheitWebview;
-	 	private BTServiceConnection btServiceBindConnection;
-	 	private BTCommunicationService btService;
-	 	private Handler mainThreadHandler = new Handler(); 	
+	 	private BTServiceConnection btServiceBindConnection;	
 	 	
-	 	/**
-	 	 * 
-	 	 * Diese Methode blendet eine sogenannte 
-	 	 * Toastmessage (Popup-Fenster) ein.
-	 	 * 
-	 	 * @param msg - Anzuzeigende Textnachricht
-	 	 */
-	 	public void postToastMessage(final String msg)
-	 	{
-	 		mainThreadHandler.post(new Runnable() {
-	 			public void run() {
-	 				Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-	 			}
-	 		});
-	 	}
-	 	
-	    
 		@Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -106,75 +78,5 @@ public class MainActivity extends Activity {
 		 */
 		public TrainingseinheitWebView getmTrainingseinheitWebview() {
 			return mTrainingseinheitWebview;
-		}
-		
-		/**
-		 * Diese Methode versucht eine Bluetoothverbindung herzustellen
-		 * und meldet den anschließenden BT-Status.
-		 */
-		private void connect() {
-			int status;
-			// try to connect
-			if (btService != null) {
-				status = btService.connectBT();
-			} else {
-				status = -1;
-			}
-			switch (status) {
-			case Constants.BT_NO_ADAPTER_STATUS:
-				postToastMessage("No Bluetooth adapter");
-				break;
-			case Constants.BT_CONNECTION_SUCCESS:
-				postToastMessage("Connection Succesful");
-				break;
-			case Constants.BT_CONNECTION_FAILURE:
-				postToastMessage("Bluetooth sensor (HxM) not found");
-				break;
-			default:
-				postToastMessage("Default");
-				break;
-				
-			}
-		}
-		
-		final BTCommunicationListener listener = new BTCommunicationListener() {
-			
-			@Override
-			public void getHxMData(BTCommunicationEvent e) {
-				
-				//Viel Spaß beim Benutzen der Daten, hoffentlich :D
-				//e.getXXX
-			}
-		};
-		
-	 	/**
-	 	 * Diese Klasse ist von Nöten um den BTService zu binden.
-		 **/
-		class BTServiceConnection implements ServiceConnection {
-			
-			/**
-			 * Diese Methode wird aufgerufen, wenn der Service gebunden wurde.
-			 * 
-			 * @param className - Klassenname
-			 * 
-			 * @param service - Service Binder
-			 */
-			public void onServiceConnected(ComponentName className, IBinder service) {
-				BTServiceBinder serviceBinder = (BTServiceBinder) service; 
-				btService = serviceBinder.getService();
-				if (btService != null) {
-					btService.registerHxMListener(listener);
-				}
-			}
-			 /**
-			  * Diese Methode wird aufgerufen, wenn der Verbund mit 
-			  * dem Service aufgelöst wurde.
-			  * 
-			  * @param arg0 - Komponentenname
-			  */
-			public void onServiceDisconnected(ComponentName arg0) {
-			}
-			
-		}
-			
+		}			
 }

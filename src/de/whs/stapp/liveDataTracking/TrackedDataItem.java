@@ -21,6 +21,45 @@ public class TrackedDataItem {
 	private double speed;
 	private byte strides;
 	
+	
+	/**
+	 * Parameterloser Konstruktor.
+	 */	
+	public TrackedDataItem() {
+	}
+
+	/**
+	 * Konstruktor, welcher sofort alle Variablen befüllt.
+	 *  
+	 * @param firmwareId -
+	 * @param firmwareVersion -
+	 * @param hardwareId -
+	 * @param hardwareVersion -
+	 * @param batteryChargeInd -
+	 * @param heartRate -
+	 * @param heartBeatNumber -
+	 * @param heartBeatTimestamps -
+	 * @param distance - 
+	 * @param speed -
+	 * @param strides -
+	 */
+	public TrackedDataItem(String firmwareId, String firmwareVersion,
+			String hardwareId, String hardwareVersion, byte batteryChargeInd,
+			byte heartRate, byte heartBeatNumber, int[] heartBeatTimestamps,
+			double distance, double speed, byte strides) {
+		this.firmwareId = firmwareId;
+		this.firmwareVersion = firmwareVersion;
+		this.hardwareId = hardwareId;
+		this.hardwareVersion = hardwareVersion;
+		this.batteryChargeInd = batteryChargeInd;
+		this.heartRate = heartRate;
+		this.heartBeatNumber = heartBeatNumber;
+		this.heartBeatTimestamps = heartBeatTimestamps;
+		this.distance = distance;
+		this.speed = speed;
+		this.strides = strides;
+	}
+
 	/**
 	 * 
 	 * Getter-Methode für firmwareId.
