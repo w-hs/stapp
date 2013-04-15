@@ -18,7 +18,6 @@ public class BTServiceConnection implements ServiceConnection,
 	 * Diese Methode wird aufgerufen, wenn der Service gebunden wurde.
 	 * 
 	 * @param className - Klassenname
-	 * 
 	 * @param service - Service Binder
 	 */
 	public void onServiceConnected(ComponentName className, IBinder service) {
@@ -45,9 +44,10 @@ public class BTServiceConnection implements ServiceConnection,
 		if (btService != null) {
 			connectionState = BTState.Connecting;
 			status = btService.connectBT();
-		} else {
+		} 
+		else
 			status = -1;
-		}
+		
 		switch (status) {
 		case BTConstants.BT_NO_ADAPTER_STATUS:
 			connectionState = BTState.Disconnected;
@@ -60,15 +60,12 @@ public class BTServiceConnection implements ServiceConnection,
 			break;
 		default:
 			connectionState = BTState.Disconnected;
-			break;
-			
+			break;	
 		}
 	}
 	
 	/**
-	 * Diese Methode registriert einen Listener, 
-	 * der di Sensor-Daten erhalten möchte.
-	 * 
+	 * Diese Methode registriert einen Listener,  der die Sensor-Daten erhalten möchte.
 	 * @param listener - Ein Listener, der die Datenpakete des Sensors empfangen möchte.
 	 */
 	public void registerListener(TrackedDataListener listener){
@@ -77,12 +74,10 @@ public class BTServiceConnection implements ServiceConnection,
 	}
 
 	/**
-	 * Gettern-Methode für den Verbindungsstatus.
-	 * 
+	 * Get-Methode für den Verbindungsstatus.
 	 * @return connectionState - Verbindungsstatus
 	 */
 	public BTState getConnectionState() {
 		return connectionState;
 	}
-	
 }

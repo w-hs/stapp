@@ -1,11 +1,18 @@
 package de.whs.stapp.liveDataTracking;
 
 /**
- * Diese Klasse beinhaltet Konstanten für das gesamte Projekt.
- * 
  * @author Dennis Miller
+ * Diese Klasse beinhaltet Konstanten für das gesamte Projekt.
  * */
-public class BTConstants {
+public final class BTConstants {
+	
+	/**
+	 * @author Chris
+	 * Utility classes should not have a public constructor.
+	 */
+	private BTConstants() {
+		
+	}
 	
 	public static final int HR_SPD_DIST_PACKET =0x26;
 	

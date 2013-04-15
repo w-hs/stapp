@@ -40,8 +40,10 @@ class HxMConnectedListener extends ConnectListenerImpl {
 	 * 
 	 * @param eventArgs -
 	 */
-	@Override
+	@Override 
+	//CHECKSTYLE:OFF
 	public void Connected(ConnectedEvent<BTClient> eventArgs) {
+	//CHECKSTYLE:ON
 		Log.d("HxMConnectedListener", String.format
 				("Connected to HxM %s.", eventArgs.getSource().
 						getDevice().getName()));
@@ -52,12 +54,16 @@ class HxMConnectedListener extends ConnectListenerImpl {
 				new ZephyrProtocol(eventArgs.getSource().getComms());
 		
 		protocol.addZephyrPacketEventListener(new ZephyrPacketListener() {
+			//CHECKSTYLE:OFF
 			public void ReceivedPacket(ZephyrPacketEvent eventArgs) {
+			//CHECKSTYLE:ON
 				if(eventArgs != null && eventArgs.getPacket() != null) {
 					ZephyrPacketArgs msg = eventArgs.getPacket();
 					
-					byte cRCFailStatus = msg.getCRCStatus();
-					byte rcvdBytes = msg.getNumRvcdBytes();
+					// TODO, Dennis: Die beiden Variablen wurden
+					// nicht verwendet, bitte löschen!
+					// byte cRCFailStatus = msg.getCRCStatus();
+					// byte rcvdBytes = msg.getNumRvcdBytes();
 					
 					if (msg.getMsgID() == BTConstants.HR_SPD_DIST_PACKET){
 					
