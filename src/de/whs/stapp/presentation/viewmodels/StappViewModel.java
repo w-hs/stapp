@@ -20,21 +20,4 @@ public class StappViewModel {
 	{
 		return new Gson().toJson(this);
 	}
-	
-	/**
-	 * Baut einen Funktionsaufruf einer Javascript Funktion
-	 * auf und übergibt sich selbst als JSON-String.
-	 * @param functionName Name der zu rufenden Funktion.
-	 * @return
-	 */
-	public String getJavascriptFunctionCall(String functionName){
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append("javascript:");
-		sb.append(functionName);
-		sb.append("(");
-		sb.append(this.toJSON());
-		sb.append(")");
-		return sb.toString();
-	}
 }
