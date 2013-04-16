@@ -1,6 +1,8 @@
 package de.whs.stapp.presentation;
 
 import android.content.Context;
+import static de.whs.stapp.presentation.helper.Constants.*;
+import de.whs.stapp.presentation.helper.Javascript;
 import de.whs.stapp.presentation.viewmodels.Trainingseinheit;
 
 /**
@@ -23,7 +25,7 @@ public class TrainingseinheitWebView extends StappWebView {
 
 		//TODO Laden der Webseite von einem Server
 		// Abhängigkeit von der Internetverbindung einbauen
-		this.loadUrl("file:///android_asset/www/Trainingseinheit.html");
+		this.loadUrl(HTML_LOCAL_TRAININGSEINHEIT);
 	}
 
 	/**
@@ -35,8 +37,8 @@ public class TrainingseinheitWebView extends StappWebView {
 	 */
 	public void updateTrainingData(Trainingseinheit trainingData) {
 
-		String functionCall = trainingData
-			.getJavascriptFunctionCall("stapp.updateTraining");
+		String functionCall = 
+				Javascript.getFunctionCall(JS_TRAININGSEINHEIT_UPDATE, trainingData);
 		this.loadUrl(functionCall);
 	}
 	
@@ -45,7 +47,7 @@ public class TrainingseinheitWebView extends StappWebView {
 	 */
 	public void startTraining(){
 		
-		this.loadUrl("javascript:stapp.startTraining()");
+		this.loadUrl(Javascript.getFunctionCall(JS_TRAININGSEINHEIT_START));
 	}
 	
 	/**
@@ -53,7 +55,7 @@ public class TrainingseinheitWebView extends StappWebView {
 	 */
 	public void pauseTraining(){
 
-		this.loadUrl("javascript:stapp.pauseTraining()");
+		this.loadUrl(Javascript.getFunctionCall(JS_TRAININGSEINHEIT_PAUSE));
 	}
 	
 	/**
@@ -61,7 +63,7 @@ public class TrainingseinheitWebView extends StappWebView {
 	 */
 	public void stopTraining(){
 
-		this.loadUrl("javascript:stapp.stopTraining()");
+		this.loadUrl(Javascript.getFunctionCall(JS_TRAININGSEINHEIT_STOP));
 	}
 
 }
