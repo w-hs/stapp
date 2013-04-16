@@ -5,7 +5,14 @@ package de.whs.stapp.presentation.helper;
  * 
  * @author Dennis Miller
  * */
-public class Constants {
+public final class Constants {
+	
+	/**
+	 * Kein Konstruktor für eine Utility-Klasse.
+	 */
+	private Constants()
+	{		
+	}
 	
 	//Javascript Funktionen
 	public static final String JS_TRAININGSEINHEIT_UPDATE = "stapp.updateTraining"; 
