@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="de.whs.stapp.database.StappDbHelper" project="stapp" 
+    file="/stapp/src/de/whs/stapp/database/StappDbHelper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="299" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="de.whs.stapp.database.StappDbAdapter" project="stapp" 
+    file="/stapp/src/de/whs/stapp/database/StappDbAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="273" x="380" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="de.whs.stapp.database.DatabaseAdapter" project="stapp" 
+    file="/stapp/src/de/whs/stapp/database/DatabaseAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="273" x="380" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="de.whs.stapp.database.TrainingUnit" project="stapp" 
+    file="/stapp/src/de/whs/stapp/database/TrainingUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="131" x="693" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="de.whs.stapp.database.TrainingUnitDetail" project="stapp" 
+    file="/stapp/src/de/whs/stapp/database/TrainingUnitDetail.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="296" x="693" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <realization id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
