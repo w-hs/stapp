@@ -3,15 +3,22 @@ package de.whs.stapp.presentation.helper;
 import de.whs.stapp.presentation.viewmodels.StappViewModel;
 
 /**
- * Die Javascript Klasse bietet Funktionen um das Arbeiten mit Javascript
- * aus Android zu erleichtern.
+ * Die Javascript Klasse bietet Funktionen um das Arbeiten mit Javascript aus
+ * Android zu erleichtern.
+ * 
  * @author Thomas
- *
+ * 
  */
-public class Javascript {
+public final class Javascript {
 
-	private static String getFunctionCall(String functionName,
-			String jsonString) {
+	/**
+	 * Utility-Klasse darf keinen Standardkonstruktor haben.
+	 */
+	private Javascript() {
+
+	}
+
+	private static String getFunctionCall(String functionName, String jsonString) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("javascript:");
@@ -39,6 +46,9 @@ public class Javascript {
 	 * 
 	 * @param functionName
 	 *            Name der zu rufenden Funktion.
+	 * @param viewModel
+	 *            Anzuzeigende ViewModel, das als JSON-String an das Javascript
+	 *            übergeben wird.
 	 * @return Name der zusammengebauten Funktion.
 	 */
 	public static String getFunctionCall(String functionName,
