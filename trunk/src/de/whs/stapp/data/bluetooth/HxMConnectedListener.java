@@ -60,12 +60,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 			//CHECKSTYLE:ON
 				if(eventArgs != null && eventArgs.getPacket() != null) {
 					ZephyrPacketArgs msg = eventArgs.getPacket();
-					
-					// TODO, Dennis: Die beiden Variablen wurden
-					// nicht verwendet, bitte löschen!
-					// byte cRCFailStatus = msg.getCRCStatus();
-					// byte rcvdBytes = msg.getNumRvcdBytes();
-					
+							
 					if (msg.getMsgID() == Constants.HR_SPD_DIST_PACKET){
 					
 						byte[] dataArray = msg.getBytes();

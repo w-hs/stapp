@@ -10,7 +10,6 @@ import android.content.Intent;
  */
 public class BluetoothDevice implements DataTracker {
 	
-	// TODO Bluetooth State einfügen!
 	private BTServiceConnection connection;
 
 	/**
@@ -35,6 +34,14 @@ public class BluetoothDevice implements DataTracker {
 		
 		Intent intent = new Intent(activity, BTCommunicationService.class);
 		activity.bindService(intent, connection, Context.BIND_AUTO_CREATE);	
+	}
+	
+	/**
+	 * Gibt den Verbindungsstatus zurück.
+	 * @return connectionState - Verbindungsstatus
+	 */
+	public ConnectionState getConnectionState() {
+		return connection.getConnectionState();
 	}
 
 	@Override

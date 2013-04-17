@@ -74,7 +74,7 @@ class BTServiceConnection implements ServiceConnection {
 	
 
 	/**
-	 * Get-Methode für den Verbindungsstatus.
+	 * Gibt den Verbindungsstatus zurück.
 	 * @return connectionState - Verbindungsstatus
 	 */
 	public ConnectionState getConnectionState() {
