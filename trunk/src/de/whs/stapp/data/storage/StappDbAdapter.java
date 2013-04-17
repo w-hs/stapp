@@ -1,4 +1,4 @@
-package de.whs.stapp.database;
+package de.whs.stapp.data.storage;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import de.whs.stapp.data.bluetooth.TrackedDataItem;
  * 
  */
 
-public class StappDbHelper extends SQLiteOpenHelper{
+public class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter {
 
 	//Android standard Pfad für App Datenbanken
     private static String dbPath = "/data/data/de.whs.stapp/databases/";
@@ -44,7 +44,7 @@ public class StappDbHelper extends SQLiteOpenHelper{
      * @param context , Context in dem die Klasse instanziiert wird.
      * 
      */
-	public StappDbHelper(Context context) {
+	public StappDbAdapter(Context context) {
 		super(context, dbName, null, 1);
         this.stappContext = context; 
 	}
@@ -183,23 +183,21 @@ public class StappDbHelper extends SQLiteOpenHelper{
      * @param id , ID der detailliert anzuzeigenden Trainingseinheit.
      * @return
      */
-    public TrainingUnitDetail getTrainingUnitDetailFromDb(int id){
-    	
+    public TrainingUnitDetail getTrainingUnitDetail(int id) {
     	TrainingUnitDetail result = new TrainingUnitDetail();
     	
-    	//TODO
+    	// TODO 
     		
     	return result;
     }
     
     /**
-     * 
+     * @author Christoph Inhestern
+     * Liefert eine Liste aller Trainingseinheiten zurück.
      * @return
      */
-    public List<TrainingUnit> getOverviewFromDB(){
-    	
-    	//TODO
-    	
+    public List<TrainingUnit> getTrainingUnitsOverview() {
+        // TODO    	
     	return null;
     }
     
@@ -209,16 +207,15 @@ public class StappDbHelper extends SQLiteOpenHelper{
      * Die Methode schreibt Werte zu einer Trainingseinheit in die
      * Datenbank.
      * 
-     * @param id , ID der aktuell laufenden Trainingseinheit
-     * @param tip , aktuelle Messwerte, welche in die Datanbank zu schreiben sind 
+     * @param trainingUnitId Id der aktuell laufenden Trainingseinheit.
+     * @param dataItem Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
      * @return
      */
-    public boolean writeTrackedDataItemToDB (int id, TrackedDataItem tip){
-    	
+    public boolean saveTrackedDataItem (int trainingUnitId, TrackedDataItem dataItem) {   	
     	ContentValues val = new ContentValues();
-    	val.put("ID", id);
+    	val.put("ID", trainingUnitId);
     	
-    	//TODO
+    	// TODO
 
     	if (stappDb.insert("TABBELLE MIT WERTEN", null, val) == -1)   	
     		return false;
@@ -233,7 +230,7 @@ public class StappDbHelper extends SQLiteOpenHelper{
      * 
      * @return
      */
-    public TrainingUnit getNewTrainingsUnit(){
+    public TrainingUnit createNewTrainingUnit() {
     	TrainingUnit result = new TrainingUnit();
     	
     	//TODO

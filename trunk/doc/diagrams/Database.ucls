@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="de.whs.stapp.database.StappDbHelper" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/database/StappDbHelper.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="de.whs.stapp.data.storage.StappDbHelper" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/StappDbHelper.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="369" width="299" x="111" y="-46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="de.whs.stapp.database.TrainingUnitDetail" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/database/TrainingUnitDetail.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="de.whs.stapp.data.storage.TrainingUnitDetail" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/TrainingUnitDetail.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="117" width="296" x="285" y="363"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="de.whs.stapp.database.TrainingUnit" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/database/TrainingUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="de.whs.stapp.data.storage.TrainingUnit" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/TrainingUnit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="243" width="131" x="450" y="-46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="de.whs.stapp.database.StappDbAdapter" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/database/StappDbAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="de.whs.stapp.data.storage.StappDbAdapter" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/StappDbAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="369" width="273" x="621" y="-46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <interface id="5" language="java" name="de.whs.stapp.database.DatabaseAdapter" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/database/DatabaseAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="de.whs.stapp.data.storage.DatabaseAdapter" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/DatabaseAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="273" x="621" y="363"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

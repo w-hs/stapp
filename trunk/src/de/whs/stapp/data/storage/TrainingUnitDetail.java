@@ -1,4 +1,4 @@
-package de.whs.stapp.database;
+package de.whs.stapp.data.storage;
 
 import java.util.ArrayList;
 

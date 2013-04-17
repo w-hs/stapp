@@ -2,8 +2,8 @@ package de.whs.stapp.data.access;
 
 import java.util.List;
 
-import de.whs.stapp.database.TrainingUnit;
-import de.whs.stapp.database.TrainingUnitDetail;
+import de.whs.stapp.data.storage.TrainingUnit;
+import de.whs.stapp.data.storage.TrainingUnitDetail;
 
 /**
  * @author Chris
