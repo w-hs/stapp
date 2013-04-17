@@ -21,11 +21,21 @@ Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue
   * `PartOf-OpenBugs`: Offene Fehler
   * `PartOf-OpenTasks`: Offene Tasks
 
+=== Komponenten ===
+  * `Component-Data`: Datenhaltung
+  * `Component-GUI`: Benutzeroberfläche / Visualierung
+  * `Component-Conn`: (Bluetooth) Verbindung
+
 === Priorisierung ===
 
   * `Priority-Critical`: Umsetzung ist sofort erforderlich, da das Team sonst nicht weiter arbeiten kann (sollte nicht auftreten)
   * `Priority-High`: Umsetzung innerhalb des nächsten Sprints gewünscht
   * `Priority-Low`: Umsetzung kann beliebig verschoben werden
+
+*User Stories:*
+  * `StoryPrio-Core`: Kernfunktionalität, die umgesetzt werden muss
+  * `StoryPrio-Nice`: Nice To Have Features, die zwar wünschenswert aber nicht zwingend erforderlich sind
+  * `StoryPrio-Vision`: Visionen bzw. Ideen für die Zukunft, können bei Gelegenheit umgesetzt werden
 
 == Wiki ==
 
