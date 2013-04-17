@@ -2,8 +2,6 @@ package de.whs.stapp.data.storage;
 
 import java.util.List;
 
-import de.whs.stapp.data.bluetooth.TrackedDataItem;
-
 /**
  * Definiert Methoden für den Datenbankzugriff.
  * @author Chris
@@ -14,10 +12,10 @@ public interface DatabaseAdapter {
      * Gibt alle Daten einer Trainingseinheit zurück. Dies enthält
      * alle vorhandenen Messwerte zu einer Einheit.
      * 
-     * @param id , ID der detailliert anzuzeigenden Trainingseinheit.
+     * @param trainingUnitId ID der detailliert anzuzeigenden Trainingseinheit.
      * @return
      */
-    TrainingUnitDetail getTrainingUnitDetail(int id);
+    DetailedTrainingUnit getTrainingUnitDetail(int trainingUnitId);
     
     /**
      * Liefert eine Liste aller Trainingseinheiten zurück.
@@ -30,10 +28,10 @@ public interface DatabaseAdapter {
      * Datenbank.
      * 
      * @param trainingUnitId Id der aktuell laufenden Trainingseinheit.
-     * @param dataItem Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
+     * @param detail Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
      * @return
      */
-    boolean saveTrackedDataItem (int trainingUnitId, TrackedDataItem dataItem);
+    void saveTrainingDetail(int trainingUnitId, TrainingDetail detail);
     
     /**
      * Die Methode legt einen neuen Eintrag für eine Trainingseinheit

@@ -21,7 +21,7 @@ import de.whs.stapp.data.bluetooth.TrackedDataItem;
  * 
  */
 
-public class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter {
+class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter {
 
 	//Android standard Pfad für App Datenbanken
     private static String dbPath = "/data/data/de.whs.stapp/databases/";
@@ -183,8 +183,8 @@ public class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter 
      * @param id , ID der detailliert anzuzeigenden Trainingseinheit.
      * @return
      */
-    public TrainingUnitDetail getTrainingUnitDetail(int id) {
-    	TrainingUnitDetail result = new TrainingUnitDetail();
+    public DetailedTrainingUnit getTrainingUnitDetail(int id) {
+    	DetailedTrainingUnit result = new DetailedTrainingUnit();
     	
     	// TODO 
     		
@@ -237,4 +237,10 @@ public class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter 
     	
     	return result;    	
     }
+
+	@Override
+	public void saveTrainingDetail(int trainingUnitId, TrainingDetail detail) {
+		// TODO Auto-generated method stub
+		
+	}
 }

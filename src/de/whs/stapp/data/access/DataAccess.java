@@ -3,7 +3,7 @@ package de.whs.stapp.data.access;
 import java.util.List;
 
 import de.whs.stapp.data.storage.TrainingUnit;
-import de.whs.stapp.data.storage.TrainingUnitDetail;
+import de.whs.stapp.data.storage.DetailedTrainingUnit;
 
 /**
  * @author Chris
@@ -24,8 +24,8 @@ public interface DataAccess {
 	List<TrainingUnit> getTrainingUnitsOverview();
 
 	/**
-	 * Liefert zu gegebener trainingUnitId die entsprechende {@link TrainingUnitDetail}. 
+	 * Liefert zu gegebener trainingUnitId die entsprechende {@link DetailedTrainingUnit}. 
 	 * @param trainingUnitId Die Id der {@link TrainingUnit}.
 	 */
-	TrainingUnitDetail getTrainingUnitWithDetails(int trainingUnitId);
+	DetailedTrainingUnit getTrainingUnitWithDetails(int trainingUnitId);
 }
