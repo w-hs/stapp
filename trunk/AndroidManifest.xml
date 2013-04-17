@@ -36,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:permission="android.permission.BLUETOOTH" android:name="de.whs.stapp.liveDataTracking.BTCommunicationService"></service>
+        <service android:permission="android.permission.BLUETOOTH" android:name="de.whs.stapp.data.bluetooth.BTCommunicationService"></service>
     </application>
 
 </manifest>

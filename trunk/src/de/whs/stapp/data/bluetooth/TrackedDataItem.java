@@ -1,4 +1,4 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 /**
  * Diese Klasse dient als Datencontainer für 

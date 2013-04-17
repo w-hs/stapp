@@ -1,4 +1,4 @@
-package de.whs.stapp.dataAccess;
+package de.whs.stapp.data.access;
 
 import java.util.List;
 

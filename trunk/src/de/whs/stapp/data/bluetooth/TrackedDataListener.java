@@ -1,4 +1,4 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 import java.util.EventListener;
 
@@ -16,8 +16,8 @@ public interface TrackedDataListener extends EventListener {
 	 * Diese Methode bekommt mittels des Events die Daten 
 	 * des HxM-Sensors übermittelt.
 	 * 
-	 * @param e - BTCommunicationEvent
+	 * @param dataItem - Das {@link TrackedDataItem}.
 	 */
-	void getTrackedData(TrackedDataEvent e);
+	void trackData(TrackedDataItem dataItem);
 	
 }

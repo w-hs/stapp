@@ -1,4 +1,4 @@
-package de.whs.stapp.dataAccess;
+package de.whs.stapp.data.access;
 
 /**
  * Definiert die verschiedenen Stati, in der sich 

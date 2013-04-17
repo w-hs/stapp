@@ -1,16 +1,16 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 /**
  * @author Dennis Miller
  * Diese Klasse beinhaltet Konstanten für das gesamte Projekt.
  * */
-public final class BTConstants {
+final class Constants {
 	
 	/**
 	 * @author Chris
 	 * Utility classes should not have a public constructor.
 	 */
-	private BTConstants() {
+	private Constants() {
 		
 	}
 	
