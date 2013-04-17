@@ -6,8 +6,8 @@ import java.util.List;
 import de.whs.stapp.data.bluetooth.DataTracker;
 import de.whs.stapp.data.bluetooth.TrackedDataItem;
 import de.whs.stapp.data.bluetooth.TrackedDataListener;
-import de.whs.stapp.database.DatabaseAdapter;
-import de.whs.stapp.database.TrainingUnit;
+import de.whs.stapp.data.storage.DatabaseAdapter;
+import de.whs.stapp.data.storage.TrainingUnit;
 
 /**
  * Verwaltet eine Trainingseinheit.
