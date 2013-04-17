@@ -2,7 +2,7 @@ package de.whs.stapp.database;
 
 import java.util.ArrayList;
 
-import de.whs.stapp.liveDataTracking.TrackedDataItem;
+import de.whs.stapp.data.bluetooth.TrackedDataItem;
 
 /**
  * 

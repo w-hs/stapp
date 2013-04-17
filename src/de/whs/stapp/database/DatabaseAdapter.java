@@ -1,7 +1,8 @@
 package de.whs.stapp.database;
 
 import java.util.List;
-import de.whs.stapp.liveDataTracking.TrackedDataItem;
+
+import de.whs.stapp.data.bluetooth.TrackedDataItem;
 
 /**
  * Definiert Methoden für den Datenbankzugriff.

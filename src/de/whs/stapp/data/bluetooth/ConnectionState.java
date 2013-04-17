@@ -1,10 +1,10 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 /**
  * @author Dennis Miller
  * Definiert die Stati, die die Bluetooth-Verbindung annehmen kann. 
  */
-public enum BTState {
+public enum ConnectionState {
 	Connected,
 	Connecting,
 	Disconnected

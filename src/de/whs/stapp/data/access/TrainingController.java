@@ -1,14 +1,13 @@
-package de.whs.stapp.dataAccess;
+package de.whs.stapp.data.access;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.whs.stapp.data.bluetooth.DataTracker;
+import de.whs.stapp.data.bluetooth.TrackedDataItem;
+import de.whs.stapp.data.bluetooth.TrackedDataListener;
 import de.whs.stapp.database.DatabaseAdapter;
 import de.whs.stapp.database.TrainingUnit;
-import de.whs.stapp.liveDataTracking.BTServiceConnectionRegisterable;
-import de.whs.stapp.liveDataTracking.TrackedDataEvent;
-import de.whs.stapp.liveDataTracking.TrackedDataItem;
-import de.whs.stapp.liveDataTracking.TrackedDataListener;
 
 /**
  * Verwaltet eine Trainingseinheit.
@@ -19,7 +18,7 @@ public class TrainingController {
 	private List<TrackedDataListener> trackedDataListeners =
 			new ArrayList<TrackedDataListener>();
 
-	private BTServiceConnectionRegisterable serviceConnection;
+	private DataTracker serviceConnection;
 	private DatabaseAdapter databaseAdapter;
 	
 	private TrainingState state;
@@ -35,10 +34,10 @@ public class TrainingController {
 	/**
 	 * Erzeugt eine neue Instanz der {@link TrainingController} Klasse.
 	 * @param databaseAdapter Eine {@link DatabaseAdapter} Implementierung.
-	 * @param serviceConnection Eine {@link BTServiceConnectionRegisterable} Implementierung.
+	 * @param serviceConnection Eine {@link DataTracker} Implementierung.
 	 */
 	public TrainingController(DatabaseAdapter databaseAdapter,
-			BTServiceConnectionRegisterable serviceConnection) {
+			DataTracker serviceConnection) {
 		
 		if (databaseAdapter == null)
 			throw new IllegalArgumentException("databaseAdapter cannot be null.");
@@ -80,6 +79,7 @@ public class TrainingController {
 		if (state == TrainingState.FINISHED)
 			return;
 		state = TrainingState.FINISHED;
+		// TODO unregisterListener!
 	}
 
 	/**
@@ -112,25 +112,23 @@ public class TrainingController {
 	private void listenToTrackedData() {
 		serviceConnection.registerListener(new TrackedDataListener() {
 			@Override
-			public void getTrackedData(TrackedDataEvent e) {
-				processTrackedData(e);
+			public void trackData(TrackedDataItem dataItem) {
+				processTrackedData(dataItem);	
 			}
 		});
 	}
 
-	private void processTrackedData(TrackedDataEvent e) {
+	private void processTrackedData(TrackedDataItem dataItem) {
 		if (state != TrainingState.RUNNING)
 			return;
 		
-		notifyTrackedDataListerners(e);
-		
-		TrackedDataItem item = e.getDataItem();	
-		databaseAdapter.saveTrackedDataItem(trainingUnit.getSessionID(), item);
+		notifyTrackedDataListerners(dataItem);
+		databaseAdapter.saveTrackedDataItem(trainingUnit.getSessionID(), dataItem);
 	}
 
-	private void notifyTrackedDataListerners(TrackedDataEvent e) {
+	private void notifyTrackedDataListerners(TrackedDataItem dataItem) {
 		for (TrackedDataListener listener : trackedDataListeners)
-			listener.getTrackedData(e);
+			listener.trackData(dataItem);
 	}
 
 	// /**

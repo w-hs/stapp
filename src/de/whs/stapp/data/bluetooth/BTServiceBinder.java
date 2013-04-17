@@ -1,4 +1,4 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 import android.os.Binder;
 
@@ -7,7 +7,7 @@ import android.os.Binder;
  * Diese Klasse stellt den vom BTCommunicationService benötigten 
  * Binder dar.
  */
-public class BTServiceBinder extends Binder {
+class BTServiceBinder extends Binder {
 	
 	private BTCommunicationService serviceInstance; 
 	

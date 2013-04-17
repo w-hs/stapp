@@ -1,4 +1,4 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
@@ -7,11 +7,10 @@ import android.os.IBinder;
 /**
  * Diese Klasse ist von Nöten um den BTService zu binden.
  **/
-public class BTServiceConnection implements ServiceConnection,
-			BTServiceConnectionRegisterable {
+class BTServiceConnection implements ServiceConnection {
 	
 	private BTCommunicationService btService;
-	private BTState connectionState = BTState.Disconnected; 
+	private ConnectionState connectionState = ConnectionState.Disconnected; 
 	
 	
 	/**
@@ -42,24 +41,24 @@ public class BTServiceConnection implements ServiceConnection,
 		int status;
 		
 		if (btService != null) {
-			connectionState = BTState.Connecting;
+			connectionState = ConnectionState.Connecting;
 			status = btService.connectBT();
 		} 
 		else
 			status = -1;
 		
 		switch (status) {
-		case BTConstants.BT_NO_ADAPTER_STATUS:
-			connectionState = BTState.Disconnected;
+		case Constants.BT_NO_ADAPTER_STATUS:
+			connectionState = ConnectionState.Disconnected;
 			break;
-		case BTConstants.BT_CONNECTION_SUCCESS:
-			connectionState = BTState.Connected;
+		case Constants.BT_CONNECTION_SUCCESS:
+			connectionState = ConnectionState.Connected;
 			break;
-		case BTConstants.BT_CONNECTION_FAILURE:
-			connectionState = BTState.Disconnected;
+		case Constants.BT_CONNECTION_FAILURE:
+			connectionState = ConnectionState.Disconnected;
 			break;
 		default:
-			connectionState = BTState.Disconnected;
+			connectionState = ConnectionState.Disconnected;
 			break;	
 		}
 	}
@@ -72,12 +71,21 @@ public class BTServiceConnection implements ServiceConnection,
 		if (btService != null) 
 			btService.registerHxMListener(listener);
 	}
+	
 
 	/**
 	 * Get-Methode für den Verbindungsstatus.
 	 * @return connectionState - Verbindungsstatus
 	 */
-	public BTState getConnectionState() {
+	public ConnectionState getConnectionState() {
 		return connectionState;
+	}
+
+	/**
+	 * Deregistrierung listener.
+	 * @param listener .
+	 */
+	public void unregisterListener(TrackedDataListener listener) {
+		btService.unregisterListener(listener);		
 	}
 }

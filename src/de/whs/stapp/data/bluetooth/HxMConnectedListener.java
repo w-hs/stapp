@@ -1,7 +1,8 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import zephyr.android.HxMBT.BTClient;
 import zephyr.android.HxMBT.ConnectListenerImpl;
@@ -65,7 +66,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 					// byte cRCFailStatus = msg.getCRCStatus();
 					// byte rcvdBytes = msg.getNumRvcdBytes();
 					
-					if (msg.getMsgID() == BTConstants.HR_SPD_DIST_PACKET){
+					if (msg.getMsgID() == Constants.HR_SPD_DIST_PACKET){
 					
 						byte[] dataArray = msg.getBytes();
 						
@@ -94,11 +95,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 						dataContainer.setStrides(heartRateSpeedDistancePacket.
 								GetStrides(dataArray));
 						
-						TrackedDataEvent dataCarrier = 
-								new TrackedDataEvent(this, dataContainer); 
-						
-						notifyBTCommunicationListeners(dataCarrier);
-						
+						notifyBTCommunicationListeners(dataContainer);
 					}
 										
 				}
@@ -134,11 +131,11 @@ class HxMConnectedListener extends ConnectListenerImpl {
 	 * 
 	 * @param dataCarrier - BTCommunicationEvent
 	 */
-	private synchronized void notifyBTCommunicationListeners(TrackedDataEvent dataCarrier) {
+	private synchronized void notifyBTCommunicationListeners(TrackedDataItem dataItem) {
 		for (TrackedDataListener listener : listeners) {
 			if (listener == null)
 				continue;
-			listener.getTrackedData(dataCarrier);
+			listener.trackData(dataItem);
 		}		
 	}
 

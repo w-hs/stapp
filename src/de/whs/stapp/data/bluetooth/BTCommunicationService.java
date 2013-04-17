@@ -1,7 +1,8 @@
-package de.whs.stapp.liveDataTracking;
+package de.whs.stapp.data.bluetooth;
 
 import java.lang.reflect.Method;
 import java.util.Set;
+
 
 
 import zephyr.android.HxMBT.BTClient;
@@ -23,7 +24,7 @@ import android.util.Log;
  * 
  * @author Dennis Miller
  * */
-public class BTCommunicationService extends Service {
+class BTCommunicationService extends Service {
 
 	private final IBinder btServiceBinder = new BTServiceBinder(this);
 
@@ -88,29 +89,29 @@ public class BTCommunicationService extends Service {
 	 * 
 	 * @return Verbindungsstatus. Folgende Stati sind möglich:
 	 *         <ul>
-	 *         <li>{@link BTConstants.BT_CONNECTION_SUCCESS} - Verbindungsaufbau
+	 *         <li>{@link Constants.BT_CONNECTION_SUCCESS} - Verbindungsaufbau
 	 *         erfolgreich.</li>
-	 *         <li>{@link BTConstants.BT_NO_ADAPTER_STATUS} - kein
+	 *         <li>{@link Constants.BT_NO_ADAPTER_STATUS} - kein
 	 *         Bluetooth-Adapter gefunden.</li>
-	 *         <li>{@link BTConstants.BT_CONNECTION_FAILURE} - Verbindungsaufbau
+	 *         <li>{@link Constants.BT_CONNECTION_FAILURE} - Verbindungsaufbau
 	 *         fehlgeschlagen.</li>
 	 *         </ul>
 	 */
 	public int connectBT() {
 		if (btClient != null && btClient.IsConnected())
-			return BTConstants.BT_CONNECTION_SUCCESS;
+			return Constants.BT_CONNECTION_SUCCESS;
 
-		String hxMMacID = BTConstants.HXM_DEFAULT_MAC_ID;
+		String hxMMacID = Constants.HXM_DEFAULT_MAC_ID;
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		if (btAdapter == null)
-			return BTConstants.BT_NO_ADAPTER_STATUS;
+			return Constants.BT_NO_ADAPTER_STATUS;
 		else {
 			Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 
 			if (pairedDevices.size() > 0) {
 				for (BluetoothDevice device : pairedDevices) {
-					if (device.getName().startsWith(BTConstants.HXM_DEVICE_NAME)) {
+					if (device.getName().startsWith(Constants.HXM_DEVICE_NAME)) {
 						BluetoothDevice btDevice = device;
 						hxMMacID = btDevice.getAddress();
 						break;
@@ -125,9 +126,9 @@ public class BTCommunicationService extends Service {
 
 			if (btClient.IsConnected()) {
 				btClient.start();
-				return BTConstants.BT_CONNECTION_SUCCESS;
+				return Constants.BT_CONNECTION_SUCCESS;
 			} else {
-				return BTConstants.BT_CONNECTION_FAILURE;
+				return Constants.BT_CONNECTION_FAILURE;
 			}
 		}
 	}
@@ -150,6 +151,14 @@ public class BTCommunicationService extends Service {
 	 */
 	public String getDeviceName() {
 		return deviceName;
+	}
+	
+	/**
+	 * Deregistriert den listener.
+	 * @param listener .
+	 */
+	public void unregisterListener(TrackedDataListener listener) {
+		hxMConnListener.unregisterListener(listener);		
 	}
 
 	/**
@@ -201,5 +210,4 @@ public class BTCommunicationService extends Service {
 			}
 		}
 	}
-
 }
