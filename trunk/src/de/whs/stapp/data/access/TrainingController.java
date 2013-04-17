@@ -123,7 +123,7 @@ public class TrainingController {
 			return;
 		
 		notifyTrackedDataListerners(dataItem);
-		databaseAdapter.saveTrackedDataItem(trainingUnit.getSessionID(), dataItem);
+		//databaseAdapter.saveTrackedDataItem(trainingUnit.getSessionID(), dataItem);
 	}
 
 	private void notifyTrackedDataListerners(TrackedDataItem dataItem) {
