@@ -22,4 +22,5 @@ public final class Constants {
 	
 	//HTML Seiten
 	public static final String HTML_LOCAL_TRAININGSEINHEIT = "file:///android_asset/www/Trainingseinheit.html";
+	public static final String HTML_LOCAL_VERLAUF = "file:///android_asset/www/Verlauf.html";
 }
