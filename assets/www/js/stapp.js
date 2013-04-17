@@ -10,11 +10,14 @@ var stapp =
             $('#distance > .DataContent').html(training.distance + "km");
             $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
         },
-        startTraining: function () {        	
+        startTraining: function () { 
+        	if(this.trainingTimer != null)
+        		window.clearInterval(this.trainingTimer);       	
             this.trainingTimer = window.setInterval(function () { stapp.updateStopWatch() }, this.timerInterval);
         },
         stopTraining: function(){        	
         	this.timerValue = 0;
+        	this.trainingTimer = null
         	window.clearInterval(this.trainingTimer);
         },
         pauseTraining: function(){        	
