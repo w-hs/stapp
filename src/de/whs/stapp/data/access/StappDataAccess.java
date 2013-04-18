@@ -12,27 +12,31 @@ import de.whs.stapp.data.storage.DetailedTrainingUnit;
 
 /**
  * @author Chris
- * Implementierung für den Zugriff auf die protokollierten Daten.
+ * Implementierung für den Zugriff auf die Daten und Funktionen von Trainingseinheiten.
  */
 public class StappDataAccess implements DataAccess {
 	
+	DataTracker tracker;
 	DatabaseAdapter database;
-	DataTracker serviceConnection;
 	
 	/**
-	 * TODO.
-	 * @param databaseAdapter .
-	 * @param serviceConnection .
+	 * Erzeugt eine neue Instanz der {@link StappDataAccess} Klasse.
+	 * @param tracker Eine gültige {@link DataTracker} Instanz.
+	 * @param database Zugriff auf die Datenbank.
 	 */
-	public StappDataAccess(DatabaseAdapter databaseAdapter, 
-						   DataTracker serviceConnection) {
-		this.database = databaseAdapter;
-		this.serviceConnection = serviceConnection;
+	public StappDataAccess(DataTracker tracker, DatabaseAdapter database) {
+		if (tracker == null)
+			throw new IllegalArgumentException("tracker cannot be null");
+		if (database == null)
+			throw new IllegalArgumentException("database cannot be null");
+		
+		this.database = database;
+		this.tracker= tracker;
 	}
 	
 	@Override
 	public TrainingController newTraining() {		
-		return new TrainingController(database, serviceConnection);
+		return new TrainingController(tracker, database);
 	}
 
 	@Override
