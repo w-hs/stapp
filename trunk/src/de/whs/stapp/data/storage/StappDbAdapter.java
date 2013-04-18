@@ -19,7 +19,7 @@ class StappDbAdapter implements DatabaseAdapter{
     private static String dbName = "stappDatabase.db";
     private static int dbVersion = 1;
     private DatabaseConnector dbConn;
-    private SQLiteDatabase dbHandle; 
+    private SQLiteDatabase stappDb; 
     
     /**
      * Der Konstruktor legt eine Instantz des DatabaseConnectors an. 
@@ -36,7 +36,7 @@ class StappDbAdapter implements DatabaseAdapter{
     * getWritableDatabase().
     */
     public void open() {
-    	dbHandle = dbConn.getWritableDatabase();
+    	stappDb = dbConn.getWritableDatabase();
     }
     
     
@@ -45,7 +45,7 @@ class StappDbAdapter implements DatabaseAdapter{
     * Schlieﬂt die Verbindung zur Datenbank nach der Benutzung.
     */
 	public void close() {
-    	dbHandle.close();
+    	stappDb.close();
     }
     
     
@@ -86,7 +86,7 @@ class StappDbAdapter implements DatabaseAdapter{
     	
     	// TODO
 
-    	if (dbHandle.insert("TABBELLE MIT WERTEN", null, val) == -1)   	
+    	if (stappDb.insert("TABBELLE MIT WERTEN", null, val) == -1)   	
     		return false;
     	
     	return true;
