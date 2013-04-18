@@ -13,12 +13,12 @@ public class TrackedDataItem {
 	private String firmwareVersion;
 	private String hardwareId;
 	private String hardwareVersion;
-	private byte batteryChargeInd;
-	private byte heartRate;
+	private byte batteryChargeInPercent;
+	private byte heartRateInBpm;
 	private byte heartBeatNumber;
 	private int[] heartBeatTimestamps;
-	private double distance;
-	private double speed;
+	private double distanceInOne16thsMeter;
+	private double speedInOne256thsMeterPerSecond;
 	private byte strides;
 	
 	
@@ -54,12 +54,12 @@ public class TrackedDataItem {
 		this.firmwareVersion = firmwareVersion;
 		this.hardwareId = hardwareId;
 		this.hardwareVersion = hardwareVersion;
-		this.batteryChargeInd = batteryChargeInd;
-		this.heartRate = heartRate;
+		this.batteryChargeInPercent = batteryChargeInd;
+		this.heartRateInBpm = heartRate;
 		this.heartBeatNumber = heartBeatNumber;
 		this.heartBeatTimestamps = heartBeatTimestamps;
-		this.distance = distance;
-		this.speed = speed;
+		this.distanceInOne16thsMeter = distance;
+		this.speedInOne256thsMeterPerSecond = speed;
 		this.strides = strides;
 	}
 
@@ -144,7 +144,7 @@ public class TrackedDataItem {
 	 * @return batteryChargeInd - Batterie Status
 	 */
 	public byte getBatteryChargeInd() {
-		return batteryChargeInd;
+		return batteryChargeInPercent;
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class TrackedDataItem {
 	 *            - Batterie Status
 	 */
 	public void setBatteryChargeInd(byte batteryChargeInd) {
-		this.batteryChargeInd = batteryChargeInd;
+		this.batteryChargeInPercent = batteryChargeInd;
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class TrackedDataItem {
 	 * @return heartRate - Herzfrequenz
 	 */
 	public byte getHeartRate() {
-		return heartRate;
+		return heartRateInBpm;
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class TrackedDataItem {
 	 *            - Herzfrequenz
 	 */
 	public void setHeartRate(byte heartRate) {
-		this.heartRate = heartRate;
+		this.heartRateInBpm = heartRate;
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class TrackedDataItem {
 	 * @return distance- Distanz
 	 */
 	public double getDistance() {
-		return distance;
+		return distanceInOne16thsMeter;
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class TrackedDataItem {
 	 *            - Distanz
 	 */
 	public void setDistance(double distance) {
-		this.distance = distance;
+		this.distanceInOne16thsMeter = distance;
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class TrackedDataItem {
 	 * @return speed - Geschwindigkeit
 	 */
 	public double getSpeed() {
-		return speed;
+		return speedInOne256thsMeterPerSecond;
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class TrackedDataItem {
 	 *            - Geschwindigkeit
 	 */
 	public void setSpeed(double speed) {
-		this.speed = speed;
+		this.speedInOne256thsMeterPerSecond = speed;
 	}
 
 	/**
