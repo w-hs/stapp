@@ -51,5 +51,11 @@ Allgemein gilt, dass sich gut geschriebener (sauberer) Code selbst erklärt. Sol
 Allgemein wollen wir uns bei der Namensgebung an den Java Code Conventions orientieren:
 [http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-135099.html#367]
 
+===Preconditions===
+Parameter sollten vor ihrer Verwendung validiert werden.
+
+[http://docs.oracle.com/javase/1.4.2/docs/guide/lang/assert.html#preconditions]
+Öffentlichen Schnittstellen werfen also entsprechende Exceptions und verwenden keine Assertions.
+
 == Check Ins ==
 Bei jedem Check In *muss* ein Kommentar angegeben werden! Der Kommentar wird auf Deutsch verfasst. Bezieht sich der Check In auf einen Technical Task so wird seine Id in der Form #id "Task Caption" angegeben. Wichtig ist, dass neben der Id auch die Bezeichnung für den Task angegeben wird, da der Text wesentlich sprechender ist, als die Id.
