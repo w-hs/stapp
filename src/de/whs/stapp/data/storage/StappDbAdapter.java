@@ -184,11 +184,7 @@ class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter {
      * @return
      */
     public DetailedTrainingUnit getTrainingUnitDetail(int id) {
-    	DetailedTrainingUnit result = new DetailedTrainingUnit();
-    	
-    	// TODO 
-    		
-    	return result;
+    	throw new UnsupportedOperationException("getTrainingUnitDetail not yet implemented");
     }
     
     /**
@@ -197,8 +193,7 @@ class StappDbAdapter extends SQLiteOpenHelper implements DatabaseAdapter {
      * @return
      */
     public List<TrainingUnit> getTrainingUnitsOverview() {
-        // TODO    	
-    	return null;
+    	throw new UnsupportedOperationException("getTrainingUnitsOverview not yet implemented");
     }
     
     

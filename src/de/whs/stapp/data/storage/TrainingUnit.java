@@ -1,57 +1,65 @@
 package de.whs.stapp.data.storage;
 
+import java.util.Date;
+
 
 /**
- * @author Christoph Inhestern
- * Class to represent the Data from one Training session.
+ * @author Chris
+ * Repräsentiert die Daten einer Trainingseinheit.
  */
 public class TrainingUnit {
-	protected int sessionID;	
-	protected int distance;
-	protected long date;
-		
+	
+	protected int trainingUnitId;	
+	protected int distanceInMeters;
+	protected long durationInMinutes;
+	protected Date trainingDate;
+	
 	/**
-	 * @return the sessionID
+	 * @return the trainingUnitId
 	 */
-	public int getSessionID() {
-		return sessionID;
+	public int getTrainingUnitId() {
+		return trainingUnitId;
 	}
-	
 	/**
-	 * @param sessionID the sessionID to set
+	 * @param trainingUnitId the trainingUnitId to set
 	 */
-	public void setSessionID(int sessionID) {
-		this.sessionID = sessionID;
-	}	
-	
-	/**
-	 * @return the distance
-	 */
-	public int getDistance() {
-		return distance;
+	public void setTrainingUnitId(int trainingUnitId) {
+		this.trainingUnitId = trainingUnitId;
 	}
-	
 	/**
-	 * @param distance the distance to set
+	 * @return the distanceInMeters
 	 */
-	public void setDistance(int distance) {
-		this.distance = distance;
+	public int getDistanceInMeters() {
+		return distanceInMeters;
 	}
-	
 	/**
-	 * @return the date
+	 * @param distanceInMeters the distanceInMeters to set
 	 */
-	public long getDate() {
-		return date;
+	public void setDistanceInMeters(int distanceInMeters) {
+		this.distanceInMeters = distanceInMeters;
 	}
-	
 	/**
-	 * @param date the date to set
+	 * @return the durationInMinutes
 	 */
-	public void setDate(long date) {
-		this.date = date;
+	public long getDurationInMinutes() {
+		return durationInMinutes;
+	}
+	/**
+	 * @param durationInMinutes the durationInMinutes to set
+	 */
+	public void setDurationInMinutes(long durationInMinutes) {
+		this.durationInMinutes = durationInMinutes;
+	}
+	/**
+	 * @return the trainingDate
+	 */
+	public Date getTrainingDate() {
+		return trainingDate;
+	}
+	/**
+	 * @param trainingDate the trainingDate to set
+	 */
+	public void setTrainingDate(Date trainingDate) {
+		this.trainingDate = trainingDate;
 	}
 }
-
-//Andere Möglichkeit wäre in einem Training alle werte aufzunehmen 
-//und mit einer Liste dieser zu arbeiten. sessionID dann redundant

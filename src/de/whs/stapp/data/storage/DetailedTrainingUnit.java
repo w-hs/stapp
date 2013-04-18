@@ -1,6 +1,6 @@
 package de.whs.stapp.data.storage;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -10,12 +10,22 @@ import java.util.ArrayList;
  */
 public class DetailedTrainingUnit extends TrainingUnit {
 	
-	protected ArrayList<TrainingDetail> details = new ArrayList<TrainingDetail>();
+	protected List<TrainingDetail> details;
+	
+	/**
+	 * Erstellt eine neue Instanz der {@link DetailedTrainingUnit}.
+	 * @param details Die Details der Trainingseinheit.
+	 */
+	public DetailedTrainingUnit(List<TrainingDetail> details) {
+		if (details == null)
+			throw new IllegalArgumentException("trainingDetails must be not null");
+		this.details = details;
+	}
 
 	/**
 	 * @return Gets the trainings details.
 	 */
-	public ArrayList<TrainingDetail> getDetails() {
+	public List<TrainingDetail> getDetails() {
 		return details;
 	}
 }

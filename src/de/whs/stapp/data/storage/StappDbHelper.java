@@ -184,12 +184,8 @@ class StappDbHelper extends SQLiteOpenHelper{
      * @return
      */
     public DetailedTrainingUnit getTrainingUnitDetailFromDb(int id){
-    	
-    	DetailedTrainingUnit result = new DetailedTrainingUnit();
-    	
-    	//TODO
-    		
-    	return result;
+    	// TODO
+    	return null;
     }
     
     /**
