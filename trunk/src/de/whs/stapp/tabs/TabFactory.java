@@ -8,8 +8,10 @@ import android.widget.TabHost.TabContentFactory;
  * Einfache Factory die views zu den Tabhost gibt.
  * @author Daniel
  */
+//CHECKSTYLE:OFF
 public class TabFactory implements TabContentFactory {
-	  private final Context mContext;
+//CHECKSTYLE:ON
+	private final Context mContext;
 	  
       /**
        * Konstruktor der Factory.
