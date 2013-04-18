@@ -16,6 +16,9 @@ class BTServiceBinder extends Binder {
 	 * @param serviceInstance - Instanz des dazugehörigen Services.
 	 */
 	public BTServiceBinder (BTCommunicationService serviceInstance){
+		if (serviceInstance == null) throw new IllegalArgumentException
+		("serviceInstance cannot be null");
+		
 		this.serviceInstance = serviceInstance;
 	}
 	

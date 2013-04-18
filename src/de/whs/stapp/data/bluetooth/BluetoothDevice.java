@@ -26,6 +26,8 @@ public class BluetoothDevice implements DataTracker {
 	public void connect(Activity activity) {
 				
 		bindBluetoothService(activity);
+
+		
     }
 	
 	private void bindBluetoothService(Activity activity) {

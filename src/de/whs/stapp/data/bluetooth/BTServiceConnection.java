@@ -22,6 +22,7 @@ class BTServiceConnection implements ServiceConnection {
 	public void onServiceConnected(ComponentName className, IBinder service) {
 		BTServiceBinder serviceBinder = (BTServiceBinder) service; 
 		btService = serviceBinder.getService();
+		connect();
 	}
 	
 	 /**
@@ -38,29 +39,10 @@ class BTServiceConnection implements ServiceConnection {
 	 * und meldet den anschlieﬂenden BT-Status.
 	 */
 	public void connect() {
-		int status;
 		
-		if (btService != null) {
-			connectionState = ConnectionState.Connecting;
-			status = btService.connectBT();
-		} 
-		else
-			status = -1;
+		connectionState = ConnectionState.Connecting;
+		connectionState = btService.connectBT();
 		
-		switch (status) {
-		case Constants.BT_NO_ADAPTER_STATUS:
-			connectionState = ConnectionState.Disconnected;
-			break;
-		case Constants.BT_CONNECTION_SUCCESS:
-			connectionState = ConnectionState.Connected;
-			break;
-		case Constants.BT_CONNECTION_FAILURE:
-			connectionState = ConnectionState.Disconnected;
-			break;
-		default:
-			connectionState = ConnectionState.Disconnected;
-			break;	
-		}
 	}
 	
 	/**
