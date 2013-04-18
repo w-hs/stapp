@@ -67,9 +67,9 @@ class HxMConnectedListener extends ConnectListenerImpl {
 						
 						TrackedDataItem dataContainer = new TrackedDataItem();
 						
-						dataContainer.setDistance(heartRateSpeedDistancePacket.
+						dataContainer.setDistanceInOne16thsMeter(heartRateSpeedDistancePacket.
 								GetDistance(dataArray));
-						dataContainer.setBatteryChargeInd(heartRateSpeedDistancePacket.
+						dataContainer.setBatteryChargeInPercent(heartRateSpeedDistancePacket.
 								GetBatteryChargeInd(dataArray));
 						dataContainer.setFirmwareId(heartRateSpeedDistancePacket.
 								GetFirmwareID(dataArray));
@@ -83,9 +83,10 @@ class HxMConnectedListener extends ConnectListenerImpl {
 								GetHeartBeatNum(dataArray));
 						dataContainer.setHeartBeatTimestamps(heartRateSpeedDistancePacket.
 								GetHeartBeatTS(dataArray));
-						dataContainer.setHeartRate(heartRateSpeedDistancePacket.
+						dataContainer.setHeartRateInBpm(heartRateSpeedDistancePacket.
 								GetHeartRate(dataArray));
-						dataContainer.setSpeed(heartRateSpeedDistancePacket.
+						dataContainer.setSpeedInOne256thsMeterPerSecond(
+								heartRateSpeedDistancePacket.
 								GetInstantSpeed(dataArray));
 						dataContainer.setStrides(heartRateSpeedDistancePacket.
 								GetStrides(dataArray));

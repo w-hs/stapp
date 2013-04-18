@@ -64,224 +64,217 @@ public class TrackedDataItem {
 	}
 
 	/**
+	 * Gibt die FirmwareId zurück.
 	 * 
-	 * Getter-Methode für firmwareId.
-	 * 
-	 * @return firmwareId - FirmwareID
+	 * @return Die FirmwareId
 	 */
 	public String getFirmwareId() {
 		return firmwareId;
 	}
 
 	/**
-	 * Setter-Methode für firmwareId.
-	 * @param firmwareId - Firmware ID
+	 * Setzt die FirmwareId.
+	 * 
+	 * @param firmwareId - die FirmwareId
 	 */
 	public void setFirmwareId(String firmwareId) {
 		this.firmwareId = firmwareId;
 	}
 
 	/**
-	 * Getter-Methode für.
-	 * @return firmwareVersion - Firmware Version
+	 * Gibt die Firmware-Version zurück.
+	 * 
+	 * @return die FirmwareVersion
 	 */
 	public String getFirmwareVersion() {
 		return firmwareVersion;
 	}
 
 	/**
-	 * Setter-Methode für firmwareVersion.
-	 * @param firmwareVersion - Firmware Version
+	 * Setzt die Firmware-Version.
+	 * 
+	 * @param firmwareVersion - die FirmwareVersion
 	 */
 	public void setFirmwareVersion(String firmwareVersion) {
 		this.firmwareVersion = firmwareVersion;
 	}
 
 	/**
-	 * Getter-Methode für HardwareId.
-	 * @return hardwareId - Hardware ID
+	 * Gibt die HardwareId zurück.
+	 * 
+	 * @return die HardwareId
 	 */
 	public String getHardwareId() {
 		return hardwareId;
 	}
 
 	/**
+	 * Setzt die HardwareId.
 	 * 
-	 * Setter-Methode für hardwareId.
-	 * 
-	 * @param hardwareId
-	 *            - Hardware ID
+	 * @param hardwareId - die HardwareId
 	 */
 	public void setHardwareId(String hardwareId) {
 		this.hardwareId = hardwareId;
 	}
 
 	/**
+	 * Gibt die Hardware-Version zurück.
 	 * 
-	 * Getter-Methode für hardwareVersion.
-	 * 
-	 * @return hardwareVersion - Hardware Version
+	 * @return die HardwareVersion
 	 */
 	public String getHardwareVersion() {
 		return hardwareVersion;
 	}
 
 	/**
+	 * Setzt die Hardware-Version.
 	 * 
-	 * Setter-Methode für hardwareVersion.
-	 * 
-	 * @param hardwareVersion
-	 *            - Hardware Version
+	 * @param hardwareVersion - dir HardwareVersion
 	 */
 	public void setHardwareVersion(String hardwareVersion) {
 		this.hardwareVersion = hardwareVersion;
 	}
 
 	/**
+	 * Gibt den Batterie-Ladestatus zurück.
+	 * Die Angabe ist in Prozent. 
+	 * Der zulässige Bereich ist somit von 0 bis 100%.
 	 * 
-	 * Getter-Methode für batteryChargeInd.
-	 * 
-	 * @return batteryChargeInd - Batterie Status
+	 * @return der Batterie-Ladestatus
 	 */
-	public byte getBatteryChargeInd() {
+	public byte getBatteryChargeInPercent() {
 		return batteryChargeInPercent;
 	}
 
 	/**
+	 * Setzt den Batterie-Ladestatus.
 	 * 
-	 * Setter-Methode für batteryChargeInd.
-	 * 
-	 * @param batteryChargeInd
-	 *            - Batterie Status
+	 * @param batteryChargeInPercent - der Batterie-Ladestatus
 	 */
-	public void setBatteryChargeInd(byte batteryChargeInd) {
-		this.batteryChargeInPercent = batteryChargeInd;
+	public void setBatteryChargeInPercent(byte batteryChargeInPercent) {
+		this.batteryChargeInPercent = batteryChargeInPercent;
 	}
 
 	/**
+	 * Gibt die Herzfrequenz zurück.
 	 * 
-	 * Getter-Methode für heartRate.
-	 * 
-	 * @return heartRate - Herzfrequenz
+	 * @return die Herzfrequenz
 	 */
-	public byte getHeartRate() {
+	public byte getHeartRateInBpm() {
 		return heartRateInBpm;
 	}
 
 	/**
+	 * Setzt die Herzfrequenz.
 	 * 
-	 * Setter-Methode für heartRate.
-	 * 
-	 * @param heartRate
-	 *            - Herzfrequenz
+	 * @param heartRateInBpm - die Herzfrequenz
 	 */
-	public void setHeartRate(byte heartRate) {
-		this.heartRateInBpm = heartRate;
+	public void setHeartRateInBpm(byte heartRateInBpm) {
+		this.heartRateInBpm = heartRateInBpm;
 	}
 
 	/**
+	 * Gibt die Herzschlag-Nummer zurück.
+	 * Jeder Herzschlag inkrementiert diese Zahl um 1.
+	 * Der zulässige Höchstwert ist 255. Danach wird der Wert
+	 * auf 0 zurückgesetzt.
 	 * 
-	 * Getter-Methode für heartBeatNumber.
-	 * 
-	 * @return heartBeatNumber - Herzschlag-Nummer
+	 * @return Herzschlag-Nummer
 	 */
 	public byte getHeartBeatNumber() {
 		return heartBeatNumber;
 	}
 
 	/**
+	 * Setzt die Herzschlag-Nummer.
 	 * 
-	 * Setter-Methode für heartBeatNumber.
-	 * 
-	 * @param heartBeatNumber
-	 *            - Herzschlag-Nummer
+	 * @param heartBeatNumber - die Herzschlag-Nummer
 	 */
 	public void setHeartBeatNumber(byte heartBeatNumber) {
 		this.heartBeatNumber = heartBeatNumber;
 	}
 
 	/**
+	 * Gibt ein Array von Timestamps zurück.
+	 * Neue Timestamps gibt es so viele wie die Zahl "Herzschlag-Nummer"
+	 * groß ist minus die Herzschlag-Nummer des letzten Paketes. 
+	 * Die neuen Timestamps beginnen bei dem Index 0. Restliche Timestamps 
+	 * - maximal gibt es 16 - gehören den letzten Datenpakete an. 
 	 * 
-	 * Getter-Methode für heartBeatTimestamps.
-	 * 
-	 * @return heartBeatTimestamps[] - Zeitstempel von Herzschlägen
+	 * @return Herzschlag-Timestamps
 	 */
 	public int[] getHeartBeatTimestamps() {
 		return heartBeatTimestamps;
 	}
 
 	/**
+	 * Setzt die Timestamps.
 	 * 
-	 * Setter-Methode für heartBeatTimestamps.
-	 * 
-	 * @param heartBeatTimestamps
-	 *            - Zeitstempel von Herzschlägen
+	 * @param heartBeatTimestamps - Herzschlag-Timestamps
 	 */
 	public void setHeartBeatTimestamps(int[] heartBeatTimestamps) {
 		this.heartBeatTimestamps = heartBeatTimestamps;
 	}
 
 	/**
+	 * Gibt die Distanz in 1/16 Meter zurück.
+	 * Der gültige Bereich ist 0 bis 4095.
+	 * Somit wird der Wert alle 256 Meter zurückgesetzt.
 	 * 
-	 * Getter-Methode für distance.
-	 * 
-	 * @return distance- Distanz
+	 * @return die Distanz in 1/16 Meter
 	 */
-	public double getDistance() {
+	public double getDistanceInOne16thsMeter() {
 		return distanceInOne16thsMeter;
 	}
 
 	/**
+	 * Setzt die Distanz.
 	 * 
-	 * Setter-Methode für distance.
-	 * 
-	 * @param distance
-	 *            - Distanz
+	 * @param distanceInOne16thsMeter - Distanz in 1/16 Meter
 	 */
-	public void setDistance(double distance) {
-		this.distanceInOne16thsMeter = distance;
+	public void setDistanceInOne16thsMeter(double distanceInOne16thsMeter) {
+		this.distanceInOne16thsMeter = distanceInOne16thsMeter;
 	}
 
 	/**
+	 * Gibt die momentane Geschwindigkeit in 1/256 m/s zurück.
+	 * Der gültige Bereich umfasst 0 bis 4695 bzw. 0 bis 15,966 m/s.
 	 * 
-	 * Getter-Methode für speed.
-	 * 
-	 * @return speed - Geschwindigkeit
+	 * @return die Momentangeschwindigkeit
 	 */
-	public double getSpeed() {
+	public double getSpeedInOne256thsMeterPerSecond() {
 		return speedInOne256thsMeterPerSecond;
 	}
 
 	/**
+	 * Setzt die Momentangeschwindigkeit.
 	 * 
-	 * Setter-Methode für speed.
-	 * 
-	 * @param speed
-	 *            - Geschwindigkeit
+	 * @param speedInOne256thsMeterPerSecond - Momentangeschwindigkeit
 	 */
-	public void setSpeed(double speed) {
-		this.speedInOne256thsMeterPerSecond = speed;
+	public void setSpeedInOne256thsMeterPerSecond(
+			double speedInOne256thsMeterPerSecond) {
+		this.speedInOne256thsMeterPerSecond = speedInOne256thsMeterPerSecond;
 	}
 
+	//TODO
 	/**
+	 * Gibt die Anzahl der Schritt zurück.
+	 * der gültige Bereich ist 0 bis 255 Schritte.
+	 * Der Wert wird alle 128 Schritte zurückgesetzt.
 	 * 
-	 * Getter-Methode für strides.
-	 * 
-	 * @return strides - Schritte
+	 * @return Die Schrittanzahl
 	 */
 	public byte getStrides() {
 		return strides;
 	}
 
 	/**
+	 * Setzt die Schrittanzahl.
 	 * 
-	 * Setter-Methode für strides.
-	 * 
-	 * @param strides
-	 *            - Schritte
+	 * @param strides - die Schrittanzahl
 	 */
 	public void setStrides(byte strides) {
 		this.strides = strides;
-	}
+	}	
 	
 }

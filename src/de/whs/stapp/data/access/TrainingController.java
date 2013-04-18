@@ -129,10 +129,10 @@ public class TrainingController {
 		TrainingDetail detail = new TrainingDetail();
 		
 		// TODO korrekt umrechnen!
-		detail.setDistanceInMeter((int)dataItem.getDistance());
-		detail.setHeartRate((int)dataItem.getHeartRate());
+		detail.setDistanceInMeter((int)dataItem.getDistanceInOne16thsMeter());
+		detail.setHeartRate((int)dataItem.getHeartRateInBpm());
 		detail.setNumberOfStrides((int)dataItem.getStrides());
-		detail.setSpeedInMeterPerSecond((int)dataItem.getSpeed());
+		detail.setSpeedInMeterPerSecond((int)dataItem.getSpeedInOne256thsMeterPerSecond());
 		
 		return detail;
 	}
