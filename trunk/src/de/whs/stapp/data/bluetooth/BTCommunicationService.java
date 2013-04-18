@@ -24,14 +24,16 @@ import android.util.Log;
  * 
  * @author Dennis Miller
  * */
-class BTCommunicationService extends Service {
+public class BTCommunicationService extends Service {
 
 	private final IBinder btServiceBinder = new BTServiceBinder(this);
-
+	private final String hxMDeviceName = "HXM";
+	
 	private BluetoothAdapter btAdapter = null;
 	private BTClient btClient = null;
 	private HxMConnectedListener hxMConnListener = new HxMConnectedListener();
 	private String deviceName;
+	
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -87,31 +89,24 @@ class BTCommunicationService extends Service {
 	/**
 	 * Diese Methode versucht einen Verbindung zum Bluetoothgerät aufzubauen.
 	 * 
-	 * @return Verbindungsstatus. Folgende Stati sind möglich:
-	 *         <ul>
-	 *         <li>{@link Constants.BT_CONNECTION_SUCCESS} - Verbindungsaufbau
-	 *         erfolgreich.</li>
-	 *         <li>{@link Constants.BT_NO_ADAPTER_STATUS} - kein
-	 *         Bluetooth-Adapter gefunden.</li>
-	 *         <li>{@link Constants.BT_CONNECTION_FAILURE} - Verbindungsaufbau
-	 *         fehlgeschlagen.</li>
-	 *         </ul>
+	 * @return Verbindungsstatus
 	 */
-	public int connectBT() {
+	public ConnectionState connectBT() {
 		if (btClient != null && btClient.IsConnected())
-			return Constants.BT_CONNECTION_SUCCESS;
+			return ConnectionState.Connected;
 
-		String hxMMacID = Constants.HXM_DEFAULT_MAC_ID;
+		String hxMMacID = "00:00:00:00:00:00";
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		if (btAdapter == null)
-			return Constants.BT_NO_ADAPTER_STATUS;
+			throw new IllegalArgumentException("There is no bluetooth adapter!");
+			//return ConnectionState.Disconnected;
 		else {
 			Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 
 			if (pairedDevices.size() > 0) {
 				for (BluetoothDevice device : pairedDevices) {
-					if (device.getName().startsWith(Constants.HXM_DEVICE_NAME)) {
+					if (device.getName().startsWith(hxMDeviceName)) {
 						BluetoothDevice btDevice = device;
 						hxMMacID = btDevice.getAddress();
 						break;
@@ -126,9 +121,9 @@ class BTCommunicationService extends Service {
 
 			if (btClient.IsConnected()) {
 				btClient.start();
-				return Constants.BT_CONNECTION_SUCCESS;
+				return ConnectionState.Connected;
 			} else {
-				return Constants.BT_CONNECTION_FAILURE;
+				return ConnectionState.Disconnected;
 			}
 		}
 	}

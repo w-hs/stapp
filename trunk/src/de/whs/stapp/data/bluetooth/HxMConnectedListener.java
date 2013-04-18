@@ -20,9 +20,9 @@ import android.util.Log;
  */
 class HxMConnectedListener extends ConnectListenerImpl {
 
+	private final int heartRateSpeedDistancePacketIndex =0x26;
 	private List<TrackedDataListener> listeners = new ArrayList<TrackedDataListener>();
-
-	
+		
 	private HRSpeedDistPacketInfo heartRateSpeedDistancePacket =
 			new HRSpeedDistPacketInfo();
 
@@ -61,7 +61,7 @@ class HxMConnectedListener extends ConnectListenerImpl {
 				if(eventArgs != null && eventArgs.getPacket() != null) {
 					ZephyrPacketArgs msg = eventArgs.getPacket();
 							
-					if (msg.getMsgID() == Constants.HR_SPD_DIST_PACKET){
+					if (msg.getMsgID() == heartRateSpeedDistancePacketIndex){
 					
 						byte[] dataArray = msg.getBytes();
 						
