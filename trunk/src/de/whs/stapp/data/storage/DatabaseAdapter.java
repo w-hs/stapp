@@ -40,4 +40,11 @@ public interface DatabaseAdapter {
      * @return
      */
     TrainingUnit createNewTrainingUnit();
+    
+    /**
+     * Die Methode entfernt alle Einträge zur übergebenen trainingsUnitId.
+     * 
+     * @param trainingsUnitId Die ID der zu löschenden Trainingseinheit
+     */
+    void removeTrainingUnit(int trainingsUnitId);
 }
