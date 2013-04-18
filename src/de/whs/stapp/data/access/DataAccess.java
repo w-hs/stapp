@@ -2,6 +2,7 @@ package de.whs.stapp.data.access;
 
 import java.util.List;
 
+import de.whs.stapp.data.bluetooth.DataTracker;
 import de.whs.stapp.data.storage.TrainingUnit;
 import de.whs.stapp.data.storage.DetailedTrainingUnit;
 
@@ -14,8 +15,9 @@ public interface DataAccess {
 	/**
 	 * Liefert einen {@link TrainingController} um eine konkrete
 	 * Trainingseinheit zu verwalten.
+	 * @param tracker Eine gültige {@link DataTracker} Instanz.
 	 */
-	TrainingController newTraining();
+	TrainingController newTraining(DataTracker tracker);
 	
 	/**
 	 * Liefert eine Liste der in der Datenbank 

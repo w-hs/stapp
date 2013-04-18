@@ -16,26 +16,24 @@ import de.whs.stapp.data.storage.DetailedTrainingUnit;
  */
 public class StappDataAccess implements DataAccess {
 	
-	DataTracker tracker;
 	DatabaseAdapter database;
 	
 	/**
 	 * Erzeugt eine neue Instanz der {@link StappDataAccess} Klasse.
-	 * @param tracker Eine gültige {@link DataTracker} Instanz.
 	 * @param database Zugriff auf die Datenbank.
 	 */
-	public StappDataAccess(DataTracker tracker, DatabaseAdapter database) {
-		if (tracker == null)
-			throw new IllegalArgumentException("tracker cannot be null");
+	public StappDataAccess(DatabaseAdapter database) {
 		if (database == null)
 			throw new IllegalArgumentException("database cannot be null");
 		
 		this.database = database;
-		this.tracker= tracker;
 	}
 	
 	@Override
-	public TrainingController newTraining() {		
+	public TrainingController newTraining(DataTracker tracker) {		
+		if (tracker == null)
+			throw new IllegalArgumentException("tracker cannot be null");
+	
 		return new TrainingController(tracker, database);
 	}
 
