@@ -36,10 +36,22 @@ class DatabaseConnector extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO CREATE TABLE Anweisungen zum erstellen der Datenbank.
 		
-		String createTrainingUnits = "CREATE TABLE...";
-		String createTrackedData = "CREATE TABLE...";
+		String createTrainingUnits = "CREATE TABLE " + tabTrainingUnits + " ( " +
+										"_id int, " +
+										tuClmDate + " long, " +
+										tuClmDistance + " int, " +
+										tuClmDuration + " long, " +
+										"PRIMARY KEY (_id))";
+		
+		String createTrackedData = "CREATE TABLE " + tabTrackedData + " ( " +
+										"_id int," +
+										tdClmIdTrainingUnit + " int, " +
+										tdClmHeartrate + " int, " +
+										tdClmDistance + " int, " +
+										tdClmSpeed + " int, " +
+										tdClmStrides + " int, " +
+										"PRIMARY KEY (_id))";
 		
 		
 		db.execSQL(createTrainingUnits);
