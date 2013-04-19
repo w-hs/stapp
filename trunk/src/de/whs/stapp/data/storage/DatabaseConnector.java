@@ -38,21 +38,21 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		
 		String createTrainingUnits = "CREATE TABLE " + tabTrainingUnits + " ( " +
-										"_id int, " +
-										tuClmDate + " long, " +
-										tuClmDistance + " int, " +
-										tuClmDuration + " long, " +
-										"PRIMARY KEY (_id))";
+										"_id INTEGER PRIMARY KEY, " +
+										tuClmDate + " LONG, " +
+										tuClmDistance + " INTEGER, " +
+										tuClmDuration + " LONG";
 		
 		String createTrackedData = "CREATE TABLE " + tabTrackedData + " ( " +
-										"_id int," +
-										tdClmIdTrainingUnit + " int, " +
-										tdClmHeartrate + " int, " +
-										tdClmDistance + " int, " +
-										tdClmSpeed + " int, " +
-										tdClmStrides + " int, " +
-										"PRIMARY KEY (_id))";
-		
+										"_id INTEGER PRIMARY KEY, " +
+										tdClmIdTrainingUnit + " INTEGER, " +
+										tdClmHeartrate + " INTEGER, " +
+										tdClmDistance + " INTEGER, " +
+										tdClmSpeed + " INTEGER, " +
+										tdClmStrides + " INTEGER, " +
+										"FOREIGN KEY (" +tdClmIdTrainingUnit 
+										 +") " +"REFERENCES " 
+										 + tabTrainingUnits + "(_id)";		
 		
 		db.execSQL(createTrainingUnits);
 		db.execSQL(createTrackedData);
