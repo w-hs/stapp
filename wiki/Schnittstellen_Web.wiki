@@ -7,7 +7,7 @@ Diese Seite beschreibt, wie der Android-Container mit der Web-App kommunizieren 
 
 = Allgemeiner Aufbau =
 
-Der allgemeine Aufbau kann hier: [https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png], oder in Google Drive angeschaut werden.
+Der allgemeine Aufbau kann hier: [https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png Schnittstelle Web], oder in Google Drive angeschaut werden.
 
 = Container Anwendung =
 
