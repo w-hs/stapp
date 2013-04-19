@@ -17,11 +17,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 class DatabaseConnector extends SQLiteOpenHelper{
 
 	public final String tabTrainingUnits = "TrainingUnits";
+	public final String tuClmIdTrainingUnit = "_id";
 	public final String tuClmDate = "Date";
 	public final String tuClmDuration = "Duration";
 	public final String tuClmDistance = "Distance";
 	
 	public final String tabTrackedData = "TrackedData";
+	public final String tdClmIdTrackedData = "_id";
 	public final String tdClmIdTrainingUnit = "_idTrainingUnit";
 	public final String tdClmHeartrate = "Heartrate";
 	public final String tdClmDistance = "Distance";
@@ -38,14 +40,16 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		
 		String createTrainingUnits = "CREATE TABLE " + tabTrainingUnits + " ( " +
-										"_id INTEGER PRIMARY KEY, " +
-										tuClmDate + " LONG, " +
+										tuClmIdTrainingUnit 
+											+" INTEGER PRIMARY KEY, "
+										+tuClmDate + " LONG, " +
 										tuClmDistance + " INTEGER, " +
 										tuClmDuration + " LONG";
 		
 		String createTrackedData = "CREATE TABLE " + tabTrackedData + " ( " +
-										"_id INTEGER PRIMARY KEY, " +
-										tdClmIdTrainingUnit + " INTEGER, " +
+										tdClmIdTrackedData 
+											+" INTEGER PRIMARY KEY, "
+										+tdClmIdTrainingUnit + " INTEGER, " +
 										tdClmHeartrate + " INTEGER, " +
 										tdClmDistance + " INTEGER, " +
 										tdClmSpeed + " INTEGER, " +

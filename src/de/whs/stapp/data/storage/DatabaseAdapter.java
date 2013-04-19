@@ -47,4 +47,10 @@ public interface DatabaseAdapter {
      * @param trainingsUnitId Die ID der zu löschenden Trainingseinheit
      */
     void removeTrainingUnit(int trainingsUnitId);
+    
+    /**
+     * Diese Methode vergibt die IDs für die TrackedData Tupels.
+     * @return ID für ein TrackedData Tupel
+     */
+    int getIDTrackedData();
 }
