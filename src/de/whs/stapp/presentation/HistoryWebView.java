@@ -18,7 +18,7 @@ public class HistoryWebView extends StappWebView {
 	public HistoryWebView(Context context) {
 		super(context, new HistoryWebAppInterface(context));
 
-		this.loadUrl(Constants.HTML_LOCAL_TRAININGSEINHEIT);
+		this.loadUrl(Constants.HTML_LOCAL_VERLAUF);
 	}
 
 }

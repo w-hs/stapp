@@ -48,7 +48,7 @@ public class TabHistoryFragment extends Fragment {
         RelativeLayout relativeLayout = 
                         (RelativeLayout) this.getActivity().findViewById(R.id.WrapperHistory);
         RelativeLayout.LayoutParams relParams = 
-                new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         
         relativeLayout.addView(mVerlaufWebview, relParams);
 	}
