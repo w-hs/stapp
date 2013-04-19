@@ -7,3 +7,5 @@ Hier werden alle Schnittstellen dokumentiert, die im stapp-Projekt exisitieren. 
 
 
 = Inhaltsverzeichnis =
+  
+  # [Schnittstellen_Web]
