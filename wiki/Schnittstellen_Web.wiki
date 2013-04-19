@@ -1,0 +1,7 @@
+#summary Beinhaltet die Schnittstellenbeschreibung vom Android-Container zur WebApp.
+#labels Doc-Technical
+
+= Introduction =
+
+Diese Seite beschreibt, wie der Android-Container mit der Web-App kommunizieren kann und umgekehrt.
+
