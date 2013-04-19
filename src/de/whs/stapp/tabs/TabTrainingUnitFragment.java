@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.whs.stapp.tabs;
 
 import android.os.Bundle;
@@ -11,18 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
-
 import de.whs.stapp.R;
-import de.whs.stapp.presentation.TrainingseinheitWebView;
+import de.whs.stapp.presentation.TrainingUnitWebView;
 
 /**
  * Das Trainingseinheiten Fragment/Tab welches ein Web View über Trainingseinheiten Informationen beinhaltet.
  * @author DanielW7
  *
  */
-public class TabTrainingseinheitFragment extends Fragment {
+public class TabTrainingUnitFragment extends Fragment {
 	
-	private TrainingseinheitWebView mTrainingseinheitWebview;
+	private TrainingUnitWebView mTrainingseinheitWebview;
 	private Button mbtnStart;
 	/**
 	 * Konstruktor des Tabs in dem Das Layout geladen wird.
@@ -48,7 +44,7 @@ public class TabTrainingseinheitFragment extends Fragment {
 	    super.onActivityCreated(savedInstanceState);   
 	    
 	    
-	    mTrainingseinheitWebview = new TrainingseinheitWebView(this.getActivity());
+	    mTrainingseinheitWebview = new TrainingUnitWebView(this.getActivity());
         RelativeLayout relativeLayout = 
                         (RelativeLayout) this.getActivity().findViewById(R.id.WrapperTrainingseinheit);
         RelativeLayout.LayoutParams relParams = 

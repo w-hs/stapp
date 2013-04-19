@@ -9,14 +9,14 @@ import android.content.Context;
  * @author Thomas
  *
  */
-public class VerlaufWebView extends StappWebView {
+public class HistoryWebView extends StappWebView {
 
 	/**
 	 * Standard-Konstruktor für die Verlauf WebView.
 	 * @param context Kontext der WebView.
 	 */
-	public VerlaufWebView(Context context) {
-		super(context);
+	public HistoryWebView(Context context) {
+		super(context, new HistoryWebAppInterface(context));
 
 		this.loadUrl(Constants.HTML_LOCAL_TRAININGSEINHEIT);
 	}

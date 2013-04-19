@@ -71,7 +71,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity
     private void intialiseViewPager() {
  
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(Fragment.instantiate(this, TabTrainingseinheitFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, TabTrainingUnitFragment.class.getName()));
         fragments.add(Fragment.instantiate(this, TabHistoryFragment.class.getName()));
         this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         //
@@ -150,12 +150,12 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity
         if(pos == 0)
         {
         	//Tab Trainingseinheiten
-        	((TabTrainingseinheitFragment)mPagerAdapter.getItem(0)).showButtons();
+        	((TabTrainingUnitFragment)mPagerAdapter.getItem(0)).showButtons();
         }
         else
         {
         	//Tab History
-        	((TabTrainingseinheitFragment)mPagerAdapter.getItem(0)).hideButtons();
+        	((TabTrainingUnitFragment)mPagerAdapter.getItem(0)).hideButtons();
         }
         
     }
