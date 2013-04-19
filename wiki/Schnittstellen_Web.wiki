@@ -13,7 +13,7 @@ Der allgemeine Aufbau kann hier: [https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schn
 
 == StappWebView ==
 
-Die StappWebView ist von der Android WebView abgeleitet und bietet somit alle bekannten Funktionen einer WebView (z.B. loadUrl). Zusätzlich beinhaltet die StappWebView noch Initialisierungsfunktionen. Dabei werden Javascript-Funktionen aktiviert. Dazu werden noch der [StappWebChromClient] und der [StappWebViewClient] instantiiert.
+Die StappWebView ist von der Android WebView abgeleitet und bietet somit alle bekannten Funktionen einer WebView (z.B. loadUrl). Zusätzlich beinhaltet die StappWebView noch Initialisierungsfunktionen. Dabei werden Javascript-Funktionen aktiviert. Dazu werden noch der [#StappWebChromClient] und der [#StappWebViewClient] instantiiert.
 
 === TrainingUnitWebView ===
 
