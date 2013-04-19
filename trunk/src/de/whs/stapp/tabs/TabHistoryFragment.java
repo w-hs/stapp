@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
-import de.whs.stapp.presentation.VerlaufWebView;
+import de.whs.stapp.presentation.HistoryWebView;
 
 /**
  * Das History Fragment/Tab welches ein Web View über History Informationen beinhaltet.
@@ -20,7 +20,7 @@ import de.whs.stapp.presentation.VerlaufWebView;
  */
 public class TabHistoryFragment extends Fragment {
 
-	private VerlaufWebView mVerlaufWebview;
+	private HistoryWebView mVerlaufWebview;
 	/**
 	 * Konstruktor des Tabs in dem Das Layout geladen wird.
 	 * @param inflater inflater
@@ -44,7 +44,7 @@ public class TabHistoryFragment extends Fragment {
 	    super.onActivityCreated(savedInstanceState);   
 	    
 	    
-	    mVerlaufWebview = new VerlaufWebView(this.getActivity());
+	    mVerlaufWebview = new HistoryWebView(this.getActivity());
         RelativeLayout relativeLayout = 
                         (RelativeLayout) this.getActivity().findViewById(R.id.WrapperHistory);
         RelativeLayout.LayoutParams relParams = 

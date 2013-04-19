@@ -12,7 +12,7 @@ import de.whs.stapp.presentation.viewmodels.Trainingseinheit;
  * @author Thomas
  * 
  */
-public class TrainingseinheitWebView extends StappWebView {
+public class TrainingUnitWebView extends StappWebView {
 
 	/**
 	 * Standardkonstruktor, der die Trainingseinheit- Seite lädt.
@@ -20,8 +20,8 @@ public class TrainingseinheitWebView extends StappWebView {
 	 * @param context
 	 *            Kontext der zu rendernden WebView.
 	 */
-	public TrainingseinheitWebView(Context context) {
-		super(context);
+	public TrainingUnitWebView(Context context) {
+		super(context, new TrainingUnitWebAppInterface(context));
 
 		//TODO Laden der Webseite von einem Server
 		// Abhängigkeit von der Internetverbindung einbauen
