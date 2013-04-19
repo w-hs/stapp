@@ -6,4 +6,4 @@
 Hier werden alle Schnittstellen dokumentiert, die im stapp-Projekt exisitieren. Alle Wiki-Artikel müssen mit dem Label "Doc-Technical" versehen werden.
 
 
-= Details =
+= Inhaltsverzeichnis =
