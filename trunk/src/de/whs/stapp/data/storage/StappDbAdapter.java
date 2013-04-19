@@ -20,6 +20,7 @@ class StappDbAdapter implements DatabaseAdapter{
     private static int dbVersion = 1;
     private DatabaseConnector dbConn;
     private SQLiteDatabase stappDb; 
+    private int idTrackedDataTupel = 1;
     
     /**
      * Der Konstruktor legt eine Instantz des DatabaseConnectors an. 
@@ -108,14 +109,52 @@ class StappDbAdapter implements DatabaseAdapter{
     }
 
 	@Override
+	/**
+	 * @author Marcus Büscher
+	 * Die Methode speichert zu einer angegebenen ID die TrainingDetails in die
+	 * TrackedData-Relation.
+	 * 
+	 * @param trainingUnitId ist die ID zu den zu speichernden Details.
+	 * @param detail sind die Messwerte, die es zu speichern gilt.
+	 */
 	public void saveTrainingDetail(int trainingUnitId, TrainingDetail detail) {
-		// TODO Auto-generated method stub
+		ContentValues val = new ContentValues();
+		val.put(dbConn.tdClmIdTrackedData, getIDTrackedData());
+		val.put(dbConn.tdClmIdTrainingUnit, trainingUnitId);
+		val.put(dbConn.tdClmHeartrate, detail.getHeartRate());
+		val.put(dbConn.tuClmDistance, detail.getDistanceInMeter());
+		val.put(dbConn.tdClmSpeed, detail.getSpeedInMeterPerSecond());
+		val.put(dbConn.tdClmStrides, detail.getNumberOfStrides());
+		stappDb.insert(dbConn.tabTrackedData, null, val);		
+	}
+	
+	/**
+	 * @author Marcus Büscher
+     * Diese Methode vergibt die IDs für die TrackedData Tupels.
+     * @return ID für ein TrackedData Tupel
+     */
+	@Override
+	public int getIDTrackedData() {
+		return idTrackedDataTupel++;
+	}
+
+	/**
+	 * @author Marcus Büscher
+	 * Die Methode entfernt zur ID den Eintrag aus der TrainingUnit-Relation, sowie alle
+	 * Einträge aus der TrackedData-Relation.
+	 * 
+	 * @param trainingsUnitId ist die ID der zu löschenden Trainingseinheit.	
+	 */
+	@Override
+	public void removeTrainingUnit(int trainingsUnitId) {
+
+		stappDb.delete(dbConn.tabTrainingUnits, 
+				dbConn.tuClmIdTrainingUnit + "=" +trainingsUnitId, null);
+		
+		stappDb.delete(dbConn.tabTrackedData, 
+				dbConn.tdClmIdTrainingUnit +"=" +trainingsUnitId, null);
 		
 	}
 
-	@Override
-	public void removeTrainingUnit(int trainingsUnitId) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
