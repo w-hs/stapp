@@ -48,7 +48,7 @@ public class TabTrainingUnitFragment extends Fragment {
         RelativeLayout relativeLayout = 
                         (RelativeLayout) this.getActivity().findViewById(R.id.WrapperTrainingseinheit);
         RelativeLayout.LayoutParams relParams = 
-                new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         relativeLayout.addView(mTrainingseinheitWebview, relParams);
         
         //Hinzufügen eines Test Buttons in den Footer
