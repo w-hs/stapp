@@ -7,4 +7,24 @@ Diese Seite beschreibt, wie der Android-Container mit der Web-App kommunizieren 
 
 = Allgemeiner Aufbau =
 
-Der allgemeine Aufbau kann hier: [Architektur https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png], oder in Google Drive angeschaut werden.
+Der allgemeine Aufbau kann hier: [https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png https://www.dropbox.com/s/0wxcxzb82mdfv1r/Schnittstelle_Web.png], oder in Google Drive angeschaut werden.
+
+= Container Anwendung =
+
+== StappWebView ==
+
+Die StappWebView ist von der Android WebView abgeleitet und bietet somit alle bekannten Funktionen einer WebView (z.B. loadUrl). Zusätzlich beinhaltet die StappWebView noch Initialisierungsfunktionen. Dabei werden Javascript-Funktionen aktiviert. Dazu werden noch der [StappWebChromClient] und der [StappWebViewClient] instantiiert.
+
+=== TrainingUnitWebView ===
+
+== StappWebViewClient ==
+
+== StappWebChromeClient ==
+
+== StappWebAppInterface ==
+
+=== TrainingUnitWebAppInterface ===
+
+=== HistoryWebAppInterface ===
+
+= Javascript =
