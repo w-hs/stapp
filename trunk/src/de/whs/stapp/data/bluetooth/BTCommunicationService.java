@@ -97,11 +97,10 @@ public class BTCommunicationService extends Service {
 
 		String hxMMacID = "00:00:00:00:00:00";
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
-
 		if (btAdapter == null)
 			throw new IllegalArgumentException("There is no bluetooth adapter!");
 			//return ConnectionState.Disconnected;
-		else {
+		else {			
 			Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 
 			if (pairedDevices.size() > 0) {
@@ -137,7 +136,7 @@ public class BTCommunicationService extends Service {
 			btClient.Close();
 		}
 	}
-
+	
 	/**
 	 * 
 	 * Diese Methode gibt lediglich den Gerätenamen wieder.
@@ -186,9 +185,8 @@ public class BTCommunicationService extends Service {
 			Bundle b = intent.getExtras();
 			Log.d("BTIntent", b.get("android.bluetooth.device.extra.DEVICE")
 					.toString());
-			Log.d("BTIntent", b.get(
-					"android.bluetooth.device.extra." + "PAIRING_VARIANT")
-					.toString());
+			Log.d("BTIntent", b.get("android.bluetooth.device.extra." 
+					+ "PAIRING_VARIANT").toString());
 			try {
 				BluetoothDevice device = btAdapter.getRemoteDevice(b.get(
 						"android.bluetooth.device.extra.DEVICE").toString());
