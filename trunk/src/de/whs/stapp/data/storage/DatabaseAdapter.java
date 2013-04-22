@@ -31,7 +31,7 @@ public interface DatabaseAdapter {
      * @param detail Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
      * @return
      */
-    void saveTrainingDetail(int trainingUnitId, TrainingDetail detail);
+    void insertTrainingDetail(int trainingUnitId, TrainingDetail detail);
     
     /**
      * Die Methode legt einen neuen Eintrag für eine Trainingseinheit
@@ -48,9 +48,4 @@ public interface DatabaseAdapter {
      */
     void removeTrainingUnit(int trainingsUnitId);
     
-    /**
-     * Diese Methode vergibt die IDs für die TrackedData Tupels.
-     * @return ID für ein TrackedData Tupel
-     */
-    int getIDTrackedData();
 }
