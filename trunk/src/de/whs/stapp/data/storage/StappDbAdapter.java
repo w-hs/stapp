@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import de.whs.stapp.data.bluetooth.TrackedDataItem;
 
 /**
  * 
@@ -64,9 +63,8 @@ class StappDbAdapter implements DatabaseAdapter{
 	 * @param trainingUnitId ist der PK zu der TrainingUnit
 	 * @param unit ist das zu speichernde Tupel
 	 */
-	public void insertNewTrainingUnit(int trainingUnitID, TrainingUnit unit) {
+	public void insertNewTrainingUnit(TrainingUnit unit) {
 		ContentValues val = new ContentValues();
-		val.put(dbConn.tuClmIdTrainingUnit, trainingUnitID);
 		// TODO date
 		// val.put(dbConn.tuClmDate, unit.getDate());
 		val.put(dbConn.tuClmDuration, unit.getDurationInMinutes());
@@ -133,27 +131,5 @@ class StappDbAdapter implements DatabaseAdapter{
      */
     public List<TrainingUnit> getTrainingUnitsOverview() {
     	throw new UnsupportedOperationException("getTrainingUnitsOverview not yet implemented");
-    }
-    
-    
-    /**
-     * @author Christoph Inhestern
-     * Die Methode schreibt Werte zu einer Trainingseinheit in die
-     * Datenbank.
-     * 
-     * @param trainingUnitId Id der aktuell laufenden Trainingseinheit.
-     * @param dataItem Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
-     * @return
-     */
-    public boolean saveTrackedDataItem (int trainingUnitId, TrackedDataItem dataItem) {   	
-    	ContentValues val = new ContentValues();
-    	val.put("ID", trainingUnitId);
-    	
-    	// TODO
-
-    	if (stappDb.insert("TABBELLE MIT WERTEN", null, val) == -1)   	
-    		return false;
-    	
-    	return true;
     }
 }

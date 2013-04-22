@@ -122,7 +122,7 @@ public class TrainingController {
 		TrainingDetail detail = createTrainingDetail(dataItem);
 
 		notifyTrainingDetailListeners(detail);
-		database.saveTrainingDetail(currentTraining.getTrainingUnitId(), detail);
+		database.insertTrainingDetail(currentTraining.getTrainingUnitId(), detail);
 	}
 	
 	private TrainingDetail createTrainingDetail(TrackedDataItem dataItem) {
