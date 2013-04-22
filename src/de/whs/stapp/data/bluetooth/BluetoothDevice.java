@@ -1,6 +1,8 @@
 package de.whs.stapp.data.bluetooth;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
 
@@ -25,9 +27,10 @@ public class BluetoothDevice implements DataTracker {
 	 */
 	public void connect(Activity activity) {
 				
-		bindBluetoothService(activity);
-
-		
+		if (isBTServiceRunning(activity))
+			connection.connect();
+		else
+			bindBluetoothService(activity);		
     }
 	
 	private void bindBluetoothService(Activity activity) {
@@ -60,5 +63,16 @@ public class BluetoothDevice implements DataTracker {
 			throw new IllegalArgumentException("listener cannot be null");
 		
 		connection.unregisterListener(listener);
+	}
+	
+	private boolean isBTServiceRunning(Activity activity) {
+	    ActivityManager manager = (ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE);
+	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	        if ("de.whs.stapp.data.bluetooth.BTCommunicationService"
+	        		.equals(service.service.getClassName())) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 }
