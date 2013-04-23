@@ -103,18 +103,23 @@ public class BTCommunicationService extends Service {
 	 * Diese Methode versucht einen Verbindung zum Bluetoothgerät aufzubauen.
 	 * 
 	 * @return Verbindungsstatus
+	 * @throws BluetoothException 
 	 */
-	public ConnectionState initiateBtConnection() {
+	public ConnectionState initiateBtConnection() throws BluetoothException {
 		if (btClient != null && btClient.IsConnected())
 			return ConnectionState.Connected;
 
 		String hxMMacID = null;
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter == null)
-			throw new IllegalArgumentException("There is no bluetooth adapter!");
-		
+			//throw new IllegalArgumentException("There is no bluetooth adapter!");
+			throw new NoBluetoothAdapterException();
+		//TODO
+				
 		if (!btAdapter.isEnabled())
-			throw new IllegalArgumentException("The bluetooth adapter is disabled");
+			//throw new IllegalArgumentException("The bluetooth adapter is disabled");
+			throw new BluetoothAdapterDisabledException();
+		//TODO
 			
 		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 		if (pairedDevices.size() > 0) {
@@ -129,7 +134,9 @@ public class BTCommunicationService extends Service {
 		if (btAdapter.startDiscovery())
 			return ConnectionState.Connecting;
 		else
-			throw new IllegalArgumentException("Bluetooth discovery failed");
+			//throw new IllegalArgumentException("Bluetooth discovery failed");
+			throw new BluetoothConnectionFailedException();
+		//TODO
 	}
 	
 	private ConnectionState connectBt(String hxMMacID){
@@ -305,6 +312,8 @@ public class BTCommunicationService extends Service {
 		public void onReceive(Context context, Intent intent) {
 			if (!btClient.IsConnected())
 				throw new IllegalArgumentException("There is no HxM device in range");
+				//throw new BluetoothConnectionFailedException();
+			//TODO
 			
 		}
 		
