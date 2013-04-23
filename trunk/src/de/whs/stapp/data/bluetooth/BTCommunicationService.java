@@ -46,15 +46,28 @@ public class BTCommunicationService extends Service {
 
 		IntentFilter pairingRequestFilter = new IntentFilter(
 				"android.bluetooth.device.action.PAIRING_REQUEST");
-
-		this.getApplicationContext().registerReceiver(
-				new BTBroadcastReceiver(), pairingRequestFilter);
+		getApplicationContext().registerReceiver(
+				new BTPairingReceiver(), pairingRequestFilter);
 
 		IntentFilter bondFilter = new IntentFilter(
 				"android.bluetooth.device.action.BOND_STATE_CHANGED");
-
 		getApplicationContext().registerReceiver(new BTBondReceiver(),
 				bondFilter);
+		
+		IntentFilter btStateChangedFilter = new IntentFilter(
+				"android.bluetooth.adapter.action.STATE_CHANGED");
+		getApplicationContext().registerReceiver(new BtStateChangedReceiver(),
+				btStateChangedFilter);
+		
+		IntentFilter btDeviceFoundFilter = new IntentFilter(
+				"android.bluetooth.device.action.FOUND");
+		getApplicationContext().registerReceiver(new BtDeviceFoundReceiver(),
+				btDeviceFoundFilter);
+		
+		IntentFilter btDiscoveryFinishedFilter = new IntentFilter(
+				"android.bluetooth.adapter.action.DISCOVERY_FINISHED");
+		getApplicationContext().registerReceiver(new BtDiscoveryFinishedReceiver(),
+				btDiscoveryFinishedFilter);
 
 	}
 
@@ -91,39 +104,46 @@ public class BTCommunicationService extends Service {
 	 * 
 	 * @return Verbindungsstatus
 	 */
-	public ConnectionState connectBT() {
+	public ConnectionState initiateBtConnection() {
 		if (btClient != null && btClient.IsConnected())
 			return ConnectionState.Connected;
 
-		String hxMMacID = "00:00:00:00:00:00";
+		String hxMMacID = null;
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter == null)
 			throw new IllegalArgumentException("There is no bluetooth adapter!");
-			//return ConnectionState.Disconnected;
-		else {			
-			Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
-
-			if (pairedDevices.size() > 0) {
-				for (BluetoothDevice device : pairedDevices) {
-					if (device.getName().startsWith(hxMDeviceName)) {
-						BluetoothDevice btDevice = device;
-						hxMMacID = btDevice.getAddress();
-						break;
-					}
+		
+		if (!btAdapter.isEnabled())
+			throw new IllegalArgumentException("The bluetooth adapter is disabled");
+			
+		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
+		if (pairedDevices.size() > 0) {
+			for (BluetoothDevice device : pairedDevices) {
+				if (device.getName().startsWith(hxMDeviceName)) {
+					hxMMacID = device.getAddress();
+					return connectBt(hxMMacID);					
 				}
 			}
+		}
+		
+		if (btAdapter.startDiscovery())
+			return ConnectionState.Connecting;
+		else
+			throw new IllegalArgumentException("Bluetooth discovery failed");
+	}
+	
+	private ConnectionState connectBt(String hxMMacID){
+		BluetoothDevice device = btAdapter.getRemoteDevice(hxMMacID);
+		deviceName = device.getName();
+		btClient = new BTClient(btAdapter, hxMMacID);
+		btClient.addConnectedEventListener(hxMConnListener);
 
-			BluetoothDevice device = btAdapter.getRemoteDevice(hxMMacID);
-			deviceName = device.getName();
-			btClient = new BTClient(btAdapter, hxMMacID);
-			btClient.addConnectedEventListener(hxMConnListener);
-
-			if (btClient.IsConnected()) {
-				btClient.start();
-				return ConnectionState.Connected;
-			} else {
-				return ConnectionState.Disconnected;
-			}
+		if (btClient.IsConnected()) {
+			btClient.start();
+			return ConnectionState.Connected;
+		} 
+		else {
+			return ConnectionState.Disconnected;
 		}
 	}
 
@@ -133,6 +153,13 @@ public class BTCommunicationService extends Service {
 	public void disconnectBT() {
 		if (btClient != null && hxMConnListener != null) {
 			btClient.removeConnectedEventListener(hxMConnListener);
+			
+			getApplicationContext().unregisterReceiver(new BTBondReceiver());
+			getApplicationContext().unregisterReceiver(new BTPairingReceiver());
+			getApplicationContext().unregisterReceiver(new BtStateChangedReceiver());
+			getApplicationContext().unregisterReceiver(new BtDiscoveryFinishedReceiver());
+			getApplicationContext().unregisterReceiver(new BtDeviceFoundReceiver());
+			
 			btClient.Close();
 		}
 	}
@@ -157,7 +184,8 @@ public class BTCommunicationService extends Service {
 
 	/**
 	 * 
-	 * Diese Klasse wird benötigt um "brauchen wir die überhaupt?".
+	 * Dieser Broadcast-Receiver ist ausgelegt, um auf die Änderung
+	 * des Paarung-Status zu reagieren.
 	 * 
 	 * @author Dennis Miller
 	 */
@@ -174,11 +202,14 @@ public class BTCommunicationService extends Service {
 
 	/**
 	 * 
-	 * Wozu.? Gute Frage
+	 * Dieser Broadcast-Receiver ist ausgelegt, um auf
+	 * eine Paarungs-Anfrage zu reagieren.
+	 * Diese Anfrage beantwortet er direkt mit dem HxM-Device
+	 * Pin "1234".
 	 * 
 	 * @author Dennis Miller
 	 */
-	private class BTBroadcastReceiver extends BroadcastReceiver {
+	private class BTPairingReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.d("BTIntent", intent.getAction());
@@ -202,5 +233,80 @@ public class BTCommunicationService extends Service {
 				e1.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * Dieser Broadcast-Receiver wird genutzt um einen Status-Wechsel
+	 * des Bluetooth-Adapters zu registrieren.
+	 * 
+	 * @author Dennis Miller
+	 */
+	private class BtStateChangedReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+					
+				Bundle b = intent.getExtras();
+				int state = b.getInt("android.bluetooth.adapter.extra.STATE");
+				int prevState = b.getInt("android.bluetooth.adapter.extra.PREVIOUS_STATE");
+				btAdapterStateChanged(state, prevState);
+						
+		}
+		
+		private void btAdapterStateChanged(int state, int previousState){
+			switch (state) {
+			case BluetoothAdapter.STATE_TURNING_ON:
+				//TODO
+				break;
+			case BluetoothAdapter.STATE_ON:
+			
+				break;
+			case BluetoothAdapter.STATE_TURNING_OFF:
+				
+				break;
+			case BluetoothAdapter.STATE_OFF:
+				
+				break;					
+			}
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * Dieser Broadcast-Receiver wird genutzt um gefundene Bluetooth-Devices
+	 * zu prüfen und gegebenenfalls eine Verbindung aufzubauen.
+	 * 
+	 * @author Dennis Miller
+	 */
+	private class BtDeviceFoundReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            if (device.getName().equals(hxMDeviceName)){
+            	btAdapter.cancelDiscovery();
+            	connectBt(device.getAddress());
+            }
+		}
+	}
+	
+	/**
+	 * 
+	 * Dieser Broadcast-Receiver wird genutzt um bei Beendigung des
+	 * Discovery-Vorgangs die Bt-Verbindung zu prüfen.
+	 * 
+	 * @author Dennis Miller
+	 */
+	private class BtDiscoveryFinishedReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (!btClient.IsConnected())
+				throw new IllegalArgumentException("There is no HxM device in range");
+			
+		}
+		
 	}
 }

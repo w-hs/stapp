@@ -3,6 +3,7 @@ package de.whs.stapp.data.bluetooth;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 
@@ -75,4 +76,41 @@ public class BluetoothDevice implements DataTracker {
 	    }
 	    return false;
 	}
+	
+	/**
+	 * Diese Methode schaltet Bluetooth ein.
+	 * 
+	 * @param activity - Die main-activity
+	 */
+	public void enableBT(Activity activity) {
+		BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+		if (btAdapter == null)
+			throw new IllegalArgumentException("There is no bluetooth adapter");
+		
+		if (!btAdapter.isEnabled()){
+			Intent enableBtIntent =  new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			activity.startActivity(enableBtIntent);			
+		}		
+	}
+	
+	/**
+	 * 
+	 * Diese Methode schaltet das Bluetooth ab.
+	 * Es ist eindringlich empfohlen zuvor in einer Benutzer-Interaktion 
+	 * eine Bestätigung einzuholen.
+	 * 
+	 * @param activity - Die Aufrufende Activity
+	 */
+	public void disableBT(Activity activity) {
+		BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+		
+		if (btAdapter.isEnabled()){
+			boolean isDisabling = btAdapter.disable();
+			
+			if (!isDisabling)
+				throw new IllegalArgumentException("Error during turning off the bluetooth adapter");
+		}
+	}
+	
+	
 }
