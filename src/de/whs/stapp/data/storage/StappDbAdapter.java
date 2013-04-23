@@ -87,7 +87,7 @@ class StappDbAdapter implements DatabaseAdapter {
 		ContentValues val = new ContentValues();
 		val.put(SD_TRAINING_SESSIONS_ID_AS_FK, trainingSessionID);
 		// TODO timestamp
-		val.put(SD_HEARTRATE, detail.getHeartRate());
+		val.put(SD_HEARTRATE, detail.getHeartRateInBpm());
 		val.put(SD_DISTANCE_IN_METERS, detail.getDistanceInMeter());
 		val.put(SD_SPEED_IN_METERS_PER_SECOND, detail.getSpeedInMeterPerSecond());
 		val.put(SD_NUMBER_OF_STRIDES, detail.getNumberOfStrides());
