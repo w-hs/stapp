@@ -58,39 +58,40 @@ class StappDbAdapter implements DatabaseAdapter {
 
 	/**
 	 * @author Marcus Büscher
-	 * Die Methode legt einen neuen Eintrag für eine Trainingseinheit
-	 * in der Datenbank (in der Tabelle "TrainingUnits") an.
+	 * Die Methode updatet ein vorhandenens Tupels in der Relation
+	 * TrainingSessions. 
 	 * 
-	 * @param trainingUnitId ist der PK zu der TrainingUnit
-	 * @param unit ist das zu speichernde Tupel
+	 * @param session ist die zu updatende TrainingSession
+	 * @param trainingSessionID ist der PK des Tupels der Session
 	 */
-	public void insertNewTrainingUnit(TrainingSession unit) {
+	public void updateTrainingUnit(TrainingSession session, int trainingSessionID) {
 		ContentValues val = new ContentValues();
 		// TODO date
 		// val.put(dbConn.tuClmDate, unit.getDate());
-		val.put(dbConn.tuClmDuration, unit.getDurationInMinutes());
-		val.put(dbConn.tuClmDistance, unit.getDistanceInMeters());
-		stappDb.insert(TAB_TRAINING_UNITS, null, val);
+		val.put(TS_DURATION_IN_MINUTES, session.getDurationInMinutes());
+		val.put(TS_DISTANCE_IN_METERS, session.getDistanceInMeters());
+		stappDb.insert(REL_TRAINING_SESSIONS, null, val);
 	}
 
 
 	@Override
 	/**
 	 * @author Marcus Büscher
-	 * Die Methode speichert zu einer angegebenen ID die TrainingDetails in die
-	 * TrackedData-Relation.
+	 * Die Methode speichert zu einer angegebenen ID die SessionDetails in die
+	 * SessionDetails-Relation.
 	 * 
-	 * @param trainingUnitId ist die ID zu den zu speichernden Details.
-	 * @param detail sind die Messwerte, die es zu speichern gilt.
+	 * @param trainingSessionID ist Foreign-Key, refernziert Tupel aus TrainingSessions.
+	 * @param detail sind die Messwerte, die zu speichern sind.
 	 */
-	public void storeSessionDetail(int trainingUnitId, SessionDetail detail) {
+	public void storeSessionDetail(int trainingSessionID, SessionDetail detail) {
 		ContentValues val = new ContentValues();
-		val.put(dbConn.tdClmIdTrainingUnit, trainingUnitId);
-		val.put(dbConn.tdClmHeartrate, detail.getHeartRate());
-		val.put(dbConn.tuClmDistance, detail.getDistanceInMeter());
-		val.put(dbConn.tdClmSpeed, detail.getSpeedInMeterPerSecond());
-		val.put(dbConn.tdClmStrides, detail.getNumberOfStrides());
-		stappDb.insert(dbConn.tabTrackedData, null, val);		
+		val.put(SD_TRAINING_SESSIONS_ID_AS_FK, trainingSessionID);
+		// TODO timestamp
+		val.put(SD_HEARTRATE, detail.getHeartRate());
+		val.put(SD_DISTANCE_IN_METERS, detail.getDistanceInMeter());
+		val.put(SD_SPEED_IN_METERS_PER_SECOND, detail.getSpeedInMeterPerSecond());
+		val.put(SD_NUMBER_OF_STRIDES, detail.getNumberOfStrides());
+		stappDb.insert(REL_SESSION_DETAILS, null, val);		
 	}
 
 
@@ -104,15 +105,13 @@ class StappDbAdapter implements DatabaseAdapter {
 	@Override
 	public void deleteTrainingSession(int trainingsUnitId) {
 		
-		stappDb.delete(dbConn.tabTrackedData, 
-				dbConn.tdClmIdTrainingUnit +"=" +trainingsUnitId, null);
+		stappDb.delete(REL_SESSION_DETAILS, 
+				SD_TRAINING_SESSIONS_ID_AS_FK +"=" +trainingsUnitId, null);
 	
-		stappDb.delete(TAB_TRAINING_UNITS, 
-				dbConn.tuClmIdTrainingUnit + "=" +trainingsUnitId, null);		
+		stappDb.delete(REL_TRAINING_SESSIONS, 
+				TS_SESSION_ID + "=" +trainingsUnitId, null);		
 		
 	}
-
-
 	
     /**
      * @author Christoph Inhestern
