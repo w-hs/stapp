@@ -19,12 +19,12 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	public static final String REL_TRAINING_SESSIONS = "TrainingSessions";
 	public static final String TS_SESSION_ID = "_id";
 	public static final String TS_DATE = "Date";
-	public static final String TS_DURATION_IN_MINUTES = "DurationInMinutes";
+	public static final String TS_DURATION_IN_MS = "DurationInMs";
 	public static final String TS_DISTANCE_IN_METERS = "DistanceInMeters";
 	
 	public static final String REL_SESSION_DETAILS = "SessionDetails";
 	public static final String SD_DETAILS_ID = "_id";
-	public static final String SD_TIMESTAMP = "Timestampt";
+	public static final String SD_TIMESTAMP = "Timestamp";
 	public static final String SD_TRAINING_SESSIONS_ID_AS_FK = "TrainingSessionIdAsFK";
 	public static final String SD_HEARTRATE = "Heartrate";
 	public static final String SD_DISTANCE_IN_METERS = "DistanceInMeters";
@@ -44,7 +44,7 @@ class DatabaseConnector extends SQLiteOpenHelper{
 						+ " ( " +TS_SESSION_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
 						+ TS_DATE + " LONG NOT NULL, " 
 						+ TS_DISTANCE_IN_METERS + " INTEGER NOT NULL, "
-						+ TS_DURATION_IN_MINUTES + " LONG NOT NULL)";
+						+ TS_DURATION_IN_MS + " LONG NOT NULL)";
 		
 		String createSessionDetails = "CREATE TABLE " + REL_SESSION_DETAILS 
 						+ " ( " +SD_DETAILS_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "

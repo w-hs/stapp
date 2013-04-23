@@ -11,7 +11,7 @@ public class TrainingSession {
 	private int sessionId;
 	private Date trainingDate;
 	private int distanceInMeters;
-	private int durationInMinutes;
+	private long durationInMs;
 	
 	/**
 	 * Erstellt eine neue Instanz der {@link TrainingSession} Klasse.
@@ -25,15 +25,15 @@ public class TrainingSession {
 	 * @param sessionId Die Session Id.
 	 * @param trainingDate Datum der Session.
 	 * @param distanceInMeters Die Distanz in Metern.
-	 * @param durationInMinutes Die Dauer in Minuten
+	 * @param durationInMs Die Dauer in Minuten
 	 */
 	public TrainingSession(int sessionId, Date trainingDate,
-			int distanceInMeters, int durationInMinutes) {
+			int distanceInMeters, long durationInMs) {
 		super();
 		this.sessionId = sessionId;
 		this.trainingDate = trainingDate;
 		this.distanceInMeters = distanceInMeters;
-		this.durationInMinutes = durationInMinutes;
+		this.durationInMs = durationInMs;
 	}
 
 	/**
@@ -81,14 +81,14 @@ public class TrainingSession {
 	/**
 	 * @return the durationInMinutes
 	 */
-	public int getDurationInMinutes() {
-		return durationInMinutes;
+	public long getDurationInMs() {
+		return durationInMs;
 	}
 
 	/**
-	 * @param durationInMinutes the durationInMinutes to set
+	 * @param durationInMs the durationInMinutes to set
 	 */
-	public void setDurationInMinutes(int durationInMinutes) {
-		this.durationInMinutes = durationInMinutes;
+	public void setDurationInMs(long durationInMs) {
+		this.durationInMs = durationInMs;
 	}
 }
