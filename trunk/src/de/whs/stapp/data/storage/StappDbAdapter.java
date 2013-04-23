@@ -2,11 +2,9 @@ package de.whs.stapp.data.storage;
 
 //CHECKSTYLE:OFF
 import static de.whs.stapp.data.storage.DatabaseConnector.*;
-
+//CHECKSTYE:ON
 import java.sql.Timestamp;
 import java.util.ArrayList;
-//CHECKSTYE:ON
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * 
- * @author Christoph Inhestern
+ * @author Christoph Inhestern und Marcus Büscher
  * 
  * Klasse für den Zugriff auf die Datenbank und die zugehörigen Funktionen
  * 
@@ -60,12 +58,14 @@ class StappDbAdapter implements DatabaseAdapter {
 	/**
 	 * @author Christoph Inhestern
 	 * Erstellt eine neue {@link TrainingSession} in der Datenbank.
+	 * 
+	 * @return TrainingsSession-Instanz mit Werten des in der DB neu angelegten Tupels. 
 	 */
     @Override
 	public TrainingSession newTrainingSession() {	
     	TrainingSession resultSession;
     	ContentValues val = new ContentValues();
-    	long date = Calendar.getInstance().getTimeInMillis();
+    	long date = System.currentTimeMillis();
     	
     	val.put(TS_DISTANCE_IN_METERS, 0);
     	val.put(TS_DURATION_IN_MS, 0);
@@ -99,19 +99,17 @@ class StappDbAdapter implements DatabaseAdapter {
 
 	/**
 	 * @author Marcus Büscher
-	 * Die Methode updatet ein vorhandenens Tupels in der Relation
-	 * TrainingSessions. 
+	 * Die Methode updatet ein vorhandenens Tupel in der Relation TrainingSessions. 
 	 * 
 	 * @param session ist die zu updatende TrainingSession
 	 * @param trainingSessionID ist der PK des Tupels der Session
 	 */
 	public void updateTrainingUnit(TrainingSession session, int trainingSessionID) {
 		ContentValues val = new ContentValues();
-		// TODO date
-		// val.put(dbConn.tuClmDate, unit.getDate());
 		val.put(TS_DURATION_IN_MS, session.getDurationInMs());
 		val.put(TS_DISTANCE_IN_METERS, session.getDistanceInMeters());
-		stappDb.insert(REL_TRAINING_SESSIONS, null, val);
+		stappDb.update(REL_TRAINING_SESSIONS, val, 
+							TS_SESSION_ID + " = " + trainingSessionID, null);
 	}
 
 
@@ -127,37 +125,38 @@ class StappDbAdapter implements DatabaseAdapter {
 	public void storeSessionDetail(int trainingSessionID, SessionDetail detail) {
 		ContentValues val = new ContentValues();
 		val.put(SD_TRAINING_SESSIONS_ID_AS_FK, trainingSessionID);
-		// TODO timestamp
+		val.put(SD_TIMESTAMP, System.currentTimeMillis());
 		val.put(SD_HEARTRATE, detail.getHeartRateInBpm());
 		val.put(SD_DISTANCE_IN_METERS, detail.getDistanceInMeter());
 		val.put(SD_SPEED_IN_METERS_PER_SECOND, detail.getSpeedInMeterPerSecond());
 		val.put(SD_NUMBER_OF_STRIDES, detail.getNumberOfStrides());
+		
 		stappDb.insert(REL_SESSION_DETAILS, null, val);		
 	}
 
 
 	/**
 	 * @author Marcus Büscher
-	 * Die Methode entfernt zur ID den Eintrag aus der TrainingUnit-Relation, sowie alle
-	 * Einträge aus der TrackedData-Relation.
+	 * Die Methode entfernt zur ID den Eintrag aus der TrainingSessions-Relation, sowie alle
+	 * Einträge aus der SessionDetails-Relation.
 	 * 
-	 * @param trainingsUnitId ist die ID der zu löschenden Trainingseinheit.	
+	 * @param trainingSessionId ist die ID der zu löschenden Trainingseinheit.	
 	 */
 	@Override
-	public void deleteTrainingSession(int trainingsUnitId) {
+	public void deleteTrainingSession(int trainingSessionId) {
 		
 		stappDb.delete(REL_SESSION_DETAILS, 
-				SD_TRAINING_SESSIONS_ID_AS_FK +"=" +trainingsUnitId, null);
+				SD_TRAINING_SESSIONS_ID_AS_FK +"=" +trainingSessionId, null);
 	
 		stappDb.delete(REL_TRAINING_SESSIONS, 
-				TS_SESSION_ID + "=" +trainingsUnitId, null);		
+				TS_SESSION_ID + "=" +trainingSessionId, null);		
 		
 	}
 	
     /**
      * @author Christoph Inhestern
-     * Liefert eine Liste aller Trainingseinheiten zurück.
-     * @return
+     * Liefert eine Liste aller TrainingSessions zurück.
+     * @return Liste aller Einträge aus der Relation TrainingSessions.
      */
     public List<TrainingSession> getSessionHistory() {
     	List<TrainingSession> resultSessions = new ArrayList<TrainingSession>();
@@ -185,7 +184,13 @@ class StappDbAdapter implements DatabaseAdapter {
 		return resultSessions;
     }
 
-
+    
+    /**
+     * @author Christoph Inhestern
+     * Die Methode eine Liste mit allen SessionDetails zur angegeben traininingSessionId zurück.
+     * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
+     * @return Die {@link SessionDetail}s zu einer TrainingSession.
+     */
 	@Override
 	public List<SessionDetail> getSessionDetails(int trainingSessionId) {
 		List<SessionDetail> resultDetails = new ArrayList<SessionDetail>();
