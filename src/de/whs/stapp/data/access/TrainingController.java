@@ -7,8 +7,8 @@ import de.whs.stapp.data.bluetooth.DataTracker;
 import de.whs.stapp.data.bluetooth.TrackedDataItem;
 import de.whs.stapp.data.bluetooth.TrackedDataListener;
 import de.whs.stapp.data.storage.DatabaseAdapter;
-import de.whs.stapp.data.storage.TrainingDetail;
-import de.whs.stapp.data.storage.TrainingUnit;
+import de.whs.stapp.data.storage.SessionDetail;
+import de.whs.stapp.data.storage.TrainingSession;
 
 /**
  * Verwaltet eine Trainingseinheit.
@@ -21,7 +21,7 @@ public class TrainingController {
 	private TrackedDataListener dataListener;
 
 	private TrainingState state = TrainingState.NEW;
-	private TrainingUnit currentTraining = new TrainingUnit();
+	private TrainingSession currentTraining = new TrainingSession();
 	
 	private List<TrainingDetailListener> trainingDetailListeners =
 			new ArrayList<TrainingDetailListener>();
@@ -45,9 +45,9 @@ public class TrainingController {
 	}
 	
 	/**
-	 * @return Die aktuelle {@link TrainingUnit}.
+	 * @return Die aktuelle {@link TrainingSession}.
 	 */
-	public TrainingUnit getCurrentTrainingUnit() {
+	public TrainingSession getCurrentTrainingUnit() {
 		return currentTraining;
 	}
 
@@ -66,7 +66,7 @@ public class TrainingController {
 			return;
 
 		state = TrainingState.RUNNING;
-		currentTraining = database.createNewTrainingUnit();
+		currentTraining = database.newTrainingSession();
 
 		tracker.registerListener(dataListener);
 	}
@@ -84,7 +84,7 @@ public class TrainingController {
 
 	/**
 	 * Registriert den listener, so dass dieser über eingehende 
-	 * {@link TrainingDetail}s informiert wird.
+	 * {@link SessionDetail}s informiert wird.
 	 * @param listener Der {@link TrainingDetailListener}.
 	 */
 	public void registerListener(TrainingDetailListener listener) {
@@ -119,14 +119,14 @@ public class TrainingController {
 	}
 
 	private void processTrackedData(TrackedDataItem dataItem) {		
-		TrainingDetail detail = createTrainingDetail(dataItem);
+		SessionDetail detail = createTrainingDetail(dataItem);
 
 		notifyTrainingDetailListeners(detail);
-		database.insertTrainingDetail(currentTraining.getTrainingUnitId(), detail);
+		//database.storeSessionDetail(currentTraining.getTrainingUnitId(), detail);
 	}
 	
-	private TrainingDetail createTrainingDetail(TrackedDataItem dataItem) {
-		TrainingDetail detail = new TrainingDetail();
+	private SessionDetail createTrainingDetail(TrackedDataItem dataItem) {
+		SessionDetail detail = new SessionDetail();
 		
 		// TODO korrekt umrechnen!
 		detail.setDistanceInMeter((int)dataItem.getDistanceInOne16thsMeter());
@@ -137,7 +137,7 @@ public class TrainingController {
 		return detail;
 	}
 
-	private void notifyTrainingDetailListeners(TrainingDetail detail) {
+	private void notifyTrainingDetailListeners(SessionDetail detail) {
 		for (TrainingDetailListener listener : trainingDetailListeners)
 			listener.trackTrainingDetail(detail);
 	}

@@ -9,43 +9,33 @@ import java.util.List;
 public interface DatabaseAdapter {
 	
     /**
-     * Gibt alle Daten einer Trainingseinheit zurück. Dies enthält
-     * alle vorhandenen Messwerte zu einer Einheit.
-     * 
-     * @param trainingUnitId ID der detailliert anzuzeigenden Trainingseinheit.
-     * @return
+     * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
+     * @return Die {@link SessionDetail}s zu einer TrainingSession.
      */
-    DetailedTrainingUnit getTrainingUnitDetail(int trainingUnitId);
+    List<SessionDetail> getSessionDetails(int trainingSessionId);
     
     /**
-     * Liefert eine Liste aller Trainingseinheiten zurück.
-     * @return
+     * @return Eine Liste aller bestehenden {@link TrainingSession}s.
      */
-    List<TrainingUnit> getTrainingUnitsOverview();
+    List<TrainingSession> getSessionHistory();
         
     /**
-     * Die Methode schreibt Werte zu einer Trainingseinheit in die
-     * Datenbank.
-     * 
-     * @param trainingUnitId Id der aktuell laufenden Trainingseinheit.
-     * @param detail Die aktuellen Messwerte, die in der Datenbank gespeichert werden sollen. 
-     * @return
+     * Speichert ein {@link SessionDetail} zu einer gegebenen TrainingSession.
+     * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
+     * @param detail Das zu speichernde {@link SessionDetail}. 
      */
-    void insertTrainingDetail(int trainingUnitId, TrainingDetail detail);
+    void storeSessionDetail(int trainingSessionId, SessionDetail detail);
     
     /**
-     * Die Methode legt einen neuen Eintrag für eine Trainingseinheit
-     * in der Datenbank (in der Tabelle "TrainingsUnit") an.
-     * 
-     * @return
+     * Erstellt eine neue {@link TrainingSession} in der Datenbank.
+     * @return Die TrainingSession, die neu in der Datenbank erstellt wurde.
      */
-    TrainingUnit createNewTrainingUnit();
+    TrainingSession newTrainingSession();
     
     /**
-     * Die Methode entfernt alle Einträge zur übergebenen trainingsUnitId.
-     * 
-     * @param trainingsUnitId Die ID der zu löschenden Trainingseinheit
+     * Entfernt die entsprechende Trainings Session vollständig 
+     * (inkl. SessionDetails) aus der Datenbank. 
+     * @param trainingSessionId Id der zu löschenden {@link TrainingSession}.
      */
-    void removeTrainingUnit(int trainingsUnitId);
-    
+    void deleteTrainingSession(int trainingSessionId);
 }

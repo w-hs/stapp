@@ -15,7 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
  * 
  */
 
-class StappDbAdapter implements DatabaseAdapter{
+class StappDbAdapter implements DatabaseAdapter {
 
     private static final String DBNAME = "stappDatabase.db";
     private static final int DBVERSION = 1;
@@ -50,7 +50,7 @@ class StappDbAdapter implements DatabaseAdapter{
     
     
     @Override
-	public TrainingUnit createNewTrainingUnit() {
+	public TrainingSession newTrainingSession() {
     	
     	throw new UnsupportedOperationException("createNewTrainingUnit not yet implemented");
 	}
@@ -64,7 +64,7 @@ class StappDbAdapter implements DatabaseAdapter{
 	 * @param trainingUnitId ist der PK zu der TrainingUnit
 	 * @param unit ist das zu speichernde Tupel
 	 */
-	public void insertNewTrainingUnit(TrainingUnit unit) {
+	public void insertNewTrainingUnit(TrainingSession unit) {
 		ContentValues val = new ContentValues();
 		// TODO date
 		// val.put(dbConn.tuClmDate, unit.getDate());
@@ -83,7 +83,7 @@ class StappDbAdapter implements DatabaseAdapter{
 	 * @param trainingUnitId ist die ID zu den zu speichernden Details.
 	 * @param detail sind die Messwerte, die es zu speichern gilt.
 	 */
-	public void insertTrainingDetail(int trainingUnitId, TrainingDetail detail) {
+	public void storeSessionDetail(int trainingUnitId, SessionDetail detail) {
 		ContentValues val = new ContentValues();
 		val.put(dbConn.tdClmIdTrainingUnit, trainingUnitId);
 		val.put(dbConn.tdClmHeartrate, detail.getHeartRate());
@@ -102,7 +102,7 @@ class StappDbAdapter implements DatabaseAdapter{
 	 * @param trainingsUnitId ist die ID der zu löschenden Trainingseinheit.	
 	 */
 	@Override
-	public void removeTrainingUnit(int trainingsUnitId) {
+	public void deleteTrainingSession(int trainingsUnitId) {
 		
 		stappDb.delete(dbConn.tabTrackedData, 
 				dbConn.tdClmIdTrainingUnit +"=" +trainingsUnitId, null);
@@ -113,24 +113,20 @@ class StappDbAdapter implements DatabaseAdapter{
 	}
 
 
-	/**
-     * @author Christoph Inhestern
-     * Gibt alle Daten einer Trainingseinheit zurück. Dies enthält
-     * alle vorhandenen Messwerte zu einer Einheit.
-     * 
-     * @param id , ID der detailliert anzuzeigenden Trainingseinheit.
-     * @return
-     */
-    public DetailedTrainingUnit getTrainingUnitDetail(int id) {
-    	throw new UnsupportedOperationException("getTrainingUnitDetail not yet implemented");
-    }
-    
+	
     /**
      * @author Christoph Inhestern
      * Liefert eine Liste aller Trainingseinheiten zurück.
      * @return
      */
-    public List<TrainingUnit> getTrainingUnitsOverview() {
+    public List<TrainingSession> getSessionHistory() {
     	throw new UnsupportedOperationException("getTrainingUnitsOverview not yet implemented");
     }
+
+
+	@Override
+	public List<SessionDetail> getSessionDetails(int trainingSessionId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

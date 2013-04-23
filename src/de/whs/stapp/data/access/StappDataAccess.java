@@ -4,8 +4,8 @@ import java.util.List;
 
 import de.whs.stapp.data.bluetooth.DataTracker;
 import de.whs.stapp.data.storage.DatabaseAdapter;
-import de.whs.stapp.data.storage.TrainingUnit;
-import de.whs.stapp.data.storage.DetailedTrainingUnit;
+import de.whs.stapp.data.storage.SessionDetail;
+import de.whs.stapp.data.storage.TrainingSession;
 
 /**
  * @author Chris
@@ -37,12 +37,12 @@ class StappDataAccess implements DataAccess {
 	}
 
 	@Override
-	public List<TrainingUnit> getTrainingUnitsOverview() {
-		return database.getTrainingUnitsOverview();
+	public List<TrainingSession> getTrainingUnitsOverview() {
+		return database.getSessionHistory();
 	}
 
 	@Override
-	public DetailedTrainingUnit getTrainingUnitWithDetails(int trainingUnitId) {
-		return database.getTrainingUnitDetail(trainingUnitId);
+	public List<SessionDetail> getSessionDetails(int trainingSessionId) {
+		return database.getSessionDetails(trainingSessionId);
 	}
 }
