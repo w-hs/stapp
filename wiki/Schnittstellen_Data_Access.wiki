@@ -1,0 +1,3 @@
+#labels Doc-Technical
+= Introduction =
+Diese Seite dokumentiert die _DataAccess_ Schnittstelle, die den Zugriff auf die Daten ermöglicht.
