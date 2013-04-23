@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * 
- * @author Christoph
+ * @author Christoph, Marcus Büscher
  * 
  * Die Klasse stellt eine Verbindung zur Datenbank her.
  * Existiert die Datenbank nicht, so wird sie erstellt und die Methode onCreate() gerufen.
@@ -16,20 +16,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DatabaseConnector extends SQLiteOpenHelper{
 
-	//static, groß und mit _
-	public static final String TAB_TRAINING_UNITS = "TrainingUnits";
-	public final String tuClmIdTrainingUnit = "_id";
-	public final String tuClmDate = "Date";
-	public final String tuClmDuration = "Duration";
-	public final String tuClmDistance = "Distance";
+	public static final String REL_TRAINING_SESSIONS = "TrainingSessions";
+	public static final String TS_SESSION_ID = "_id";
+	public static final String TS_DATE = "Date";
+	public static final String TS_DURATION_IN_MINUTES = "DurationInMinutes";
+	public static final String TS_DISTANCE_IN_METERS = "DistanceInMeters";
 	
-	public final String tabTrackedData = "TrackedData";
-	public final String tdClmIdTrackedData = "_id";
-	public final String tdClmIdTrainingUnit = "_idTrainingUnit";
-	public final String tdClmHeartrate = "Heartrate";
-	public final String tdClmDistance = "Distance";
-	public final String tdClmSpeed = "Speed";
-	public final String tdClmStrides = "Strides";
+	public static final String REL_SESSION_DETAILS = "SessionDetails";
+	public static final String SD_DETAILS_ID = "_id";
+	public static final String SD_TIMESTAMP = "Timestampt";
+	public static final String SD_TRAINING_SESSIONS_ID_AS_FK = "TrainingSessionIdAsFK";
+	public static final String SD_HEARTRATE = "Heartrate";
+	public static final String SD_DISTANCE_IN_METERS = "DistanceInMeters";
+	public static final String SD_SPEED_IN_METERS_PER_SECOND = "SpeedInMetersPerSecond";
+	public static final String SD_NUMBER_OF_STRIDES = "NumberOfStrides";
 	
 	
 	public DatabaseConnector(Context context, String name, CursorFactory factory,
@@ -40,28 +40,26 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		
-		//Autoincrement
-		String createTrainingUnits = "CREATE TABLE " + TAB_TRAINING_UNITS + " ( " +
-										tuClmIdTrainingUnit 
-											+" INTEGER PRIMARY KEY, "
-										+tuClmDate + " LONG, " +
-										tuClmDistance + " INTEGER, " +
-										tuClmDuration + " LONG";
+		String createTrainingSessions = "CREATE TABLE " + REL_TRAINING_SESSIONS 
+						+ " ( " +TS_SESSION_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+						+ TS_DATE + " LONG NOT NULL, " 
+						+ TS_DISTANCE_IN_METERS + " INTEGER NOT NULL, "
+						+ TS_DURATION_IN_MINUTES + " LONG NOT NULL)";
 		
-		String createTrackedData = "CREATE TABLE " + tabTrackedData + " ( " +
-										tdClmIdTrackedData 
-											+" INTEGER PRIMARY KEY, "
-										+tdClmIdTrainingUnit + " INTEGER, " +
-										tdClmHeartrate + " INTEGER, " +
-										tdClmDistance + " INTEGER, " +
-										tdClmSpeed + " INTEGER, " +
-										tdClmStrides + " INTEGER, " +
-										"FOREIGN KEY (" +tdClmIdTrainingUnit 
-										 +") " +"REFERENCES " 
-										 + TAB_TRAINING_UNITS + "(_id)";		
+		String createSessionDetails = "CREATE TABLE " + REL_SESSION_DETAILS 
+						+ " ( " +SD_DETAILS_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+						+ SD_TRAINING_SESSIONS_ID_AS_FK + " INTEGER NOT NULL, " 
+						+ SD_TIMESTAMP + "LONG NOT NULL, "
+						+ SD_HEARTRATE + " INTEGER NOT NULL, "
+						+ SD_DISTANCE_IN_METERS + " INTEGER NOT NULL, "
+						+ SD_SPEED_IN_METERS_PER_SECOND + " INTEGER NOT NULL, " 
+						+ SD_NUMBER_OF_STRIDES + " INTEGER NOT NULL, "
+						+ "FOREIGN KEY (" +SD_TRAINING_SESSIONS_ID_AS_FK +") " 
+						+ "REFERENCES " + REL_TRAINING_SESSIONS 
+							+ "(" +TS_SESSION_ID + "))";		
 		
-		db.execSQL(createTrainingUnits);
-		db.execSQL(createTrackedData);
+		db.execSQL(createTrainingSessions);
+		db.execSQL(createSessionDetails);
 	}
 
 	@Override
