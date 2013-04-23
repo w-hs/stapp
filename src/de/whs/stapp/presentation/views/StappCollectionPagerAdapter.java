@@ -6,10 +6,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+/**
+ * 
+ * @author thoma_000
+ *
+ */
 public class StappCollectionPagerAdapter extends FragmentStatePagerAdapter {
 
 	private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
 	
+	/**
+	 * 
+	 * @param fm f
+	 */
 	public StappCollectionPagerAdapter(FragmentManager fm) {
 		super(fm);
 	

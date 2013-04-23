@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
@@ -19,7 +18,6 @@ import de.whs.stapp.presentation.TrainingSessionWebView;
 public class SessionFragment extends Fragment {
 	
 	private TrainingSessionWebView mTrainingseinheitWebview;
-	private Button mbtnStart;
 	/**
 	 * Konstruktor des Tabs in dem Das Layout geladen wird.
 	 * @param inflater inflater
@@ -32,7 +30,7 @@ public class SessionFragment extends Fragment {
 		if (container == null) {
             return null;
         }
-		return (RelativeLayout)inflater.inflate(R.layout.tab_trainingseinheit_layout, container, false);
+		return (RelativeLayout)inflater.inflate(R.layout.tab_trainingsession_layout, container, false);
 	}
 	
 	/**
