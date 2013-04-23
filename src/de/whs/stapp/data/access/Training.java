@@ -130,11 +130,12 @@ public class Training {
 	private SessionDetail createSessionDetail(TrackedDataItem dataItem) {
 		SessionDetail detail = new SessionDetail();
 		
-		// TODO korrekt umrechnen!
-		detail.setDistanceInMeter((int)dataItem.getDistanceInOne16thsMeter());
-		detail.setHeartRate((int)dataItem.getHeartRateInBpm());
+		//CHECKSTYLE:OFF
+		detail.setDistanceInMeter((int)dataItem.getDistanceInOne16thsMeter() * 16);
+		detail.setHeartRateInBpm((int)dataItem.getHeartRateInBpm());
 		detail.setNumberOfStrides((int)dataItem.getStrides());
-		detail.setSpeedInMeterPerSecond((int)dataItem.getSpeedInOne256thsMeterPerSecond());
+		detail.setSpeedInMeterPerSecond((int)dataItem.getSpeedInOne256thsMeterPerSecond() * 256);
+		//CHECKSTYLE:ON
 		
 		return detail;
 	}

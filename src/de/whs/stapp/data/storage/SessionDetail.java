@@ -10,7 +10,7 @@ public class SessionDetail {
 	private int sessionDetailId;
 	private int trainingSessionId;
 	private Timestamp timestamp;
-	private int heartRate;
+	private int heartRateInBpm;
 	private int distanceInMeter;
 	private int speedInMeterPerSecond;
 	private int numberOfStrides;
@@ -27,19 +27,19 @@ public class SessionDetail {
 	 * @param sessionDetailId Die SessionDetailId.
 	 * @param trainingSessionId Die Id der zugehörigen TrainingsSession.
 	 * @param timestamp Der Zeitstempel, an dem das SessionDetail aufgenommen wurde.
-	 * @param heartRate Die Herzrate.
+	 * @param heartRateInBpm Die Herzrate.
 	 * @param distanceInMeter Die Distanz in Metern.
 	 * @param speedInMeterPerSecond Die Geschwindigkeit in Metern pro Sekunde.
 	 * @param numberOfStrides Die Anzahl der zurückgelegten Schritte.
 	 */
 	public SessionDetail(int sessionDetailId, int trainingSessionId,
-			Timestamp timestamp, int heartRate, int distanceInMeter,
+			Timestamp timestamp, int heartRateInBpm, int distanceInMeter,
 			int speedInMeterPerSecond, int numberOfStrides) {
 		super();
 		this.sessionDetailId = sessionDetailId;
 		this.trainingSessionId = trainingSessionId;
 		this.timestamp = timestamp;
-		this.heartRate = heartRate;
+		this.heartRateInBpm = heartRateInBpm;
 		this.distanceInMeter = distanceInMeter;
 		this.speedInMeterPerSecond = speedInMeterPerSecond;
 		this.numberOfStrides = numberOfStrides;
@@ -88,17 +88,17 @@ public class SessionDetail {
 	}
 
 	/**
-	 * @return the heartRate
+	 * @return the heartRateInBpm
 	 */
-	public int getHeartRate() {
-		return heartRate;
+	public int getHeartRateInBpm() {
+		return heartRateInBpm;
 	}
 
 	/**
-	 * @param heartRate the heartRate to set
+	 * @param heartRateInBpm the heartRate to set
 	 */
-	public void setHeartRate(int heartRate) {
-		this.heartRate = heartRate;
+	public void setHeartRateInBpm(int heartRateInBpm) {
+		this.heartRateInBpm = heartRateInBpm;
 	}
 
 	/**
