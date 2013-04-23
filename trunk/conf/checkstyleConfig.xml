@@ -36,7 +36,6 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
     <module name="AvoidStarImport"/>
-    <module name="AvoidStaticImport"/>
     <module name="IllegalImport"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
@@ -45,9 +44,6 @@ The checkstyle configuration file for our project. Maintained by Chris.
     </module>
     <module name="MethodLength">
       <property name="max" value="80"/>
-    </module>
-    <module name="ParameterNumber">
-      <property name="max" value="5"/>
     </module>
     <module name="OuterTypeNumber"/>
     <module name="GenericWhitespace"/>
@@ -64,7 +60,10 @@ The checkstyle configuration file for our project. Maintained by Chris.
     </module>
     <module name="IllegalThrows"/>
     <module name="JUnitTestCase"/>
-    <module name="MagicNumber"/>
+    <module name="MagicNumber">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals">
       <property name="allowedDuplicates" value="10"/>
@@ -95,7 +94,6 @@ The checkstyle configuration file for our project. Maintained by Chris.
     <module name="OneStatementPerLine"/>
     <module name="FinalClass"/>
     <module name="InnerTypeLast"/>
-    <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
     <module name="ThrowsCount">
       <property name="max" value="2"/>
