@@ -2,6 +2,7 @@ package de.whs.stapp.data.storage;
 
 import java.util.List;
 
+import static de.whs.stapp.data.storage.DatabaseConnector.*;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,8 +17,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 class StappDbAdapter implements DatabaseAdapter{
 
-    private static String dbName = "stappDatabase.db";
-    private static int dbVersion = 1;
+    private static final String DBNAME = "stappDatabase.db";
+    private static final int DBVERSION = 1;
     private DatabaseConnector dbConn;
     private SQLiteDatabase stappDb; 
     /**
@@ -25,7 +26,7 @@ class StappDbAdapter implements DatabaseAdapter{
      * @param context Der Context in dem die Klasse instantiiert wird.
      */
     public StappDbAdapter(Context context){
-    	dbConn = new DatabaseConnector(context, dbName, null, dbVersion);
+    	dbConn = new DatabaseConnector(context, DBNAME, null, DBVERSION);
     }
 
     
@@ -50,8 +51,8 @@ class StappDbAdapter implements DatabaseAdapter{
     
     @Override
 	public TrainingUnit createNewTrainingUnit() {
-		// TODO Auto-generated method stub
-		return null;
+    	
+    	throw new UnsupportedOperationException("createNewTrainingUnit not yet implemented");
 	}
 
 
@@ -69,7 +70,7 @@ class StappDbAdapter implements DatabaseAdapter{
 		// val.put(dbConn.tuClmDate, unit.getDate());
 		val.put(dbConn.tuClmDuration, unit.getDurationInMinutes());
 		val.put(dbConn.tuClmDistance, unit.getDistanceInMeters());
-		stappDb.insert(dbConn.tabTrainingUnits, null, val);
+		stappDb.insert(TAB_TRAINING_UNITS, null, val);
 	}
 
 
@@ -106,7 +107,7 @@ class StappDbAdapter implements DatabaseAdapter{
 		stappDb.delete(dbConn.tabTrackedData, 
 				dbConn.tdClmIdTrainingUnit +"=" +trainingsUnitId, null);
 	
-		stappDb.delete(dbConn.tabTrainingUnits, 
+		stappDb.delete(TAB_TRAINING_UNITS, 
 				dbConn.tuClmIdTrainingUnit + "=" +trainingsUnitId, null);		
 		
 	}

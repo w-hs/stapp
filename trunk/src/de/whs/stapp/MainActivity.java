@@ -6,7 +6,7 @@ import android.os.Bundle;
 import de.whs.stapp.data.access.DataAccess;
 import de.whs.stapp.data.access.DataAccessFactory;
 import de.whs.stapp.data.bluetooth.BluetoothDevice;
-import de.whs.stapp.tabs.TabsViewPagerFragmentActivity;
+import de.whs.stapp.presentation.views.TabsViewPagerFragmentActivity;
 
 /**
  * The applications MainActivity.
@@ -32,5 +32,14 @@ public class MainActivity extends Activity {
 		this.startActivity(new Intent(MainActivity.this,
 				TabsViewPagerFragmentActivity.class));
 		device.connect(this);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public DataAccess getDataAcces()
+	{
+		return data;
 	}
 }
