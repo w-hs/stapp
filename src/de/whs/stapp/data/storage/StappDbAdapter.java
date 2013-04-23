@@ -68,7 +68,7 @@ class StappDbAdapter implements DatabaseAdapter {
     	long date = Calendar.getInstance().getTimeInMillis();
     	
     	val.put(TS_DISTANCE_IN_METERS, 0);
-    	val.put(TS_DURATION_IN_MINUTES, 0);
+    	val.put(TS_DURATION_IN_MS, 0);
     	val.put(TS_DATE, date);
     	
     	if (stappDb.insert(REL_TRAINING_SESSIONS, null, val) != -1){
@@ -76,7 +76,7 @@ class StappDbAdapter implements DatabaseAdapter {
     				TS_SESSION_ID + ", " +
     				TS_DATE + ", " +
     				TS_DISTANCE_IN_METERS + ", " +
-    				TS_DURATION_IN_MINUTES + ", " +    				
+    				TS_DURATION_IN_MS + ", " +    				
     				"from " + REL_TRAINING_SESSIONS + 
     				" where " +
     				TS_DATE + " = " + date;
@@ -86,7 +86,7 @@ class StappDbAdapter implements DatabaseAdapter {
     			//CHECKSTYLE:OFF
     			resultSession = 
     					new TrainingSession
-    					(cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getInt(3));
+    					(cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getLong(3));
     			//CHECKSTYLE:ON
     			return resultSession;
     		}
@@ -109,7 +109,7 @@ class StappDbAdapter implements DatabaseAdapter {
 		ContentValues val = new ContentValues();
 		// TODO date
 		// val.put(dbConn.tuClmDate, unit.getDate());
-		val.put(TS_DURATION_IN_MINUTES, session.getDurationInMinutes());
+		val.put(TS_DURATION_IN_MS, session.getDurationInMs());
 		val.put(TS_DISTANCE_IN_METERS, session.getDistanceInMeters());
 		stappDb.insert(REL_TRAINING_SESSIONS, null, val);
 	}
@@ -166,7 +166,7 @@ class StappDbAdapter implements DatabaseAdapter {
 				TS_SESSION_ID + ", " +
 				TS_DATE + ", " +
 				TS_DISTANCE_IN_METERS + ", " +
-				TS_DURATION_IN_MINUTES + ", " +    				
+				TS_DURATION_IN_MS + ", " +    				
 				"from " + REL_TRAINING_SESSIONS;
 		
 		cr = stappDb.rawQuery(sql, null);
@@ -176,7 +176,7 @@ class StappDbAdapter implements DatabaseAdapter {
 				TrainingSession tmpSession;
 				//CHECKSTYLE:OFF
 				tmpSession = new TrainingSession(
-						cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getInt(3));
+						cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getLong(3));
 				//CHECKSTYLE:ON
 				resultSessions.add(tmpSession);
 			}
