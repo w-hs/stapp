@@ -7,72 +7,82 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 import de.whs.stapp.data.bluetooth.BluetoothDevice;
+import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
 import de.whs.stapp.presentation.views.TabListener;
 
 /**
+ * Standard-Einstiegspunkt für das Stapp-Projekt. Enthält die Activity, welche
+ * das gesamte Produkt verwaltet.
  * 
  * @author Thomas
  * 
  */
 public class StappActivity extends FragmentActivity {
-	
-	private BluetoothDevice btDevice = new BluetoothDevice();
 
-	ViewPager mViewPager;
-	StappCollectionPagerAdapter mStappCollectionPagerAdapter;
-	
+	private BluetoothDevice btDevice = new BluetoothDevice();
+	private ViewPager mViewPager;
+	private ActionBar mActionBar;
+	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_stapp);
-		
-		mStappCollectionPagerAdapter = new StappCollectionPagerAdapter(getSupportFragmentManager());
-		  mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mStappCollectionPagerAdapter);
-	    
-        mViewPager.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        // When swiping between pages, select the
-                        // corresponding tab.
-                        getActionBar().setSelectedNavigationItem(position);
-                    }
-                });
-        
-		ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setDisplayShowHomeEnabled(false);
-		
-		Tab tab = actionBar.newTab()
-	            .setText("Trainingseinheit")
-	            .setTabListener(new TabListener<SessionFragment>(
-	                    this, "training", SessionFragment.class, mViewPager));
-	    actionBar.addTab(tab);
 
-	    tab = actionBar.newTab()
-	        .setText("Verlauf")
-	        .setTabListener(new TabListener<HistoryFragment>(
-	                this, "history", HistoryFragment.class, mViewPager));
-	    actionBar.addTab(tab);
+		// Reihenfolge der Initialisierung wichtig!
+		initViewPager();
+		initActionBar();
 
 		try {
 			btDevice.connect(this);
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (BluetoothException e) {
+
+			// Vorläufig
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-        
+
 		if (savedInstanceState != null) {
-			actionBar.setSelectedNavigationItem(savedInstanceState.getInt(
+			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
 					"tab", 0));
 		}
+	}
+
+	private void initViewPager() {
+		mStappCollectionPagerAdapter = new StappCollectionPagerAdapter(
+				getSupportFragmentManager());
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mStappCollectionPagerAdapter);
+
+		mViewPager
+				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+
+						getActionBar().setSelectedNavigationItem(position);
+					}
+				});
+	}
+
+	private void initActionBar() {
+		mActionBar = getActionBar();
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		mActionBar.setDisplayShowTitleEnabled(false);
+		mActionBar.setDisplayShowHomeEnabled(false);
+
+		Tab tab = mActionBar.newTab().setText("Trainingseinheit")
+				.setTabListener(new TabListener<SessionFragment>(mViewPager));
+		mActionBar.addTab(tab);
+
+		tab = mActionBar.newTab().setText("Verlauf")
+				.setTabListener(new TabListener<HistoryFragment>(mViewPager));
+		mActionBar.addTab(tab);
 	}
 
 	@Override
