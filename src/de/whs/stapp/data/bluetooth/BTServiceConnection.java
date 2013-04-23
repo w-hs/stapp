@@ -41,7 +41,7 @@ class BTServiceConnection implements ServiceConnection {
 	public void connect() {
 		
 		connectionState = ConnectionState.Connecting;
-		connectionState = btService.connectBT();
+		connectionState = btService.initiateBtConnection();
 		
 	}
 	
@@ -70,4 +70,6 @@ class BTServiceConnection implements ServiceConnection {
 	public void unregisterListener(TrackedDataListener listener) {
 		btService.unregisterListener(listener);		
 	}
+	
+	
 }
