@@ -1,0 +1,43 @@
+html, body
+{
+	width:100%;
+	height:100%;
+}
+
+body {	
+	/*Farbverlauf in den Farben der FH*/
+   	background: #669a22;
+    background: -moz-linear-gradient(top,  #669a22 0%, #87ba41 61%, #dbfcae 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#669a22), color-stop(61%,#87ba41), color-stop(100%,#dbfcae));
+	background: -webkit-linear-gradient(top,  #669a22 0%,#87ba41 61%,#dbfcae 100%);
+	background: -o-linear-gradient(top,  #669a22 0%,#87ba41 61%,#dbfcae 100%);
+	background: -ms-linear-gradient(top,  #669a22 0%,#87ba41 61%,#dbfcae 100%);
+	background: linear-gradient(to bottom,  #669a22 0%,#87ba41 61%,#dbfcae 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#669a22', endColorstr='#dbfcae',GradientType=0 );
+    background-repeat: no-repeat;
+    
+    /*Schriftart*/
+    font-family: Verdana,Arial,sans-serif;
+    font-size:1em;
+    color:white;
+    
+    margin: 0;
+    
+    padding-bottom:2.6em;
+}
+
+.DataHeadline
+{
+	font-size: 1.4em;
+}
+
+.DataContent
+{
+	font-size: 1.8em;
+}
+
+.dataContainer
+{
+	margin:1em;
+	text-align:right;
+}

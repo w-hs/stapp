@@ -1,6 +1,5 @@
 package de.whs.stapp.presentation;
 
-import de.whs.stapp.presentation.helper.Constants;
 import android.content.Context;
 
 /**

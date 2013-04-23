@@ -16,7 +16,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DatabaseConnector extends SQLiteOpenHelper{
 
-	public final String tabTrainingUnits = "TrainingUnits";
+	//static, groﬂ und mit _
+	public static final String TAB_TRAINING_UNITS = "TrainingUnits";
 	public final String tuClmIdTrainingUnit = "_id";
 	public final String tuClmDate = "Date";
 	public final String tuClmDuration = "Duration";
@@ -39,7 +40,8 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		
-		String createTrainingUnits = "CREATE TABLE " + tabTrainingUnits + " ( " +
+		//Autoincrement
+		String createTrainingUnits = "CREATE TABLE " + TAB_TRAINING_UNITS + " ( " +
 										tuClmIdTrainingUnit 
 											+" INTEGER PRIMARY KEY, "
 										+tuClmDate + " LONG, " +
@@ -56,7 +58,7 @@ class DatabaseConnector extends SQLiteOpenHelper{
 										tdClmStrides + " INTEGER, " +
 										"FOREIGN KEY (" +tdClmIdTrainingUnit 
 										 +") " +"REFERENCES " 
-										 + tabTrainingUnits + "(_id)";		
+										 + TAB_TRAINING_UNITS + "(_id)";		
 		
 		db.execSQL(createTrainingUnits);
 		db.execSQL(createTrackedData);
