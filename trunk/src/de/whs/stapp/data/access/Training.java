@@ -14,25 +14,25 @@ import de.whs.stapp.data.storage.TrainingSession;
  * Verwaltet eine Trainingseinheit.
  * @author Chris
  */
-public class TrainingController {
+public class Training {
 	
 	private DataTracker tracker;
 	private DatabaseAdapter database;	
 	private TrackedDataListener dataListener;
 
 	private TrainingState state = TrainingState.NEW;
-	private TrainingSession currentTraining = new TrainingSession();
+	private TrainingSession currentSession = new TrainingSession();
 	
-	private List<TrainingDetailListener> trainingDetailListeners =
-			new ArrayList<TrainingDetailListener>();
+	private List<SessionDetailListener> sessionDetailListener =
+			new ArrayList<SessionDetailListener>();
 
 
 	/**
-	 * Erzeugt eine neue Instanz der {@link TrainingController} Klasse.
+	 * Erzeugt eine neue Instanz der {@link Training} Klasse.
 	 * @param tracker Eine {@link DataTracker} Implementierung.
 	 * @param database Eine {@link DatabaseAdapter} Implementierung.
 	 */
-	public TrainingController(DataTracker tracker, DatabaseAdapter database) {		
+	public Training(DataTracker tracker, DatabaseAdapter database) {		
 		if (database == null)
 			throw new IllegalArgumentException("databaseAdapter cannot be null");
 		if (tracker == null)
@@ -47,32 +47,32 @@ public class TrainingController {
 	/**
 	 * @return Die aktuelle {@link TrainingSession}.
 	 */
-	public TrainingSession getCurrentTrainingUnit() {
-		return currentTraining;
+	public TrainingSession getCurrentSession() {
+		return currentSession;
 	}
 
 	/**
-	 * @return Der Status der Trainingseinheit.
+	 * @return Der {@link TrainingState} des Trainings.
 	 */
 	public TrainingState getState() {
 		return state;
 	}
 
 	/**
-	 * Startet die Trainingseinheit.
+	 * Startet das {@link Training}.
 	 */
 	public void start() {
 		if (state != TrainingState.NEW)
 			return;
 
 		state = TrainingState.RUNNING;
-		currentTraining = database.newTrainingSession();
+		currentSession = database.newTrainingSession();
 
 		tracker.registerListener(dataListener);
 	}
 
 	/**
-	 * Beendet die aktuelle Trainingseinheit.
+	 * Beendet das {@link Training}.
 	 */
 	public void stop() {
 		if (state == TrainingState.FINISHED) 
@@ -83,28 +83,28 @@ public class TrainingController {
 	}
 
 	/**
-	 * Registriert den listener, so dass dieser über eingehende 
-	 * {@link SessionDetail}s informiert wird.
-	 * @param listener Der {@link TrainingDetailListener}.
+	 * Registriert einen listener, der daraufhin auf
+	 * {@link SessionDetail}s hören kann.
+	 * @param listener Der {@link SessionDetailListener}.
 	 */
-	public void registerListener(TrainingDetailListener listener) {
+	public void registerListener(SessionDetailListener listener) {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
 
-		if (!trainingDetailListeners.contains(listener))
-			trainingDetailListeners.add(listener);
+		if (!sessionDetailListener.contains(listener))
+			sessionDetailListener.add(listener);
 	}
 
 	/**
 	 * Entfernt einen registrierten listener wieder.
-	 * @param listener Der registrierte {@link TrainingDetailListener}.
+	 * @param listener Der registrierte {@link SessionDetailListener}.
 	 */
-	public void unregisterTrackedDataListener(TrainingDetailListener listener) {
+	public void unregisterTrackedDataListener(SessionDetailListener listener) {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
 
-		if (trainingDetailListeners.contains(listener))
-			trainingDetailListeners.remove(listener);
+		if (sessionDetailListener.contains(listener))
+			sessionDetailListener.remove(listener);
 	}
 
 	private void initializeDataListener() {
@@ -119,13 +119,15 @@ public class TrainingController {
 	}
 
 	private void processTrackedData(TrackedDataItem dataItem) {		
-		SessionDetail detail = createTrainingDetail(dataItem);
+		SessionDetail detail = createSessionDetail(dataItem);
 
-		notifyTrainingDetailListeners(detail);
-		//database.storeSessionDetail(currentTraining.getTrainingUnitId(), detail);
+		// TODO Werte in currentSession aufsummieren
+		
+		notifyTrainingSessionListeners(detail);
+		database.storeSessionDetail(currentSession.getSessionId(), detail);
 	}
 	
-	private SessionDetail createTrainingDetail(TrackedDataItem dataItem) {
+	private SessionDetail createSessionDetail(TrackedDataItem dataItem) {
 		SessionDetail detail = new SessionDetail();
 		
 		// TODO korrekt umrechnen!
@@ -137,8 +139,8 @@ public class TrainingController {
 		return detail;
 	}
 
-	private void notifyTrainingDetailListeners(SessionDetail detail) {
-		for (TrainingDetailListener listener : trainingDetailListeners)
-			listener.trackTrainingDetail(detail);
+	private void notifyTrainingSessionListeners(SessionDetail sessionDetail) {
+		for (SessionDetailListener listener : sessionDetailListener)
+			listener.listen(sessionDetail);
 	}
 }

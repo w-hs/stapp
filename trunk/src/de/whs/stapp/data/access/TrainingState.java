@@ -1,8 +1,8 @@
 package de.whs.stapp.data.access;
 
 /**
- * Definiert die verschiedenen Stati, in der sich 
- * eine Trainingseinheit befinden kann.
+ * Definiert die verschiedenen Stati 
+ * für eine {@link TrainingSession}.
  * @author Chris
  */
 public enum TrainingState {

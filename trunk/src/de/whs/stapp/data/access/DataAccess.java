@@ -12,20 +12,18 @@ import de.whs.stapp.data.storage.TrainingSession;
 public interface DataAccess {
 	
 	/**
-	 * Liefert einen {@link TrainingController} um eine konkrete
-	 * Trainingseinheit zu verwalten.
+	 * @return Eine neue {@link Training} Instanz.
 	 */
-	TrainingController newTraining();
+	Training newTraining();
 	
 	/**
-	 * Liefert eine Liste der in der Datenbank 
-	 * gespeicherten {@link TrainingSession}s.
+	 * @return Die in der Datenbank gespeicherten {@link TrainingSession}s.
 	 */
-	List<TrainingSession> getTrainingUnitsOverview();
+	List<TrainingSession> getSessionHistory();
 
 	/**
-	 * Liefert zu gegebener trainingUnitId die entsprechende {@link DetailedTrainingUnit}. 
-	 * @param trainingUnitId Die Id der {@link TrainingSession}.
+	 * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
+	 * @return Eine Liste der {@link SessionDetail}s zu einer gegebenen trainingSessionId.
 	 */
 	List<SessionDetail> getSessionDetails(int trainingSessionId);
 }
