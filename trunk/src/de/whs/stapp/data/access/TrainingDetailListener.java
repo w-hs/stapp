@@ -1,17 +1,17 @@
 package de.whs.stapp.data.access;
 
 import java.util.EventListener;
-import de.whs.stapp.data.storage.TrainingDetail;
+import de.whs.stapp.data.storage.SessionDetail;
 
 /**
- * Horcht auf {@link TrainingDetail}s während einer Trainingseinheit.
+ * Horcht auf {@link SessionDetail}s während einer Trainingseinheit.
  * @author Chris
  */
 public interface TrainingDetailListener extends EventListener {
 
 	/**
-	 * Liefert das gerade aktuelle {@link TrainingDetail} der laufenden {@link TrainingUnit}.
-	 * @param detail Das {@link TrainingDetail}.
+	 * Liefert das gerade aktuelle {@link SessionDetail} der laufenden {@link TrainingSession}.
+	 * @param detail Das {@link SessionDetail}.
 	 */
-	void trackTrainingDetail(TrainingDetail detail);
+	void trackTrainingDetail(SessionDetail detail);
 }

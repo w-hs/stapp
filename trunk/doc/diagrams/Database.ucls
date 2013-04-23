@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="de.whs.stapp.data.storage.TrainingUnit" project="STAPP" 
-    file="/STAPP/src/de/whs/stapp/data/storage/TrainingUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="de.whs.stapp.data.storage.TrainingSession" project="STAPP" 
+    file="/STAPP/src/de/whs/stapp/data/storage/TrainingSession.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="243" width="131" x="450" y="-46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

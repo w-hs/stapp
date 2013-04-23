@@ -2,8 +2,8 @@ package de.whs.stapp.data.access;
 
 import java.util.List;
 
-import de.whs.stapp.data.storage.DetailedTrainingUnit;
-import de.whs.stapp.data.storage.TrainingUnit;
+import de.whs.stapp.data.storage.SessionDetail;
+import de.whs.stapp.data.storage.TrainingSession;
 
 /**
  * @author Chris
@@ -19,13 +19,13 @@ public interface DataAccess {
 	
 	/**
 	 * Liefert eine Liste der in der Datenbank 
-	 * gespeicherten {@link TrainingUnit}s.
+	 * gespeicherten {@link TrainingSession}s.
 	 */
-	List<TrainingUnit> getTrainingUnitsOverview();
+	List<TrainingSession> getTrainingUnitsOverview();
 
 	/**
 	 * Liefert zu gegebener trainingUnitId die entsprechende {@link DetailedTrainingUnit}. 
-	 * @param trainingUnitId Die Id der {@link TrainingUnit}.
+	 * @param trainingUnitId Die Id der {@link TrainingSession}.
 	 */
-	DetailedTrainingUnit getTrainingUnitWithDetails(int trainingUnitId);
+	List<SessionDetail> getSessionDetails(int trainingSessionId);
 }
