@@ -32,12 +32,12 @@ class StappDataAccess implements DataAccess {
 	}
 	
 	@Override
-	public TrainingController newTraining() {		
-		return new TrainingController(tracker, database);
+	public Training newTraining() {		
+		return new Training(tracker, database);
 	}
 
 	@Override
-	public List<TrainingSession> getTrainingUnitsOverview() {
+	public List<TrainingSession> getSessionHistory() {
 		return database.getSessionHistory();
 	}
 
