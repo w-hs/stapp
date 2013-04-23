@@ -22,7 +22,12 @@ class BTServiceConnection implements ServiceConnection {
 	public void onServiceConnected(ComponentName className, IBinder service) {
 		BTServiceBinder serviceBinder = (BTServiceBinder) service; 
 		btService = serviceBinder.getService();
-		connect();
+		try {
+			connect();
+		} catch (BluetoothException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	 /**
@@ -37,8 +42,9 @@ class BTServiceConnection implements ServiceConnection {
 	/**
 	 * Diese Methode versucht eine Bluetoothverbindung herzustellen
 	 * und meldet den anschlieﬂenden BT-Status.
+	 * @throws BluetoothException 
 	 */
-	public void connect() {
+	public void connect() throws BluetoothException {
 		
 		connectionState = ConnectionState.Connecting;
 		connectionState = btService.initiateBtConnection();

@@ -25,8 +25,9 @@ public class BluetoothDevice implements DataTracker {
 	/**
 	 * Stellt eine Verbindung mit dem Bluetooth-Device (Sensor) her.
 	 * @param activity Die Main Activity.
+	 * @throws BluetoothException 
 	 */
-	public void connect(Activity activity) {
+	public void connect(Activity activity) throws BluetoothException {
 				
 		if (isBTServiceRunning(activity))
 			connection.connect();

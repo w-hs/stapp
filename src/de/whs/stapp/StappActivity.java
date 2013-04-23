@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import de.whs.stapp.data.bluetooth.BluetoothDevice;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.TabListener;
@@ -16,6 +17,8 @@ import de.whs.stapp.presentation.views.TabListener;
  * 
  */
 public class StappActivity extends Activity {
+	
+	private BluetoothDevice btDevice = new BluetoothDevice();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,14 @@ public class StappActivity extends Activity {
 		if (savedInstanceState != null) {
 			actionBar.setSelectedNavigationItem(savedInstanceState.getInt(
 					"tab", 0));
+			
+			try {
+				btDevice.connect(this);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			
 		}
 	}
 
