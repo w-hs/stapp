@@ -1,10 +1,18 @@
 package de.whs.stapp.data.storage;
 
+//CHECKSTYLE:OFF
+import static de.whs.stapp.data.storage.DatabaseConnector.*;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+//CHECKSTYE:ON
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-import static de.whs.stapp.data.storage.DatabaseConnector.*;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -49,10 +57,43 @@ class StappDbAdapter implements DatabaseAdapter {
     }
     
     
+	/**
+	 * @author Christoph Inhestern
+	 * Erstellt eine neue {@link TrainingSession} in der Datenbank.
+	 */
     @Override
-	public TrainingSession newTrainingSession() {
+	public TrainingSession newTrainingSession() {	
+    	TrainingSession resultSession;
+    	ContentValues val = new ContentValues();
+    	long date = Calendar.getInstance().getTimeInMillis();
     	
-    	throw new UnsupportedOperationException("createNewTrainingUnit not yet implemented");
+    	val.put(TS_DISTANCE_IN_METERS, 0);
+    	val.put(TS_DURATION_IN_MINUTES, 0);
+    	val.put(TS_DATE, date);
+    	
+    	if (stappDb.insert(REL_TRAINING_SESSIONS, null, val) != -1){
+    		String sql = "Select  " +
+    				TS_SESSION_ID + ", " +
+    				TS_DATE + ", " +
+    				TS_DISTANCE_IN_METERS + ", " +
+    				TS_DURATION_IN_MINUTES + ", " +    				
+    				"from " + REL_TRAINING_SESSIONS + 
+    				" where " +
+    				TS_DATE + " = " + date;
+    		
+    		Cursor cr = stappDb.rawQuery(sql, null);
+    		if (cr.moveToFirst()){
+    			//CHECKSTYLE:OFF
+    			resultSession = 
+    					new TrainingSession
+    					(cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getInt(3));
+    			//CHECKSTYLE:ON
+    			return resultSession;
+    		}
+    		
+    	}
+    	
+    	return null;
 	}
 
 
@@ -119,13 +160,61 @@ class StappDbAdapter implements DatabaseAdapter {
      * @return
      */
     public List<TrainingSession> getSessionHistory() {
-    	throw new UnsupportedOperationException("getTrainingUnitsOverview not yet implemented");
+    	List<TrainingSession> resultSessions = new ArrayList<TrainingSession>();
+    	Cursor cr;
+		String sql = "Select  " +
+				TS_SESSION_ID + ", " +
+				TS_DATE + ", " +
+				TS_DISTANCE_IN_METERS + ", " +
+				TS_DURATION_IN_MINUTES + ", " +    				
+				"from " + REL_TRAINING_SESSIONS;
+		
+		cr = stappDb.rawQuery(sql, null);
+		
+		if (cr.moveToFirst()){
+			while(cr.moveToNext()){
+				TrainingSession tmpSession;
+				//CHECKSTYLE:OFF
+				tmpSession = new TrainingSession(
+						cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getInt(3));
+				//CHECKSTYLE:ON
+				resultSessions.add(tmpSession);
+			}
+		}
+		
+		return resultSessions;
     }
 
 
 	@Override
 	public List<SessionDetail> getSessionDetails(int trainingSessionId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<SessionDetail> resultDetails = new ArrayList<SessionDetail>();
+		Cursor cr;
+		String sql = "SELECT " +
+				SD_DETAILS_ID + ", " +
+				SD_TRAINING_SESSIONS_ID_AS_FK + ", " +
+				SD_TIMESTAMP + ", " +
+				SD_HEARTRATE + ", " +
+				SD_DISTANCE_IN_METERS + ", " +
+				SD_SPEED_IN_METERS_PER_SECOND + ", " +
+				SD_NUMBER_OF_STRIDES + "" +
+				"FROM " + REL_SESSION_DETAILS +
+				" where " + SD_TRAINING_SESSIONS_ID_AS_FK +
+				" = " + trainingSessionId;
+		
+		cr = stappDb.rawQuery(sql, null);
+		
+		if (cr.moveToFirst()){
+			while(cr.moveToNext()){
+				SessionDetail tmpSession;
+				//CHECKSTYLE:OFF
+				tmpSession = new SessionDetail
+						(cr.getInt(0), cr.getInt(1), new Timestamp(cr.getInt(2)), cr.getInt(3),
+						 cr.getInt(4), cr.getInt(5), cr.getInt(6));
+				//CHECKSTYLE:ON
+				resultDetails.add(tmpSession);
+			}
+		}
+		return resultDetails;
 	}
 }
