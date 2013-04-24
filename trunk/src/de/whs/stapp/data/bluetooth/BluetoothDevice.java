@@ -40,7 +40,7 @@ public class BluetoothDevice implements DataTracker {
 			throw new IllegalArgumentException("activity cannot be null");
 		
 		Intent intent = new Intent(activity, BTCommunicationService.class);
-		activity.bindService(intent, connection, Context.BIND_AUTO_CREATE);	
+		activity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
 	}
 	
 	/**

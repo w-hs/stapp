@@ -5,11 +5,14 @@ import android.app.ActionBar.Tab;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 import de.whs.stapp.data.bluetooth.BluetoothDevice;
 import de.whs.stapp.data.bluetooth.BluetoothException;
+import de.whs.stapp.data.bluetooth.ConnectionState;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
@@ -28,7 +31,7 @@ public class StappActivity extends FragmentActivity {
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +45,10 @@ public class StappActivity extends FragmentActivity {
 
 		try {
 			btDevice.connect(this);
+			if(btDevice.getConnectionState() == ConnectionState.Disconnected){
+				
+				btDevice.enableBT(this);
+			}
 		} catch (BluetoothException e) {
 
 			// Vorläufig
@@ -93,6 +100,24 @@ public class StappActivity extends FragmentActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		switch (item.getItemId()) {
+		case R.id.action_start:
+			Log.i("action_start", "Play gedrückt");
+			return true;
+		case R.id.action_pause:
+			Log.i("action_pause", "Pause gedrückt");
+			return true;
+		case R.id.action_stop:
+			Log.i("action_stop", "Stop gedrückt");
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
