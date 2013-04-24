@@ -6,7 +6,7 @@
 Diese Seite beschreibt, wie der Android-Container mit der Web-App kommunizieren kann und umgekehrt.
 
 = Allgemeiner Aufbau =
-https://stapp.googlecode.com/svn/wiki/images/Schnittstelle_Web.png
+https://stapp.googlecode.com/svn/wiki/images/Schnittstelle_Web2.png
 
 = Container Anwendung =
 
