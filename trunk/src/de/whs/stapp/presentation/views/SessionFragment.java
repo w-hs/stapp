@@ -49,4 +49,25 @@ public class SessionFragment extends Fragment {
                 new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         relativeLayout.addView(mTrainingseinheitWebview, relParams);
 	}
+	
+	/**
+	 * Führt die startTrainings-Methode der WebView aus.
+	 */
+	public void startTraining(){
+		mTrainingseinheitWebview.startTraining();
+	}
+	
+	/**
+	 * Führt die stopTraining-Methode der WebView aus.
+	 */
+	public void stopTraining(){
+		mTrainingseinheitWebview.stopTraining();
+	}
+	
+	/**
+	 * Führt die pauseTraining-Funktion der WebView aus.
+	 */
+	public void pauseTraining(){
+		mTrainingseinheitWebview.pauseTraining();
+	}
 }

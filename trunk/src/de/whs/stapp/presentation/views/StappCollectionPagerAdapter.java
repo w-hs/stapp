@@ -7,30 +7,35 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 /**
+ * Bietet eine Kollektion aller verfügbaren Fragmente der Stapp Anwendung an.
  * 
- * @author thoma_000
- *
+ * @author Thomas
+ * 
  */
 public class StappCollectionPagerAdapter extends FragmentStatePagerAdapter {
 
 	private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
-	
+
 	/**
+	 * Initialisiert alle verfügbaren Fragmente und fügt diese dem
+	 * FragmentManager hinzu.
 	 * 
-	 * @param fm f
+	 * @param fm
+	 *            Der FragmentManger zu dem die Fragmente der Stapp-Anwendung
+	 *            hinzugefügt werden.
 	 */
 	public StappCollectionPagerAdapter(FragmentManager fm) {
 		super(fm);
-	
+
 		mFragments.add(new SessionFragment());
 		mFragments.add(new HistoryFragment());
 	}
 
 	@Override
 	public Fragment getItem(int index) {
-        if(index < 0 && index > mFragments.size())
-        	throw new IndexOutOfBoundsException();
-        return mFragments.get(index);
+		if (index < 0 && index > mFragments.size())
+			throw new IndexOutOfBoundsException();
+		return mFragments.get(index);
 	}
 
 	@Override
