@@ -14,11 +14,11 @@ https://stapp.googlecode.com/svn/wiki/images/Schnittstelle_Web2.png
 
 Die StappWebView ist von der Android WebView abgeleitet und bietet somit alle bekannten Funktionen einer WebView (z.B. loadUrl). Zusätzlich beinhaltet die StappWebView noch Initialisierungsfunktionen. Dabei werden Javascript-Funktionen aktiviert. Dazu werden noch der [#StappWebChromClient] und der [#StappWebViewClient] instantiiert. Abschließend wird das übergebene [#StappWebAppInterface] in das Javascript injiziert und an das "Android"-Javascript-Objekt gebunden.
 
-=== TrainingUnitWebView ===
+=== TrainingSessionWebView ===
 Beinhaltet zusätzlich zu den geerbten Funktionen der [#StappWebView] den Aufruf der Webseite und das einrichten und zur Verfügung stellen der [#Javascript] Funktionen. Javascript Funktionen können dabei wie folgt aufgerufen werden: "javascript:stapp.function()".
 
 === HistoryWebView ===
-Siehe [#TrainingUnitWebView]
+Siehe [#TrainingSessionWebView]
 
 == StappWebViewClient ==
 Bietet die Möglichkeit auf Ereignisse in der WebView zu reagieren. Dazu zählen zum Beispiel "shouldOverrideUrlLoading", oder "onPageFinished".
@@ -29,7 +29,7 @@ Fängt Funktionen aus dem Javascript auf. Dazu zählen "onConsoleMessage", oder 
 == StappWebAppInterface ==
 Das WebAppInterface bietet Javascript die Möglichkeiten native Funktionen aufzurufen. Dazu werden Java-Funktionen definiert, welche an ein Javascript-Objekt gebunden werden. Standardmäßig ist das Erstellen eines Android-Toast in das Interface eingebaut.
 
-=== TrainingUnitWebAppInterface ===
+=== TrainingSessionWebAppInterface ===
 Stellt speziell für die Trainingseinheit-Webseite native Funktionen zur Verfügung.
 
 === HistoryWebAppInterface ===
