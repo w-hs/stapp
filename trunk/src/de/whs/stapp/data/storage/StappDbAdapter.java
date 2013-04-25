@@ -41,7 +41,7 @@ class StappDbAdapter implements DatabaseAdapter {
     * ÷ffnet die Datenbank und legt Sie an falls erforderlich. Dies geschieht in der Methode
     * getWritableDatabase().
     */
-    public void open() {
+    public void openDatabase() {
     	stappDb = dbConn.getWritableDatabase();
     }
     
@@ -50,7 +50,7 @@ class StappDbAdapter implements DatabaseAdapter {
     * @author Christoph Inhestern
     * Schlieﬂt die Verbindung zur Datenbank nach der Benutzung.
     */
-	public void close() {
+	public void closeDatabase() {
     	stappDb.close();
     }
     

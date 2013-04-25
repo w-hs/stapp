@@ -8,7 +8,21 @@ import java.util.List;
  */
 public interface DatabaseAdapter {
 	
-    /**
+	/**
+	 * @author Christoph Inhestern
+	 * Erforderlich für das Verwenden der Schnittstelle.
+	 * Öffnet eine Verbindung zur Datenbank.
+	 * 
+	 */
+	void openDatabase();
+	
+	/**
+	 * @author Christoph Inhestern
+	 * Schließt die mit openDatabase() geöffnete Datenbankverbindung.
+	 */
+	void closeDatabase();
+    
+	/**
      * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
      * @return Die {@link SessionDetail}s zu einer TrainingSession.
      */
