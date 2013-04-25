@@ -41,15 +41,15 @@ class DatabaseConnector extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		
 		String createTrainingSessions = "CREATE TABLE " + REL_TRAINING_SESSIONS 
-						+ " ( " +TS_SESSION_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+						+ " ( " + TS_SESSION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 						+ TS_DATE + " LONG NOT NULL, " 
 						+ TS_DISTANCE_IN_METERS + " INTEGER NOT NULL, "
 						+ TS_DURATION_IN_MS + " LONG NOT NULL)";
 		
 		String createSessionDetails = "CREATE TABLE " + REL_SESSION_DETAILS 
-						+ " ( " +SD_DETAILS_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+						+ " ( " + SD_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 						+ SD_TRAINING_SESSIONS_ID_AS_FK + " INTEGER NOT NULL, " 
-						+ SD_TIMESTAMP + "LONG NOT NULL, "
+						+ SD_TIMESTAMP + " LONG NOT NULL, "
 						+ SD_HEARTRATE + " INTEGER NOT NULL, "
 						+ SD_DISTANCE_IN_METERS + " INTEGER NOT NULL, "
 						+ SD_SPEED_IN_METERS_PER_SECOND + " INTEGER NOT NULL, " 
