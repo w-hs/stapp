@@ -22,8 +22,6 @@ public class DatabaseAdapterFactory {
 		if (context == null)
 			throw new IllegalArgumentException("context cannot be null!");
 		
-		StappDbAdapter adapter = new StappDbAdapter(context);
-		adapter.open();
-		return adapter;
+		return new StappDbAdapter(context);
 	}
 }

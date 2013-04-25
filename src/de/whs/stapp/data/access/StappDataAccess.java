@@ -29,6 +29,8 @@ class StappDataAccess implements DataAccess {
 	
 		this.tracker = tracker;
 		this.database = database;
+		
+		this.database.openDatabase();
 	}
 	
 	@Override
