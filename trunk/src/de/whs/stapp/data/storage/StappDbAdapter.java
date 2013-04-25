@@ -72,13 +72,13 @@ class StappDbAdapter implements DatabaseAdapter {
     	val.put(TS_DATE, date);
     	
     	if (stappDb.insert(REL_TRAINING_SESSIONS, null, val) != -1){
-    		String sql = "Select  " +
+    		String sql = "SELECT  " +
     				TS_SESSION_ID + ", " +
     				TS_DATE + ", " +
     				TS_DISTANCE_IN_METERS + ", " +
     				TS_DURATION_IN_MS +    				
-    				" from " + REL_TRAINING_SESSIONS + 
-    				" where " +
+    				" FROM " + REL_TRAINING_SESSIONS + 
+    				" WHERE " +
     				TS_DATE + " = " + date;
     		
     		Cursor cr = stappDb.rawQuery(sql, null);
@@ -108,6 +108,7 @@ class StappDbAdapter implements DatabaseAdapter {
 		ContentValues val = new ContentValues();
 		val.put(TS_DURATION_IN_MS, session.getDurationInMs());
 		val.put(TS_DISTANCE_IN_METERS, session.getDistanceInMeters());
+		
 		stappDb.update(REL_TRAINING_SESSIONS, val, 
 							TS_SESSION_ID + " = " + trainingSessionID, null);
 	}
@@ -146,10 +147,10 @@ class StappDbAdapter implements DatabaseAdapter {
 	public void deleteTrainingSession(int trainingSessionId) {
 		
 		stappDb.delete(REL_SESSION_DETAILS, 
-				SD_TRAINING_SESSIONS_ID_AS_FK +"=" +trainingSessionId, null);
+				SD_TRAINING_SESSIONS_ID_AS_FK + " = " + trainingSessionId, null);
 	
 		stappDb.delete(REL_TRAINING_SESSIONS, 
-				TS_SESSION_ID + "=" +trainingSessionId, null);		
+				TS_SESSION_ID + " = " + trainingSessionId, null);		
 		
 	}
 	
@@ -161,12 +162,12 @@ class StappDbAdapter implements DatabaseAdapter {
     public List<TrainingSession> getSessionHistory() {
     	List<TrainingSession> resultSessions = new ArrayList<TrainingSession>();
     	Cursor cr;
-		String sql = "Select  " +
+		String sql = "SELECT " +
 				TS_SESSION_ID + ", " +
 				TS_DATE + ", " +
 				TS_DISTANCE_IN_METERS + ", " +
 				TS_DURATION_IN_MS +    				
-				" from " + REL_TRAINING_SESSIONS;
+				" FROM " + REL_TRAINING_SESSIONS;
 		
 		cr = stappDb.rawQuery(sql, null);
 		
@@ -204,8 +205,8 @@ class StappDbAdapter implements DatabaseAdapter {
 				SD_SPEED_IN_METERS_PER_SECOND + ", " +
 				SD_NUMBER_OF_STRIDES +
 				" FROM " + REL_SESSION_DETAILS +
-				" where " + SD_TRAINING_SESSIONS_ID_AS_FK +
-				" = " + trainingSessionId;
+				" WHERE " + 
+				SD_TRAINING_SESSIONS_ID_AS_FK +	" = " + trainingSessionId;
 		
 		cr = stappDb.rawQuery(sql, null);
 		
