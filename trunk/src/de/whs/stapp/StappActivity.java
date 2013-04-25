@@ -9,11 +9,14 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import de.whs.stapp.data.access.StappDataAccess;
+import android.widget.Toast;
+import de.whs.stapp.data.access.DataAccess;
+import de.whs.stapp.data.access.DataAccessFactory;
 import de.whs.stapp.data.access.Training;
 import de.whs.stapp.data.access.TrainingState;
 import de.whs.stapp.data.bluetooth.BluetoothDevice;
-import de.whs.stapp.data.storage.DatabaseAdapterFactory;
+import de.whs.stapp.data.bluetooth.BluetoothException;
+import de.whs.stapp.data.bluetooth.ConnectionState;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
@@ -22,7 +25,7 @@ import de.whs.stapp.presentation.views.TabListener;
 /**
  * Standard-Einstiegspunkt für das Stapp-Projekt. Enthält die Activity, welche
  * das gesamte Produkt verwaltet.
- * 
+ * O
  * @author Thomas
  * 
  */
@@ -32,7 +35,7 @@ public class StappActivity extends FragmentActivity {
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
-	private StappDataAccess mStappDataAccess;
+	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
 
 	@Override
@@ -46,20 +49,19 @@ public class StappActivity extends FragmentActivity {
 		initViewPager();
 		initActionBar();
 
-		mStappDataAccess = new StappDataAccess(
-				DatabaseAdapterFactory.newDatabaseAdapter(this), btDevice);
+		mStappDataAccess = DataAccessFactory.newDataAccess(btDevice, this);
 
-//		try {
-//			btDevice.connect(this);
-//			if (btDevice.getConnectionState() == ConnectionState.Disconnected) {
-//
-//				btDevice.enableBT(this);
-//			}
-//		} catch (BluetoothException e) {
-//
-//			// Vorläufig
-//			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//		}
+	try {
+		btDevice.connect(this);
+		if (btDevice.getConnectionState() == ConnectionState.Disconnected) {
+
+			btDevice.enableBT(this);
+		}
+	} catch (BluetoothException e) {
+
+		// Vorläufig
+		Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+	}
 
 		if (savedInstanceState != null) {
 			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(

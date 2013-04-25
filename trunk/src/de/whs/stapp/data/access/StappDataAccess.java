@@ -11,7 +11,7 @@ import de.whs.stapp.data.storage.TrainingSession;
  * @author Chris
  * Implementierung für den Zugriff auf die Daten und Funktionen von Trainingseinheiten.
  */
-public class StappDataAccess implements DataAccess {
+class StappDataAccess implements DataAccess {
 	
 	DatabaseAdapter database;
 	DataTracker tracker;
