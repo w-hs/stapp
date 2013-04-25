@@ -76,8 +76,8 @@ class StappDbAdapter implements DatabaseAdapter {
     				TS_SESSION_ID + ", " +
     				TS_DATE + ", " +
     				TS_DISTANCE_IN_METERS + ", " +
-    				TS_DURATION_IN_MS + ", " +    				
-    				"from " + REL_TRAINING_SESSIONS + 
+    				TS_DURATION_IN_MS +    				
+    				" from " + REL_TRAINING_SESSIONS + 
     				" where " +
     				TS_DATE + " = " + date;
     		
@@ -165,8 +165,8 @@ class StappDbAdapter implements DatabaseAdapter {
 				TS_SESSION_ID + ", " +
 				TS_DATE + ", " +
 				TS_DISTANCE_IN_METERS + ", " +
-				TS_DURATION_IN_MS + ", " +    				
-				"from " + REL_TRAINING_SESSIONS;
+				TS_DURATION_IN_MS +    				
+				" from " + REL_TRAINING_SESSIONS;
 		
 		cr = stappDb.rawQuery(sql, null);
 		
@@ -202,8 +202,8 @@ class StappDbAdapter implements DatabaseAdapter {
 				SD_HEARTRATE + ", " +
 				SD_DISTANCE_IN_METERS + ", " +
 				SD_SPEED_IN_METERS_PER_SECOND + ", " +
-				SD_NUMBER_OF_STRIDES + "" +
-				"FROM " + REL_SESSION_DETAILS +
+				SD_NUMBER_OF_STRIDES +
+				" FROM " + REL_SESSION_DETAILS +
 				" where " + SD_TRAINING_SESSIONS_ID_AS_FK +
 				" = " + trainingSessionId;
 		
