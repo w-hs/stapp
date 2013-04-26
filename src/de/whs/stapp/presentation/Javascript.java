@@ -23,9 +23,9 @@ public final class Javascript {
 		StringBuilder sb = new StringBuilder();
 		sb.append("javascript:");
 		sb.append(functionName);
-		sb.append("(");
+		sb.append("('");
 		sb.append(jsonString);
-		sb.append(")");
+		sb.append("')");
 		return sb.toString();
 	}
 
