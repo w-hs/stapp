@@ -2,6 +2,7 @@ package de.whs.stapp;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -20,12 +21,13 @@ import de.whs.stapp.data.bluetooth.ConnectionState;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
+import de.whs.stapp.presentation.views.StappPreferenceActivity;
 import de.whs.stapp.presentation.views.TabListener;
 
 /**
  * Standard-Einstiegspunkt für das Stapp-Projekt. Enthält die Activity, welche
- * das gesamte Produkt verwaltet.
- * O
+ * das gesamte Produkt verwaltet. O
+ * 
  * @author Thomas
  * 
  */
@@ -51,17 +53,17 @@ public class StappActivity extends FragmentActivity {
 
 		mStappDataAccess = DataAccessFactory.newDataAccess(btDevice, this);
 
-	try {
-		btDevice.connect(this);
-		if (btDevice.getConnectionState() == ConnectionState.Disconnected) {
+		try {
+			btDevice.connect(this);
+			if (btDevice.getConnectionState() == ConnectionState.Disconnected) {
 
-			btDevice.enableBT(this);
+				btDevice.enableBT(this);
+			}
+		} catch (BluetoothException e) {
+
+			// Vorläufig
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-	} catch (BluetoothException e) {
-
-		// Vorläufig
-		Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-	}
 
 		if (savedInstanceState != null) {
 			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
@@ -101,22 +103,15 @@ public class StappActivity extends FragmentActivity {
 		mActionBar.addTab(tab);
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		MenuInflater menuInflater = getMenuInflater();
-//		menuInflater.inflate(R.menu.main, menu);
-//
-//		return super.onCreateOptionsMenu(menu);
-//	}
-
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 
+		menu.clear();
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.main, menu);
 		Fragment fragment = mStappCollectionPagerAdapter.getItem(getActionBar()
 				.getSelectedNavigationIndex());
-		
+
 		MenuItem start = null;
 		MenuItem stop = null;
 		MenuItem pause = null;
@@ -138,58 +133,50 @@ public class StappActivity extends FragmentActivity {
 				break;
 			}
 		}
-		//menu.clear();
 		if (fragment.getClass() == SessionFragment.class) {
-			// Änderbare Menupunkte
-			
 
+			// Änderbare Menupunkte
 			if (mCurrentTraining == null && pause != null && stop != null) {
 				stop.setVisible(false);
 				pause.setVisible(false);
-			}
-			else
-			{
+			} else {
 				TrainingState state = mCurrentTraining.getState();
-				if(state == TrainingState.RUNNING)
-				{
-					if(start != null){
+				if (state == TrainingState.RUNNING && start != null)
+					start.setVisible(true);
 
-						start.setVisible(true);
-					}
+				if (state == TrainingState.FINISHED || 
+					state == TrainingState.NEW && 
+					pause != null && 
+					stop != null) 
+				{					
+					stop.setVisible(false);
+					pause.setVisible(false);
 				}
-				if(state == TrainingState.FINISHED || state == TrainingState.NEW){
-					if(pause != null && stop != null){
-						stop.setVisible(false);
-						pause.setVisible(false);
-					}
-				}
-				if(state == TrainingState.PAUSED){
-					if(pause != null)
+				if (state == TrainingState.PAUSED && pause != null) {
 						pause.setVisible(false);
 				}
 			}
-		}
-		else if(fragment.getClass() == HistoryFragment.class){
+		} else if (fragment.getClass() == HistoryFragment.class) {
 			start.setVisible(false);
 			pause.setVisible(false);
 			stop.setVisible(false);
 		}
 		return super.onPrepareOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		Fragment fragment = mStappCollectionPagerAdapter.getItem(getActionBar()
 				.getSelectedNavigationIndex());
-				
+
 		switch (item.getItemId()) {
 		case R.id.action_start:
 			if (fragment.getClass() == SessionFragment.class) {
 
 				mCurrentTraining = mStappDataAccess.newTraining();
-				
-				//Führt noch zu einer Exception
+
+				// Führt noch zu einer Exception
 				mCurrentTraining.start();
 				((SessionFragment) fragment).startTraining();
 			}
@@ -207,6 +194,10 @@ public class StappActivity extends FragmentActivity {
 					mCurrentTraining.stop();
 				((SessionFragment) fragment).stopTraining();
 			}
+			return true;
+		case R.id.settings:
+			Intent intent = new Intent(this, StappPreferenceActivity.class);
+			startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

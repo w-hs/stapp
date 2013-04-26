@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="Bluetooth" android:key="bluetooth">
+        <CheckBoxPreference android:key="activate" android:title="Aktivieren" android:summary="Bluetooth aktivieren"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Benutzerdaten" android:key="user">
+        <EditTextPreference android:title="Vorname" android:key="firstname"/>
+        <EditTextPreference android:title="Nachname" android:key="lastname"/>
+        <EditTextPreference android:title="Gewicht" android:key="weight"/>
+        <EditTextPreference android:title="Alter" android:key="age"/>
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>
