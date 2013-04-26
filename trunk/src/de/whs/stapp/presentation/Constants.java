@@ -15,10 +15,13 @@ public final class Constants {
 	}
 	
 	//Javascript Funktionen
+	//TrainingUnit
 	public static final String JS_TRAININGSEINHEIT_UPDATE = "stapp.updateTraining"; 
 	public static final String JS_TRAININGSEINHEIT_START = "stapp.startTraining";
 	public static final String JS_TRAININGSEINHEIT_PAUSE = "stapp.pauseTraining";
 	public static final String JS_TRAININGSEINHEIT_STOP = "stapp.stopTraining";
+	//History
+	public static final String JS_HISTORY_SET = "stapp.setHistoryData";
 	
 	//HTML Seiten
 	public static final String HTML_LOCAL_TRAININGSEINHEIT = "file:///android_asset/www/SessionView.html";

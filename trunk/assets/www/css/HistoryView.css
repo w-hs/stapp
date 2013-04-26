@@ -1,0 +1,52 @@
+#overview {
+    margin-top: .6em;
+}
+
+    #overview .element {
+        float: left;
+        margin: .4em .8em;
+            text-align: center;
+    }
+
+        #overview .element .content {
+            font-size: 1.4em;
+        }
+
+        #overview .element .headline {
+            font-size: .8em;
+        }
+
+.clear {
+    clear: both;
+}
+
+    .clear.vspace {
+        height: 1.4em;
+    }
+
+#sessiondetails {
+    margin: .4em .8em;
+    height: 100%;
+}
+
+    #sessiondetails .session {
+        background-color: rgb(250, 250, 250);
+        color: rgb(28, 28, 28);
+        padding: .6em .4em;
+        -webkit-border-radius: .2em;
+        -moz-border-radius: .2em;
+        border-radius: .2em;
+        margin-bottom: .6em;
+    }
+
+        #sessiondetails .session .date, .distance, .duration {
+            margin: .1em .3em;
+        }
+
+        #sessiondetails .session .date {
+            float: left;
+        }
+
+        #sessiondetails .session .distance, .duration {
+            float: right;
+        }
