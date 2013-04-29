@@ -10,7 +10,7 @@ Folgend werden die Relationen und dessen Attribute beschrieben. Desweiteren werd
 = Details =
 ==ER - Modell==
 
-
+https://stapp.googlecode.com/svn/wiki/images/Datenbankschemaentwurf.png
 
 
 
