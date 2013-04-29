@@ -22,6 +22,7 @@ public class Training {
 
 	private TrainingState state = TrainingState.NEW;
 	private TrainingSession currentSession = new TrainingSession();
+	private TrackedDataItemConverter dataItemConverter = new TrackedDataItemConverter();
 	
 	private List<SessionDetailListener> sessionDetailListener =
 			new ArrayList<SessionDetailListener>();
@@ -119,25 +120,13 @@ public class Training {
 	}
 
 	private void processTrackedData(TrackedDataItem dataItem) {		
-		SessionDetail detail = createSessionDetail(dataItem);
-
-		// TODO Werte in currentSession aufsummieren
+		final int trainingSessionId = currentSession.getSessionId();
 		
+		SessionDetail detail = dataItemConverter.toSessionDetail(dataItem);
+		detail.setTrainingSessionId(trainingSessionId);
+				
 		notifyTrainingSessionListeners(detail);
-		database.storeSessionDetail(currentSession.getSessionId(), detail);
-	}
-	
-	private SessionDetail createSessionDetail(TrackedDataItem dataItem) {
-		SessionDetail detail = new SessionDetail();
-		
-		//CHECKSTYLE:OFF
-		detail.setDistanceInMeter((int)dataItem.getDistanceInOne16thsMeter() * 16);
-		detail.setHeartRateInBpm((int)dataItem.getHeartRateInBpm());
-		detail.setNumberOfStrides((int)dataItem.getStrides());
-		detail.setSpeedInMeterPerSecond((int)dataItem.getSpeedInOne256thsMeterPerSecond() * 256);
-		//CHECKSTYLE:ON
-		
-		return detail;
+		database.storeSessionDetail(trainingSessionId, detail);
 	}
 
 	private void notifyTrainingSessionListeners(SessionDetail sessionDetail) {
