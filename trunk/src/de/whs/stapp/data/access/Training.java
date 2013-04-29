@@ -20,6 +20,7 @@ public class Training {
 	private DatabaseAdapter database;	
 	private TrackedDataListener dataListener;
 
+	private StopWatch stopWatch = new StopWatch();
 	private TrainingState state = TrainingState.NEW;
 	private TrainingSession currentSession = new TrainingSession();
 	private TrackedDataItemConverter dataItemConverter = new TrackedDataItemConverter();
@@ -68,8 +69,10 @@ public class Training {
 
 		state = TrainingState.RUNNING;
 		currentSession = database.newTrainingSession();
-
+		// TODO Wer setzt das Datum (TrainingDate / SessionDate)
 		tracker.registerListener(dataListener);
+		
+		stopWatch.start();
 	}
 
 	/**
@@ -79,8 +82,39 @@ public class Training {
 		if (state == TrainingState.FINISHED) 
 			return;
 		
-		state = TrainingState.FINISHED;
+		stopWatch.stop();	
+		
 		tracker.unregisterListener(dataListener);
+		state = TrainingState.FINISHED;
+		
+		currentSession.setDurationInMs(stopWatch.getElapsedMilliseconds());
+		
+		// TODO store the currentSession in database
+		// Ich benötige ich AN DIESER STELLE auch eine Funktion
+		// um eine bestehende Session noch einmal zu aktualisieren.
+		// Mit den fertigen Trainingsdaten, die mir hier nun vorliegen...!
+	}
+	
+	/**
+	 * Pausiert das {@link Training}.
+	 */
+	public void pause() {
+		if (state == TrainingState.PAUSED)
+			return;
+		
+		stopWatch.stop();
+		state = TrainingState.PAUSED;
+	}
+	
+	/**
+	 * Setzt ein pausiertes {@link Training} fort.
+	 */
+	public void resume() {
+		if (state != TrainingState.PAUSED)
+			return;
+		
+		state = TrainingState.RUNNING;
+		stopWatch.start();
 	}
 
 	/**
@@ -91,7 +125,7 @@ public class Training {
 	public void registerListener(SessionDetailListener listener) {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
-
+		
 		if (!sessionDetailListener.contains(listener))
 			sessionDetailListener.add(listener);
 	}
@@ -127,6 +161,9 @@ public class Training {
 				
 		notifyTrainingSessionListeners(detail);
 		database.storeSessionDetail(trainingSessionId, detail);
+		
+		int distanceInMeters = currentSession.getDistanceInMeters() + detail.getDistanceInMeter();
+		currentSession.setDistanceInMeters(distanceInMeters);
 	}
 
 	private void notifyTrainingSessionListeners(SessionDetail sessionDetail) {

@@ -9,23 +9,29 @@ import java.sql.Timestamp;
 public class StopWatch {
 
 	private long startTime = 0;
-	private long elapsedTime = 0;
+	private long elapsedMilliseconds = 0;
 	private boolean runs = false;
 	
 	/**
 	 * @return Einen Wert der angibt, ob die Stopwatch läuft.
 	 */
-	public boolean isRunning() { return runs; }
+	public boolean isRunning() { 
+		return runs;
+	}
 	
 	/**
 	 * @return Die gemessene Zeit in Millisekunden.
 	 */
-	public long getElapsedTime() { return elapsedTime; }
+	public long getElapsedMilliseconds() { 
+		return elapsedMilliseconds; 
+	}
 	
 	/**
 	 * @return Die gemessene Zeit als {@link Timestamp}.
 	 */
-	public Timestamp getElapsedTimestamp() { return new Timestamp(elapsedTime); }
+	public Timestamp getElapsedTimestamp() { 
+		return new Timestamp(elapsedMilliseconds);
+	}
 	
 	/**
 	 * Erzeugt eine neue Instanz der {@link StopWatch} Klasse.
@@ -59,7 +65,7 @@ public class StopWatch {
 	 */
 	public void stop() {
 		if (runs) { 
-			elapsedTime += System.currentTimeMillis() - startTime;
+			elapsedMilliseconds += System.currentTimeMillis() - startTime;
 			runs = false;
 		}
 	}
@@ -68,7 +74,7 @@ public class StopWatch {
 	 * Setzt die Werte der Zeitmessung wieder zurück.
 	 */
 	public void reset() {
-		elapsedTime = 0;
+		elapsedMilliseconds = 0;
 		startTime = 0;
 		runs = false;
 	}

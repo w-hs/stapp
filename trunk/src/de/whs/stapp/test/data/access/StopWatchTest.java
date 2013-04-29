@@ -25,7 +25,7 @@ public class StopWatchTest extends TestCase {
 	public void testCreateStopWatch() {
 		StopWatch watch = new StopWatch();
 		
-		assertEquals(0, watch.getElapsedTime());
+		assertEquals(0, watch.getElapsedMilliseconds());
 		assertEquals(new Timestamp(0), watch.getElapsedTimestamp());
 		assertEquals(false, watch.isRunning());
 	}
@@ -35,7 +35,7 @@ public class StopWatchTest extends TestCase {
 		assertEquals(true, watch.isRunning());
 		
 		// Bevor nicht stop() gerufen wurde, ist die elapsedTime = 0!
-		assertEquals(0, watch.getElapsedTime());
+		assertEquals(0, watch.getElapsedMilliseconds());
 	}
 	
 	public void testStopWatchReset() throws InterruptedException {
@@ -43,7 +43,7 @@ public class StopWatchTest extends TestCase {
 		watch.start();
 		watch.reset();
 		
-		assertEquals(0, watch.getElapsedTime());
+		assertEquals(0, watch.getElapsedMilliseconds());
 		assertEquals(new Timestamp(0), watch.getElapsedTimestamp());
 		assertEquals(false, watch.isRunning());		
 	}
@@ -59,7 +59,7 @@ public class StopWatchTest extends TestCase {
 		Thread.sleep(1000);
 		watch.stop();
 		
-		elapsedTime = watch.getElapsedTime();
+		elapsedTime = watch.getElapsedMilliseconds();
 		timestamp = watch.getElapsedTimestamp();
 		d = new Date(elapsedTime);
 		
@@ -72,7 +72,7 @@ public class StopWatchTest extends TestCase {
 		Thread.sleep(1000);
 		watch.stop();
 		
-		elapsedTime = watch.getElapsedTime();
+		elapsedTime = watch.getElapsedMilliseconds();
 		timestamp = watch.getElapsedTimestamp();
 		d = new Date(elapsedTime);
 		
