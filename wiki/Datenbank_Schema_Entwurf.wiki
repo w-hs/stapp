@@ -26,6 +26,6 @@ https://stapp.googlecode.com/svn/wiki/images/Datenbankschemaentwurf.png
   * Timestamp : long (not Null)
   * Heartrate : int (not Null)
   * DistanceInMeters : int (not Null)
-  * SpeedInMetersPerSecond : int (not Null)
+  * SpeedInMetersPerSecond : float(not Null)
   * NumberOfStrides : int (not Null)
   * _TrainingsSeesionsIdAsFK_ : int (Foreign Key, not Null)
