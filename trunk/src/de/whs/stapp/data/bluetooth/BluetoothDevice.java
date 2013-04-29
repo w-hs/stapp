@@ -3,6 +3,7 @@ package de.whs.stapp.data.bluetooth;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.util.Log;
 
 /**
  * Repräsentiert das Bluetooth Device.
@@ -19,12 +20,14 @@ public class BluetoothDevice {
 	public void enable(Activity activity) {
 		BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter == null)
-			throw new IllegalArgumentException("There is no bluetooth adapter");
+		{
+			Log.e("Bluetooth", "No Bluetooth adapter found");
+			return;
+		}
 		
 		if (!btAdapter.isEnabled()){
-			Intent enableBtIntent =  new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			//activity.startActivity(enableBtIntent);	
-			activity.startActivityForResult(enableBtIntent, REQUEST_CODE);
+			Intent enableIntent =  new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			activity.startActivityForResult(enableIntent, REQUEST_CODE);
 		}		
 	}
 	
@@ -38,12 +41,19 @@ public class BluetoothDevice {
 	 */
 	public void disable(Activity activity) {
 		BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+		if (btAdapter == null)
+		{
+			Log.e("Bluetooth", "No Bluetooth adapter found");
+			return;
+		}
 		
 		if (btAdapter.isEnabled()){
-			boolean isDisabling = btAdapter.disable();
+			boolean isDisabled = btAdapter.disable();
 			
-			if (!isDisabling)
-				throw new IllegalArgumentException("Error during turning off the bluetooth adapter");
+			if (isDisabled)
+				Log.d("Bluetooth", "Bluetooth adapter disabled");
+			else
+				Log.e("Bluetooth", "Could not disable Bluetooth adapter");
 		}
 	}
 	

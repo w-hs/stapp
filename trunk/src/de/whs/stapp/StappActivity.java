@@ -16,7 +16,7 @@ import de.whs.stapp.data.access.DataAccessFactory;
 import de.whs.stapp.data.access.Training;
 import de.whs.stapp.data.access.TrainingState;
 import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
-import de.whs.stapp.data.bluetooth.BluetoothCommunication;
+import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothDevice;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.presentation.views.HistoryFragment;
@@ -33,12 +33,12 @@ import de.whs.stapp.presentation.views.TabListener;
  * 
  */
 public class StappActivity extends FragmentActivity {
-
-	//private BluetoothDevice btDevice = new BluetoothDevice();
+	
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
-	private BluetoothCommunication mBluetooth;
+	
+	private BluetoothConnection mBluetooth;
 	private BluetoothDevice mBluetoothDevice = new BluetoothDevice();
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
@@ -54,10 +54,26 @@ public class StappActivity extends FragmentActivity {
 		initViewPager();
 		initActionBar();
 
-		mBluetooth = new BluetoothCommunication(getApplicationContext());
+		initBluetoothConnection();
+		initDataAccess();
+		
+
+		if (savedInstanceState != null) {
+			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
+					"tab", 0));
+		}
+	}
+
+	private void initDataAccess() {
+		mStappDataAccess = DataAccessFactory.newDataAccess(
+				mBluetooth.getDataTracker(), getApplicationContext());
+	}
+
+	private void initBluetoothConnection() {
+		mBluetooth = new BluetoothConnection(getApplicationContext());
 		mBluetooth.registerBroadcastReceivers();
 		try {
-			mBluetooth.initiateBtConnection();
+			mBluetooth.open();
 		}
 		catch (BluetoothAdapterDisabledException e) {
 			mBluetoothDevice.enable(this);
@@ -66,20 +82,11 @@ public class StappActivity extends FragmentActivity {
 			// Vorläufig
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-		
-		mStappDataAccess = DataAccessFactory.newDataAccess(
-				mBluetooth.getDataTracker(), getApplicationContext());
-		
-
-		if (savedInstanceState != null) {
-			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
-					"tab", 0));
-		}
 	}
 	
 	@Override
 	protected void onDestroy() {
-		mBluetooth.disconnectBT();
+		mBluetooth.close();
 		super.onDestroy();
 	}
 	
@@ -91,7 +98,7 @@ public class StappActivity extends FragmentActivity {
 			return;
 		
 		try {
-			mBluetooth.initiateBtConnection();
+			mBluetooth.open();
 		} catch (BluetoothException e) {
 			// Vorläufig
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
