@@ -42,7 +42,7 @@ public class TrackedDataItemConverter {
 		final int numberOfStrides = getNumberOfStrides(dataItem.getStrides());
 		detail.setNumberOfStrides(numberOfStrides);
 		
-		final int speed = getSpeedInMetersPerSecond(dataItem.getSpeedInOne256thsMeterPerSecond());
+		final float speed = getSpeedInMetersPerSecond(dataItem.getSpeedInOne256thsMeterPerSecond());
 		detail.setSpeedInMeterPerSecond(speed);
 		
 		final Date currentDate = new Date();
@@ -69,8 +69,7 @@ public class TrackedDataItemConverter {
 		return currentNumberOfStrides;
 	}
 	
-	private int getSpeedInMetersPerSecond(final double speedIn256thMetersPerSecond) {
-		Double currentSpeedIn256thMetersPerSecond = speedIn256thMetersPerSecond;
-		return currentSpeedIn256thMetersPerSecond.intValue() * 256;
+	private float getSpeedInMetersPerSecond(final double speedIn256thMetersPerSecond) {
+		return (float)speedIn256thMetersPerSecond * 256;
 	}
 }
