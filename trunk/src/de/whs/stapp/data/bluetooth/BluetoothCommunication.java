@@ -24,69 +24,52 @@ import android.util.Log;
  * 
  * @author Dennis Miller
  * */
-public class BTCommunicationService extends Service {
-
-	private final IBinder btServiceBinder = new BTServiceBinder(this);
+public class BluetoothCommunication {
 	private final String hxMDeviceName = "HXM";
 	
 	private BluetoothAdapter btAdapter = null;
 	private BTClient btClient = null;
 	private HxMConnectedListener hxMConnListener = new HxMConnectedListener();
 	private String deviceName;
+	private Context context;
 	
-
-	@Override
-	public IBinder onBind(Intent intent) {
-		return btServiceBinder;
+	private BTPairingReceiver mPairingReceiver = new BTPairingReceiver();
+	private BTBondReceiver mBondReceiver = new BTBondReceiver();
+	private BtStateChangedReceiver mStateChangedReceiver = new BtStateChangedReceiver();
+	private BtDeviceFoundReceiver mDeviceFoundReceiver = new BtDeviceFoundReceiver();
+	private BtDiscoveryFinishedReceiver mDiscoveryFinishedReceiver = new BtDiscoveryFinishedReceiver();
+	
+	public BluetoothCommunication(Context context) {
+		this.context = context;
 	}
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
+	
+	public void registerBroadcastReceivers() {
 
 		IntentFilter pairingRequestFilter = new IntentFilter(
 				"android.bluetooth.device.action.PAIRING_REQUEST");
-		getApplicationContext().registerReceiver(
-				new BTPairingReceiver(), pairingRequestFilter);
+		context.registerReceiver(mPairingReceiver, pairingRequestFilter);
 
 		IntentFilter bondFilter = new IntentFilter(
 				"android.bluetooth.device.action.BOND_STATE_CHANGED");
-		getApplicationContext().registerReceiver(new BTBondReceiver(),
-				bondFilter);
+		context.registerReceiver(mBondReceiver, bondFilter);
 		
 		IntentFilter btStateChangedFilter = new IntentFilter(
 				"android.bluetooth.adapter.action.STATE_CHANGED");
-		getApplicationContext().registerReceiver(new BtStateChangedReceiver(),
-				btStateChangedFilter);
+		context.registerReceiver(mStateChangedReceiver,	btStateChangedFilter);
 		
 		IntentFilter btDeviceFoundFilter = new IntentFilter(
 				"android.bluetooth.device.action.FOUND");
-		getApplicationContext().registerReceiver(new BtDeviceFoundReceiver(),
-				btDeviceFoundFilter);
+		context.registerReceiver(mDeviceFoundReceiver, btDeviceFoundFilter);
 		
 		IntentFilter btDiscoveryFinishedFilter = new IntentFilter(
 				"android.bluetooth.adapter.action.DISCOVERY_FINISHED");
-		getApplicationContext().registerReceiver(new BtDiscoveryFinishedReceiver(),
-				btDiscoveryFinishedFilter);
+		context.registerReceiver(mDiscoveryFinishedReceiver, btDiscoveryFinishedFilter);
 
 	}
 
-	@Override
-	public void onDestroy() {
-		disconnectBT();
-	}
-
-	/**
-	 * Diese Methode registriert einen Listener bei diesem Service (
-	 * {@link BTCommunicationService}). Jeder Client, der Nachrichten des
-	 * HxM-Sensors empfangen möchte, muss sich bei diesem Service registrieren.
-	 * 
-	 * @param l - Listener, der bei diesem Service registriert werden soll.
-	 * 
-	 * */
-	public void registerHxMListener(TrackedDataListener l) {
-		if (hxMConnListener != null)
-			hxMConnListener.registerListener(l);
+	public DataTracker getDataTracker() {
+		return hxMConnListener;
 	}
 
 	/**
@@ -105,41 +88,34 @@ public class BTCommunicationService extends Service {
 	 * @return Verbindungsstatus
 	 * @throws BluetoothException 
 	 */
-	public ConnectionState initiateBtConnection() throws BluetoothException {
+	public void initiateBtConnection() throws BluetoothException {
 		if (btClient != null && btClient.IsConnected())
-			return ConnectionState.Connected;
+			return;
 
 		String hxMMacID = null;
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (btAdapter == null)
-			//throw new IllegalArgumentException("There is no bluetooth adapter!");
 			throw new NoBluetoothAdapterException();
-		//TODO
 				
 		if (!btAdapter.isEnabled())
-			//throw new IllegalArgumentException("The bluetooth adapter is disabled");
 			throw new BluetoothAdapterDisabledException();
-		//TODO
 			
 		Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
 		if (pairedDevices.size() > 0) {
 			for (BluetoothDevice device : pairedDevices) {
 				if (device.getName().startsWith(hxMDeviceName)) {
 					hxMMacID = device.getAddress();
-					return connectBt(hxMMacID);					
+					connectBt(hxMMacID);					
 				}
 			}
 		}
 		
-		if (btAdapter.startDiscovery())
-			return ConnectionState.Connecting;
-		else
-			//throw new IllegalArgumentException("Bluetooth discovery failed");
+		if (!btAdapter.startDiscovery())
 			throw new BluetoothConnectionFailedException();
 		//TODO
 	}
 	
-	private ConnectionState connectBt(String hxMMacID){
+	private void connectBt(String hxMMacID) throws BluetoothException{
 		BluetoothDevice device = btAdapter.getRemoteDevice(hxMMacID);
 		deviceName = device.getName();
 		btClient = new BTClient(btAdapter, hxMMacID);
@@ -147,10 +123,9 @@ public class BTCommunicationService extends Service {
 
 		if (btClient.IsConnected()) {
 			btClient.start();
-			return ConnectionState.Connected;
 		} 
 		else {
-			return ConnectionState.Disconnected;
+			throw new BluetoothConnectionFailedException();
 		}
 	}
 
@@ -161,11 +136,11 @@ public class BTCommunicationService extends Service {
 		if (btClient != null && hxMConnListener != null) {
 			btClient.removeConnectedEventListener(hxMConnListener);
 			
-			getApplicationContext().unregisterReceiver(new BTBondReceiver());
-			getApplicationContext().unregisterReceiver(new BTPairingReceiver());
-			getApplicationContext().unregisterReceiver(new BtStateChangedReceiver());
-			getApplicationContext().unregisterReceiver(new BtDiscoveryFinishedReceiver());
-			getApplicationContext().unregisterReceiver(new BtDeviceFoundReceiver());
+			context.unregisterReceiver(mBondReceiver);
+			context.unregisterReceiver(mPairingReceiver);
+			context.unregisterReceiver(mStateChangedReceiver);
+			context.unregisterReceiver(mDiscoveryFinishedReceiver);
+			context.unregisterReceiver(mDeviceFoundReceiver);
 			
 			btClient.Close();
 		}
@@ -181,14 +156,6 @@ public class BTCommunicationService extends Service {
 		return deviceName;
 	}
 	
-	/**
-	 * Deregistriert den listener.
-	 * @param listener .
-	 */
-	public void unregisterListener(TrackedDataListener listener) {
-		hxMConnListener.unregisterListener(listener);		
-	}
-
 	/**
 	 * 
 	 * Dieser Broadcast-Receiver ist ausgelegt, um auf die Änderung
@@ -294,7 +261,11 @@ public class BTCommunicationService extends Service {
 			BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             if (device.getName().equals(hxMDeviceName)){
             	btAdapter.cancelDiscovery();
-            	connectBt(device.getAddress());
+            	try {
+            		connectBt(device.getAddress());
+            	} catch (BluetoothException e) {
+            		Log.e("BTCommunicationService", e.getMessage());
+            	}
             }
 		}
 	}
@@ -310,10 +281,8 @@ public class BTCommunicationService extends Service {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (!btClient.IsConnected())
-				throw new IllegalArgumentException("There is no HxM device in range");
-				//throw new BluetoothConnectionFailedException();
-			//TODO
+			if (btClient == null || !btClient.IsConnected())
+				Log.e("BTCommunicationService", "Bluetooth Client not connected");
 			
 		}
 		

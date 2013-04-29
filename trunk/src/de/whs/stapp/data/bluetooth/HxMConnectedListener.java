@@ -18,7 +18,7 @@ import android.util.Log;
  * Bluetooth eingehen, entgegen und verteilt sie an alle 
  * registrierten Listeners. 
  */
-class HxMConnectedListener extends ConnectListenerImpl {
+class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 
 	private final int heartRateSpeedDistancePacketIndex =0x26;
 	private List<TrackedDataListener> listeners = new ArrayList<TrackedDataListener>();
