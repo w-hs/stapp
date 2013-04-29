@@ -12,7 +12,7 @@ public class SessionDetail {
 	private Timestamp timestamp;
 	private int heartRateInBpm;
 	private int distanceInMeter;
-	private int speedInMeterPerSecond;
+	private float speedInMeterPerSecond;
 	private int numberOfStrides;
 	
 	/**
@@ -118,14 +118,14 @@ public class SessionDetail {
 	/**
 	 * @return the speedInMeterPerSecond
 	 */
-	public int getSpeedInMeterPerSecond() {
+	public float getSpeedInMeterPerSecond() {
 		return speedInMeterPerSecond;
 	}
 
 	/**
 	 * @param speedInMeterPerSecond the speedInMeterPerSecond to set
 	 */
-	public void setSpeedInMeterPerSecond(int speedInMeterPerSecond) {
+	public void setSpeedInMeterPerSecond(float speedInMeterPerSecond) {
 		this.speedInMeterPerSecond = speedInMeterPerSecond;
 	}
 
