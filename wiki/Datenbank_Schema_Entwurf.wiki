@@ -20,6 +20,7 @@ https://stapp.googlecode.com/svn/wiki/images/Datenbankschemaentwurf.png
   * *_id* : int (Primary Key, auto increment, not Null)
   * Date: long (not Null)
   * DurationInMs : long (not Null)
+  * DistanceInMeters : long(not Null)
 
 ===SessionDetails===
   * *_id* : int (Primary Key, auto increment, not Null)
