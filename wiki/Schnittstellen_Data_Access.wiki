@@ -2,9 +2,6 @@
 #labels Doc-Technical
 
 
-= Introduction =
-Diese Seite dokumentiert die _DataAccess_ Schnittstelle, die den Zugriff auf die Daten ermöglicht.
-
 = Das Interface `DataAccess` =
 Das Interface `DataAccess ermöglicht sowohl den Zugriff auf bereits protokollierte Daten`, als auch die Möglichkeit ein neues `Training` zu erstellen.
 
@@ -25,5 +22,16 @@ Die Methode `newTraining()` liefert eine neue Instanz der Klasse `Training` zur�
 
 
 = Die Klasse Training =
-Die Klasse `Training` dient dazu ein Training zu verwalten.
+Die Klasse `Training` dient dazu ein Training zu verwalten. Ein Training befindet sich immer in einem definierten Status. Die möglichen Stati werden durch die Enumeration `TrainingState` repräsentiert.
+
 https://stapp.googlecode.com/svn/wiki/images/ClassTraining.png
+
+== Training Methoden Überblick: ==
+  * `start`: Startet ein neues Training.
+  * `stop`: Beendet eine laufendes Training.
+  * `pause`: Unterbricht ein laufendes Training. 
+  * `resume`: Setzt ein unterbrochenes Training vor.
+  * `getState`: Liefert den Status des Trainings zurück.
+  * `getCurrentSession`: Liefert zum aktuellen Training zugehörige `TrainingSession` Objekt zurück
+
+= Der SessionDetailListener =
