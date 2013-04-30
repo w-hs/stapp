@@ -134,7 +134,7 @@ public class Training {
 	 * Entfernt einen registrierten listener wieder.
 	 * @param listener Der registrierte {@link SessionDetailListener}.
 	 */
-	public void unregisterTrackedDataListener(SessionDetailListener listener) {
+	public void unregisterListener(SessionDetailListener listener) {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
 
