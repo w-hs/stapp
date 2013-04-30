@@ -24,7 +24,7 @@ Die Methode `newTraining()` liefert eine neue Instanz der Klasse `Training` zur�
 = Die Klasse Training =
 Die Klasse `Training` dient dazu ein Training zu verwalten. Ein Training befindet sich immer in einem definierten Status. Die möglichen Stati werden durch die Enumeration `TrainingState` repräsentiert.
 
-https://stapp.googlecode.com/svn/wiki/images/ClassTraining.png
+https://stapp.googlecode.com/svn/wiki/images/ClassTraining2.png
 
 == Training Methoden Überblick: ==
   * `start`: Startet ein neues Training.
