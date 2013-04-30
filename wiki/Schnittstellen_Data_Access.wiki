@@ -21,7 +21,9 @@ Die Methode `getSessionHistory()` liefert eine Liste von `TrainingSession` Objek
 Die Methode `getSessionDetails(int)` liefert zu einer gegebenen `TrainingSessionId` eine Liste von `SessionDetail` Objekten zurück. Die Liste beinhaltet dabei die in der Datenbank gespeicherten Session Details zur entsprechenden Training Session.
 
 == newTraining() ==
-TODO
+Die Methode `newTraining()` liefert eine neue Instanz der Klasse `Training` zurück.
 
 
 = Die Klasse Training =
+Die Klasse `Training` dient dazu ein Training zu verwalten.
+https://stapp.googlecode.com/svn/wiki/images/ClassTraining.png
