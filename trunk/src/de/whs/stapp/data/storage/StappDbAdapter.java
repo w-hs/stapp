@@ -104,13 +104,13 @@ class StappDbAdapter implements DatabaseAdapter {
 	 * @param session ist die zu updatende TrainingSession
 	 * @param trainingSessionID ist der PK des Tupels der Session
 	 */
-	public void updateTrainingUnit(TrainingSession session, int trainingSessionID) {
+	public void updateTrainingSession(TrainingSession session) {
 		ContentValues val = new ContentValues();
 		val.put(TS_DURATION_IN_MS, session.getDurationInMs());
 		val.put(TS_DISTANCE_IN_METERS, session.getDistanceInMeters());
 		
 		stappDb.update(REL_TRAINING_SESSIONS, val, 
-							TS_SESSION_ID + " = " + trainingSessionID, null);
+							TS_SESSION_ID + " = " + session.getSessionId(), null);
 	}
 
 
@@ -123,9 +123,9 @@ class StappDbAdapter implements DatabaseAdapter {
 	 * @param trainingSessionID ist Foreign-Key, refernziert Tupel aus TrainingSessions.
 	 * @param detail sind die Messwerte, die zu speichern sind.
 	 */
-	public void storeSessionDetail(int trainingSessionID, SessionDetail detail) {
+	public void storeSessionDetail(SessionDetail detail) {
 		ContentValues val = new ContentValues();
-		val.put(SD_TRAINING_SESSIONS_ID_AS_FK, trainingSessionID);
+		val.put(SD_TRAINING_SESSIONS_ID_AS_FK, detail.getTrainingSessionId());
 		val.put(SD_TIMESTAMP, System.currentTimeMillis());
 		val.put(SD_HEARTRATE, detail.getHeartRateInBpm());
 		val.put(SD_DISTANCE_IN_METERS, detail.getDistanceInMeter());
