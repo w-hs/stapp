@@ -34,4 +34,7 @@ https://stapp.googlecode.com/svn/wiki/images/ClassTraining2.png
   * `getState`: Liefert den Status des Trainings zurück.
   * `getCurrentSession`: Liefert zum aktuellen Training zugehörige `TrainingSession` Objekt zurück
 
-= Der SessionDetailListener =
+== Der SessionDetailListener ==
+Der `SessionDetailListener` ist ein Interface, das lediglich die Methode `listen(SessionDetail)` definiert. Die Methode dient zur Bereitstellung, der live Daten, die vom Bluetooth Sensor geliefert werden.
+
+Über die Methoden `registerListener` und `unregisterListener` können die Listener registriert und wieder entfernt werden.
