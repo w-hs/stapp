@@ -35,10 +35,9 @@ public interface DatabaseAdapter {
         
     /**
      * Speichert ein {@link SessionDetail} zu einer gegebenen TrainingSession.
-     * @param trainingSessionId Die Id der entsprechenden {@link TrainingSession}.
      * @param detail Das zu speichernde {@link SessionDetail}. 
      */
-    void storeSessionDetail(int trainingSessionId, SessionDetail detail);
+    void storeSessionDetail(SessionDetail detail);
     
     /**
      * Erstellt eine neue {@link TrainingSession} in der Datenbank.
@@ -52,4 +51,11 @@ public interface DatabaseAdapter {
      * @param trainingSessionId Id der zu löschenden {@link TrainingSession}.
      */
     void deleteTrainingSession(int trainingSessionId);
+    
+    /**
+     * Methode zum Nachtragen der Distanz und der Dauer zu einer TrainingSession
+     * Es wird die Relation TrainingSessions abschließend ergänzt.
+     * @param session Die TrainingSession die ergänzt werden soll, enthält die entsprechenden Werten.
+     */
+    void updateTrainingSession(TrainingSession session);
 }

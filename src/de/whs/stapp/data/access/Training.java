@@ -160,7 +160,7 @@ public class Training {
 		detail.setTrainingSessionId(trainingSessionId);
 				
 		notifyTrainingSessionListeners(detail);
-		database.storeSessionDetail(trainingSessionId, detail);
+		database.storeSessionDetail(detail);
 		
 		int distanceInMeters = currentSession.getDistanceInMeters() + detail.getDistanceInMeter();
 		currentSession.setDistanceInMeters(distanceInMeters);
