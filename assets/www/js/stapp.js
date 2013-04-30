@@ -79,7 +79,7 @@ var stapp =
             return h + ":" + m + ":" + s;
         },
         loadSessionDetails: function(id){
-            Android.showToast("Session mit der Nr." + id + " gewählt.");
+            Android.selectTrainingSession(id);
         },
         getSessionHTML: function (session) {
             var sessionStr =
