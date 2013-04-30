@@ -2,8 +2,8 @@
 #labels Doc-Technical
 
 
-= Das Interface `DataAccess` =
-Das Interface `DataAccess ermöglicht sowohl den Zugriff auf bereits protokollierte Daten`, als auch die Möglichkeit ein neues `Training` zu erstellen.
+= Das Interface DataAccess =
+Das Interface `DataAccess` ermöglicht sowohl den Zugriff auf bereits protokollierte Daten`, als auch die Möglichkeit ein neues `Training` zu erstellen.
 
 https://stapp.googlecode.com/svn/wiki/images/InterfaceDataAccess.png
 
