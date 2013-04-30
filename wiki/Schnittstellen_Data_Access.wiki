@@ -4,3 +4,24 @@
 
 = Introduction =
 Diese Seite dokumentiert die _DataAccess_ Schnittstelle, die den Zugriff auf die Daten ermöglicht.
+
+= Das Interface `DataAccess` =
+Das Interface `DataAccess ermöglicht sowohl den Zugriff auf bereits protokollierte Daten`, als auch die Möglichkeit ein neues `Training` zu erstellen.
+
+https://stapp.googlecode.com/svn/wiki/images/InterfaceDataAccess.png
+
+== DataAccessFactory ==
+Die Klasse `DataAccessFactory` hat lediglich die Methode `newDataAccess(DataTracker, Context)` und liefert eine neue Instanz des Interfaces `DataAccess` zurück.
+Dabei muss der Methode der Android Context und eine Instanz des DataTracker Interfaces übergeben werden.
+
+== getSessionHistory() ==
+Die Methode `getSessionHistory()` liefert eine Liste von `TrainingSession` Objekten zurück. Die Liste beinhaltet dabei die in der Datenbank gespeicherten Training Sessions.
+
+== getSessionDetails(int) ==
+Die Methode `getSessionDetails(int)` liefert zu einer gegebenen `TrainingSessionId` eine Liste von `SessionDetail` Objekten zurück. Die Liste beinhaltet dabei die in der Datenbank gespeicherten Session Details zur entsprechenden Training Session.
+
+== newTraining() ==
+TODO
+
+
+= Die Klasse Training =
