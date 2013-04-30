@@ -43,7 +43,7 @@ public class StappWebView extends WebView {
 		
 		initWebView(context, stappWebAppInterface);
 	}
-	
+
 	private void initWebView(Context context, StappWebAppInterface stappWebAppInterface){
 		
 		WebSettings webSettings = this.getSettings();

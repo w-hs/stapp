@@ -41,8 +41,7 @@ public class HistoryFragment extends Fragment {
 	 */
 	@Override 
 	public void onActivityCreated(Bundle savedInstanceState) { 
-	    super.onActivityCreated(savedInstanceState);   
-	    
+	    super.onActivityCreated(savedInstanceState);       
 	    
 	    mVerlaufWebview = new HistoryWebView(this.getActivity());
         RelativeLayout relativeLayout = 

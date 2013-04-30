@@ -9,13 +9,14 @@ import android.content.Context;
  * @author Thomas
  * 
  */
-public class TrainingSessionWebAppInterface extends StappWebAppInterface {
-
+public class ChartWebAppInterface extends StappWebAppInterface {
+	
 	/**
 	 * Default Konstruktor. Instantiiert ein neues WebApp Interface auf Basis {@link StappWebAppInterface}.
 	 * @param mContext Kontext des WebApp Interface.
 	 */
-	public TrainingSessionWebAppInterface(Context mContext) {
+	public ChartWebAppInterface(Context mContext) {
 		super(mContext);
+		
 	}
 }

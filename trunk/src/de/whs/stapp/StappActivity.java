@@ -204,6 +204,8 @@ public class StappActivity extends FragmentActivity {
 		Fragment fragment = mStappCollectionPagerAdapter.getItem(getActionBar()
 				.getSelectedNavigationIndex());
 
+		boolean returnValue = false;
+		
 		switch (item.getItemId()) {
 		case R.id.action_start:
 			if (fragment.getClass() == SessionFragment.class) {
@@ -214,13 +216,15 @@ public class StappActivity extends FragmentActivity {
 				mCurrentTraining.start();
 				((SessionFragment) fragment).startTraining();
 			}
-			return true;
+			returnValue = true;
+			break;
 		case R.id.action_pause:
 			if (fragment.getClass() == SessionFragment.class) {
 
 				((SessionFragment) fragment).pauseTraining();
 			}
-			return true;
+			returnValue = true;
+			break;
 		case R.id.action_stop:
 			if (fragment.getClass() == SessionFragment.class) {
 
@@ -228,14 +232,17 @@ public class StappActivity extends FragmentActivity {
 					mCurrentTraining.stop();
 				((SessionFragment) fragment).stopTraining();
 			}
-			return true;
+			returnValue = true;
+			break;
 		case R.id.settings:
 			Intent intent = new Intent(this, StappPreferenceActivity.class);
 			startActivity(intent);
 			return true;
 		default:
-			return super.onOptionsItemSelected(item);
+			returnValue = super.onOptionsItemSelected(item);
+			break;
 		}
+		return returnValue;
 	}
 
 	@Override

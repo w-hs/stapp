@@ -39,6 +39,7 @@
         <service android:permission="android.permission.BLUETOOTH"
             	 android:name="de.whs.stapp.data.bluetooth.BTCommunicationService">
         </service>
+        <activity android:name=".presentation.views.ChartActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light" android:screenOrientation="landscape" android:uiOptions="splitActionBarWhenNarrow"></activity>
         
     </application>
 

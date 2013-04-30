@@ -13,7 +13,7 @@ import android.widget.Toast;
  */
 public class StappWebAppInterface {
 	
-	private Context mContext;
+	protected Context mContext;
 	
 	/**
 	 * Standard-Konstruktor für das WepAppInterface.
