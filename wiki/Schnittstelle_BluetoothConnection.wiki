@@ -33,5 +33,8 @@ Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem 
 == close() ==
 Diese Methode räumt am Ende wieder auf. Deregistiert BroadcastReceiver, kappt die Verbindung zum DataTracker, schließt den BtClient und Schalter ggfs. das Bluetooth wieder ab.
 
+== REQUEST_CODE ==
+Dieser Code wird bei dem Einschalten des Bluetooth als RequestCode mit übergeben. Mittels diesen RequestCodes kann in der StappActivity in der Methode OnActivityResult(requestCode, resultCode, intent) auf die Interaktion mit dem Benutzer reagiert werden.
+
 == Sonstige Methoden ==
 Die restlichen Methoden haben absolut sprechende Namen und bedürfen keiner zusätzlichen Erläuterung.
