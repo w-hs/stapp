@@ -1,7 +1,7 @@
 #summary Beinhaltet die Schnittstellen für den Datentransfer.
 #labels Doc-Technical
 
-= Introduction =
+= Intro =
 
 Diese Seite beschreibt wie die getrackten Daten an gemeldete Listener übertragen werden.
 
@@ -14,18 +14,12 @@ https://stapp.googlecode.com/svn/wiki/images/DatenTransfer.PNG
 
 Ein TrackedDataListener empfängt die geparsten Daten vom DataTracker, nachdem dieser sich an bei dem DataTracker registriert hat.
 
-=DataTracker=
+== DataTracker ==
 Das Interface DataTracker bringt die Methoden *registerListener(TrackedDataListener)* und *unregisterListener(TrackedDataListener)* für den Registrierungsvorgang mit.
 Der DataTracker ist die Klasse, in der unsere Daten vom Sensor empfangen und in unser System eingespeist werden. In dieser Klasse wird ein Daten-Container (TrackedDataItem) an alle registrierten Listener gereicht.
 Die Klasse HxMConnectedListener implementiert dieses Interface.
 
-=TrackedDataListener=
+== TrackedDataListener ==
 Das Interface TrackedDataListener bringt die Methode *trackData(TrackedDataItem)* mit sich.
 In dieser Methode wird der Daten-Container aufgenommen und ist damit im System zur weiteren Verarbeitung vorhanden.
 Die Klasse _Training_ implementiert dieses Interface.
-
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
