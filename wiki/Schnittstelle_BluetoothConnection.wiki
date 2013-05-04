@@ -22,12 +22,19 @@ Dem Konstruktor ist der App-Context mitzugeben, damit die Klasse Interaktionen m
 
 == open() ==
 Diese Methode ist wohl das Herzstück der Klasse. In folgender Reihenfolge werden Aktionen durchgeführt:
-* `start`: Startet ein neues Training.
-* : sämtliche BroadcastReceiver werden angelegt.
+* sämtliche BroadcastReceiver werden angelegt.
 * BluetoothAdapter wird auf Existenz geprüft.
 * Bluetooth ggfs. eingeschaltet.
 * BluetoothDevice in gepaarten Geräten gesucht und ggfs. Verbindung aufgebaut.
 * Ansonsten der DiscoveryScan angestoßen.
+
+== Training Methoden Überblick: ==
+  * `start`: Startet ein neues Training.
+  * `stop`: Beendet eine laufendes Training.
+  * `pause`: Unterbricht ein laufendes Training. 
+  * `resume`: Setzt ein unterbrochenes Training vor.
+  * `getState`: Liefert den Status des Trainings zurück.
+  * `getCurrentSession`: Liefert zum aktuellen Training zugehörige `TrainingSession` Objekt zurück
 
 Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem Device. Treten Fehler auf werden diese gelogt oder teilweise an die Oberfläche gebracht (Toastmessage).
 
