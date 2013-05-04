@@ -16,7 +16,7 @@ Ein TrackedDataListener empfängt die geparsten Daten vom DataTracker, nachdem d
 
 =DataTracker=
 Das Interface DataTracker bringt die Methoden *registerListener(TrackedDataListener)* und *unregisterListener(TrackedDataListener)* für den Registrierungsvorgang mit.
-Der DataTracker ist die Klasse, in der unsere Daten vom Sensor empfangen werden und in unser System eingespeist werden. In dieser Klasse wird ein Daten-Container (TrackedDataItem) an alle registrierten Listener gereicht.
+Der DataTracker ist die Klasse, in der unsere Daten vom Sensor empfangen und in unser System eingespeist werden. In dieser Klasse wird ein Daten-Container (TrackedDataItem) an alle registrierten Listener gereicht.
 Die Klasse HxMConnectedListener implementiert dieses Interface.
 
 =TrackedDataListener=
