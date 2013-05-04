@@ -5,7 +5,7 @@ import java.util.EventListener;
 /**
  * 
  * Dieses Interface dient zur Übetragung des HxM-Sensordaten 
- * an die Listener mittels eines Events.
+ * an die Listener.
  * 
  * @author Dennis Miller
  */
