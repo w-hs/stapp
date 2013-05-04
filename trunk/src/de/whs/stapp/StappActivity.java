@@ -91,14 +91,13 @@ public class StappActivity extends FragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		if (requestCode != BluetoothConnection.REQUEST_CODE)
-			return;
-		
-		try {
-			mBluetooth.open();
-		} catch (BluetoothException e) {
-			// Vorläufig
-			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+		if (requestCode == BluetoothConnection.REQUEST_CODE && resultCode != RESULT_CANCELED){
+			try {
+				mBluetooth.open();
+			} catch (BluetoothException e) {
+				// Vorläufig
+				Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 
