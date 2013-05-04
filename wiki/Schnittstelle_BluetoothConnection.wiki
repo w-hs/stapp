@@ -28,7 +28,7 @@ Diese Methode ist wohl das Herzstück der Klasse. In folgender Reihenfolge werde
   * BluetoothDevice in gepaarten Geräten gesucht und ggfs. Verbindung aufgebaut.
   * Ansonsten der DiscoveryScan angestoßen.
 
-Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem Device. Treten Fehler auf werden diese gelogt oder teilweise an die Oberfläche gebracht (Toastmessage).
+Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem Device. Treten Fehler auf werden diese geloggt oder teilweise an die Oberfläche gebracht (Toastmessage).
 
 == close() ==
 Diese Methode räumt am Ende wieder auf. Deregistiert BroadcastReceiver, kappt die Verbindung zum DataTracker, schließt den BtClient und Schalter ggfs. das Bluetooth wieder ab.
