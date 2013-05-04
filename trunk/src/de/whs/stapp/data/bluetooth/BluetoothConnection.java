@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 import zephyr.android.HxMBT.BTClient;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -21,6 +22,7 @@ import android.util.Log;
  * */
 public class BluetoothConnection {	
 	private static final String HXM_DEVICE_NAME_PREFIX = "HXM";
+	public static final int REQUEST_CODE = 1337;
 	
 	private BluetoothAdapter mAdapter;
 	private BTClient mClient;
@@ -42,6 +44,7 @@ public class BluetoothConnection {
 	 */
 	public BluetoothConnection(Context context) {
 		this.mContext = context;
+		this.mAdapter = BluetoothAdapter.getDefaultAdapter();
 	}
 	
 	/**
@@ -91,15 +94,15 @@ public class BluetoothConnection {
 		if (isOpen())
 			return;
 
-		mAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (mAdapter == null)
-			throw new NoBluetoothAdapterException();		
+			throw new BluetoothNoAdapterException();		
 		if (!mAdapter.isEnabled())
 			throw new BluetoothAdapterDisabledException();
 		
 		String deviceAddress = findDeviceAddress();
 		if (deviceAddress != null)
-			connectDevice(deviceAddress);
+			if (connectDevice(deviceAddress))
+				return;
 		
 		if (!mAdapter.startDiscovery())
 			throw new BluetoothConnectionFailedException();
@@ -120,11 +123,16 @@ public class BluetoothConnection {
 			
 			mClient.Close();
 		}
+		if (mAdapter.isEnabled()){
+			//TODO: Ask for turning off bluetooth
+			turnOffBt();			
+		}
+			
 	}
 	
 	/**
 	 * 
-	 * Diese Methode gibt lediglich den Gerätenamen wieder.
+	 * Diese Methode gibt den Gerätenamen wieder.
 	 * 
 	 * @return deviceName - Gerätename
 	 */
@@ -142,6 +150,62 @@ public class BluetoothConnection {
 		return mConnListener;
 	}
 
+	/**
+	 * Diese Methode schaltet Bluetooth ein.
+	 * 
+	 * @param activity - Die main-activity
+	 */
+	public void turnOnBt(Activity activity) {
+		if (mAdapter == null)
+		{
+			Log.e("Bluetooth", "No Bluetooth adapter found");
+			return;
+		}
+		
+		if (!mAdapter.isEnabled()){
+			Intent enableIntent =  new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			activity.startActivityForResult(enableIntent, REQUEST_CODE);
+		}		
+	}
+	
+	/**
+	 * 
+	 * Diese Methode schaltet das Bluetooth ab.
+	 * Es ist eindringlich empfohlen zuvor in einer Benutzer-Interaktion 
+	 * eine Bestätigung einzuholen.
+	 * 
+	 */
+	public void turnOffBt() {
+		if (mAdapter == null)
+		{
+			Log.e("Bluetooth", "No Bluetooth adapter found");
+			return;
+		}
+		
+		if (mAdapter.isEnabled()){
+			boolean isDisabled = mAdapter.disable();
+			
+			if (isDisabled)
+				Log.d("Bluetooth", "Bluetooth adapter disabled");
+			else
+				Log.e("Bluetooth", "Could not disable Bluetooth adapter");
+		}
+	}
+	
+	private boolean connectDevice(String address) throws BluetoothException{
+		BluetoothDevice device = mAdapter.getRemoteDevice(address);
+		mDeviceName = device.getName();
+		mClient = new BTClient(mAdapter, address);
+		mClient.addConnectedEventListener(mConnListener);
+
+		if (mClient.IsConnected()){
+			mClient.start();
+			return true;
+		}
+		else
+			throw new BluetoothConnectionFailedException();
+	}
+	
 	private String findDeviceAddress() throws BluetoothException {
 		Set<BluetoothDevice> pairedDevices = mAdapter.getBondedDevices();
 		for (BluetoothDevice device : pairedDevices) {
@@ -151,18 +215,6 @@ public class BluetoothConnection {
 		}
 		
 		return null;
-	}
-	
-	private void connectDevice(String address) throws BluetoothException{
-		BluetoothDevice device = mAdapter.getRemoteDevice(address);
-		mDeviceName = device.getName();
-		mClient = new BTClient(mAdapter, address);
-		mClient.addConnectedEventListener(mConnListener);
-
-		if (mClient.IsConnected())
-			mClient.start();
-		else
-			throw new BluetoothConnectionFailedException();
 	}
 	
 	/**
@@ -179,7 +231,6 @@ public class BluetoothConnection {
 			BluetoothDevice device = mAdapter.getRemoteDevice(b.get(
 					"android.bluetooth.device.extra.DEVICE").toString());
 			Log.d("Bluetooth", "BOND_STATED = " + device.getBondState());
-			// TODO
 		}
 	}
 

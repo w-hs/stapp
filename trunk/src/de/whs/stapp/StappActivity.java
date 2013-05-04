@@ -17,7 +17,6 @@ import de.whs.stapp.data.access.Training;
 import de.whs.stapp.data.access.TrainingState;
 import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
 import de.whs.stapp.data.bluetooth.BluetoothConnection;
-import de.whs.stapp.data.bluetooth.BluetoothDevice;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
@@ -39,7 +38,6 @@ public class StappActivity extends FragmentActivity {
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
 	
 	private BluetoothConnection mBluetooth;
-	private BluetoothDevice mBluetoothDevice = new BluetoothDevice();
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
 
@@ -76,7 +74,7 @@ public class StappActivity extends FragmentActivity {
 			mBluetooth.open();
 		}
 		catch (BluetoothAdapterDisabledException e) {
-			mBluetoothDevice.enable(this);
+			mBluetooth.turnOnBt(this);
 		}
 		catch (BluetoothException e) {
 			// Vorläufig
@@ -94,7 +92,7 @@ public class StappActivity extends FragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		if (requestCode != BluetoothDevice.REQUEST_CODE)
+		if (requestCode != BluetoothConnection.REQUEST_CODE)
 			return;
 		
 		try {
