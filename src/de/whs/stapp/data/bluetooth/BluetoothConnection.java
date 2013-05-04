@@ -322,7 +322,7 @@ public class BluetoothConnection {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            if (device.getName().equals(mDeviceName)){
+            if (device.getName().contains(HXM_DEVICE_NAME_PREFIX)){
             	mAdapter.cancelDiscovery();
             	try {
             		connectDevice(device.getAddress());
