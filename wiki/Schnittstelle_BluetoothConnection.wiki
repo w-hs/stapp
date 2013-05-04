@@ -28,14 +28,6 @@ Diese Methode ist wohl das Herzstück der Klasse. In folgender Reihenfolge werde
   * BluetoothDevice in gepaarten Geräten gesucht und ggfs. Verbindung aufgebaut.
   * Ansonsten der DiscoveryScan angestoßen.
 
-
-  * `start`: Startet ein neues Training.
-  * `stop`: Beendet eine laufendes Training.
-  * `pause`: Unterbricht ein laufendes Training. 
-  * `resume`: Setzt ein unterbrochenes Training vor.
-  * `getState`: Liefert den Status des Trainings zurück.
-  * `getCurrentSession`: Liefert zum aktuellen Training zugehörige `TrainingSession` Objekt zurück
-
 Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem Device. Treten Fehler auf werden diese gelogt oder teilweise an die Oberfläche gebracht (Toastmessage).
 
 == close() ==
