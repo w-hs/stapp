@@ -22,11 +22,11 @@ Dem Konstruktor ist der App-Context mitzugeben, damit die Klasse Interaktionen m
 
 == open() ==
 Diese Methode ist wohl das Herzstück der Klasse. In folgender Reihenfolge werden Aktionen durchgeführt:
-*sämtliche BroadcastReceiver werden angelegt
-*BluetoothAdapter wird auf Existenz geprüft
-*Bluetooth ggfs. eingeschaltet
-*BluetoothDevice in gepaarten Geräten gesucht und ggfs. Verbindung aufgebaut
-*Ansonsten der DiscoveryScan angestoßen
+*sämtliche BroadcastReceiver werden angelegt.
+*BluetoothAdapter wird auf Existenz geprüft.
+*Bluetooth ggfs. eingeschaltet.
+*BluetoothDevice in gepaarten Geräten gesucht und ggfs. Verbindung aufgebaut.
+*Ansonsten der DiscoveryScan angestoßen.
 
 Sind alle Aktionen durchgeführt, existiert hoffentlich eine Verbindung mit dem Device. Treten Fehler auf werden diese gelogt oder teilweise an die Oberfläche gebracht (Toastmessage).
 
