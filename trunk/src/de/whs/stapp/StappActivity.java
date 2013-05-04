@@ -69,7 +69,6 @@ public class StappActivity extends FragmentActivity {
 
 	private void initBluetoothConnection() {
 		mBluetooth = new BluetoothConnection(getApplicationContext());
-		mBluetooth.registerBroadcastReceivers();
 		try {
 			mBluetooth.open();
 		}

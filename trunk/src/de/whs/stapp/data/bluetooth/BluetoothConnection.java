@@ -48,34 +48,6 @@ public class BluetoothConnection {
 	}
 	
 	/**
-	 * Registriert Broadcast-Receiver für bestimmte Ereignisse, die den 
-	 * Bluetooth-Adapter betreffen.
-	 */
-	public void registerBroadcastReceivers() {
-
-		IntentFilter pairingRequestFilter = new IntentFilter(
-				"android.bluetooth.device.action.PAIRING_REQUEST");
-		mContext.registerReceiver(mPairingReceiver, pairingRequestFilter);
-
-		IntentFilter bondFilter = new IntentFilter(
-				"android.bluetooth.device.action.BOND_STATE_CHANGED");
-		mContext.registerReceiver(mBondReceiver, bondFilter);
-		
-		IntentFilter btStateChangedFilter = new IntentFilter(
-				"android.bluetooth.adapter.action.STATE_CHANGED");
-		mContext.registerReceiver(mStateChangedReceiver,	btStateChangedFilter);
-		
-		IntentFilter btDeviceFoundFilter = new IntentFilter(
-				"android.bluetooth.device.action.FOUND");
-		mContext.registerReceiver(mDeviceFoundReceiver, btDeviceFoundFilter);
-		
-		IntentFilter btDiscoveryFinishedFilter = new IntentFilter(
-				"android.bluetooth.adapter.action.DISCOVERY_FINISHED");
-		mContext.registerReceiver(mDiscoveryFinishedReceiver, btDiscoveryFinishedFilter);
-
-	}
-
-	/**
 	 * Prüfe, ob ein Bluetoothgerät verbunden ist.
 	 */
 	public boolean isOpen() {
@@ -94,6 +66,8 @@ public class BluetoothConnection {
 		if (isOpen())
 			return;
 
+		registerBroadcastReceivers();
+		
 		if (mAdapter == null)
 			throw new BluetoothNoAdapterException();		
 		if (!mAdapter.isEnabled())
@@ -215,6 +189,34 @@ public class BluetoothConnection {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Registriert Broadcast-Receiver für bestimmte Ereignisse, die den 
+	 * Bluetooth-Adapter betreffen.
+	 */
+	private void registerBroadcastReceivers() {
+
+		IntentFilter pairingRequestFilter = new IntentFilter(
+				"android.bluetooth.device.action.PAIRING_REQUEST");
+		mContext.registerReceiver(mPairingReceiver, pairingRequestFilter);
+
+		IntentFilter bondFilter = new IntentFilter(
+				"android.bluetooth.device.action.BOND_STATE_CHANGED");
+		mContext.registerReceiver(mBondReceiver, bondFilter);
+		
+		IntentFilter btStateChangedFilter = new IntentFilter(
+				"android.bluetooth.adapter.action.STATE_CHANGED");
+		mContext.registerReceiver(mStateChangedReceiver,	btStateChangedFilter);
+		
+		IntentFilter btDeviceFoundFilter = new IntentFilter(
+				"android.bluetooth.device.action.FOUND");
+		mContext.registerReceiver(mDeviceFoundReceiver, btDeviceFoundFilter);
+		
+		IntentFilter btDiscoveryFinishedFilter = new IntentFilter(
+				"android.bluetooth.adapter.action.DISCOVERY_FINISHED");
+		mContext.registerReceiver(mDiscoveryFinishedReceiver, btDiscoveryFinishedFilter);
+
 	}
 	
 	/**
