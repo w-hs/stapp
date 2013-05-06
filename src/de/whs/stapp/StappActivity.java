@@ -223,8 +223,11 @@ public class StappActivity extends FragmentActivity {
 
 				mCurrentTraining = mStappDataAccess.newTraining();
 
-				// Führt noch zu einer Exception
-				mCurrentTraining.start();
+				if(mCurrentTraining.getState() == TrainingState.PAUSED)
+					mCurrentTraining.resume();
+				else
+					mCurrentTraining.start();
+				
 				((SessionFragment) fragment).startTraining();
 				mCurrentTraining.registerListener((SessionFragment) fragment);
 			}
