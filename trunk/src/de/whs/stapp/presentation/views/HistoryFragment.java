@@ -3,6 +3,9 @@
  */
 package de.whs.stapp.presentation.views;
 
+import java.util.ArrayList;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +14,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
+import de.whs.stapp.StappActivity;
+import de.whs.stapp.data.access.DataAccess;
+import de.whs.stapp.data.storage.TrainingSession;
 import de.whs.stapp.presentation.HistoryWebView;
+import de.whs.stapp.presentation.viewmodels.History;
 
 /**
  * Das History Fragment/Tab welches ein Web View über History Informationen beinhaltet.
@@ -52,4 +59,16 @@ public class HistoryFragment extends Fragment {
         relativeLayout.addView(mVerlaufWebview, relParams);
 	}
 
+	/**
+	 * Lädt die History-Daten in die Webseite.
+	 */
+	public void setHistory()
+	{
+		StappActivity sa = (StappActivity) this.getActivity();
+		DataAccess dataAccess = sa.getStappDataAccess();
+		ArrayList<TrainingSession> sessions = (ArrayList<TrainingSession>) dataAccess
+				.getSessionHistory();
+		History h = new History(sessions);
+		mVerlaufWebview.setHistoryData(h);
+	}
 }
