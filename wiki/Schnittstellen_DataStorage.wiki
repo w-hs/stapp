@@ -1,3 +1,4 @@
+#labels Doc-Technical
 Es werden alle Schnittstellen beschrieben welche den Zugriff auf die Datenbank unterstützt.
 
 = Schnittstellen DataStorage =
@@ -31,7 +32,7 @@ Die Klasse StappDbAdapter implementiert das Interface DatabaseAdapter.
 === Methoden ===
 * Konstruktor
 
-Erstellt eine Verbindung zur Datenbank. Die Verbindung kann im Anschluss mit den Methoden openDatabase() und closeDatabase() entsprechend den Datenbank Zugriff öffnen oder schließen.
+Erstellt eine Verbindung zur Datenbank indem eine Instanz der Klasse DatabseConnector erstellt wird. Mit den Methoden openDatabase() und closeDatabase() kann der Datenbank Zugriff entsprechend geöffnet oder geschlossen werden.
 
 *openDatabase()
 
