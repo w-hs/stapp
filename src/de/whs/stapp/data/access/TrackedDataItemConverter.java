@@ -39,13 +39,13 @@ public class TrackedDataItemConverter {
 		SessionDetail detail = new SessionDetail();
 		
 		if (isFirstPackage) {
-			firstDistance = dataItem.getDistanceInMeter();
-			firstStrides = dataItem.getStrides();
+			lastReadDistance = dataItem.getDistanceInMeter();
+			lastReadNumberOfStrides = dataItem.getStrides();
 			isFirstPackage = false;
 		}
 		
-		final int distanceInMeter = getDistanceInMeter(dataItem.getDistanceInMeter());
-		detail.setDistanceInMeter(distanceInMeter);
+		final double distanceInMeter = getDistanceInMeter(dataItem.getDistanceInMeter());
+		detail.setDistanceInMeter((int)distanceInMeter);
 		
 		final int heartRateInBpm = dataItem.getHeartRateInBpm();
 		detail.setHeartRateInBpm(heartRateInBpm);
@@ -62,19 +62,18 @@ public class TrackedDataItemConverter {
 		return detail;
 	}
 	
-	private int getDistanceInMeter(final double distanceInMeter) {
-		Double currentDistanceMeter = distanceInMeter;
+	private double getDistanceInMeter(final double distanceInMeter) {
+		double currentDistanceMeter = distanceInMeter;
 		if (distanceInMeter < lastReadDistance) {
 			currentDistanceMeter += MAX_DISTANCE_IN_METERS - lastReadDistance;
 			hasDistanceOverflowed = true;
+		} else {
+			currentDistanceMeter -= lastReadDistance;
 		}
 			
 		lastReadDistance = distanceInMeter;	
 		
-		if (hasDistanceOverflowed)
-			return currentDistanceMeter.intValue();
-		else
-			return currentDistanceMeter.intValue() - (int)firstDistance;
+		return currentDistanceMeter;
 	}
 	
 	private int getNumberOfStrides(final byte numberOfStrides) {
@@ -82,13 +81,13 @@ public class TrackedDataItemConverter {
 		if (numberOfStrides < lastReadNumberOfStrides) {
 			currentNumberOfStrides += MAX_NUMBER_OF_STRIDES - lastReadNumberOfStrides;
 			hasStridesOverflowed = true;
-		}	
+		} else {
+			currentNumberOfStrides -= lastReadNumberOfStrides;
+		}
 		
 		lastReadNumberOfStrides = numberOfStrides;
-		if (hasStridesOverflowed)
-			return currentNumberOfStrides;
-		else
-			return currentNumberOfStrides - firstStrides;
+
+		return currentNumberOfStrides;
 	}
 	
 	private float getSpeedInMetersPerSecond(final double speedInMetersPerSecond) {

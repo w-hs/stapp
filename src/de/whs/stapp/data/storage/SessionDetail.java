@@ -11,7 +11,7 @@ public class SessionDetail {
 	private int trainingSessionId;
 	private Timestamp timestamp;
 	private int heartRateInBpm;
-	private int distanceInMeter;
+	private float distanceInMeter;
 	private float speedInMeterPerSecond;
 	private int numberOfStrides;
 	
@@ -33,7 +33,7 @@ public class SessionDetail {
 	 * @param numberOfStrides Die Anzahl der zurückgelegten Schritte.
 	 */
 	public SessionDetail(int sessionDetailId, int trainingSessionId,
-			Timestamp timestamp, int heartRateInBpm, int distanceInMeter,
+			Timestamp timestamp, int heartRateInBpm, float distanceInMeter,
 			int speedInMeterPerSecond, int numberOfStrides) {
 		super();
 		this.sessionDetailId = sessionDetailId;
@@ -104,14 +104,14 @@ public class SessionDetail {
 	/**
 	 * @return the distanceInMeter
 	 */
-	public int getDistanceInMeter() {
+	public float getDistanceInMeter() {
 		return distanceInMeter;
 	}
 
 	/**
 	 * @param distanceInMeter the distanceInMeter to set
 	 */
-	public void setDistanceInMeter(int distanceInMeter) {
+	public void setDistanceInMeter(float distanceInMeter) {
 		this.distanceInMeter = distanceInMeter;
 	}
 
