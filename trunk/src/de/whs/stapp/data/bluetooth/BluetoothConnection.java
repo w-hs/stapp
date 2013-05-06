@@ -21,6 +21,7 @@ import android.util.Log;
  * @author Dennis Miller
  * */
 public class BluetoothConnection {	
+	private static final String LOG_TAG = "Bluetooth";
 	private static final String HXM_DEVICE_NAME_PREFIX = "HXM";
 	public static final int REQUEST_CODE = 1337;
 	
@@ -132,7 +133,7 @@ public class BluetoothConnection {
 	public void turnOnBt(Activity activity) {
 		if (mAdapter == null)
 		{
-			Log.e("Bluetooth", "No Bluetooth adapter found");
+			Log.e(LOG_TAG, "No Bluetooth adapter found");
 			return;
 		}
 		
@@ -152,7 +153,7 @@ public class BluetoothConnection {
 	public void turnOffBt() {
 		if (mAdapter == null)
 		{
-			Log.e("Bluetooth", "No Bluetooth adapter found");
+			Log.e(LOG_TAG, "No Bluetooth adapter found");
 			return;
 		}
 		
@@ -160,9 +161,9 @@ public class BluetoothConnection {
 			boolean isDisabled = mAdapter.disable();
 			
 			if (isDisabled)
-				Log.d("Bluetooth", "Bluetooth adapter disabled");
+				Log.d(LOG_TAG, "Bluetooth adapter disabled");
 			else
-				Log.e("Bluetooth", "Could not disable Bluetooth adapter");
+				Log.e(LOG_TAG, "Could not disable Bluetooth adapter");
 		}
 	}
 	
@@ -232,7 +233,7 @@ public class BluetoothConnection {
 			Bundle b = intent.getExtras();
 			BluetoothDevice device = mAdapter.getRemoteDevice(b.get(
 					"android.bluetooth.device.extra.DEVICE").toString());
-			Log.d("Bluetooth", "BOND_STATED = " + device.getBondState());
+			Log.d(LOG_TAG, "BOND_STATED = " + device.getBondState());
 		}
 	}
 
@@ -248,13 +249,13 @@ public class BluetoothConnection {
 	private class BTPairingReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			Log.d("Bluetooth", "Pairing intent: " + intent.getAction());
+			Log.d(LOG_TAG, "Pairing intent: " + intent.getAction());
 			
 			Bundle b = intent.getExtras();
 			String pairingDevice = b.get("android.bluetooth.device.extra.DEVICE").toString();
 			String pairingVariant = b.get("android.bluetooth.device.extra.PAIRING_VARIANT").toString();
-			Log.d("Bluetooth", "Pairing device: " + pairingDevice);
-			Log.d("Bluetooth", "Pairing variant: " + pairingVariant);
+			Log.d(LOG_TAG, "Pairing device: " + pairingDevice);
+			Log.d(LOG_TAG, "Pairing variant: " + pairingVariant);
 			
 			try {
 				BluetoothDevice device = mAdapter.getRemoteDevice(pairingDevice);
@@ -265,9 +266,9 @@ public class BluetoothConnection {
 				Method setPin = device.getClass().getMethod("setPin", new Class[] { pin.getClass() });
 				Object result = setPin.invoke(device, pin);
 				
-				Log.d("Bluetooth", "Setting PIN to '1234' (" + result.toString() + ")");
+				Log.d(LOG_TAG, "Setting PIN to '1234' (" + result.toString() + ")");
 			} catch (Exception e) {
-				Log.e("Bluetooth", "Error while pairing devices: " + e.getMessage());
+				Log.e(LOG_TAG, "Error while pairing devices: " + e.getMessage());
 			}
 		}
 	}
@@ -327,8 +328,10 @@ public class BluetoothConnection {
             	try {
             		connectDevice(device.getAddress());
             	} catch (BluetoothException e) {
-            		Log.e("Bluetooth", "Error while connecting to device: " + e.getMessage());
+            		Log.e(LOG_TAG, "Error while connecting to device: " + e.getMessage());
             	}
+            } else {
+            	Log.d(LOG_TAG, "Other bluetooth device found: " + device.getName());
             }
 		}
 	}
@@ -343,10 +346,10 @@ public class BluetoothConnection {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (mClient != null || mClient.IsConnected())
-				Log.d("Bluetooth", "Client connected after discovery");
+			if (mClient != null && mClient.IsConnected())
+				Log.d(LOG_TAG, "Client connected after discovery");
 			else
-				Log.e("Bluetooth", "Client not connected after discovery");
+				Log.e(LOG_TAG, "Client not connected after discovery");
 			
 		}
 		
