@@ -35,7 +35,14 @@ public class StappCollectionPagerAdapter extends FragmentStatePagerAdapter {
 	public Fragment getItem(int index) {
 		if (index < 0 && index > mFragments.size())
 			throw new IndexOutOfBoundsException();
-		return mFragments.get(index);
+		
+		Fragment activFragment = mFragments.get(index);
+		
+		if (activFragment.getClass() == HistoryFragment.class) {
+			((HistoryFragment)activFragment).setHistory();
+		}
+		
+		return activFragment;
 	}
 
 	@Override
