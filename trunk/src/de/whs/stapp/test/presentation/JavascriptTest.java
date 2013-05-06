@@ -29,7 +29,7 @@ public class JavascriptTest extends TestCase {
 	 */
 	public void testWithArguments() {
 		
-		TrainingSession session = new TrainingSession(new BigDecimal(5200), 80);
+		TrainingSession session = new TrainingSession(5200, 80);
 		Assert.assertEquals("javascript:test({\"distance\":\"5200\",\"heartfrequence\":\"80\"})", 
 				Javascript.getFunctionCall("test", session));
 	}

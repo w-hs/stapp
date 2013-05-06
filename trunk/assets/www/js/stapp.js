@@ -6,7 +6,7 @@ var stapp =
         updateTraining: function (jsonStr) {
             var t = JSON.parse(jsonStr);
             var training = new training(t.distance, t.heartfrequence);
-            $('#distance > .DataContent').html(training.distance + "km");
+            $('#distance > .DataContent').html(training.distance + "mps");
             $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
         },
         startTraining: function () { 

@@ -211,6 +211,7 @@ public class StappActivity extends FragmentActivity {
 				// Führt noch zu einer Exception
 				mCurrentTraining.start();
 				((SessionFragment) fragment).startTraining();
+				mCurrentTraining.registerListener((SessionFragment) fragment);
 			}
 			returnValue = true;
 			break;
@@ -218,6 +219,7 @@ public class StappActivity extends FragmentActivity {
 			if (fragment.getClass() == SessionFragment.class) {
 
 				((SessionFragment) fragment).pauseTraining();
+				mCurrentTraining.pause();
 			}
 			returnValue = true;
 			break;
@@ -227,6 +229,7 @@ public class StappActivity extends FragmentActivity {
 				if (mCurrentTraining != null)
 					mCurrentTraining.stop();
 				((SessionFragment) fragment).stopTraining();
+				mCurrentTraining.unregisterListener((SessionFragment) fragment);
 			}
 			returnValue = true;
 			break;
