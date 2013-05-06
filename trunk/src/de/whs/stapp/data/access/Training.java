@@ -177,7 +177,7 @@ public class Training {
 		
 		Log.d(LOG_TAG, "Created a new SessionDetail instance: " + detail.toString());
 		
-		int distanceInMeters = currentSession.getDistanceInMeters() + detail.getDistanceInMeter();
+		double distanceInMeters = currentSession.getDistanceInMeters() + detail.getDistanceInMeter();
 		currentSession.setDistanceInMeters(distanceInMeters);
 	}
 

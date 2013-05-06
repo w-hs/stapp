@@ -38,7 +38,7 @@ public class History extends StappViewModel {
 
 	private Session convertTrainingSessionToViewModel(TrainingSession session) {
 
-		int distance = session.getDistanceInMeters() / 1000;
+		int distance = (int)(session.getDistanceInMeters() / 1000);
 		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
 
 		return new Session(df.format(session.getTrainingDate()),

@@ -10,7 +10,7 @@ import java.util.Date;
 public class TrainingSession {	
 	private int sessionId;
 	private Date trainingDate;
-	private int distanceInMeters;
+	private double distanceInMeters;
 	private long durationInMs;
 	
 	/**
@@ -28,7 +28,7 @@ public class TrainingSession {
 	 * @param durationInMs Die Dauer in Minuten
 	 */
 	public TrainingSession(int sessionId, Date trainingDate,
-			int distanceInMeters, long durationInMs) {
+			double distanceInMeters, long durationInMs) {
 		super();
 		this.sessionId = sessionId;
 		this.trainingDate = trainingDate;
@@ -67,14 +67,14 @@ public class TrainingSession {
 	/**
 	 * @return the distanceInMeters
 	 */
-	public int getDistanceInMeters() {
+	public double getDistanceInMeters() {
 		return distanceInMeters;
 	}
 
 	/**
 	 * @param distanceInMeters the distanceInMeters to set
 	 */
-	public void setDistanceInMeters(int distanceInMeters) {
+	public void setDistanceInMeters(double distanceInMeters) {
 		this.distanceInMeters = distanceInMeters;
 	}
 

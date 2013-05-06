@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
+import de.whs.stapp.StappActivity;
 import de.whs.stapp.data.access.SessionDetailListener;
 import de.whs.stapp.data.storage.SessionDetail;
 import de.whs.stapp.presentation.TrainingSessionWebView;
@@ -86,9 +87,12 @@ public class SessionFragment extends Fragment implements SessionDetailListener {
 
 	@Override
 	public void listen(SessionDetail detail) {
-
+		
+		StappActivity activity = (StappActivity)getActivity();
+		// TODO: Distanz aus Training holen
 		TrainingSession trainingData = new TrainingSession(
-				detail.getDistanceInMeter(), detail.getHeartRateInBpm());
+				(int)activity.getCurrentTraining().getCurrentSession().getDistanceInMeters(),
+				detail.getHeartRateInBpm());
 		mTrainingseinheitWebview.updateTrainingData(trainingData);
 	}
 }

@@ -1,5 +1,7 @@
 package de.whs.stapp;
 
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +21,7 @@ import de.whs.stapp.data.access.TrainingState;
 import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
 import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
+import de.whs.stapp.data.storage.TrainingSession;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
@@ -41,6 +45,10 @@ public class StappActivity extends FragmentActivity {
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
 
+	public Training getCurrentTraining() {
+		return mCurrentTraining;
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -54,6 +62,11 @@ public class StappActivity extends FragmentActivity {
 
 		initBluetoothConnection();
 		initDataAccess();
+		
+		List<TrainingSession> sessions = mStappDataAccess.getSessionHistory();
+		for (TrainingSession session : sessions) {
+			Log.d("Test", session.toString());
+		}
 
 		if (savedInstanceState != null) {
 			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
