@@ -12,7 +12,7 @@ import de.whs.stapp.data.storage.SessionDetail;
  */
 public class TrackedDataItemConverter {
 
-	private static final double MAX_DISTANCE_IN_16THS_METERS = 4095.0;
+	private static final double MAX_DISTANCE_IN_METERS = 256.0;
 	private double lastReadDistance;
 	
 	private static final byte MAX_NUMBER_OF_STRIDES = (byte) 128;
@@ -33,7 +33,7 @@ public class TrackedDataItemConverter {
 	private SessionDetail createSessionDetail(final TrackedDataItem dataItem) {
 		SessionDetail detail = new SessionDetail();
 		
-		final int distanceInMeter = getDistanceInMeter(dataItem.getDistanceInOne16thsMeter());
+		final int distanceInMeter = getDistanceInMeter(dataItem.getDistanceInMeter());
 		detail.setDistanceInMeter(distanceInMeter);
 		
 		final int heartRateInBpm = dataItem.getHeartRateInBpm();
@@ -42,7 +42,7 @@ public class TrackedDataItemConverter {
 		final int numberOfStrides = getNumberOfStrides(dataItem.getStrides());
 		detail.setNumberOfStrides(numberOfStrides);
 		
-		final float speed = getSpeedInMetersPerSecond(dataItem.getSpeedInOne256thsMeterPerSecond());
+		final float speed = getSpeedInMetersPerSecond(dataItem.getSpeedInMeterPerSecond());
 		detail.setSpeedInMeterPerSecond(speed);
 		
 		final Date currentDate = new Date();
@@ -51,13 +51,13 @@ public class TrackedDataItemConverter {
 		return detail;
 	}
 	
-	private int getDistanceInMeter(final double distanceIn16thsMeter) {
-		Double currentDistanceIn16thsMeter = distanceIn16thsMeter;
-		if (distanceIn16thsMeter < lastReadDistance)
-			currentDistanceIn16thsMeter += MAX_DISTANCE_IN_16THS_METERS - lastReadDistance;
+	private int getDistanceInMeter(final double distanceInMeter) {
+		Double currentDistanceMeter = distanceInMeter;
+		if (distanceInMeter < lastReadDistance)
+			currentDistanceMeter += MAX_DISTANCE_IN_METERS - lastReadDistance;
 	
-		lastReadDistance = distanceIn16thsMeter;		
-		return currentDistanceIn16thsMeter.intValue() * 16;
+		lastReadDistance = distanceInMeter;		
+		return currentDistanceMeter.intValue();
 	}
 	
 	private int getNumberOfStrides(final byte numberOfStrides) {
@@ -69,7 +69,7 @@ public class TrackedDataItemConverter {
 		return currentNumberOfStrides;
 	}
 	
-	private float getSpeedInMetersPerSecond(final double speedIn256thMetersPerSecond) {
-		return (float)speedIn256thMetersPerSecond * 256;
+	private float getSpeedInMetersPerSecond(final double speedInMetersPerSecond) {
+		return (float)speedInMetersPerSecond;
 	}
 }
