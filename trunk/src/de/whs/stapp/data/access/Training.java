@@ -69,7 +69,6 @@ public class Training {
 
 		state = TrainingState.RUNNING;
 		currentSession = database.newTrainingSession();
-		// TODO Wer setzt das Datum (TrainingDate / SessionDate)
 		tracker.registerListener(dataListener);
 		
 		stopWatch.start();
@@ -88,11 +87,7 @@ public class Training {
 		state = TrainingState.FINISHED;
 		
 		currentSession.setDurationInMs(stopWatch.getElapsedMilliseconds());
-		
-		// TODO store the currentSession in database
-		// Ich benötige ich AN DIESER STELLE auch eine Funktion
-		// um eine bestehende Session noch einmal zu aktualisieren.
-		// Mit den fertigen Trainingsdaten, die mir hier nun vorliegen...!
+		database.updateTrainingSession(currentSession);
 	}
 	
 	/**
