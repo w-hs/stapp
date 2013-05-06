@@ -142,4 +142,17 @@ public class SessionDetail {
 	public void setNumberOfStrides(int numberOfStrides) {
 		this.numberOfStrides = numberOfStrides;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SessionDetail [sessionDetailId=" + sessionDetailId
+				+ ", trainingSessionId=" + trainingSessionId + ", timestamp="
+				+ timestamp + ", heartRateInBpm=" + heartRateInBpm
+				+ ", distanceInMeter=" + distanceInMeter
+				+ ", speedInMeterPerSecond=" + speedInMeterPerSecond
+				+ ", numberOfStrides=" + numberOfStrides + "]";
+	}
 }

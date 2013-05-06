@@ -91,4 +91,14 @@ public class TrainingSession {
 	public void setDurationInMs(long durationInMs) {
 		this.durationInMs = durationInMs;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TrainingSession [sessionId=" + sessionId + ", trainingDate="
+				+ trainingDate + ", distanceInMeters=" + distanceInMeters
+				+ ", durationInMs=" + durationInMs + "]";
+	}
 }

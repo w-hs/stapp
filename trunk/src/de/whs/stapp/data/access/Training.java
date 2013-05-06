@@ -3,6 +3,8 @@ package de.whs.stapp.data.access;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import de.whs.stapp.data.bluetooth.DataTracker;
 import de.whs.stapp.data.bluetooth.TrackedDataItem;
 import de.whs.stapp.data.bluetooth.TrackedDataListener;
@@ -15,6 +17,8 @@ import de.whs.stapp.data.storage.TrainingSession;
  * @author Chris
  */
 public class Training {
+	
+	private static final String LOG_TAG = "Training";
 	
 	private DataTracker tracker;
 	private DatabaseAdapter database;	
@@ -63,7 +67,7 @@ public class Training {
 	/**
 	 * Startet das {@link Training}.
 	 */
-	public void start() {
+	public void start() {	
 		if (state != TrainingState.NEW)
 			return;
 
@@ -72,6 +76,8 @@ public class Training {
 		tracker.registerListener(dataListener);
 		
 		stopWatch.start();
+		
+		Log.i(LOG_TAG, "Training is started. " + this.toString());
 	}
 
 	/**
@@ -88,6 +94,8 @@ public class Training {
 		
 		currentSession.setDurationInMs(stopWatch.getElapsedMilliseconds());
 		database.updateTrainingSession(currentSession);
+		
+		Log.i(LOG_TAG, "Training is stopped. " + this.toString());
 	}
 	
 	/**
@@ -99,6 +107,8 @@ public class Training {
 		
 		stopWatch.stop();
 		state = TrainingState.PAUSED;
+		
+		Log.i(LOG_TAG, "Training is paused. " + this.toString());
 	}
 	
 	/**
@@ -110,6 +120,8 @@ public class Training {
 		
 		state = TrainingState.RUNNING;
 		stopWatch.start();
+		
+		Log.i(LOG_TAG, "Training is resumed. " + this.toString());
 	}
 
 	/**
@@ -121,8 +133,10 @@ public class Training {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
 		
-		if (!sessionDetailListener.contains(listener))
+		if (!sessionDetailListener.contains(listener)) {
 			sessionDetailListener.add(listener);
+			Log.d(LOG_TAG, "A new SessionDetailListener is registered.");
+		}
 	}
 
 	/**
@@ -133,8 +147,10 @@ public class Training {
 		if (listener == null)
 			throw new IllegalArgumentException("listener cannot be null");
 
-		if (sessionDetailListener.contains(listener))
+		if (sessionDetailListener.contains(listener)) {
 			sessionDetailListener.remove(listener);
+			Log.d(LOG_TAG, "A SessionDetailListener is unregistered.");
+		}
 	}
 
 	private void initializeDataListener() {
@@ -142,6 +158,7 @@ public class Training {
 			@Override
 			public void trackData(TrackedDataItem dataItem) {
 				assert dataItem != null : "dateItem cannot be null";
+				Log.d(LOG_TAG, "Recieved a new trackedDataItem " + dataItem.toString());
 				if (state == TrainingState.RUNNING)
 					processTrackedData(dataItem);
 			}
@@ -149,6 +166,7 @@ public class Training {
 	}
 
 	private void processTrackedData(TrackedDataItem dataItem) {		
+		Log.d(LOG_TAG, "The recieved trackedDataItem will be processed now.");
 		final int trainingSessionId = currentSession.getSessionId();
 		
 		SessionDetail detail = dataItemConverter.toSessionDetail(dataItem);
@@ -157,6 +175,8 @@ public class Training {
 		notifyTrainingSessionListeners(detail);
 		database.storeSessionDetail(detail);
 		
+		Log.d(LOG_TAG, "Created a new SessionDetail instance: " + detail.toString());
+		
 		int distanceInMeters = currentSession.getDistanceInMeters() + detail.getDistanceInMeter();
 		currentSession.setDistanceInMeters(distanceInMeters);
 	}
@@ -164,5 +184,14 @@ public class Training {
 	private void notifyTrainingSessionListeners(SessionDetail sessionDetail) {
 		for (SessionDetailListener listener : sessionDetailListener)
 			listener.listen(sessionDetail);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Training [state=" + state + ", currentSession="
+				+ currentSession + "]";
 	}
 }
