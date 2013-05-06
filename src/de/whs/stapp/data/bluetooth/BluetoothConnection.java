@@ -323,9 +323,10 @@ public class BluetoothConnection {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            if (device.getName().contains(HXM_DEVICE_NAME_PREFIX)){
+            if (device.getName().startsWith(HXM_DEVICE_NAME_PREFIX)){
             	mAdapter.cancelDiscovery();
             	try {
+            		Log.d(LOG_TAG, "HxM-Sensor discovered");
             		connectDevice(device.getAddress());
             	} catch (BluetoothException e) {
             		Log.e(LOG_TAG, "Error while connecting to device: " + e.getMessage());

@@ -1,6 +1,5 @@
 package de.whs.stapp.data.bluetooth;
 
-import java.util.Arrays;
 
 /**
  * Diese Klasse dient als Datencontainer für 
@@ -19,8 +18,8 @@ public class TrackedDataItem {
 	private byte heartRateInBpm;
 	private byte heartBeatNumber;
 	private int[] heartBeatTimestamps;
-	private double distanceInOne16thsMeter;
-	private double speedInOne256thsMeterPerSecond;
+	private double distanceInMeter;
+	private double speedInMeterPerSecond;
 	private byte strides;
 	
 	
@@ -60,8 +59,8 @@ public class TrackedDataItem {
 		this.heartRateInBpm = heartRate;
 		this.heartBeatNumber = heartBeatNumber;
 		this.heartBeatTimestamps = heartBeatTimestamps;
-		this.distanceInOne16thsMeter = distance;
-		this.speedInOne256thsMeterPerSecond = speed;
+		this.distanceInMeter = distance;
+		this.speedInMeterPerSecond = speed;
 		this.strides = strides;
 	}
 
@@ -225,8 +224,8 @@ public class TrackedDataItem {
 	 * 
 	 * @return die Distanz in 1/16 Meter
 	 */
-	public double getDistanceInOne16thsMeter() {
-		return distanceInOne16thsMeter;
+	public double getDistanceInMeter() {
+		return distanceInMeter;
 	}
 
 	/**
@@ -234,8 +233,8 @@ public class TrackedDataItem {
 	 * 
 	 * @param distanceInOne16thsMeter - Distanz in 1/16 Meter
 	 */
-	public void setDistanceInOne16thsMeter(double distanceInOne16thsMeter) {
-		this.distanceInOne16thsMeter = distanceInOne16thsMeter;
+	public void setDistanceInMeter(double distanceInOne16thsMeter) {
+		this.distanceInMeter = distanceInOne16thsMeter;
 	}
 
 	/**
@@ -244,18 +243,18 @@ public class TrackedDataItem {
 	 * 
 	 * @return die Momentangeschwindigkeit
 	 */
-	public double getSpeedInOne256thsMeterPerSecond() {
-		return speedInOne256thsMeterPerSecond;
+	public double getSpeedInMeterPerSecond() {
+		return speedInMeterPerSecond;
 	}
 
 	/**
 	 * Setzt die Momentangeschwindigkeit.
 	 * 
-	 * @param speedInOne256thsMeterPerSecond - Momentangeschwindigkeit
+	 * @param speedInMeterPerSecond - Momentangeschwindigkeit
 	 */
-	public void setSpeedInOne256thsMeterPerSecond(
-			double speedInOne256thsMeterPerSecond) {
-		this.speedInOne256thsMeterPerSecond = speedInOne256thsMeterPerSecond;
+	public void setSpeedInMeterPerSecond(
+			double speedInMeterPerSecond) {
+		this.speedInMeterPerSecond = speedInMeterPerSecond;
 	}
 
 	//TODO
@@ -287,8 +286,8 @@ public class TrackedDataItem {
 		return "TrackedDataItem [batteryChargeInPercent="
 				+ batteryChargeInPercent + ", heartRateInBpm=" + heartRateInBpm
 				+ ", heartBeatNumber=" + heartBeatNumber
-				+ ", distanceInOne16thsMeter=" + distanceInOne16thsMeter
-				+ ", speedInOne256thsMeterPerSecond="
-				+ speedInOne256thsMeterPerSecond + ", strides=" + strides + "]";
+				+ ", distanceInMeter=" + distanceInMeter
+				+ ", speedInMeterPerSecond="
+				+ speedInMeterPerSecond + ", strides=" + strides + "]";
 	}
 }
