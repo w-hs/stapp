@@ -184,7 +184,9 @@ public class StappActivity extends FragmentActivity {
 			} else {
 				TrainingState state = mCurrentTraining.getState();
 				if (state == TrainingState.RUNNING && start != null)
-					start.setVisible(true);
+				{
+					start.setVisible(false);
+				}
 
 				if (state == TrainingState.FINISHED
 						|| state == TrainingState.NEW && pause != null

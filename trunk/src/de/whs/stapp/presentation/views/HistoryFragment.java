@@ -64,6 +64,7 @@ public class HistoryFragment extends Fragment {
 	public void setHistory()
 	{
 		StappActivity sa = (StappActivity) this.getActivity();
+		if(sa == null) return;
 		DataAccess dataAccess = sa.getStappDataAccess();
 		ArrayList<TrainingSession> sessions = (ArrayList<TrainingSession>) dataAccess
 				.getSessionHistory();
