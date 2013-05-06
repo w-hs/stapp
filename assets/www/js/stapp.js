@@ -16,8 +16,8 @@ var stapp =
         },
         stopTraining: function(){        	
         	this.timerValue = 0;
-        	this.trainingTimer = null
         	window.clearInterval(this.trainingTimer);
+			this.trainingTimer = null
         },
         pauseTraining: function(){        	
         	window.clearInterval(this.trainingTimer);        	
