@@ -17,6 +17,11 @@ public class TrackedDataItemConverter {
 	
 	private static final byte MAX_NUMBER_OF_STRIDES = (byte) 128;
 	private byte lastReadNumberOfStrides;
+	private boolean hasDistanceOverflowed;
+	private byte firstStrides;
+	private double firstDistance;
+	private boolean hasStridesOverflowed;
+	private boolean isFirstPackage;
 	
 	/**
 	 * 
@@ -32,6 +37,12 @@ public class TrackedDataItemConverter {
 	
 	private SessionDetail createSessionDetail(final TrackedDataItem dataItem) {
 		SessionDetail detail = new SessionDetail();
+		
+		if (isFirstPackage) {
+			firstDistance = dataItem.getDistanceInMeter();
+			firstStrides = dataItem.getStrides();
+			isFirstPackage = false;
+		}
 		
 		final int distanceInMeter = getDistanceInMeter(dataItem.getDistanceInMeter());
 		detail.setDistanceInMeter(distanceInMeter);
@@ -53,23 +64,40 @@ public class TrackedDataItemConverter {
 	
 	private int getDistanceInMeter(final double distanceInMeter) {
 		Double currentDistanceMeter = distanceInMeter;
-		if (distanceInMeter < lastReadDistance)
+		if (distanceInMeter < lastReadDistance) {
 			currentDistanceMeter += MAX_DISTANCE_IN_METERS - lastReadDistance;
-	
-		lastReadDistance = distanceInMeter;		
-		return currentDistanceMeter.intValue();
+			hasDistanceOverflowed = true;
+		}
+			
+		lastReadDistance = distanceInMeter;	
+		
+		if (hasDistanceOverflowed)
+			return currentDistanceMeter.intValue();
+		else
+			return currentDistanceMeter.intValue() - (int)firstDistance;
 	}
 	
 	private int getNumberOfStrides(final byte numberOfStrides) {
 		byte currentNumberOfStrides = numberOfStrides;
-		if (numberOfStrides < lastReadNumberOfStrides)
+		if (numberOfStrides < lastReadNumberOfStrides) {
 			currentNumberOfStrides += MAX_NUMBER_OF_STRIDES - lastReadNumberOfStrides;
+			hasStridesOverflowed = true;
+		}	
 		
 		lastReadNumberOfStrides = numberOfStrides;
-		return currentNumberOfStrides;
+		if (hasStridesOverflowed)
+			return currentNumberOfStrides;
+		else
+			return currentNumberOfStrides - firstStrides;
 	}
 	
 	private float getSpeedInMetersPerSecond(final double speedInMetersPerSecond) {
 		return (float)speedInMetersPerSecond;
+	}
+
+	public void prepareForFirstPackage() {
+		isFirstPackage = true;
+		hasDistanceOverflowed = false;
+		hasStridesOverflowed = false;
 	}
 }

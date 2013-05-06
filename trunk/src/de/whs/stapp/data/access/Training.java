@@ -27,7 +27,7 @@ public class Training {
 	private StopWatch stopWatch = new StopWatch();
 	private TrainingState state = TrainingState.NEW;
 	private TrainingSession currentSession = new TrainingSession();
-	private TrackedDataItemConverter dataItemConverter = new TrackedDataItemConverter();
+	private TrackedDataItemConverter converter = new TrackedDataItemConverter();
 	
 	private List<SessionDetailListener> sessionDetailListener =
 			new ArrayList<SessionDetailListener>();
@@ -73,8 +73,8 @@ public class Training {
 
 		state = TrainingState.RUNNING;
 		currentSession = database.newTrainingSession();
+		converter.prepareForFirstPackage();
 		tracker.registerListener(dataListener);
-		
 		stopWatch.start();
 		
 		Log.i(LOG_TAG, "Training is started. " + this.toString());
@@ -169,7 +169,7 @@ public class Training {
 		Log.d(LOG_TAG, "The recieved trackedDataItem will be processed now.");
 		final int trainingSessionId = currentSession.getSessionId();
 		
-		SessionDetail detail = dataItemConverter.toSessionDetail(dataItem);
+		SessionDetail detail = converter.toSessionDetail(dataItem);
 		detail.setTrainingSessionId(trainingSessionId);
 				
 		notifyTrainingSessionListeners(detail);
