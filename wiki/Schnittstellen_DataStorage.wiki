@@ -1,4 +1,6 @@
+#summary Beinhaltet die Schnittstelle für den Datenbankzugriff
 #labels Doc-Technical
+
 Es werden alle Schnittstellen beschrieben welche den Zugriff auf die Datenbank unterstützt.
 
 = Schnittstellen DataStorage =
