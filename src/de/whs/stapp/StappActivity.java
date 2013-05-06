@@ -161,6 +161,7 @@ public class StappActivity extends FragmentActivity {
 				break;
 			}
 		}
+		
 		if (fragment.getClass() == SessionFragment.class) {
 
 			// Änderbare Menupunkte
@@ -187,6 +188,9 @@ public class StappActivity extends FragmentActivity {
 			pause.setVisible(false);
 			stop.setVisible(false);
 		}
+		
+		
+		
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -237,6 +241,9 @@ public class StappActivity extends FragmentActivity {
 			returnValue = super.onOptionsItemSelected(item);
 			break;
 		}
+		
+		this.invalidateOptionsMenu();
+		
 		return returnValue;
 	}
 
