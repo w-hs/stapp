@@ -26,17 +26,17 @@ import de.whs.stapp.presentation.views.TabListener;
 
 /**
  * Standard-Einstiegspunkt für das Stapp-Projekt. Enthält die Activity, welche
- * das gesamte Produkt verwaltet. 
+ * das gesamte Produkt verwaltet.
  * 
  * @author Thomas
  * 
  */
 public class StappActivity extends FragmentActivity {
-	
+
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
-	
+
 	private BluetoothConnection mBluetooth;
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
@@ -54,7 +54,6 @@ public class StappActivity extends FragmentActivity {
 
 		initBluetoothConnection();
 		initDataAccess();
-		
 
 		if (savedInstanceState != null) {
 			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
@@ -71,27 +70,26 @@ public class StappActivity extends FragmentActivity {
 		mBluetooth = new BluetoothConnection(getApplicationContext());
 		try {
 			mBluetooth.open();
-		}
-		catch (BluetoothAdapterDisabledException e) {
+		} catch (BluetoothAdapterDisabledException e) {
 			mBluetooth.turnOnBt(this);
-		}
-		catch (BluetoothException e) {
+		} catch (BluetoothException e) {
 			// Vorläufig
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		mBluetooth.close();
 		super.onDestroy();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
-		if (requestCode == BluetoothConnection.REQUEST_CODE && resultCode != RESULT_CANCELED){
+
+		if (requestCode == BluetoothConnection.REQUEST_CODE
+				&& resultCode != RESULT_CANCELED) {
 			try {
 				mBluetooth.open();
 			} catch (BluetoothException e) {
@@ -174,16 +172,14 @@ public class StappActivity extends FragmentActivity {
 				if (state == TrainingState.RUNNING && start != null)
 					start.setVisible(true);
 
-				if (state == TrainingState.FINISHED || 
-					state == TrainingState.NEW && 
-					pause != null && 
-					stop != null) 
-				{					
+				if (state == TrainingState.FINISHED
+						|| state == TrainingState.NEW && pause != null
+						&& stop != null) {
 					stop.setVisible(false);
 					pause.setVisible(false);
 				}
 				if (state == TrainingState.PAUSED && pause != null) {
-						pause.setVisible(false);
+					pause.setVisible(false);
 				}
 			}
 		} else if (fragment.getClass() == HistoryFragment.class) {
@@ -201,7 +197,7 @@ public class StappActivity extends FragmentActivity {
 				.getSelectedNavigationIndex());
 
 		boolean returnValue = false;
-		
+
 		switch (item.getItemId()) {
 		case R.id.action_start:
 			if (fragment.getClass() == SessionFragment.class) {
@@ -248,5 +244,15 @@ public class StappActivity extends FragmentActivity {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+	}
+
+	/**
+	 * Stellt einen getter bereit, damit andere Fragmente auch auf den
+	 * DataAccess zugreifen können.
+	 * 
+	 * @return Gibt den DataAccess zurück.
+	 */
+	public DataAccess getStappDataAccess() {
+		return mStappDataAccess;
 	}
 }

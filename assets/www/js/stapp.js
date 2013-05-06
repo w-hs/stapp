@@ -5,8 +5,8 @@ var stapp =
         timerInterval:100,
         updateTraining: function (jsonStr) {
             var t = JSON.parse(jsonStr);
-            var training = new training(t.distance, t.heartfrequence);
-            $('#distance > .DataContent').html(training.distance + "mps");
+            var training = new this.training(t.distance, t.heartfrequence);
+            $('#distance > .DataContent').html(training.distance + "m");
             $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
         },
         startTraining: function () { 
@@ -45,8 +45,8 @@ var stapp =
         displayHistoryData: function (history) {
             
             $('#overview > #runCount > .content').html(history.runs);
-            $('#overview > #distance > .content').html(history.distance);
-            $('#overview > #duration > .content').html(history.duration);
+            $('#overview > #distance > .content').html(history.distance + "m");
+            $('#overview > #duration > .content').html(history.duration + "h");
 
             $('#sessiondetails').html("");
             for (var i = 0; i < history.sessions.length; i++) {
