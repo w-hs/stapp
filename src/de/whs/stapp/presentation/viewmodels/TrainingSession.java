@@ -1,6 +1,5 @@
 package de.whs.stapp.presentation.viewmodels;
 
-import java.math.BigDecimal;
 
 /**
  * ViewModel für die Ansicht Trainingseinheit.
@@ -18,9 +17,9 @@ public class TrainingSession extends StappViewModel {
 	 * @param distance Zurückgelegte Distanz.
 	 * @param heartfrequence Aktuelle Herzfrequenz.
 	 */
-	public TrainingSession(BigDecimal distance, int heartfrequence) {
+	public TrainingSession(int distance, int heartfrequence) {
 		super();
-		this.distance = distance.toString();
+		this.distance = Integer.toString(distance);
 		this.heartfrequence = Integer.toString(heartfrequence);
 	}
 	

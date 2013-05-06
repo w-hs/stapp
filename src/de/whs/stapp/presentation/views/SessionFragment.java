@@ -8,66 +8,87 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
+import de.whs.stapp.data.access.SessionDetailListener;
+import de.whs.stapp.data.storage.SessionDetail;
 import de.whs.stapp.presentation.TrainingSessionWebView;
+import de.whs.stapp.presentation.viewmodels.TrainingSession;
 
 /**
- * Das Trainingseinheiten Fragment/Tab welches ein Web View über Trainingseinheiten Informationen beinhaltet.
+ * Das Trainingseinheiten Fragment/Tab welches ein Web View über
+ * Trainingseinheiten Informationen beinhaltet.
+ * 
  * @author DanielW7
- *
+ * 
  */
-public class SessionFragment extends Fragment {
-	
+public class SessionFragment extends Fragment implements SessionDetailListener {
+
 	private TrainingSessionWebView mTrainingseinheitWebview;
+
 	/**
 	 * Konstruktor des Tabs in dem Das Layout geladen wird.
-	 * @param inflater inflater
-	 * @param container container
-	 * @param savedInstanceState savedInstanceState
+	 * 
+	 * @param inflater
+	 *            inflater
+	 * @param container
+	 *            container
+	 * @param savedInstanceState
+	 *            savedInstanceState
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		if (container == null) {
-            return null;
-        }
-		return (RelativeLayout)inflater.inflate(R.layout.tab_trainingsession_layout, container, false);
+			return null;
+		}
+		return (RelativeLayout) inflater.inflate(
+				R.layout.tab_trainingsession_layout, container, false);
 	}
-	
+
 	/**
 	 * Wird aufgerufen wenn alle Layouts und Activitys geladen sind.
-	 * @param savedInstanceState Saved State
+	 * 
+	 * @param savedInstanceState
+	 *            Saved State
 	 */
-	@Override 
-	public void onActivityCreated(Bundle savedInstanceState) { 
-	    super.onActivityCreated(savedInstanceState);   
-	    
-	    
-	    mTrainingseinheitWebview = new TrainingSessionWebView(this.getActivity());
-        RelativeLayout relativeLayout = 
-                        (RelativeLayout) this.getActivity().findViewById(R.id.WrapperTrainingseinheit);
-        RelativeLayout.LayoutParams relParams = 
-                new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        relativeLayout.addView(mTrainingseinheitWebview, relParams);
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		mTrainingseinheitWebview = new TrainingSessionWebView(
+				this.getActivity());
+		RelativeLayout relativeLayout = (RelativeLayout) this.getActivity()
+				.findViewById(R.id.WrapperTrainingseinheit);
+		RelativeLayout.LayoutParams relParams = new RelativeLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		relativeLayout.addView(mTrainingseinheitWebview, relParams);
 	}
-	
+
 	/**
 	 * Führt die startTrainings-Methode der WebView aus.
 	 */
-	public void startTraining(){
+	public void startTraining() {
 		mTrainingseinheitWebview.startTraining();
 	}
-	
+
 	/**
 	 * Führt die stopTraining-Methode der WebView aus.
 	 */
-	public void stopTraining(){
+	public void stopTraining() {
 		mTrainingseinheitWebview.stopTraining();
 	}
-	
+
 	/**
 	 * Führt die pauseTraining-Funktion der WebView aus.
 	 */
-	public void pauseTraining(){
+	public void pauseTraining() {
 		mTrainingseinheitWebview.pauseTraining();
+	}
+
+	@Override
+	public void listen(SessionDetail detail) {
+
+		TrainingSession trainingData = new TrainingSession(
+				detail.getDistanceInMeter(), detail.getHeartRateInBpm());
+		mTrainingseinheitWebview.updateTrainingData(trainingData);
 	}
 }

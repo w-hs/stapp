@@ -13,7 +13,7 @@ import android.webkit.WebView;
  * 
  */
 @SuppressLint("SetJavaScriptEnabled")
-public class StappWebView extends WebView {
+public class StappWebView extends WebView{
 
 	/***
 	 * Konstruktor der WebView-Klasse.
