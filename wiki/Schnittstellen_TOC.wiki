@@ -13,3 +13,4 @@ Hier werden alle Schnittstellen dokumentiert, die im stapp-Projekt exisitieren. 
   # [Schnittstellen_Data_Access]
   # [Schnittstellen_DatenTransfer]
   # [Schnittstelle_BluetoothConnection]
+  # [Schnittstellen_DataStorage]
