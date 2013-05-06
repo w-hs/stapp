@@ -13,14 +13,10 @@ import de.whs.stapp.data.storage.SessionDetail;
 public class TrackedDataItemConverter {
 
 	private static final double MAX_DISTANCE_IN_METERS = 256.0;
-	private double lastReadDistance;
-	
 	private static final byte MAX_NUMBER_OF_STRIDES = (byte) 128;
+	
+	private double lastReadDistance;
 	private byte lastReadNumberOfStrides;
-	private boolean hasDistanceOverflowed;
-	private byte firstStrides;
-	private double firstDistance;
-	private boolean hasStridesOverflowed;
 	private boolean isFirstPackage;
 	
 	/**
@@ -66,7 +62,6 @@ public class TrackedDataItemConverter {
 		double currentDistanceMeter = distanceInMeter;
 		if (distanceInMeter < lastReadDistance) {
 			currentDistanceMeter += MAX_DISTANCE_IN_METERS - lastReadDistance;
-			hasDistanceOverflowed = true;
 		} else {
 			currentDistanceMeter -= lastReadDistance;
 		}
@@ -80,7 +75,6 @@ public class TrackedDataItemConverter {
 		byte currentNumberOfStrides = numberOfStrides;
 		if (numberOfStrides < lastReadNumberOfStrides) {
 			currentNumberOfStrides += MAX_NUMBER_OF_STRIDES - lastReadNumberOfStrides;
-			hasStridesOverflowed = true;
 		} else {
 			currentNumberOfStrides -= lastReadNumberOfStrides;
 		}
@@ -96,7 +90,5 @@ public class TrackedDataItemConverter {
 
 	public void prepareForFirstPackage() {
 		isFirstPackage = true;
-		hasDistanceOverflowed = false;
-		hasStridesOverflowed = false;
 	}
 }
