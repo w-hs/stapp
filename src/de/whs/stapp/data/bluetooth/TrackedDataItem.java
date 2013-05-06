@@ -284,15 +284,11 @@ public class TrackedDataItem {
 	 */
 	@Override
 	public String toString() {
-		return "TrackedDataItem [firmwareId=" + firmwareId
-				+ ", firmwareVersion=" + firmwareVersion + ", hardwareId="
-				+ hardwareId + ", hardwareVersion=" + hardwareVersion
-				+ ", batteryChargeInPercent=" + batteryChargeInPercent
-				+ ", heartRateInBpm=" + heartRateInBpm + ", heartBeatNumber="
-				+ heartBeatNumber + ", heartBeatTimestamps="
-				+ Arrays.toString(heartBeatTimestamps)
+		return "TrackedDataItem [batteryChargeInPercent="
+				+ batteryChargeInPercent + ", heartRateInBpm=" + heartRateInBpm
+				+ ", heartBeatNumber=" + heartBeatNumber
 				+ ", distanceInOne16thsMeter=" + distanceInOne16thsMeter
 				+ ", speedInOne256thsMeterPerSecond="
 				+ speedInOne256thsMeterPerSecond + ", strides=" + strides + "]";
-	}	
+	}
 }
