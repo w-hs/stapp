@@ -1,5 +1,7 @@
 package de.whs.stapp.data.bluetooth;
 
+import java.util.Arrays;
+
 /**
  * Diese Klasse dient als Datencontainer für 
  * die vom nsor gelieferten Daten.
@@ -275,6 +277,22 @@ public class TrackedDataItem {
 	 */
 	public void setStrides(byte strides) {
 		this.strides = strides;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TrackedDataItem [firmwareId=" + firmwareId
+				+ ", firmwareVersion=" + firmwareVersion + ", hardwareId="
+				+ hardwareId + ", hardwareVersion=" + hardwareVersion
+				+ ", batteryChargeInPercent=" + batteryChargeInPercent
+				+ ", heartRateInBpm=" + heartRateInBpm + ", heartBeatNumber="
+				+ heartBeatNumber + ", heartBeatTimestamps="
+				+ Arrays.toString(heartBeatTimestamps)
+				+ ", distanceInOne16thsMeter=" + distanceInOne16thsMeter
+				+ ", speedInOne256thsMeterPerSecond="
+				+ speedInOne256thsMeterPerSecond + ", strides=" + strides + "]";
 	}	
-	
 }
