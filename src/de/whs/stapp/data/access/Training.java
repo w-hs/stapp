@@ -118,6 +118,10 @@ public class Training {
 		if (state != TrainingState.PAUSED)
 			return;
 		
+		// Während der Pause hat sich der interne Zustand des Sensors u.U. geändert,
+		// deshalb dürfen die Berechnungen nicht auf dem letzten Paket basieren
+		converter.prepareForFirstPackage();
+		
 		state = TrainingState.RUNNING;
 		stopWatch.start();
 		

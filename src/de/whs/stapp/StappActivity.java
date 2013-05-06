@@ -184,9 +184,7 @@ public class StappActivity extends FragmentActivity {
 			} else {
 				TrainingState state = mCurrentTraining.getState();
 				if (state == TrainingState.RUNNING && start != null)
-				{
-					start.setVisible(false);
-				}
+					start.setVisible(true);
 
 				if (state == TrainingState.FINISHED
 						|| state == TrainingState.NEW && pause != null
@@ -221,12 +219,12 @@ public class StappActivity extends FragmentActivity {
 		case R.id.action_start:
 			if (fragment.getClass() == SessionFragment.class) {
 
-				mCurrentTraining = mStappDataAccess.newTraining();
-
-				if(mCurrentTraining.getState() == TrainingState.PAUSED)
+				if(mCurrentTraining != null && mCurrentTraining.getState() == TrainingState.PAUSED)
 					mCurrentTraining.resume();
-				else
+				else  {
+					mCurrentTraining = mStappDataAccess.newTraining();
 					mCurrentTraining.start();
+				}
 				
 				((SessionFragment) fragment).startTraining();
 				mCurrentTraining.registerListener((SessionFragment) fragment);
