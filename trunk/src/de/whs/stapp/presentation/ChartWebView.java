@@ -1,11 +1,7 @@
 package de.whs.stapp.presentation;
 
-import java.util.List;
-
-import de.whs.stapp.data.storage.SessionDetail;
-import de.whs.stapp.presentation.viewmodels.SessionDetails;
-
 import android.content.Context;
+import de.whs.stapp.presentation.viewmodels.SessionDetails;
 
 /**
  * Stellt eine WebView für die Charts zur Verfügung. Enthält Funktionen zum

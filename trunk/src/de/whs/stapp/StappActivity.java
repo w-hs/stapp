@@ -4,6 +4,8 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,6 +39,8 @@ import de.whs.stapp.presentation.views.TabListener;
  */
 public class StappActivity extends FragmentActivity {
 
+	private static final String LOG_TAG = "StappActivity";
+	
 	private ViewPager mViewPager;
 	private ActionBar mActionBar;
 	private StappCollectionPagerAdapter mStappCollectionPagerAdapter;
@@ -217,42 +221,16 @@ public class StappActivity extends FragmentActivity {
 
 		switch (item.getItemId()) {
 		case R.id.action_start:
-			if (fragment.getClass() == SessionFragment.class) {
-
-				if(mCurrentTraining != null && mCurrentTraining.getState() == TrainingState.PAUSED)
-					mCurrentTraining.resume();
-				else  {
-					mCurrentTraining = mStappDataAccess.newTraining();
-					mCurrentTraining.start();
-				}
-				
-				((SessionFragment) fragment).startTraining();
-				mCurrentTraining.registerListener((SessionFragment) fragment);
-			}
-			returnValue = true;
+			returnValue = onStartOption(fragment);
 			break;
 		case R.id.action_pause:
-			if (fragment.getClass() == SessionFragment.class) {
-
-				((SessionFragment) fragment).pauseTraining();
-				mCurrentTraining.pause();
-			}
-			returnValue = true;
+			returnValue = onPauseOption(fragment);
 			break;
 		case R.id.action_stop:
-			if (fragment.getClass() == SessionFragment.class) {
-
-				if (mCurrentTraining != null)
-					mCurrentTraining.stop();
-				((SessionFragment) fragment).stopTraining();
-				mCurrentTraining.unregisterListener((SessionFragment) fragment);
-			}
-			returnValue = true;
+			returnValue = onStopOption(fragment);
 			break;
 		case R.id.settings:
-			Intent intent = new Intent(this, StappPreferenceActivity.class);
-			startActivity(intent);
-			return true;
+			return onSettingsOption();
 		default:
 			returnValue = super.onOptionsItemSelected(item);
 			break;
@@ -261,6 +239,55 @@ public class StappActivity extends FragmentActivity {
 		this.invalidateOptionsMenu();
 		
 		return returnValue;
+	}
+
+	private boolean onSettingsOption() {
+		Intent intent = new Intent(this, StappPreferenceActivity.class);
+		startActivity(intent);
+		
+		return true;
+	}
+
+	private boolean onStopOption(Fragment fragment) {
+		if (fragment.getClass() == SessionFragment.class) {
+
+			if (mCurrentTraining != null)
+				mCurrentTraining.stop();
+			((SessionFragment) fragment).stopTraining();
+			mCurrentTraining.unregisterListener((SessionFragment) fragment);
+			
+			AlertDialog dialog = createSaveTrainingDialog();
+			dialog.show();
+		}
+		
+		return true;
+	}
+
+	private boolean onPauseOption(Fragment fragment) {
+		if (fragment.getClass() == SessionFragment.class) {
+
+			((SessionFragment) fragment).pauseTraining();
+			mCurrentTraining.pause();
+		}
+
+		return true;
+	}
+
+	private boolean onStartOption(Fragment fragment) {
+		if (fragment.getClass() == SessionFragment.class) {
+
+			if(mCurrentTraining != null && mCurrentTraining.getState() == TrainingState.PAUSED)
+				mCurrentTraining.resume();
+			else  {
+				mCurrentTraining = mStappDataAccess.newTraining();
+				mCurrentTraining.start();
+			}
+			
+			((SessionFragment) fragment).startTraining();
+			mCurrentTraining.registerListener((SessionFragment) fragment);
+		}
+
+		return true;
 	}
 
 	@Override
@@ -277,5 +304,28 @@ public class StappActivity extends FragmentActivity {
 	 */
 	public DataAccess getStappDataAccess() {
 		return mStappDataAccess;
+	}
+	
+	private AlertDialog createSaveTrainingDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		
+		builder.setMessage(R.string.dialog_save_training_message)
+			.setTitle(R.string.dialog_save_training_title)
+			.setPositiveButton(R.string.dialog_save, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Log.i(LOG_TAG, "Training was saved");
+				}
+			})
+			.setNegativeButton(R.string.dialog_discard, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Log.i(LOG_TAG, "Training is going to be discarded");
+					mCurrentTraining.discardSession();
+					Log.i(LOG_TAG, "Training was discarded");
+				}
+			});
+		
+		return builder.create();
 	}
 }
