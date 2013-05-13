@@ -1,14 +1,12 @@
 package de.whs.stapp.presentation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import de.whs.stapp.StappActivity;
 import de.whs.stapp.data.access.DataAccess;
-import de.whs.stapp.data.storage.SessionDetail;
 import de.whs.stapp.data.storage.TrainingSession;
 import de.whs.stapp.presentation.viewmodels.History;
 import de.whs.stapp.presentation.views.ChartActivity;
@@ -41,14 +39,11 @@ public class StappWebViewClient extends WebViewClient {
 			History h = new History(sessions);
 			((HistoryWebView) view).setHistoryData(h);
 		}
-		else if(view.getClass() == ChartWebView.class){
-			
+		else if (view.getClass() == ChartWebView.class){
 			Context context = view.getContext();
-			ChartActivity ca = (ChartActivity) context;
-			List<SessionDetail> sd = ca.getSessionDetails();
-			
-			
-			((ChartWebView)view).setChartData(null);
+			ChartActivity ca = (ChartActivity) context;			
+
+			((ChartWebView)view).setChartData(ca.getChartData(-1));
 		}
 	}
 }

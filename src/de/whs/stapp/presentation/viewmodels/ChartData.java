@@ -6,7 +6,7 @@ package de.whs.stapp.presentation.viewmodels;
  * @author Thomas
  * 
  */
-public class SessionDetails extends StappViewModel {
+public class ChartData extends StappViewModel {
 	
 	
 }
