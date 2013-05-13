@@ -15,12 +15,12 @@ public class TrackedDataItem {
 	private String hardwareId;
 	private String hardwareVersion;
 	private byte batteryChargeInPercent;
-	private byte heartRateInBpm;
+	private int heartRateInBpm;
 	private byte heartBeatNumber;
 	private int[] heartBeatTimestamps;
 	private double distanceInMeter;
 	private double speedInMeterPerSecond;
-	private byte strides;
+	private int strides;
 	
 	
 	/**
@@ -47,8 +47,8 @@ public class TrackedDataItem {
 	//CHECKSTYLE:OFF
 	public TrackedDataItem(String firmwareId, String firmwareVersion,
 			String hardwareId, String hardwareVersion, byte batteryChargeInd,
-			byte heartRate, byte heartBeatNumber, int[] heartBeatTimestamps,
-			double distance, double speed, byte strides) 
+			int heartRate, byte heartBeatNumber, int[] heartBeatTimestamps,
+			double distance, double speed, int strides) 
 	//CHECKSTYLE:ON
 	{
 		this.firmwareId = firmwareId;
@@ -161,7 +161,7 @@ public class TrackedDataItem {
 	 * 
 	 * @return die Herzfrequenz
 	 */
-	public byte getHeartRateInBpm() {
+	public int getHeartRateInBpm() {
 		return heartRateInBpm;
 	}
 
@@ -170,7 +170,7 @@ public class TrackedDataItem {
 	 * 
 	 * @param heartRateInBpm - die Herzfrequenz
 	 */
-	public void setHeartRateInBpm(byte heartRateInBpm) {
+	public void setHeartRateInBpm(int heartRateInBpm) {
 		this.heartRateInBpm = heartRateInBpm;
 	}
 
@@ -265,7 +265,7 @@ public class TrackedDataItem {
 	 * 
 	 * @return Die Schrittanzahl
 	 */
-	public byte getStrides() {
+	public int getStrides() {
 		return strides;
 	}
 
@@ -274,7 +274,7 @@ public class TrackedDataItem {
 	 * 
 	 * @param strides - die Schrittanzahl
 	 */
-	public void setStrides(byte strides) {
+	public void setStrides(int strides) {
 		this.strides = strides;
 	}
 
