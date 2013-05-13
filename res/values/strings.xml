@@ -9,5 +9,9 @@
     <string name="action_start">Start</string>
     <string name="action_pause">Pause</string>
     <string name="action_stop">Stop</string>
+    <string name="dialog_save_training_message">Soll das Training gespeichert werden?</string>
+    <string name="dialog_save_training_title">Training speichern</string>
+    <string name="dialog_save">Speichern</string>
+    <string name="dialog_discard">Verwerfen</string>
 
 </resources>

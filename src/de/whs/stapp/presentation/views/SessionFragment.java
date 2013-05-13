@@ -78,6 +78,7 @@ public class SessionFragment extends Fragment implements SessionDetailListener {
 		mTrainingseinheitWebview.stopTraining();
 	}
 
+
 	/**
 	 * Führt die pauseTraining-Funktion der WebView aus.
 	 */
@@ -89,7 +90,6 @@ public class SessionFragment extends Fragment implements SessionDetailListener {
 	public void listen(SessionDetail detail) {
 		
 		StappActivity activity = (StappActivity)getActivity();
-		// TODO: Distanz aus Training holen
 		TrainingSession trainingData = new TrainingSession(
 				(int)activity.getCurrentTraining().getCurrentSession().getDistanceInMeters(),
 				detail.getHeartRateInBpm());
