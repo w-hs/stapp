@@ -21,10 +21,12 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int ic_menu_pause=0x7f020001;
-        public static final int ic_menu_play=0x7f020002;
-        public static final int ic_menu_stop=0x7f020003;
+        public static final int access_bluetooth=0x7f020000;
+        public static final int access_bluetooth_connected=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_menu_pause=0x7f020003;
+        public static final int ic_menu_play=0x7f020004;
+        public static final int ic_menu_stop=0x7f020005;
     }
     public static final class id {
         public static final int ChartWrapper=0x7f090001;
