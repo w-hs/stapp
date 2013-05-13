@@ -79,24 +79,6 @@ public class Training {
 		
 		Log.i(LOG_TAG, "Training is started. " + this.toString());
 	}
-
-	/**
-	 * Beendet das {@link Training}.
-	 */
-	public void stop() {
-		if (state == TrainingState.FINISHED) 
-			return;
-		
-		stopWatch.stop();	
-		
-		tracker.unregisterListener(dataListener);
-		state = TrainingState.FINISHED;
-		
-		currentSession.setDurationInMs(stopWatch.getElapsedMilliseconds());
-		database.updateTrainingSession(currentSession);
-		
-		Log.i(LOG_TAG, "Training is stopped. " + this.toString());
-	}
 	
 	/**
 	 * Pausiert das {@link Training}.
@@ -126,6 +108,38 @@ public class Training {
 		stopWatch.start();
 		
 		Log.i(LOG_TAG, "Training is resumed. " + this.toString());
+	}	
+
+	/**
+	 * Beendet das {@link Training}.
+	 */
+	public void stop() {
+		if (state == TrainingState.FINISHED) 
+			return;
+		
+		stopWatch.stop();	
+		
+		tracker.unregisterListener(dataListener);
+		state = TrainingState.FINISHED;
+		
+		currentSession.setDurationInMs(stopWatch.getElapsedMilliseconds());
+		database.updateTrainingSession(currentSession);
+		
+		Log.i(LOG_TAG, "Training is stopped. " + this.toString());
+	}
+	
+	/**
+	 * Verwirft die aktuelle {@link TrainingSession}.
+	 * (Der Datensatz wird das der Datenbank gelöscht)
+	 */
+	public void discardSession() {
+		try {
+			Log.d(LOG_TAG, "Try to discard the currentSession: " + currentSession);
+			database.deleteTrainingSession(currentSession.getSessionId());
+		}
+		catch (Exception e) {
+			Log.e(LOG_TAG, "Error while discarding the currentSession: " + currentSession, e);
+		}
 	}
 
 	/**
