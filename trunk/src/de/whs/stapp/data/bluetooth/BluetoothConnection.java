@@ -298,7 +298,7 @@ public class BluetoothConnection {
 				//TODO
 				break;
 			case BluetoothAdapter.STATE_ON:
-			
+				
 				break;
 			case BluetoothAdapter.STATE_TURNING_OFF:
 				

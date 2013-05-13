@@ -93,6 +93,8 @@ public class StappActivity extends FragmentActivity {
 			// Vorläufig
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
+		
+		
 	}
 
 	@Override
@@ -176,11 +178,17 @@ public class StappActivity extends FragmentActivity {
 				stop = curMenuItem;
 				stop.setVisible(true);
 				break;
+			case R.id.action_bluetooth:
+				if(mBluetooth.isOpen())
+					curMenuItem.setIcon(R.drawable.access_bluetooth_connected);
+				else
+					curMenuItem.setIcon(R.drawable.access_bluetooth);
+				break;
 			}
 		}
 		
 		if (fragment.getClass() == SessionFragment.class) {
-
+			
 			// Änderbare Menupunkte
 			if (mCurrentTraining == null && pause != null && stop != null) {
 				stop.setVisible(false);
@@ -188,7 +196,7 @@ public class StappActivity extends FragmentActivity {
 			} else {
 				TrainingState state = mCurrentTraining.getState();
 				if (state == TrainingState.RUNNING && start != null)
-					start.setVisible(true);
+					start.setVisible(false);
 
 				if (state == TrainingState.FINISHED
 						|| state == TrainingState.NEW && pause != null
@@ -205,7 +213,6 @@ public class StappActivity extends FragmentActivity {
 			pause.setVisible(false);
 			stop.setVisible(false);
 		}
-		
 		
 		
 		return super.onPrepareOptionsMenu(menu);
@@ -231,6 +238,17 @@ public class StappActivity extends FragmentActivity {
 			break;
 		case R.id.settings:
 			return onSettingsOption();
+		case R.id.action_bluetooth:
+			if(mBluetooth.isOpen())
+				mBluetooth.close();
+			else
+				try {
+					mBluetooth.open();
+				} catch (BluetoothException e) {
+					// Vorläufig
+					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+			break;
 		default:
 			returnValue = super.onOptionsItemSelected(item);
 			break;
