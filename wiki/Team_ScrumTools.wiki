@@ -37,6 +37,9 @@ Zur Erfassung der User-Stories, der Tasks und der Fehler verwenden wir das Issue
   * `StoryPrio-Nice`: Nice To Have Features, die zwar wünschenswert aber nicht zwingend erforderlich sind
   * `StoryPrio-Vision`: Visionen bzw. Ideen für die Zukunft, können bei Gelegenheit umgesetzt werden
 
+=== Abhängigkeiten ===
+Werden zu einer User Story Tasks angelegt, so können diese über das Label _Blocking_ verknüpft werden. Dazu schreibt man einfach die ID(s) der Task in das Label Blocking der User Story.
+
 == Wiki ==
 
 In dem Wiki von Google Code legen wir unsere Dokumentation ab. Dazu zählt die Projektdokumentation, Technische Dokumentation und die Bedierungsanleitung.
