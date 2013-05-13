@@ -1,5 +1,10 @@
 package de.whs.stapp.presentation.views;
 
+import java.util.List;
+
+import de.whs.stapp.data.access.StorageAccess;
+import de.whs.stapp.data.access.StorageAccessFactory;
+import de.whs.stapp.data.storage.SessionDetail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,7 +18,10 @@ import android.support.v4.app.FragmentActivity;
  */
 public class ChartActivity extends FragmentActivity {
 
-	@SuppressWarnings("unused")
+	private StorageAccess mStappStorageAccess;
+
+	private List<SessionDetail> mSessionDetails;
+
 	private int mSessionID;
 
 	@Override
@@ -25,5 +33,18 @@ public class ChartActivity extends FragmentActivity {
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(android.R.id.content, new ChartFragment()).commit();
+
+		mStappStorageAccess = StorageAccessFactory
+				.newStorageAccess(getApplicationContext());
+		mSessionDetails = mStappStorageAccess.getSessionDetails(mSessionID);
+	}
+
+	/**
+	 * Getter für die SessionDetails der Session.
+	 * 
+	 * @return Gibt eine Liste der Session Details zurück.
+	 */
+	public List<SessionDetail> getSessionDetails() {
+		return mSessionDetails;
 	}
 }

@@ -23,7 +23,7 @@ public class DataAccessFactory {
 	 * @param context Der Kontext, in dem die Instanz erzeugt wird.
 	 */
 	public static DataAccess newDataAccess(DataTracker tracker, Context context) {
-		if (tracker == null) 
+		if (tracker == null)
 			throw new IllegalArgumentException("tracker cannot be null!");
 		if (context == null)
 			throw new IllegalArgumentException("context cannot be null!");
