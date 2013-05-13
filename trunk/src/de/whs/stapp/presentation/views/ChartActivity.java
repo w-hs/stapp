@@ -2,6 +2,8 @@ package de.whs.stapp.presentation.views;
 
 import java.util.List;
 
+import de.whs.stapp.data.access.ChartData;
+import de.whs.stapp.data.access.SessionDataInterpreter;
 import de.whs.stapp.data.access.StorageAccess;
 import de.whs.stapp.data.access.StorageAccessFactory;
 import de.whs.stapp.data.storage.SessionDetail;
@@ -19,8 +21,8 @@ import android.support.v4.app.FragmentActivity;
 public class ChartActivity extends FragmentActivity {
 
 	private StorageAccess mStappStorageAccess;
-
-	private List<SessionDetail> mSessionDetails;
+	
+	private SessionDataInterpreter interpreter;
 
 	private int mSessionID;
 
@@ -36,15 +38,18 @@ public class ChartActivity extends FragmentActivity {
 
 		mStappStorageAccess = StorageAccessFactory
 				.newStorageAccess(getApplicationContext());
-		mSessionDetails = mStappStorageAccess.getSessionDetails(mSessionID);
+		List<SessionDetail> mSessionDetails = mStappStorageAccess
+				.getSessionDetails(mSessionID);
+		interpreter = new SessionDataInterpreter(mSessionDetails);
 	}
 
 	/**
-	 * Getter für die SessionDetails der Session.
-	 * 
-	 * @return Gibt eine Liste der Session Details zurück.
+	 * @param amountOfDetails Detailgrad.
+	 * @return Die Chart Daten.
 	 */
-	public List<SessionDetail> getSessionDetails() {
-		return mSessionDetails;
+	public de.whs.stapp.presentation.viewmodels.ChartData getChartData(int amountOfDetails) {
+		ChartData cd = interpreter.getHeartratePerTime(amountOfDetails);
+		//TODO iwie muss hier wohl noch ein viewmodel erzeugt werden?!
+		return null;
 	}
 }
