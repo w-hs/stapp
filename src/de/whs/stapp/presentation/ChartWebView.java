@@ -1,5 +1,10 @@
 package de.whs.stapp.presentation;
 
+import java.util.List;
+
+import de.whs.stapp.data.storage.SessionDetail;
+import de.whs.stapp.presentation.viewmodels.SessionDetails;
+
 import android.content.Context;
 
 /**
@@ -35,5 +40,19 @@ public class ChartWebView extends StappWebView {
 			StappWebAppInterface stappWebAppInterface) {
 		super(context, stappWebAppInterface);
 		this.loadUrl(Constants.HTML_LOCAL_CHARTS);
+	}
+
+	/**
+	 * Ruft die setCharts Funktion im Javascript auf und übergibt die Daten aus
+	 * der Datenbank.
+	 * 
+	 * @param sessionDetails
+	 *            Daten einer bestimmten Datenreihe aus der Datenbank.
+	 */
+	public void setChartData(SessionDetails sessionDetails) {
+
+		String functionCall = Javascript.getFunctionCall(
+				Constants.JS_CHARTS_SET, sessionDetails);
+		this.loadUrl(functionCall);
 	}
 }

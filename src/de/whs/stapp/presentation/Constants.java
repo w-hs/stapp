@@ -22,6 +22,8 @@ public final class Constants {
 	public static final String JS_TRAININGSEINHEIT_STOP = "stapp.stopTraining";
 	//History
 	public static final String JS_HISTORY_SET = "stapp.setHistoryData";
+	//Charts
+	public static final String JS_CHARTS_SET = "stapp.setChartData";
 	
 	//HTML Seiten
 	public static final String HTML_LOCAL_TRAININGSEINHEIT = "file:///android_asset/www/SessionView.html";
