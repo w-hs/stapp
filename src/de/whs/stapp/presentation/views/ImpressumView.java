@@ -2,6 +2,8 @@ package de.whs.stapp.presentation.views;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.RelativeLayout;
 import de.whs.stapp.R;
 import de.whs.stapp.presentation.Constants;
 import de.whs.stapp.presentation.StappWebView;
@@ -18,8 +20,11 @@ public class ImpressumView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_impressum_view);
 		
-		StappWebView swv = (StappWebView) findViewById(R.id.stappWebView1);
-		
+		StappWebView swv = new StappWebView(this);
 		swv.loadUrl(Constants.HTML_LOCAL_IMPRESSUM);
+		
+		RelativeLayout layout = (RelativeLayout) findViewById(R.id.ImpressumRelativeLayout);
+		
+		layout.addView(swv, LayoutParams.MATCH_PARENT);
 	}
 }
