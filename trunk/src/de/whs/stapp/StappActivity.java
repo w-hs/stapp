@@ -25,6 +25,7 @@ import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.data.storage.TrainingSession;
 import de.whs.stapp.presentation.views.HistoryFragment;
+import de.whs.stapp.presentation.views.ImpressumView;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
 import de.whs.stapp.presentation.views.StappPreferenceActivity;
@@ -248,6 +249,11 @@ public class StappActivity extends FragmentActivity {
 					// Vorläufig
 					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 				}
+			break;
+			
+		case R.id.about:
+			Intent intent = new Intent(this, ImpressumView.class);
+			startActivity(intent);
 			break;
 		default:
 			returnValue = super.onOptionsItemSelected(item);
