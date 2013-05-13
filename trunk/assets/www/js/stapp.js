@@ -6,8 +6,8 @@ var stapp =
         updateTraining: function (jsonStr) {
             var t = JSON.parse(jsonStr);
             var training = new this.training(t.distance, t.heartfrequence);
-            $('#distance > .DataContent').html(training.distance + "m");
-            $('#heartfreq > .DataContent').html(training.heartfreq + "bpm");
+            $('#distance > .DataContent').html(this.formatDistance(training.distance));
+            $('#heartfreq > .DataContent').html(training.heartfreq + " bpm");
         },
         startTraining: function () { 
         	if(this.trainingTimer != null)
@@ -24,7 +24,7 @@ var stapp =
         },
         updateStopWatch: function () {
             this.timerValue += this.timerInterval;
-            $('#stoppwatch > .DataContent').html(this.formatTime(this.timerValue));
+            $('#stoppwatch > .DataContent').html(this.formatTime(this.timerValue, false));
         },
         setHistoryData: function (jsonStr) {
 
@@ -45,8 +45,8 @@ var stapp =
         displayHistoryData: function (history) {
             
             $('#overview > #runCount > .content').html(history.runs);
-            $('#overview > #distance > .content').html(history.distance + "m");
-            $('#overview > #duration > .content').html(history.duration + "h");
+            $('#overview > #distance > .content').html(this.formatDistance(history.distance));
+            $('#overview > #duration > .content').html(this.formatTime(history.duration, true));
 
             $('#sessiondetails').html("");
             for (var i = 0; i < history.sessions.length; i++) {
@@ -54,7 +54,7 @@ var stapp =
                 $('#sessiondetails').append(this.getSessionHTML(session));
             }
         },
-        formatTime: function(miliseconds){
+        formatTime: function(miliseconds, withSuffix){
             var d = new Date(miliseconds);
             var h = d.getHours() - 1, m = d.getMinutes(), s = d.getSeconds();
             if(h > 0){
@@ -76,7 +76,31 @@ var stapp =
             else 
                 s = "00";
 
-            return h + ":" + m + ":" + s;
+            var suffix = "h";
+            var ret = "";
+            if(h != "00"){
+            	ret += h;
+            	ret += ":";
+            	suffix = " h";
+            }
+            else
+            	suffix = " m";
+        	ret += m;
+        	ret += ":";
+        	ret += s;
+        	if(withSuffix)
+        		ret += suffix;
+            	
+            
+            return ret;
+        },
+        formatDistance: function(distance){
+        	//Distanz kommt in Meter
+        	if(distance > 1000){
+        		var nDistance = distance / 1000;
+        		return nDistance.toFixed(2) + " km";
+        	}
+        	return distance + " m";
         },
         loadSessionDetails: function(id){
             Android.selectTrainingSession(id);
@@ -91,8 +115,8 @@ var stapp =
                 this.formatTime(session.duration) +
                 "</div>" +
                 "<div class='distance'>" +
-                session.distance + 
-                "km</div>" +
+                this.formatDistance(session.distance) + 
+                "</div>" +
                 "<div class='clear'></div>" +
                 "</div>";
             return sessionStr;

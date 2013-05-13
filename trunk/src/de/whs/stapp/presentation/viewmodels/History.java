@@ -2,6 +2,8 @@ package de.whs.stapp.presentation.viewmodels;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import de.whs.stapp.data.storage.TrainingSession;
 
 /***
@@ -27,6 +29,7 @@ public class History extends StappViewModel {
 	 */
 	public History(ArrayList<TrainingSession> sessions) {
 
+		Collections.sort(sessions);
 		for (TrainingSession session : sessions) {
 
 			distanceSum += session.getDistanceInMeters();
@@ -38,11 +41,10 @@ public class History extends StappViewModel {
 
 	private Session convertTrainingSessionToViewModel(TrainingSession session) {
 
-		int distance = (int)(session.getDistanceInMeters() / 1000);
 		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
-
+		
 		return new Session(df.format(session.getTrainingDate()),
-				Integer.toString(distance), session.getDurationInMs(), session.getSessionId());
+				(int)session.getDistanceInMeters(), session.getDurationInMs(), session.getSessionId());
 	}
 
 	/**
