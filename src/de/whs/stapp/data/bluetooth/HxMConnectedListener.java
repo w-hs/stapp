@@ -20,7 +20,7 @@ import android.util.Log;
  */
 class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 
-	private final int heartRateSpeedDistancePacketIndex =0x26;
+	private final int heartRateSpeedDistancePacketIndex = 0x26;
 	private List<TrackedDataListener> listeners = new ArrayList<TrackedDataListener>();
 		
 	private HRSpeedDistPacketInfo heartRateSpeedDistancePacket =
@@ -83,13 +83,16 @@ class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 								GetHeartBeatNum(dataArray));
 						dataContainer.setHeartBeatTimestamps(heartRateSpeedDistancePacket.
 								GetHeartBeatTS(dataArray));
-						dataContainer.setHeartRateInBpm(heartRateSpeedDistancePacket.
-								GetHeartRate(dataArray));
+						
+						byte heartBeat = heartRateSpeedDistancePacket.GetHeartRate(dataArray);
+						dataContainer.setHeartRateInBpm(makeUnsigned(heartBeat));
+						
 						dataContainer.setSpeedInMeterPerSecond(
 								heartRateSpeedDistancePacket.
 								GetInstantSpeed(dataArray));
-						dataContainer.setStrides(heartRateSpeedDistancePacket.
-								GetStrides(dataArray));
+						
+						byte strides = heartRateSpeedDistancePacket.GetStrides(dataArray);
+						dataContainer.setStrides(makeUnsigned(strides));
 						
 						notifyBTCommunicationListeners(dataContainer);
 					}
@@ -133,6 +136,20 @@ class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 				continue;
 			listener.trackData(dataItem);
 		}		
+	}
+	
+	/**
+	 * Interpretiert ein 8-Bit Byte als unsigned. 
+	 * 
+	 * Das ist notwendig, da Java keine unsigned Typen kennt.
+	 * 
+	 * @param signed 8-Bit Wert.
+	 * @return Als unsigned interpretierter Wert.
+	 */
+	private static int makeUnsigned(byte signed) {
+		int result = signed;
+		result = result & 0xFF;
+		return result;
 	}
 
 }

@@ -13,10 +13,10 @@ import de.whs.stapp.data.storage.SessionDetail;
 public class TrackedDataItemConverter {
 
 	private static final double MAX_DISTANCE_IN_METERS = 256.0;
-	private static final byte MAX_NUMBER_OF_STRIDES = (byte) 128;
+	private static final int MAX_NUMBER_OF_STRIDES = 128;
 	
 	private double lastReadDistance;
-	private byte lastReadNumberOfStrides;
+	private int lastReadNumberOfStrides;
 	private boolean isFirstPackage;
 	
 	/**
@@ -71,8 +71,8 @@ public class TrackedDataItemConverter {
 		return currentDistanceMeter;
 	}
 	
-	private int getNumberOfStrides(final byte numberOfStrides) {
-		byte currentNumberOfStrides = numberOfStrides;
+	private int getNumberOfStrides(final int numberOfStrides) {
+		int currentNumberOfStrides = numberOfStrides;
 		if (numberOfStrides < lastReadNumberOfStrides) {
 			currentNumberOfStrides += MAX_NUMBER_OF_STRIDES - lastReadNumberOfStrides;
 		} else {
