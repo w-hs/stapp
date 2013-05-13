@@ -8,39 +8,53 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="17" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-	
-	<instrumentation android:name="android.test.InstrumentationTestRunner"
-	    android:targetPackage="de.whs.stapp"
-	    android:label="STAPP Tests" />
-    
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="STAPP Tests"
+        android:targetPackage="de.whs.stapp" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
         <uses-library android:name="android.test.runner" />
-        
+
         <activity
             android:name="de.whs.stapp.StappActivity"
-            android:label="@string/app_name" 
-            android:uiOptions="splitActionBarWhenNarrow"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light"
-            android:screenOrientation="portrait">
+            android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 	android:name=".presentation.views.StappPreferenceActivity"
-            		android:label="@string/app_name"  />
-        <service android:permission="android.permission.BLUETOOTH"
-            	 android:name="de.whs.stapp.data.bluetooth.BTCommunicationService">
+        <activity
+            android:name="de.whs.stapp.presentation.views.StappPreferenceActivity"
+            android:label="@string/app_name" />
+
+        <service
+            android:name="de.whs.stapp.data.bluetooth.BTCommunicationService"
+            android:permission="android.permission.BLUETOOTH" >
         </service>
-        <activity android:name=".presentation.views.ChartActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light" android:screenOrientation="landscape" android:uiOptions="splitActionBarWhenNarrow"></activity>
-        
+
+        <activity
+            android:name="de.whs.stapp.presentation.views.ChartActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:uiOptions="splitActionBarWhenNarrow" >
+        </activity>
+        <activity
+            android:name="de.whs.stapp.presentation.views.ImpressumView"
+            android:label="@string/title_activity_impressum_view" >
+        </activity>
     </application>
 
 </manifest>

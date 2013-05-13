@@ -13,5 +13,6 @@
     <string name="dialog_save_training_title">Training speichern</string>
     <string name="dialog_save">Speichern</string>
     <string name="dialog_discard">Verwerfen</string>
+     <string name="title_activity_impressum_view">ImpressumView</string>
 
 </resources>
