@@ -15,6 +15,12 @@
         android:title="@string/action_stop"
         android:icon="@drawable/ic_menu_stop"
         android:showAsAction="ifRoom|withText"/> 
+   <item
+        android:id="@+id/action_bluetooth"
+        android:icon="@drawable/access_bluetooth"
+        android:showAsAction="always"
+        /> 
+        
     <item android:id="@+id/about"
           android:title="@string/action_about" />
     <item android:id="@+id/help"
