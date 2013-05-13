@@ -10,7 +10,7 @@ package de.whs.stapp.presentation.viewmodels;
 public class Session extends StappViewModel {
 
 	private String date;
-	private String distance;
+	private int distance;
 	private long duration;
 	private int id;
 	
@@ -21,7 +21,7 @@ public class Session extends StappViewModel {
 	 * @param duration Länge der Session
 	 * @param id ID der Session
 	 */
-	public Session(String date, String distance, long duration, int id) {
+	public Session(String date, int distance, long duration, int id) {
 		super();
 		this.date = date;
 		this.distance = distance;
@@ -49,7 +49,7 @@ public class Session extends StappViewModel {
 	 * 
 	 * @return Gibt die Distanz der Session zurück.
 	 */
-	public String getDistance() {
+	public int getDistance() {
 		return distance;
 	}
 
@@ -57,7 +57,7 @@ public class Session extends StappViewModel {
 	 * 
 	 * @param distance Setzt die Distanz der Session.
 	 */
-	public void setDistance(String distance) {
+	public void setDistance(int distance) {
 		this.distance = distance;
 	}
 
