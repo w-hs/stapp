@@ -29,6 +29,10 @@
     height: 100%;
 }
 
+	#sessiondetails h3{
+		border-bottom: 1px solid white;
+	}
+
     #sessiondetails .session {
         background-color: rgb(250, 250, 250);
         color: rgb(28, 28, 28);
