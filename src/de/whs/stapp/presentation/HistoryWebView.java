@@ -32,6 +32,7 @@ public class HistoryWebView extends StappWebView {
 	 */
 	public void setHistoryData(History data) {
 
-		this.loadUrl(Javascript.getFunctionCall(Constants.JS_HISTORY_SET, data));
+		String functionCall = Javascript.getFunctionCall(Constants.JS_HISTORY_SET, data);
+		this.loadUrl(functionCall);
 	}
 }
