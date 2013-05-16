@@ -28,6 +28,15 @@ In der Seminarphase zum Thema Build-Werkzeuge entschieden wir uns für das Werkz
 
 == Installation ==
 
-http://ftp.halifax.rwth-aachen.de/apache//ant/binaries/apache-ant-1.9.0-bin.zip
+1) http://ftp.halifax.rwth-aachen.de/apache//ant/binaries/apache-ant-1.9.0-bin.zip
+
+Entpacken z.B. nach C:\Program Files\apache-ant-1.9.0
 
 == Konfiguration ==
+
+Umgebungsvariablen einstellen:
+
+1) Durch Semikolon getrennt an PATH anhängen: C:\Program Files\apache-ant-1.9.0\bin
+2) ANT_HOME = C:\Program Files\apache-ant-1.9.0
+3) ANT_OPS = -Xmx256M
+4) Testen in Konsole mit ant -version
