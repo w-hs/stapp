@@ -1,6 +1,7 @@
 package de.whs.stapp.data.access;
 
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -10,9 +11,9 @@ import java.util.TreeMap;
  *
  */
 public class ChartData {
-	private TreeMap<Float, Float> coordinates =new TreeMap<Float, Float>();	
-	private ValueType typeOfX;
-	private ValueType typeOfY;
+	private final List<Coordinate> coordinates;
+	private final ValueType typeOfX;
+	private final ValueType typeOfY;
 	private float minValueX;
 	private float maxValueX;
 	private float minValueY;
@@ -24,9 +25,14 @@ public class ChartData {
 	 * @param typeOfY Typ der y-Achse
 	 */
 	public ChartData(ValueType typeOfX, ValueType typeOfY) {
-		super();
+		this.coordinates = new ArrayList<Coordinate>();
 		this.typeOfX = typeOfX;
 		this.typeOfY = typeOfY;
+		
+		minValueX = Float.MAX_VALUE;
+		maxValueX = Float.MIN_VALUE;
+		minValueY = Float.MAX_VALUE;
+		maxValueY = Float.MIN_VALUE;
 	}
 
 	/**
@@ -51,24 +57,10 @@ public class ChartData {
 	}
 
 	/**
-	 * @param minValueX the minValueX to set
-	 */
-	public void setMinValueX(float minValueX) {
-		this.minValueX = minValueX;
-	}
-
-	/**
 	 * @return the maxValueX
 	 */
 	public float getMaxValueX() {
 		return maxValueX;
-	}
-
-	/**
-	 * @param maxValueX the maxValueX to set
-	 */
-	public void setMaxValueX(float maxValueX) {
-		this.maxValueX = maxValueX;
 	}
 
 	/**
@@ -79,13 +71,6 @@ public class ChartData {
 	}
 
 	/**
-	 * @param minValueY the minValueY to set
-	 */
-	public void setMinValueY(float minValueY) {
-		this.minValueY = minValueY;
-	}
-
-	/**
 	 * @return the maxValueY
 	 */
 	public float getMaxValueY() {
@@ -93,23 +78,32 @@ public class ChartData {
 	}
 
 	/**
-	 * @param maxValueY the maxValueY to set
+	 * @return the coordinates
 	 */
-	public void setMaxValueY(float maxValueY) {
-		this.maxValueY = maxValueY;
+	public List<Coordinate> getCoordinates() {
+		return coordinates;
 	}
 
 	/**
-	 * @return the coordinates
+	 * Fügt eine neue Koordinate hinzu.
+	 * @param coordinate Die Koordinate.
 	 */
-	public TreeMap<Float, Float> getCoordinates() {
-		return coordinates;
+	public void addCoordinate(Coordinate coordinate) {
+		if (coordinate == null) 
+			throw new IllegalArgumentException("coordinate cannot be null!");
+		
+		coordinates.add(coordinate);
+		updateMinMaxValues(coordinate);
 	}
-	
-	/**
-	 * @param coordinates the coordinates to set
-	 */
-	public void setCoordinates(TreeMap<Float, Float> coordinates){
-		this.coordinates = coordinates;
+
+	private void updateMinMaxValues(Coordinate coordinate) {
+		if (coordinate.x < minValueX)
+			minValueX = coordinate.x;
+		if (coordinate.x > maxValueX)
+			maxValueX = coordinate.x;
+		if (coordinate.y < minValueY)
+			minValueY = coordinate.y;
+		if (coordinate.y > maxValueY)
+			maxValueY = coordinate.y;
 	}
 }
