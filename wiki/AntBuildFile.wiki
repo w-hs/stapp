@@ -1,12 +1,33 @@
+#summary getting started Build-File with Ant
 #labels Doc-Technical
-#Anleitung für das Ant-Build-File
 
 = Introduction =
 
-1. Installation Ant
+1. Ant
+
+1.1 Installation
+
+1.2 Konfiguration 
+
 
 2. Automatisierte APK Erstellung
 
+2.1 signed apk
+
+2.2 unsigned apk
+
+
 3. Javadoc
 
-== Installation Ant ==
+
+4. Reverse build process
+
+
+= Ant =
+In der Seminarphase zum Thema Build-Werkzeuge entschieden wir uns für das Werkzeug Apache Ant. Ant bietet den Vorteil, dass wir auf die vorgegebene Projektstruktur von Android reagieren können. Im Gegensatz dazu hätten wir komplexe Konfigurationen beim Werkzeug Maven durchführen müssen.
+
+== Installation ==
+
+http://ftp.halifax.rwth-aachen.de/apache//ant/binaries/apache-ant-1.9.0-bin.zip
+
+== Konfiguration ==
