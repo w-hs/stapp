@@ -54,6 +54,39 @@
             unless="sdk.dir"
     />
 
+	<!-- ================================= 
+          target: Javadoc                    
+         ================================= -->
+
+	<property name="source.dir" value="src"/>	
+	<property name="javadoc.dir" value="bin/Javadoc"/>
+         
+	<target name="Javadoc" depends="init" description="generate documentation">
+    	<echo>run Javadoc</echo>
+    	<delete dir="${javadoc.dir}"/>
+    	<javadoc sourcepath="${source.dir}" destdir="${javadoc.dir}"/>
+  	</target>
+  	
+  	<!-- ================================= 
+          target: init              
+         ================================= -->
+         
+    <property name="bin.dir" value="bin"/>
+    
+    <target name="init" depends="bin.dir">
+    	<echo>Buildfile STAPP</echo>
+     </target>    
+     
+    <!-- ================================= 
+          target: build.dir                     
+         ================================= -->         
+         
+    <target name="bin.dir">
+        <echo>create build Directory</echo>
+    	<mkdir dir="${bin.dir}"/>
+    </target>	
+
+
     <!--
         Import per project custom build rules if present at the root of the project.
         This is the place to put custom intermediary targets such as:
@@ -86,7 +119,8 @@
          In all cases you must update the value of version-tag below to read 'custom' instead of an integer,
          in order to avoid having your file be overridden by tools such as "android update project"
     -->
-    <!-- version-tag: 1 -->
+    <!-- version-tag: custom -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
+
 
 </project>
