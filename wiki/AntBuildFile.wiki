@@ -45,7 +45,7 @@ Umgebungsvariablen einstellen:
 1.2.4) Testen in Konsole mit *ant -version*
 
 
-= 2. Automatisierte APK-Erstellung =
+= 2 Automatisierte APK-Erstellung =
 == 2.1 signed apk ==
 In der Konsole ins Projekt-Verzeichnis von _STAPP_ wechseln und den Befehl *ant debug* eingeben.
 
@@ -63,5 +63,5 @@ In der Konsole ins Projekt-Verzeichnis von _STAPP_ wechseln und den Befehl *ant 
 Javadoc wurde im Verzeichnis bin/Javadoc erstellt.
 
 
-= 4. Reverse build process =
+= 4 Reverse build process =
 Um den Build-Process rückgängig zu machen, in der Konsole im Projekverzeichnis den Befehl *ant clean* eingeben.
