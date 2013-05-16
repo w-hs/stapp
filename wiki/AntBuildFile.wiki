@@ -23,20 +23,23 @@
 4. Reverse build process
 
 
-= Ant =
+= 1 Ant =
 In der Seminarphase zum Thema Build-Werkzeuge entschieden wir uns für das Werkzeug Apache Ant. Ant bietet den Vorteil, dass wir auf die vorgegebene Projektstruktur von Android reagieren können. Im Gegensatz dazu hätten wir komplexe Konfigurationen beim Werkzeug Maven durchführen müssen.
 
-== Installation ==
+== 1.1 Installation ==
 
-1) http://ftp.halifax.rwth-aachen.de/apache//ant/binaries/apache-ant-1.9.0-bin.zip
+http://ftp.halifax.rwth-aachen.de/apache//ant/binaries/apache-ant-1.9.0-bin.zip
 
 Entpacken z.B. nach C:\Program Files\apache-ant-1.9.0
 
-== Konfiguration ==
+== 1.2 Konfiguration ==
 
 Umgebungsvariablen einstellen:
 
-1) Durch Semikolon getrennt an PATH anhängen: C:\Program Files\apache-ant-1.9.0\bin
-2) ANT_HOME = C:\Program Files\apache-ant-1.9.0
-3) ANT_OPS = -Xmx256M
-4) Testen in Konsole mit ant -version
+1.2.1) Durch Semikolon getrennt an PATH anhängen: C:\Program Files\apache-ant-1.9.0\bin
+
+1.2.2) ANT_HOME = C:\Program Files\apache-ant-1.9.0
+
+1.2.3) ANT_OPS = -Xmx256M
+
+1.2.4) Testen in Konsole mit ant -version
