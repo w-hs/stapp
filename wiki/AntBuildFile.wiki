@@ -1,15 +1,12 @@
 #labels Doc-Technical
-#Anleitung für das Ant-Build-File.
+#Anleitung für das Ant-Build-File
 
 = Introduction =
 
 1. Installation Ant
+
 2. Automatisierte APK Erstellung
+
 3. Javadoc
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Installation Ant ==
