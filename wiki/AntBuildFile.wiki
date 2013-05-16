@@ -10,7 +10,7 @@
 1.2 Konfiguration 
 
 
-2. Automatisierte APK Erstellung
+2. Automatisierte APK-Erstellung
 
 2.1 signed apk
 
@@ -42,4 +42,11 @@ Umgebungsvariablen einstellen:
 
 1.2.3) ANT_OPS = -Xmx256M
 
-1.2.4) Testen in Konsole mit ant -version
+1.2.4) Testen in Konsole mit *ant -version*
+
+= 2. Automatisierte APK-Erstellung =
+== signed apk ==
+In der Konsole ins Projekt-Verzeichnis von _STAPP_ wechseln und den Befehl *ant debug* eingeben.
+
+== unsigned apk ==
+In der Konsole ins Projekt-Verzeichnis von _STAPP_ wechseln und den Befehl *ant release* eingeben.
