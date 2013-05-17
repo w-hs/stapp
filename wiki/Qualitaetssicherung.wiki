@@ -1,0 +1,13 @@
+#summary Durchführung der QS wird hier protokolliert
+
+= Introduction =
+
+Die Qualitätssicherung ist ein entscheidender Vorgang bei der Erstellung von Softwareprojekten. Den diese kann vermeiden, dass die Entwicklungskosten nachhaltig in die Höhe schießen. Sie verbessert die Benutzerakzeptanz, verringert Kundenverlust und gewährleistet, dass das Produkt das liefert was es verspricht.
+
+*Qualität = Übereinstimmung mit den Anforderungen*
+
+= Details =
+
+Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. Ein entsprechendes apk-File wird auf mittels Build-Tool erzeugt und auf dem Smartphone/Tablett installiert.
+
+Die Abnahme besteht aus Integrations- und Systemtests. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
