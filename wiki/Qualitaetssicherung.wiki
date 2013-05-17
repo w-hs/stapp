@@ -12,10 +12,10 @@ Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. 
 
 Die Abnahme besteht aus dem Integrationstest. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
 
-|| *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich* || *Funktionalität in Bedienungsanleitung erläutert* || Notizen ||
-|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || Ja || ? || ||
-|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || Ja || ? || ||
-|| Trainingseinheiten speichern || 19 || Core || Ja || ? || ||
-|| Auslesen eines Trainings || 20 || Core || Ja || ? || ||
-|| AppInfo / Impressum erstellen || 22 || Core || Ja || ? || ||
-|| Grafische Auswertung der Messwerte || 23 || Core || Ja || ? || ||
+|| *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich* || *Funktionalität in Bedienungsanleitung erläutert* || Regressionstests || Notizen ||
+|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || Ja || ? || ? || ||
+|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || Ja || ? || ? || ||
+|| Trainingseinheiten speichern || 19 || Core || Ja || ? || ? || ||
+|| Auslesen eines Trainings || 20 || Core || Ja || ? || ? || ||
+|| AppInfo / Impressum erstellen || 22 || Core || Ja || ? || ? || ||
+|| Grafische Auswertung der Messwerte || 23 || Core || Ja || ? || ? || ||
