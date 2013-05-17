@@ -15,7 +15,7 @@ Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
 || Anzeige Bluetooth Verbindungsstatus || 3 || Core || Ja, Status wird dauerhaft angezeigt. || ? || ? || Sofern auf den Bluetooth-Button (Bluetooth ist aktiviert) geklickt wird, wird Bluetooht deaktiviert. Ein erneutes aktivieren aus der App heraus, lässt sich auf meinen Testgerät nicht durchführen. ||
 || Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || Ja, Bluetooth wird beim verlassen der App automatisch deaktiviert. || ? || ? || Als Läufer, werde ich nicht gefragt, ob ich Bluetooth dauerhaft beim Beenden deaktivieren möchte.||
-|| Trainingseinheiten speichern || 19 || Core || Ja || ? || ? || ||
+|| Trainingseinheiten speichern || 19 || Core || Ja, ich kann meine Trainingseinheiten protokollieren, bzw. abspeichern und einsehen in der Historie. Ebenso könnten Trainingsläufe verworfen werden. || ? || ? || ||
 || Auslesen eines Trainings || 20 || Core || Ja || ? || ? || ||
 || AppInfo / Impressum erstellen || 22 || Core || Ja || ? || ? || ||
 || Grafische Auswertung der Messwerte || 23 || Core || Ja || ? || ? || ||
