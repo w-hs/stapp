@@ -10,4 +10,7 @@ Die Qualitätssicherung ist ein entscheidender Vorgang bei der Erstellung von So
 
 Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. Ein entsprechendes apk-File wird auf mittels Build-Tool erzeugt und auf dem Smartphone/Tablett installiert.
 
-Die Abnahme besteht aus Integrations- und Systemtests. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
+Die Abnahme besteht aus dem Integrationstest. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
+
+|| *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich* || *Funktionalität in Bedienungsanleitung erläutert* ||
+|| Anzeige Bluetooth Verbindungsstatus|| 3 || Core || Ja || ? ||
