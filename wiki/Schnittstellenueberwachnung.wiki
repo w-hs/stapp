@@ -8,7 +8,7 @@ An dieser Stelle erfolgt nur eine kleine Übersicht, welche Schnittstellen wir i
 
 = Details =
 
-|| Schnittstelle || Ansprechpartner || Erfolgreich geprüft || Link ||
+|| *Schnittstelle* || *Ansprechpartner* || *Erfolgreich geprüft* || *Link* ||
 || DataStorage || Christoph || 29. April 2013 || https://code.google.com/p/stapp/wiki/Schnittstellen_DataStorage ||
 || Data_Access || Chris || 30. April 2013 || https://code.google.com/p/stapp/wiki/Schnittstellen_Data_Access ||
 || BluetoothConnection || Dennis || 5. Mai 2013 || https://code.google.com/p/stapp/wiki/Schnittstelle_BluetoothConnection ||
