@@ -11,11 +11,11 @@ Die Qualitätssicherung ist ein entscheidender Vorgang bei der Erstellung von So
 Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. Ein entsprechendes apk-File wird auf mittels Build-Tool erzeugt und auf dem Smartphone/Tablett installiert.
 
 Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
+
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
 || Anzeige Bluetooth Verbindungsstatus || 3 || Core || Ja, Status wird dauerhaft angezeigt. || ? || ? || Sofern auf den Bluetooth-Button (Bluetooth ist aktiviert) geklickt wird, wird Bluetooht deaktiviert. Ein erneutes aktivieren aus der App heraus, lässt sich auf meinen Testgerät nicht durchführen. ||
-
-|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || Ja || ? || ? || ||
-|| Trainingseinheiten speichern || 19 || Core || Ja, Bluetooth wird beim verlassen der App automatisch deaktiviert. || ? || ? || Als Läufer, werde ich nicht gefragt, ob ich Bluetooth dauerhaft beim Beenden deaktivieren möchte.||
+|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || Ja, Bluetooth wird beim verlassen der App automatisch deaktiviert. || ? || ? || Als Läufer, werde ich nicht gefragt, ob ich Bluetooth dauerhaft beim Beenden deaktivieren möchte.||
+|| Trainingseinheiten speichern || 19 || Core || Ja || ? || ? || ||
 || Auslesen eines Trainings || 20 || Core || Ja || ? || ? || ||
 || AppInfo / Impressum erstellen || 22 || Core || Ja || ? || ? || ||
 || Grafische Auswertung der Messwerte || 23 || Core || Ja || ? || ? || ||
