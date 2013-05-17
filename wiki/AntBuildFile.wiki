@@ -22,6 +22,8 @@
 
 4. Reverse build process
 
+5. Update Build-File
+
 
 = 1 Ant =
 In der Seminarphase zum Thema Build-Werkzeuge entschieden wir uns für das Werkzeug Apache Ant. Ant bietet den Vorteil, dass wir auf die vorgegebene Projektstruktur von Android reagieren können. Im Gegensatz dazu hätten wir komplexe Konfigurationen beim Werkzeug Maven durchführen müssen.
@@ -65,3 +67,9 @@ Javadoc wurde im Verzeichnis bin/Javadoc erstellt.
 
 = 4 Reverse build process =
 Um den Build-Process rückgängig zu machen, in der Konsole im Projekverzeichnis den Befehl *ant clean* eingeben.
+
+= 5 Update Build-File =
+
+*android update project --path .*
+
+Dieser Befehl updated das Build-File. Zum erstmaligen anlegen eines Projektes, musste ich ebenso diesen Befehl nutzen.
