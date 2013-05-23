@@ -42,7 +42,7 @@ public class SessionDataInterpreter {
 		
 		for (SessionDetail detail: details) {
 			float heartrate = detail.getHeartRateInBpm();
-			float time = detail.getTimestamp().getNanos();
+			float time = detail.getTimestamp().getTime();
 			if (isHeartrateValid(heartrate)/* && zweiter Parameter valid*/)
 				coordinates.add(new Coordinate(time, heartrate));
 		}
