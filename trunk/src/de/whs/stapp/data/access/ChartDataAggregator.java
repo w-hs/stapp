@@ -22,7 +22,8 @@ public class ChartDataAggregator {
 		for (block = 0; block < coordinates.size(); block += blockSize)
 			data.addCoordinate(summarizeCoordinates(coordinates, block, blockSize));
 		
-		data.addCoordinate(summarizeCoordinates(coordinates, block, rest));
+		if(rest > 0)
+			data.addCoordinate(summarizeCoordinates(coordinates, block, rest));
 	}
 	
 	private static Coordinate summarizeCoordinates(List<Coordinate> coordinates, int currentBlock, int blockSize) {

@@ -1,7 +1,8 @@
 var charts = 
 	{
-		drawChart: function(json){
+		drawChart: function(jsonStr){
 		
+			var json = JSON.parse(jsonStr);
 			$('#placeholder').height($('body').height());
 			$('#placeholder').width($('body').width());
 		
