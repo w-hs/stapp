@@ -2,14 +2,14 @@ package de.whs.stapp.presentation.views;
 
 import java.util.List;
 
-import de.whs.stapp.data.access.ChartData;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import de.whs.stapp.data.access.SessionDataInterpreter;
 import de.whs.stapp.data.access.StorageAccess;
 import de.whs.stapp.data.access.StorageAccessFactory;
 import de.whs.stapp.data.storage.SessionDetail;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import de.whs.stapp.presentation.viewmodels.Chart;
 
 /**
  * Activity enthält das ChartFragment und wird mit der SessionID des Trainings
@@ -47,9 +47,9 @@ public class ChartActivity extends FragmentActivity {
 	 * @param amountOfDetails Detailgrad.
 	 * @return Die Chart Daten.
 	 */
-	public de.whs.stapp.presentation.viewmodels.ChartData getChartData(int amountOfDetails) {
-		ChartData cd = interpreter.getHeartratePerTime(amountOfDetails);
-		//TODO iwie muss hier wohl noch ein viewmodel erzeugt werden?!
-		return null;
+	public Chart getChartData(int amountOfDetails) {
+		Chart cd = new Chart();
+		cd.setHeartRateData(interpreter.getHeartratePerTime(amountOfDetails));
+		return cd;
 	}
 }

@@ -106,4 +106,23 @@ public class ChartData {
 		if (coordinate.y > maxValueY)
 			maxValueY = coordinate.y;
 	}
+
+	/**
+	 * 
+	 * @return Zu JSON konvertierte ChartData
+	 */
+	public String toJSON() {
+
+		StringBuilder jsonString = new StringBuilder();
+		jsonString.append("\"");
+		jsonString.append(typeOfX + "_" + typeOfY);
+		jsonString.append("\":[");
+		for (Coordinate coordinate : coordinates) {
+			jsonString.append(coordinate.toJson());
+			jsonString.append(",");
+		}
+		jsonString.replace(jsonString.lastIndexOf(","), jsonString.lastIndexOf(",") + 1, "");
+		jsonString.append("]");
+		return jsonString.toString();
+	}
 }
