@@ -30,4 +30,5 @@ public final class Constants {
 	public static final String HTML_LOCAL_VERLAUF = "file:///android_asset/www/HistoryView.html";
 	public static final String HTML_LOCAL_CHARTS = "file:///android_asset/www/ChartView.html";
 	public static final String HTML_LOCAL_IMPRESSUM = "file:///android_asset/www/ImpressumView.html";
+	public static final String HTML_LOCAL_APPINFO = "file:///android_asset/www/AppInfoView.html";
 }

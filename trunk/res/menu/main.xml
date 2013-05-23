@@ -27,4 +27,6 @@
           android:title="@string/action_help" />   
     <item android:id="@+id/settings"
           android:title="@string/action_settings" />
+    <item android:id="@+id/info"
+          android:title="@string/action_info" />
 </menu>

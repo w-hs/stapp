@@ -24,6 +24,7 @@ import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
 import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.data.storage.TrainingSession;
+import de.whs.stapp.presentation.views.AppInfoView;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.ImpressumView;
 import de.whs.stapp.presentation.views.SessionFragment;
@@ -252,9 +253,15 @@ public class StappActivity extends FragmentActivity {
 			break;
 			
 		case R.id.about:
-			Intent intent = new Intent(this, ImpressumView.class);
-			startActivity(intent);
+			Intent impressumIntent = new Intent(this, ImpressumView.class);
+			startActivity(impressumIntent);
 			break;
+			
+		case R.id.info:
+			Intent appInfoIntent = new Intent(this, AppInfoView.class);
+			startActivity(appInfoIntent);
+			break;
+	
 		default:
 			returnValue = super.onOptionsItemSelected(item);
 			break;
