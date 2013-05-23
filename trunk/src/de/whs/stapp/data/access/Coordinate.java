@@ -25,4 +25,12 @@ public class Coordinate {
 		this.x = x;
 		this.y = y;
 	}
+
+	/**
+	 * Konvertiert eine Koordinate in das JSON-Format.
+	 * @return Koordinate im JSON-Format.
+	 */
+	public String toJson() {
+		return "[" + x + "," + y + "]";
+	}
 }

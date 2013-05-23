@@ -43,7 +43,7 @@ public class StappWebViewClient extends WebViewClient {
 			Context context = view.getContext();
 			ChartActivity ca = (ChartActivity) context;			
 
-			((ChartWebView)view).setChartData(ca.getChartData(-1));
+			((ChartWebView)view).setChart(ca.getChartData(10));
 		}
 	}
 }

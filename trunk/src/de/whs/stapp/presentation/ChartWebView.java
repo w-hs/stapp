@@ -1,7 +1,7 @@
 package de.whs.stapp.presentation;
 
+import de.whs.stapp.presentation.viewmodels.Chart;
 import android.content.Context;
-import de.whs.stapp.presentation.viewmodels.ChartData;
 
 /**
  * Stellt eine WebView für die Charts zur Verfügung. Enthält Funktionen zum
@@ -42,13 +42,13 @@ public class ChartWebView extends StappWebView {
 	 * Ruft die setCharts Funktion im Javascript auf und übergibt die Daten aus
 	 * der Datenbank.
 	 * 
-	 * @param data
+	 * @param chart
 	 *            Daten einer bestimmten Datenreihe aus der Datenbank.
 	 */
-	public void setChartData(ChartData data) {
+	public void setChart(Chart chart) {
 
 		String functionCall = Javascript.getFunctionCall(
-				Constants.JS_CHARTS_SET, data); 
+				Constants.JS_CHARTS_SET, chart); 
 		this.loadUrl(functionCall);
 	}
 }
