@@ -55,6 +55,10 @@
             android:name="de.whs.stapp.presentation.views.ImpressumView"
             android:label="@string/title_activity_impressum_view" >
         </activity>
+        <activity
+            android:name="de.whs.stapp.presentation.views.AppInfoView"
+            android:label="@string/title_activity_app_info_view" >
+        </activity>
     </application>
 
 </manifest>
