@@ -206,7 +206,8 @@ class StappDbAdapter implements DatabaseAdapter {
 				SD_NUMBER_OF_STRIDES +
 				" FROM " + REL_SESSION_DETAILS +
 				" WHERE " + 
-				SD_TRAINING_SESSIONS_ID_AS_FK +	" = " + trainingSessionId;
+				SD_TRAINING_SESSIONS_ID_AS_FK +	" = " + trainingSessionId +
+				" ORDER BY " + SD_DETAILS_ID + " ASC";
 		
 		cr = stappDb.rawQuery(sql, null);
 		
