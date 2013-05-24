@@ -23,35 +23,44 @@ public final class R {
     public static final class drawable {
         public static final int access_bluetooth=0x7f020000;
         public static final int access_bluetooth_connected=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int ic_menu_pause=0x7f020003;
-        public static final int ic_menu_play=0x7f020004;
-        public static final int ic_menu_stop=0x7f020005;
+        public static final int gt_1=0x7f020002;
+        public static final int gt_2=0x7f020003;
+        public static final int gt_3=0x7f020004;
+        public static final int gt_4=0x7f020005;
+        public static final int gt_5=0x7f020006;
+        public static final int gt_6=0x7f020007;
+        public static final int gt_7=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int ic_menu_pause=0x7f02000a;
+        public static final int ic_menu_play=0x7f02000b;
+        public static final int ic_menu_stop=0x7f02000c;
     }
     public static final class id {
         public static final int AppInfoRelativeLayout=0x7f090000;
-        public static final int ChartWrapper=0x7f090003;
-        public static final int ImpressumRelativeLayout=0x7f090001;
-        public static final int WrapperHistory=0x7f090004;
-        public static final int WrapperTrainingseinheit=0x7f090005;
-        public static final int about=0x7f09000b;
-        public static final int action_bluetooth=0x7f09000a;
-        public static final int action_pause=0x7f090008;
-        public static final int action_settings=0x7f090006;
-        public static final int action_start=0x7f090007;
-        public static final int action_stop=0x7f090009;
-        public static final int help=0x7f09000c;
-        public static final int info=0x7f09000e;
-        public static final int pager=0x7f090002;
-        public static final int settings=0x7f09000d;
+        public static final int ChartWrapper=0x7f090004;
+        public static final int ImpressumRelativeLayout=0x7f090002;
+        public static final int WrapperHistory=0x7f090005;
+        public static final int WrapperTrainingseinheit=0x7f090006;
+        public static final int about=0x7f09000c;
+        public static final int action_bluetooth=0x7f09000b;
+        public static final int action_pause=0x7f090009;
+        public static final int action_settings=0x7f090007;
+        public static final int action_start=0x7f090008;
+        public static final int action_stop=0x7f09000a;
+        public static final int guidedTourImageView=0x7f090001;
+        public static final int help=0x7f09000d;
+        public static final int info=0x7f09000f;
+        public static final int pager=0x7f090003;
+        public static final int settings=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_app_info_view=0x7f030000;
-        public static final int activity_impressum_view=0x7f030001;
-        public static final int activity_stapp=0x7f030002;
-        public static final int chart_layout=0x7f030003;
-        public static final int tab_history_layout=0x7f030004;
-        public static final int tab_trainingsession_layout=0x7f030005;
+        public static final int activity_guided_tour=0x7f030001;
+        public static final int activity_impressum_view=0x7f030002;
+        public static final int activity_stapp=0x7f030003;
+        public static final int chart_layout=0x7f030004;
+        public static final int tab_history_layout=0x7f030005;
+        public static final int tab_trainingsession_layout=0x7f030006;
     }
     public static final class menu {
         public static final int app_info_view=0x7f080000;
@@ -73,6 +82,7 @@ public final class R {
         public static final int dialog_save_training_title=0x7f060009;
         public static final int hello_world=0x7f060004;
         public static final int title_activity_app_info_view=0x7f06000d;
+        public static final int title_activity_guided_tour=0x7f06000f;
         public static final int title_activity_impressum_view=0x7f06000c;
     }
     public static final class style {
