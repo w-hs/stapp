@@ -7,6 +7,7 @@ import android.app.ActionBar.Tab;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,6 +26,7 @@ import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.data.storage.TrainingSession;
 import de.whs.stapp.presentation.views.AppInfoView;
+import de.whs.stapp.presentation.views.GuidedTourActivity;
 import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.ImpressumView;
 import de.whs.stapp.presentation.views.SessionFragment;
@@ -50,7 +52,13 @@ public class StappActivity extends FragmentActivity {
 	private BluetoothConnection mBluetooth;
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
+	
+	private SharedPreferences prefs = null;
 
+	/**
+	 * 
+	 * @return Das aktuelle Training.
+	 */
 	public Training getCurrentTraining() {
 		return mCurrentTraining;
 	}
@@ -78,6 +86,8 @@ public class StappActivity extends FragmentActivity {
 			mActionBar.setSelectedNavigationItem(savedInstanceState.getInt(
 					"tab", 0));
 		}
+		
+		prefs = getSharedPreferences("de.whs.stapp", MODE_PRIVATE);
 	}
 
 	private void initDataAccess() {
@@ -99,6 +109,18 @@ public class StappActivity extends FragmentActivity {
 		
 	}
 
+	@Override
+	protected void onResume(){
+		super.onResume();
+		
+		if(prefs.getBoolean("firstrun", true)){
+
+			prefs.edit().putBoolean("firstrun", false).commit();
+			Intent intent = new Intent(this, GuidedTourActivity.class);
+			startActivity(intent);			
+		}
+	}
+	
 	@Override
 	protected void onDestroy() {
 		mBluetooth.close();

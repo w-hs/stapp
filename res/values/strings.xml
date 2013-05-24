@@ -16,5 +16,6 @@
     <string name="title_activity_impressum_view">Impressum</string>
     <string name="title_activity_app_info_view">App Information</string>
     <string name="action_info">App Info</string>
+    <string name="title_activity_guided_tour">GuidedTourActivity</string>
 
 </resources>
