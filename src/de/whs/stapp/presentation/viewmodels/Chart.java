@@ -10,7 +10,18 @@ import de.whs.stapp.data.access.ChartData;
 public class Chart extends StappViewModel {
 	
 	ChartData heartRateData;
-
+	ChartData speedPerTime;
+	
+	/**
+	 * @return Die Geschwindigkeit pro Zeit als JSON formatierter String.
+	 */
+	public String getSpeedPerTimeInJson() {
+		if (speedPerTime == null)
+			return "";
+		
+		return speedPerTime.toJSON();
+	}
+	
 	/**
 	 * @return the data
 	 */
@@ -23,6 +34,13 @@ public class Chart extends StappViewModel {
 	 */
 	public void setHeartRateData(ChartData heartRateData) {
 		this.heartRateData = heartRateData;
+	}
+	
+	/**
+	 * @param speedPerTime Die Geschwindigkeit pro Zeit.
+	 */
+	public void setSpeedPerTime(ChartData speedPerTime) {
+		this.speedPerTime = speedPerTime;
 	}
 	
 	@Override 
