@@ -25,4 +25,5 @@
     <item android:id="@+id/info" android:title="@string/action_info" /><item android:id="@+id/about" android:title="@string/action_about" /><item android:id="@+id/help"
           android:title="@string/action_help" />
     
+    <item android:id="@+id/action_power" android:title="@string/action_power" android:icon="@drawable/battery_high" android:showAsAction="always"></item>
 </menu>
