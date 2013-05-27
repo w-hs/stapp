@@ -12,7 +12,7 @@ var charts =
 		   var plotData = [];
 		   plotData.push({
 					data: dataLine,
-					label: "Puls",
+					label: dataLine.Name,
 					lines: {show:true, steps:false},
 					clickable:true,
 					hoverable:false,
@@ -21,8 +21,8 @@ var charts =
 				},
 				{
 					data: dataLine2,
-					label: "Speed (m/s)",
-					bars: {show:true, steps:false},
+					label: dataLine2.Name,
+					bars: {show:true, steps:false, barWidth : dataLine2[dataLine2.length-1][0] / dataLine2.length //1h},
 					clickable:true,
 					hoverable:false,
 					color: "rgb(10, 10, 255)",
