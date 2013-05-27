@@ -50,6 +50,8 @@ public class Chart extends StappViewModel {
 		jsonString.append("{");
 		jsonString.append("\"label\":\"Lauf\",");
 		jsonString.append(getHeartRateData());
+		jsonString.append(",");
+		jsonString.append(getSpeedPerTimeInJson());
 		jsonString.append("}");
 		return jsonString.toString();		
 	}
