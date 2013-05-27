@@ -21,12 +21,10 @@
         android:showAsAction="always"
         /> 
         
-    <item android:id="@+id/about"
-          android:title="@string/action_about" />
-    <item android:id="@+id/help"
+    
+    <item android:id="@+id/info" android:title="@string/action_info" /><item android:id="@+id/about" android:title="@string/action_about" /><item android:id="@+id/help"
           android:title="@string/action_help" />   
     <item android:id="@+id/settings"
-          android:title="@string/action_settings" />
-    <item android:id="@+id/info"
-          android:title="@string/action_info" />
+          android:title="@string/action_settings" android:enabled="false" android:visible="false"/>
+    
 </menu>

@@ -278,7 +278,10 @@ public class StappActivity extends FragmentActivity {
 			Intent impressumIntent = new Intent(this, ImpressumView.class);
 			startActivity(impressumIntent);
 			break;
-			
+		case R.id.help:
+			Intent helpIntent = new Intent(this, GuidedTourActivity.class);
+			startActivity(helpIntent);
+			break;
 		case R.id.info:
 			Intent appInfoIntent = new Intent(this, AppInfoView.class);
 			startActivity(appInfoIntent);
