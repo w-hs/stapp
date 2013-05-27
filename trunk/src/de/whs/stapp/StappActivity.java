@@ -260,8 +260,6 @@ public class StappActivity extends FragmentActivity {
 		case R.id.action_stop:
 			returnValue = onStopOption(fragment);
 			break;
-		case R.id.settings:
-			return onSettingsOption();
 		case R.id.action_bluetooth:
 			if(mBluetooth.isOpen())
 				mBluetooth.close();
@@ -295,13 +293,6 @@ public class StappActivity extends FragmentActivity {
 		this.invalidateOptionsMenu();
 		
 		return returnValue;
-	}
-
-	private boolean onSettingsOption() {
-		Intent intent = new Intent(this, StappPreferenceActivity.class);
-		startActivity(intent);
-		
-		return true;
 	}
 
 	private boolean onStopOption(Fragment fragment) {
