@@ -262,7 +262,7 @@ public class StappActivity extends FragmentActivity {
 			break;
 		case R.id.action_bluetooth:
 			if(mBluetooth.isOpen())
-				mBluetooth.close();
+			{}
 			else
 				try {
 					mBluetooth.open();
