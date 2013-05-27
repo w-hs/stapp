@@ -41,17 +41,16 @@ public final class R {
         public static final int ImpressumRelativeLayout=0x7f090002;
         public static final int WrapperHistory=0x7f090005;
         public static final int WrapperTrainingseinheit=0x7f090006;
-        public static final int about=0x7f09000c;
+        public static final int about=0x7f09000d;
         public static final int action_bluetooth=0x7f09000b;
         public static final int action_pause=0x7f090009;
         public static final int action_settings=0x7f090007;
         public static final int action_start=0x7f090008;
         public static final int action_stop=0x7f09000a;
         public static final int guidedTourImageView=0x7f090001;
-        public static final int help=0x7f09000d;
-        public static final int info=0x7f09000f;
+        public static final int help=0x7f09000e;
+        public static final int info=0x7f09000c;
         public static final int pager=0x7f090003;
-        public static final int settings=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_app_info_view=0x7f030000;
