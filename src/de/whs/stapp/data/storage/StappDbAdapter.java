@@ -154,6 +154,17 @@ class StappDbAdapter implements DatabaseAdapter {
 		
 	}
 	
+	/**
+	 * @author Christoph Inhestern
+	 * Die Methode löscht alle Datensätze aus den Tabellen TRAINING_SESSIONS und SESSION_DEATAIL
+	 */
+	public void deleteAllTrainingSessions(){
+		
+		stappDb.delete(REL_SESSION_DETAILS, null, null);
+		stappDb.delete(REL_TRAINING_SESSIONS, null, null);
+		
+	}
+	
     /**
      * @author Christoph Inhestern
      * Liefert eine Liste aller TrainingSessions zurück.

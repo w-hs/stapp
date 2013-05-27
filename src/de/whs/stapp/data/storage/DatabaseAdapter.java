@@ -53,6 +53,11 @@ public interface DatabaseAdapter {
     void deleteTrainingSession(int trainingSessionId);
     
     /**
+     * Löscht alle gespeicherten Traningseinheiten aus der Datenbank.
+     */
+    void deleteAllTrainingSessions();
+    
+    /**
      * Methode zum Nachtragen der Distanz und der Dauer zu einer TrainingSession
      * Es wird die Relation TrainingSessions abschließend ergänzt.
      * @param session Die TrainingSession die ergänzt werden soll, enthält die entsprechenden Werten.
