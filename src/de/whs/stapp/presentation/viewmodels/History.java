@@ -1,8 +1,9 @@
 package de.whs.stapp.presentation.viewmodels;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -22,6 +23,8 @@ public class History extends StappViewModel {
 	private long durationSum = 0;
 	private LinkedHashMap<String, List<Session>> groupedSessions = new LinkedHashMap<String, List<Session>>();
 
+	private final int currentYear = new Date().getYear();
+
 	/**
 	 * Erstellt eine neue Instanz der History-Klasse. Dabei muss die Liste der
 	 * Sessions übergeben werden um die Membervariablen zu initialisieren.
@@ -32,6 +35,8 @@ public class History extends StappViewModel {
 	 */
 	public History(ArrayList<TrainingSession> sessions) {
 
+		Collections.sort(sessions);
+
 		for (TrainingSession session : sessions) {
 
 			distanceSum += session.getDistanceInMeters();
@@ -40,11 +45,23 @@ public class History extends StappViewModel {
 			aggregateSession(session);
 		}
 
+		for (List<Session> sessionsFromMonth : groupedSessions.values()) {
+			Collections.sort(sessionsFromMonth);
+		}
 	}
 
 	private void aggregateSession(TrainingSession session) {
-		String month = new SimpleDateFormat("MMM", Locale.GERMANY)
-				.format(session.getTrainingDate());
+
+		String month = "";
+
+		if (session.getTrainingDate().getYear() == currentYear) {
+			month = new SimpleDateFormat("MMM", Locale.GERMANY).format(session
+					.getTrainingDate());
+		} else {
+
+			month = new SimpleDateFormat("MMM yyyy", Locale.GERMANY)
+					.format(session.getTrainingDate());
+		}
 
 		if (groupedSessions.containsKey(month)) {
 			((List<Session>) groupedSessions.get(month))
@@ -58,9 +75,7 @@ public class History extends StappViewModel {
 
 	private Session convertTrainingSessionToViewModel(TrainingSession session) {
 
-		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
-
-		return new Session(df.format(session.getTrainingDate()),
+		return new Session(session.getTrainingDate(),
 				(int) session.getDistanceInMeters(), session.getDurationInMs(),
 				session.getSessionId());
 	}

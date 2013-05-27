@@ -1,5 +1,10 @@
 package de.whs.stapp.presentation.viewmodels;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Diese Klasse enthält alle Daten, die in der HistoryView Ansicht als
  * TrainingsSession angezeigt werden.
@@ -7,23 +12,32 @@ package de.whs.stapp.presentation.viewmodels;
  * @author Thomas
  * 
  */
-public class Session extends StappViewModel {
+public class Session extends StappViewModel implements Comparable<Session> {
+
+	private static final DateFormat DATE_FORMATER = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY);
 
 	private String date;
+	private Date fullDate;
 	private int distance;
 	private long duration;
 	private int id;
-	
+
 	/**
 	 * Standard-Konstruktor des Session-ViewModels.
-	 * @param date Datum der Session
-	 * @param distance Gelaufene Distanz der Session
-	 * @param duration Länge der Session
-	 * @param id ID der Session
+	 * 
+	 * @param date
+	 *            Datum der Session
+	 * @param distance
+	 *            Gelaufene Distanz der Session
+	 * @param duration
+	 *            Länge der Session
+	 * @param id
+	 *            ID der Session
 	 */
-	public Session(String date, int distance, long duration, int id) {
+	public Session(Date date, int distance, long duration, int id) {
 		super();
-		this.date = date;
+		this.fullDate = date;
+		this.date = DATE_FORMATER.format(date);
 		this.distance = distance;
 		this.duration = duration;
 		this.id = id;
@@ -39,7 +53,8 @@ public class Session extends StappViewModel {
 
 	/**
 	 * 
-	 * @param date Setzt das Datum der Session.
+	 * @param date
+	 *            Setzt das Datum der Session.
 	 */
 	public void setDate(String date) {
 		this.date = date;
@@ -55,7 +70,8 @@ public class Session extends StappViewModel {
 
 	/**
 	 * 
-	 * @param distance Setzt die Distanz der Session.
+	 * @param distance
+	 *            Setzt die Distanz der Session.
 	 */
 	public void setDistance(int distance) {
 		this.distance = distance;
@@ -71,7 +87,8 @@ public class Session extends StappViewModel {
 
 	/**
 	 * 
-	 * @param duration Setzt die Länge der Session
+	 * @param duration
+	 *            Setzt die Länge der Session
 	 */
 	public void setDuration(long duration) {
 		this.duration = duration;
@@ -87,10 +104,17 @@ public class Session extends StappViewModel {
 
 	/**
 	 * 
-	 * @param id Setzt die Id der Session.
+	 * @param id
+	 *            Setzt die Id der Session.
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	@Override
+	public int compareTo(Session another) {
+
+		return another.fullDate.compareTo(fullDate);
+	}
+
 }

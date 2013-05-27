@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Chris
  * Repräsentiert die Daten einer TrainingSession.
  */
-public class TrainingSession implements Comparable {	
+public class TrainingSession implements Comparable<TrainingSession> {	
 	private int sessionId;
 	private Date trainingDate;
 	private double distanceInMeters;
@@ -103,9 +103,8 @@ public class TrainingSession implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object another) {
-		// TODO Auto-generated method stub
-		TrainingSession otherDate = (TrainingSession)another;
-		return otherDate.getTrainingDate().compareTo(this.trainingDate);
+	public int compareTo(TrainingSession another) {
+
+		return another.getTrainingDate().compareTo(this.trainingDate);
 	}
 }
