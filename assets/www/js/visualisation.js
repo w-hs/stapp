@@ -11,7 +11,7 @@ var charts =
 		   var dataLine2=json.TIME_SPEED;
 		   var plotData = [];
 		   plotData.push({
-					data: dataLine,
+					data: dataLine.data,
 					label: dataLine.Name,
 					lines: {show:true, steps:false},
 					clickable:true,
@@ -20,9 +20,9 @@ var charts =
 					fill:true
 				},
 				{
-					data: dataLine2,
+					data: dataLine2.data,
 					label: dataLine2.Name,
-					bars: {show:true, steps:false, barWidth : dataLine2[dataLine2.length-1][0] / dataLine2.length },
+					lines: {show:true, steps:false},
 					clickable:true,
 					hoverable:false,
 					color: "rgb(10, 10, 255)",
