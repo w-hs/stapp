@@ -167,6 +167,24 @@ public class BluetoothConnection {
 		}
 	}
 	
+	/**
+	 * Setzt einen Listener für den Ladezustand des Sensors.
+	 * 
+	 * @param listener Listener.
+	 */
+	public void setBatteryChargeListener(BatteryChargeListener listener) {
+		mConnListener.setBatteryChargeListener(listener);
+	}
+	
+	/**
+	 * Liefert den letzten gesendeten Ladezustand des Sensors.
+	 * 
+	 * @return Ladezustand (0-100).
+	 */
+	public int getLastBatteryCharge() {
+		return mConnListener.getLastBatteryCharge();
+	}
+	
 	private boolean connectDevice(String address) throws BluetoothException{
 		BluetoothDevice device = mAdapter.getRemoteDevice(address);
 		mDeviceName = device.getName();

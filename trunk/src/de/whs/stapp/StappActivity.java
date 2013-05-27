@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -21,6 +22,7 @@ import de.whs.stapp.data.access.DataAccess;
 import de.whs.stapp.data.access.DataAccessFactory;
 import de.whs.stapp.data.access.Training;
 import de.whs.stapp.data.access.TrainingState;
+import de.whs.stapp.data.bluetooth.BatteryChargeListener;
 import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
 import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
@@ -106,7 +108,14 @@ public class StappActivity extends FragmentActivity {
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 		
-		
+		// Anzeige des Ladezustandes im Menü
+		mBluetooth.setBatteryChargeListener(new BatteryChargeListener() {
+			@Override
+			public void onChange(int charge) {
+				Log.i(LOG_TAG, "Battey charge: " + charge);
+				invalidateOptionsMenu();
+			}
+		});
 	}
 
 	@Override
@@ -186,6 +195,7 @@ public class StappActivity extends FragmentActivity {
 		MenuItem start = null;
 		MenuItem stop = null;
 		MenuItem pause = null;
+		MenuItem battery = null;
 		for (int i = 0; i < menu.size(); i++) {
 
 			MenuItem curMenuItem = menu.getItem(i);
@@ -207,6 +217,10 @@ public class StappActivity extends FragmentActivity {
 					curMenuItem.setIcon(R.drawable.access_bluetooth_connected);
 				else
 					curMenuItem.setIcon(R.drawable.access_bluetooth);
+				break;
+			case R.id.action_power:
+				battery = curMenuItem;
+				battery.setIcon(getBatteryIcon());
 				break;
 			}
 		}
@@ -232,6 +246,8 @@ public class StappActivity extends FragmentActivity {
 					pause.setVisible(false);
 				}
 			}
+			
+			battery.setVisible(mBluetooth.isOpen());
 		} else if (fragment.getClass() == HistoryFragment.class) {
 			start.setVisible(false);
 			pause.setVisible(false);
@@ -240,6 +256,21 @@ public class StappActivity extends FragmentActivity {
 		
 		
 		return super.onPrepareOptionsMenu(menu);
+	}
+
+	private int getBatteryIcon() {
+		int charge = mBluetooth.getLastBatteryCharge();
+		
+		if (charge < 5)
+			return R.drawable.battery_zero;
+		else if (charge < 30)
+			return R.drawable.battery_low;
+		else if (charge < 60)
+			return R.drawable.battery_mid;
+		else if (charge < 90)
+			return R.drawable.battery_high;
+		else
+			return R.drawable.battery_full;
 	}
 
 	@Override
@@ -270,6 +301,10 @@ public class StappActivity extends FragmentActivity {
 					// Vorläufig
 					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 				}
+			break;
+		case R.id.action_power:
+			Toast.makeText(this, "Battery charge: " + mBluetooth.getLastBatteryCharge() + "%", 
+					Toast.LENGTH_SHORT).show();
 			break;
 			
 		case R.id.about:

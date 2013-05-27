@@ -25,12 +25,23 @@ class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 		
 	private HRSpeedDistPacketInfo heartRateSpeedDistancePacket =
 			new HRSpeedDistPacketInfo();
+	private int batteryCharge;
+	private BatteryChargeListener chargeListener;
 
 	/**
 	 * Konstruktor.
 	 */
 	public HxMConnectedListener() {
 		super(null, null);
+		batteryCharge = -1;
+	}
+	
+	public void setBatteryChargeListener(BatteryChargeListener listener) {
+		chargeListener = listener;
+	}
+	
+	public int getLastBatteryCharge() {
+		return batteryCharge;
 	}
 
 	/**
@@ -95,6 +106,16 @@ class HxMConnectedListener extends ConnectListenerImpl implements DataTracker {
 						dataContainer.setStrides(makeUnsigned(strides));
 						
 						notifyBTCommunicationListeners(dataContainer);
+						
+						// Ladezustand des Sensors auslesen
+						if (chargeListener != null)
+						{
+							int newCharge = heartRateSpeedDistancePacket.GetBatteryChargeInd(dataArray);
+							if (newCharge != batteryCharge || batteryCharge == -1) {
+								batteryCharge = newCharge;
+								chargeListener.onChange(batteryCharge);
+							}
+						}
 					}
 										
 				}
