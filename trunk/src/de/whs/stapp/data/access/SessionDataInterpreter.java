@@ -25,24 +25,39 @@ public class SessionDataInterpreter {
 	}
 	
 	/** 
-	 * @param amountOfDetails Anzahl der Daten (Detailgrad)
-	 * @return Gibt Herzrate pro Zeit zurück
+	 * @param amountOfDetails Anzahl der Daten (Detailgrad).
+	 * @return Gibt Herzrate pro Zeit zurück.
 	 */
 	public ChartData getHeartratePerTime (int amountOfDetails) {
 		ChartData result = new ChartData(ValueType.TIME, ValueType.HEARTRATE);
 		
-		List<Coordinate> coordinates = getFilteredCoordinates();
+		List<Coordinate> coordinates = getFilteredHeartratePerTime();
+		ChartDataAggregator.aggregate(result, coordinates, amountOfDetails);
+		
+		return result;
+	}
+	
+	/**
+	 * @param amountOfDetails Anzahl der Daten (Detailgrad).
+	 * @return Gibt die Geschwindigkeit pro Zeit zurück.
+	 */
+	public ChartData getSpeedPerTime (int amountOfDetails) {
+		ChartData result = new ChartData(ValueType.TIME, ValueType.SPEED);
+		
+		List<Coordinate> coordinates = getFilteredSpeedPerTime();
 		ChartDataAggregator.aggregate(result, coordinates, amountOfDetails);
 		
 		return result;
 	}
 
-	private List<Coordinate> getFilteredCoordinates() {
+	private float getFirstTimeFromDetails() {
+		return  details.size() > 0 ? details.get(0).getTimestamp().getTime() : 0;
+	}
+
+	
+	private List<Coordinate> getFilteredHeartratePerTime() {
 		List<Coordinate> coordinates = new ArrayList<Coordinate>();
-		float firstTime = 0;
-		
-		if (details.size() > 0)
-			 firstTime = details.get(0).getTimestamp().getTime();
+		float firstTime = getFirstTimeFromDetails();
 		
 		for (SessionDetail detail: details) {
 			float heartrate = detail.getHeartRateInBpm();
@@ -56,5 +71,23 @@ public class SessionDataInterpreter {
 	
 	private static boolean isHeartrateValid(float heartrate) {
 		return heartrate >= 40 && heartrate <= 220;
+	}
+	
+	private List<Coordinate> getFilteredSpeedPerTime() {
+		List<Coordinate> coordinates = new ArrayList<Coordinate>();
+		float firstTime = getFirstTimeFromDetails();
+		
+		for (SessionDetail detail: details) {
+			float speed = detail.getSpeedInMeterPerSecond();
+			float time = (detail.getTimestamp().getTime() - firstTime) / 1000;
+			if (isSpeedValid(speed))
+				coordinates.add(new Coordinate(time, speed));
+		}
+		
+		return coordinates; 
+	}
+	
+	private static boolean isSpeedValid(float speed) {
+		return speed > 0 && speed < 16;
 	}
 }
