@@ -18,5 +18,6 @@
     <string name="action_info">App Info</string>
     <string name="title_activity_guided_tour">GuidedTourActivity</string>
     <string name="action_power">Battery</string>
+    <string name="battery_charge">Batterie-Ladezustand</string>
 
 </resources>
