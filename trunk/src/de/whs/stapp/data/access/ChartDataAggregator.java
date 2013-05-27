@@ -2,6 +2,8 @@ package de.whs.stapp.data.access;
 
 import java.util.List;
 
+import android.util.Log;
+
 /**
  * @author Dennis
  */
@@ -19,7 +21,7 @@ public class ChartDataAggregator {
 		int rest = coordinates.size() % (amountOfDetail - 1);
 		int block = 0;
 		
-		for (block = 0; block < coordinates.size(); block += blockSize)
+		for (block = 0; block < coordinates.size() - rest; block += blockSize)
 			data.addCoordinate(summarizeCoordinates(coordinates, block, blockSize));
 		
 		if(rest > 0)
