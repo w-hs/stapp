@@ -106,14 +106,16 @@ public class ChartData {
 		if (coordinate.y > maxValueY)
 			maxValueY = coordinate.y;
 	}
+	
+	
 
 	/**
 	 * 
 	 * @return Zu JSON konvertierte ChartData
 	 */
 	public String toJSON() {
-
 		StringBuilder jsonString = new StringBuilder();
+		jsonString.append("\"Name\":\"" + getLabelY() + "\",");
 		jsonString.append("\"");
 		jsonString.append(typeOfX + "_" + typeOfY);
 		jsonString.append("\":[");
@@ -127,4 +129,17 @@ public class ChartData {
 		jsonString.append("]");
 		return jsonString.toString();
 	}
+
+	//CHECKSTYLE:OFF
+	private String getLabelY() {
+		switch (typeOfY) {
+			case DISTANCE: 	return "Distanz";
+			case HEARTRATE: return "Herzrate";
+			case SPEED: 	return "Geschwindigkeit";
+			case STRIDES: 	return "Schritte";
+			case TIME: 		return "Zeit";
+			default: 		return "";		
+		}
+	}
+	//CHECKSTYLE:ON
 }

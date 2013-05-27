@@ -50,6 +50,7 @@ public class ChartActivity extends FragmentActivity {
 	public Chart getChartData(int amountOfDetails) {
 		Chart cd = new Chart();
 		cd.setHeartRateData(interpreter.getHeartratePerTime(amountOfDetails));
+		cd.setSpeedPerTime(interpreter.getSpeedPerTime(amountOfDetails));
 		return cd;
 	}
 }
