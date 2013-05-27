@@ -115,10 +115,13 @@ public class ChartData {
 	 */
 	public String toJSON() {
 		StringBuilder jsonString = new StringBuilder();
-		jsonString.append("\"Name\":\"" + getLabelY() + "\",");
 		jsonString.append("\"");
 		jsonString.append(typeOfX + "_" + typeOfY);
-		jsonString.append("\":[");
+		jsonString.append("\"");
+		jsonString.append(":");
+		jsonString.append("{");
+		jsonString.append("\"Name\":\"" + getLabelY() + "\",");
+		jsonString.append("\"data\":[");
 		for (Coordinate coordinate : coordinates) {
 			jsonString.append(coordinate.toJson());
 			jsonString.append(",");
@@ -127,6 +130,7 @@ public class ChartData {
 		if (lastCommaIndex >= 0)
 			jsonString.replace(lastCommaIndex, lastCommaIndex + 1, "");
 		jsonString.append("]");
+		jsonString.append("}");
 		return jsonString.toString();
 	}
 
