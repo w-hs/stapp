@@ -100,7 +100,7 @@ public class BluetoothConnection {
 		}
 		if (mAdapter.isEnabled()){
 			//TODO: Ask for turning off bluetooth
-			turnOffBt();			
+			//turnOffBt();			
 		}
 			
 	}
