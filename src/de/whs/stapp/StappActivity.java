@@ -196,6 +196,7 @@ public class StappActivity extends FragmentActivity {
 		MenuItem stop = null;
 		MenuItem pause = null;
 		MenuItem battery = null;
+		MenuItem bluetooth = null;
 		for (int i = 0; i < menu.size(); i++) {
 
 			MenuItem curMenuItem = menu.getItem(i);
@@ -213,10 +214,11 @@ public class StappActivity extends FragmentActivity {
 				stop.setVisible(true);
 				break;
 			case R.id.action_bluetooth:
+				bluetooth = curMenuItem;
 				if(mBluetooth.isOpen())
-					curMenuItem.setIcon(R.drawable.access_bluetooth_connected);
+					bluetooth.setIcon(R.drawable.access_bluetooth_connected);
 				else
-					curMenuItem.setIcon(R.drawable.access_bluetooth);
+					bluetooth.setIcon(R.drawable.access_bluetooth);
 				break;
 			case R.id.action_power:
 				battery = curMenuItem;
@@ -249,16 +251,24 @@ public class StappActivity extends FragmentActivity {
 			
 			boolean showBattery = mBluetooth.isOpen() && mBluetooth.getLastBatteryCharge() > -1;
 			battery.setVisible(showBattery);
+			
 		} else if (fragment.getClass() == HistoryFragment.class) {
 			start.setVisible(false);
 			pause.setVisible(false);
 			stop.setVisible(false);
+			bluetooth.setVisible(false);
+			battery.setVisible(false);
 		}
 		
 		
 		return super.onPrepareOptionsMenu(menu);
 	}
 
+	/**
+	 * Liefert ein zum Ladezustand passendes Icon.
+	 * 
+	 * @return ID des passenden Icons.
+	 */
 	private int getBatteryIcon() {
 		int charge = mBluetooth.getLastBatteryCharge();
 		
@@ -304,8 +314,8 @@ public class StappActivity extends FragmentActivity {
 				}
 			break;
 		case R.id.action_power:
-			Toast.makeText(this, R.string.battery_charge + ": " 
-					+ mBluetooth.getLastBatteryCharge() + "%", 
+			Toast.makeText(this, getResources().getString(R.string.battery_charge) 
+					+ ": " + mBluetooth.getLastBatteryCharge() + "%", 
 					Toast.LENGTH_SHORT).show();
 			break;
 			
