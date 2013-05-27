@@ -121,7 +121,9 @@ public class ChartData {
 			jsonString.append(coordinate.toJson());
 			jsonString.append(",");
 		}
-		jsonString.replace(jsonString.lastIndexOf(","), jsonString.lastIndexOf(",") + 1, "");
+		int lastCommaIndex = jsonString.lastIndexOf(",");
+		if (lastCommaIndex >= 0)
+			jsonString.replace(lastCommaIndex, lastCommaIndex + 1, "");
 		jsonString.append("]");
 		return jsonString.toString();
 	}
