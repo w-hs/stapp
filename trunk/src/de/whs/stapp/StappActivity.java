@@ -247,7 +247,8 @@ public class StappActivity extends FragmentActivity {
 				}
 			}
 			
-			battery.setVisible(mBluetooth.isOpen());
+			boolean showBattery = mBluetooth.isOpen() && mBluetooth.getLastBatteryCharge() > -1;
+			battery.setVisible(showBattery);
 		} else if (fragment.getClass() == HistoryFragment.class) {
 			start.setVisible(false);
 			pause.setVisible(false);
@@ -303,7 +304,8 @@ public class StappActivity extends FragmentActivity {
 				}
 			break;
 		case R.id.action_power:
-			Toast.makeText(this, "Battery charge: " + mBluetooth.getLastBatteryCharge() + "%", 
+			Toast.makeText(this, R.string.battery_charge + ": " 
+					+ mBluetooth.getLastBatteryCharge() + "%", 
 					Toast.LENGTH_SHORT).show();
 			break;
 			
