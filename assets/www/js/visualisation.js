@@ -8,14 +8,24 @@ var charts =
 		
 			var plotarea = $("#placeholder");
 		   var dataLine=json.TIME_HEARTRATE;
+		   var dataLine2=json.TIME_SPEED;
 		   var plotData = [];
 		   plotData.push({
 					data: dataLine,
-					label: "Pace",
+					label: "Puls",
 					lines: {show:true, steps:false},
 					clickable:true,
 					hoverable:false,
-					color: "rgb(160, 255, 123)",
+					color: "rgb(255, 10, 10)",
+					fill:true
+				},
+				{
+					data: dataLine2,
+					label: "Speed",
+					lines: {show:true, steps:false},
+					clickable:true,
+					hoverable:false,
+					color: "rgb(10, 10, 255)",
 					fill:true
 				});
 			$.plot(plotarea , plotData,
