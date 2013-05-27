@@ -21,8 +21,8 @@ var charts =
 				},
 				{
 					data: dataLine2,
-					label: "Speed",
-					lines: {show:true, steps:false},
+					label: "Speed (m/s)",
+					bars: {show:true, steps:false},
 					clickable:true,
 					hoverable:false,
 					color: "rgb(10, 10, 255)",
