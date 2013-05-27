@@ -39,10 +39,14 @@ public class SessionDataInterpreter {
 
 	private List<Coordinate> getFilteredCoordinates() {
 		List<Coordinate> coordinates = new ArrayList<Coordinate>();
+		float firstTime = 0;
+		
+		if (details.size() > 0)
+			 firstTime = details.get(0).getTimestamp().getTime();
 		
 		for (SessionDetail detail: details) {
 			float heartrate = detail.getHeartRateInBpm();
-			float time = detail.getTimestamp().getTime();
+			float time = (detail.getTimestamp().getTime() - firstTime) / 1000;
 			if (isHeartrateValid(heartrate)/* && zweiter Parameter valid*/)
 				coordinates.add(new Coordinate(time, heartrate));
 		}
