@@ -26,7 +26,8 @@ var charts =
 					clickable:true,
 					hoverable:false,
 					color: "rgb(10, 10, 255)",
-					fill:true
+					fill:true,
+					yaxis:2
 				});
 			$.plot(plotarea , plotData,
 			{
