@@ -37,4 +37,18 @@ public class HistoryWebAppInterface extends StappWebAppInterface {
 		intent.putExtra("sessionID", sessionID);
 		mContext.startActivity(intent);
 	}
+	
+	
+	/**
+	 * Wird aufgerufen wenn eine TrainingsSession gelöscht werden soll.
+	 * 
+	 * @param sessionID
+	 *            TrainingsSessionID der Session.
+	 */
+	@JavascriptInterface
+	public void deleteTrainingSession(int sessionID) {
+		
+	}
+	
+	
 }

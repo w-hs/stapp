@@ -125,9 +125,7 @@ var stapp = {
 		Android.selectTrainingSession(id);
 	},
 	getSessionHTML : function(session) {
-		var sessionStr = "<div class='session' onclick='stapp.loadSessionDetails("
-				+ session.id
-				+ ");'>"
+		var sessionStr = "<div class='session' id='session_"+session.id+"' >"
 				+ "<div class='date'>"
 				+ session.date
 				+ "</div>"
@@ -164,3 +162,4 @@ var stapp = {
 		this.duration = duration;
 	}
 };
+

@@ -54,3 +54,81 @@
         #sessiondetails .session .distance, .duration {
             float: right;
         }
+		
+		
+		#delBar
+		{
+			display:none;
+			background-color:white;
+			height:3.3em;
+			margin: 0  .8em .1em .8em;
+			-webkit-border-radius: 0 0 .2em .2em;
+			-moz-border-radius:  0 0 .2em .2em;
+			
+			padding: .25em 1em .25em 1em;
+			color:black;
+		}
+			
+		#selectAll
+		{
+			float:left;
+			
+			
+			background-image:url(../img/ic_menu_selectall_holo_light.png) ;
+			
+		}
+
+		#delSelection
+		{
+			float:left;
+			margin-left:2em;
+		
+			background-image:url(../img/ic_menu_delete.png) ;
+		}
+
+		#abort		
+		{
+			float:right;
+			
+			
+			background-image:url(../img/ic_menu_revert.png) ;
+			
+		}
+		
+		#graphButton
+		{
+			float:right;
+			margin-right:2em;
+			
+			
+		}
+		
+		.dellButtonEnabled
+		{
+			background-image:url(../img/ic_menu_share_holo_light.png) ;
+			
+		}
+		
+		.dellButtonDisabled
+		{
+			background-image:url(../img/ic_menu_share.png) ;
+		}
+		
+		.dellButton
+		{
+			width:48px;
+			height:48px;
+			
+			background-color:#FFF;
+			-webkit-border-radius:  .2em;
+			-moz-border-radius:  .2em;
+			border: 2px solid darkgreen;
+		}
+		
+		
+		.selected
+		{
+			-moz-box-shadow: 0 0 .8em red;
+			-webkit-box-shadow: 0 0 .8em red;
+		}
+		
