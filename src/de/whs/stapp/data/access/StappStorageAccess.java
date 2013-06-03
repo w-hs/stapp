@@ -41,4 +41,14 @@ public class StappStorageAccess implements StorageAccess {
 	public List<SessionDetail> getSessionDetails(int trainingSessionId) {
 		return database.getSessionDetails(trainingSessionId);
 	}
+
+	@Override
+	public void deleteTrainingSession(int trainingSessionId) {
+		database.deleteTrainingSession(trainingSessionId);
+	}
+
+	@Override
+	public void deleteAllTrainingSessions() {
+		database.deleteAllTrainingSessions();
+	}
 }
