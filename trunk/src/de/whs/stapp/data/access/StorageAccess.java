@@ -21,4 +21,16 @@ public interface StorageAccess {
 	 * @return Eine Liste der {@link SessionDetail}s zu einer gegebenen trainingSessionId.
 	 */
 	List<SessionDetail> getSessionDetails(int trainingSessionId);
+	
+    /**
+     * Entfernt die entsprechende Trainings Session vollständig 
+     * (inkl. SessionDetails) aus der Datenbank. 
+     * @param trainingSessionId Id der zu löschenden {@link TrainingSession}.
+     */
+    void deleteTrainingSession(int trainingSessionId);
+    
+    /**
+     * Löscht alle gespeicherten Traningseinheiten aus der Datenbank.
+     */
+    void deleteAllTrainingSessions();
 }
