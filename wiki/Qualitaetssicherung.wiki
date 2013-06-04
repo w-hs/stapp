@@ -15,7 +15,18 @@ Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
 || Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja* || ? || ? ||  ||
 || Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || *Ja* || ? || ? || ||
+|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Nice||  || ? || ? || ||
+|| Trainingseinheit löschen || 6 || Nice ||  || ? || ? || ||
+|| Alle Trainingseinheiten löschen || 8 || Nice ||  || ? || ? || ||
+|| Messdaten protokollieren || 11 || Core ||  || ? || ? || ||
+|| Trainingseinheiten durchführen || 15 || Core ||  || ? || ? || ||
+|| Trainingseinheiten unterbrechen || 16 || Core ||  || ? || ? || ||
+|| Einführung in stapp beim ersten Start || 17 || Nice ||  || ? || ? || ||
 || Trainingseinheiten speichern || 19 || Core || *Ja* || ? || ? || ||
 || Auslesen eines Trainings || 20 || Core || *Ja* || ? || ? || ||
 || AppInfo / Impressum erstellen || 22 || Core || *Ja* || ? || ? || ||
 || Grafische Auswertung der Messwerte || 23 || Core || *Ja* || ? || ? || ||
+|| Anwendungsoberfläche || 30 || Core ||  || ? || ? || ||
+|| Battery-Charge Meldung || 47 || Nice||  || ? || ? || ||
+|| Protokollierung im Hintergrund || 50 || Core ||  || ? || ? || ||
+|| Es gibt eine Historie über alle bisherigen Trainingseinheiten || 66 || Core ||  || ? || ? || ||
