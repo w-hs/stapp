@@ -1,9 +1,12 @@
 package de.whs.stapp.presentation;
 
-import de.whs.stapp.presentation.views.ChartActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
+import de.whs.stapp.StappActivity;
+import de.whs.stapp.data.access.DataAccess;
+import de.whs.stapp.data.access.StappStorageAccess;
+import de.whs.stapp.presentation.views.ChartActivity;
 
 /**
  * Stellt alle Funktionen zur Verfügung, die aus dem Javascript im Android
@@ -46,8 +49,13 @@ public class HistoryWebAppInterface extends StappWebAppInterface {
 	 *            TrainingsSessionID der Session.
 	 */
 	@JavascriptInterface
-	public void deleteTrainingSession(int sessionID) {
+	public void deleteTrainingSession(String sessionID) {
 		
+		
+		StappActivity sa = (StappActivity) mContext;
+		DataAccess dataAccess = sa.getStappDataAccess();
+		
+		dataAccess.deleteTrainingSession(Integer.parseInt(sessionID));
 	}
 	
 	
