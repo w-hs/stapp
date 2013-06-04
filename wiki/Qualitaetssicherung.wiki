@@ -13,9 +13,9 @@ Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. 
 Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
 
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
+|| Mit dem Device verbinden || 2 || Core ||  || ? || ? ||  ||
 || Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja* || ? || ? ||  ||
 || Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || *Ja* || ? || ? || ||
-|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Nice||  || ? || ? || ||
 || Trainingseinheit löschen || 6 || Nice ||  || ? || ? || ||
 || Alle Trainingseinheiten löschen || 8 || Nice ||  || ? || ? || ||
 || Messdaten protokollieren || 11 || Core ||  || ? || ? || ||
