@@ -25,7 +25,7 @@ Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle
 || Trainingseinheiten speichern || 19 || Core || *Ja* || ? || ? || ||
 || Auslesen eines Trainings || 20 || Core || *Ja* || ? || ? || ||
 || AppInfo / Impressum erstellen || 22 || Core || *Ja* || ? || ? || ||
-|| Grafische Auswertung der Messwerte || 23 || Core ||  || ? || ? || ||
+|| Grafische Auswertung der Messwerte || 23 || Core || *Nein,* lediglich ein grüner Hintergrund. D.h. der Button funktioniert. || ? || ? || ||
 || Anwendungsoberfläche || 30 || Core || *Ja* || ? || ? || ||
 || Battery-Charge Meldung || 47 || Nice|| *Ja* || ? || ? || ||
 || Protokollierung im Hintergrund || 50 || Core || *Ja* || ? || ? || ||
