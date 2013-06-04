@@ -13,9 +13,9 @@ Die Abnahme wird gegen die aktuellste Version aus dem Repository durchgeführt. 
 Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle sind die jeweiligen User-Stories gelistet, welche sich derzeit im Sprint befinden, oder sich bereits im Sprint befanden. 
 
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
-|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja*, Status wird dauerhaft angezeigt. || ? || ? || Sofern auf den Bluetooth-Button (Bluetooth ist aktiviert) geklickt wird, wird Bluetooht deaktiviert. Ein erneutes aktivieren aus der App heraus, lässt sich auf meinen Testgerät nicht durchführen. ||
-|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || *Ja*, Bluetooth wird beim verlassen der App automatisch deaktiviert. || ? || ? || Als Läufer, werde ich nicht gefragt, ob ich Bluetooth dauerhaft beim Beenden deaktivieren möchte.||
-|| Trainingseinheiten speichern || 19 || Core || *Ja*, ich kann meine Trainingseinheiten protokollieren, bzw. abspeichern und einsehen in der Historie. Ebenso könnten Trainingsläufe verworfen werden. || ? || ? || ||
-|| Auslesen eines Trainings || 20 || Core || *Ja*, es existiert eine Übersicht mit allen Einheiten, in welcher das Trainingsdatum, die Distanz und Dauer protokolliert sind. || ? || ? || Allerdings bin ich mir nicht sicher, ob die richtige Herzfrequenz angezeigt wird. Negativen Herzfrequenzen gibt es nicht mehr, jedoch habe ich mich gefragt, in welchem Abstand die Herzrate auf dem Bildschirm aktualisiert wird.||
-|| AppInfo / Impressum erstellen || 22 || Core || *Ja*, eine Info über diese App ist einsehbar. || ? || ? || ||
-|| Grafische Auswertung der Messwerte || 23 || Core || *Nein*, derzeit werden noch keine Graphen visualisiert. || ? || ? || ||
+|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja* || ? || ? ||  ||
+|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Core || *Ja* || ? || ? || ||
+|| Trainingseinheiten speichern || 19 || Core || *Ja* || ? || ? || ||
+|| Auslesen eines Trainings || 20 || Core || *Ja* || ? || ? || ||
+|| AppInfo / Impressum erstellen || 22 || Core || *Ja* || ? || ? || ||
+|| Grafische Auswertung der Messwerte || 23 || Core || *Ja* || ? || ? || ||
