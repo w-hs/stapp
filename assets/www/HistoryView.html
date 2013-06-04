@@ -73,9 +73,23 @@ if(isAllSelected){
 });
 
 $(document).on("click", "#delSelection", function(event){
-
 	$(".selected").hide();
+	/*divs  = $('.selected');
+	for(ind in divs){
+	alert("2");
+	  div = divs[ind];
+	  var id = div.attr("id");
+	  alert(id.substring(8));
+	  Android.deleteTrainingSession(id.substring(8));
+	}*/
 	
+	$('.selected').each(function(){
+	
+	  var id = $(this).attr("id");
+	  
+	  Android.deleteTrainingSession(id.substring(8));
+	 
+	});
 	
 	if($("#delBar").is(":visible"))
 	{
