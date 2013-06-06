@@ -15,6 +15,8 @@ var stapp = {
 		this.trainingTimer = window.setInterval(function() {
 			stapp.updateStopWatch()
 		}, this.timerInterval);
+		// Initial die Distanz auf 0 setzen
+		$('#distance > .DataContent').html(this.formatDistance(0));
 	},
 	stopTraining : function() {
 		this.timerValue = 0;
