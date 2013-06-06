@@ -182,15 +182,13 @@ class StappDbAdapter implements DatabaseAdapter {
 		
 		cr = stappDb.rawQuery(sql, null);
 		
-		if (cr.moveToFirst()){
-			while(cr.moveToNext()){
-				TrainingSession tmpSession;
-				//CHECKSTYLE:OFF
-				tmpSession = new TrainingSession(
-						cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getLong(3));
-				//CHECKSTYLE:ON
-				resultSessions.add(tmpSession);
-			}
+		while(cr.moveToNext()){
+			TrainingSession tmpSession;
+			//CHECKSTYLE:OFF
+			tmpSession = new TrainingSession(
+					cr.getInt(0), new Date(cr.getLong(1)), cr.getInt(2), cr.getLong(3));
+			//CHECKSTYLE:ON
+			resultSessions.add(tmpSession);
 		}
 		
 		return resultSessions;
@@ -222,17 +220,16 @@ class StappDbAdapter implements DatabaseAdapter {
 		
 		cr = stappDb.rawQuery(sql, null);
 		
-		if (cr.moveToFirst()){
-			while(cr.moveToNext()){
-				SessionDetail tmpSession;
-				//CHECKSTYLE:OFF
-				tmpSession = new SessionDetail
-						(cr.getInt(0), cr.getInt(1), new Timestamp(cr.getInt(2)), cr.getInt(3),
-						 cr.getInt(4), cr.getInt(5), cr.getInt(6));
-				//CHECKSTYLE:ON
-				resultDetails.add(tmpSession);
-			}
+		while (cr.moveToNext()) {
+			SessionDetail tmpSession;
+			// CHECKSTYLE:OFF
+			tmpSession = new SessionDetail(cr.getInt(0), cr.getInt(1),
+					new Timestamp(cr.getInt(2)), cr.getInt(3), cr.getInt(4),
+					cr.getInt(5), cr.getInt(6));
+			// CHECKSTYLE:ON
+			resultDetails.add(tmpSession);
 		}
+		
 		return resultDetails;
 	}
 }
