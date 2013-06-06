@@ -86,7 +86,7 @@ $(document).on("click", "#delSelection", function(event){
 	$('.selected').each(function(){
 	
 	  var id = $(this).attr("id");
-	  
+
 	  Android.deleteTrainingSession(id.substring(8));
 	 
 	});
@@ -99,18 +99,16 @@ $(document).on("click", "#delSelection", function(event){
 });
 
 $(document).on("click", "#graphButton", function(event){
-
 	
 	if($("#graphButton").is(".dellButtonEnabled"))
 	{
-		stapp.loadSessionDetails($(".session").attr("id").substring(8));
+		stapp.loadSessionDetails(parseInt($(".selected").attr("id").substring(8)));
 		if($("#delBar").is(":visible"))
 		{
 			$("#delBar").slideUp("fast");
 		}
 
 		$(".session").removeClass("selected");
-		//alert($(".session").attr("id").substring(8));
 	}
 
 });
@@ -190,52 +188,8 @@ $(document).on("mouseup", ".session", function(event){
 	</div>
     <div class="clear vspace"></div>
     <div id="sessiondetails">
-    <div class='session'>
-				<div class='date'>
-				 12.12.23
-				</div>
-				<div class='duration'>
-				20:20
-				</div>
-				<div class='distance'>
-				234m
-				</div>
-		<div class='clear'></div>
-	</div>
-	 <div class='session'>
-				<div class='date'>
-				 12.12.23
-				</div>
-				<div class='duration'>
-				20:20
-				</div>
-				<div class='distance'>
-				234m
-				</div>
-		<div class='clear'></div>
-	</div>
-	 <div class='session'>
-				<div class='date'>
-				 12.12.23
-				</div>
-				<div class='duration'>
-				20:20
-				</div>
-				<div class='distance'>
-				234m
-				</div>
-		<div class='clear'></div>
-	</div>
-	 <div class='session'>
-				<div class='date'>
-				 12.12.23
-				</div>
-				<div class='duration'>
-				20:20
-				</div>
-				<div class='distance'>
-				234m
-				</div>
+  
+	
 		<div class='clear'></div>
 	</div>
     </div>
