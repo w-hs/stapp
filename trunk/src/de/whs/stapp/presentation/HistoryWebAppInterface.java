@@ -35,9 +35,10 @@ public class HistoryWebAppInterface extends StappWebAppInterface {
 	 *            TrainingsSessionID der Session.
 	 */
 	@JavascriptInterface
-	public void selectTrainingSession(int sessionID) {
+	public void selectTrainingSession(String sessionID) {
+		
 		Intent intent = new Intent(mContext, ChartActivity.class);
-		intent.putExtra("sessionID", sessionID);
+		intent.putExtra("sessionID", Integer.parseInt(sessionID));
 		mContext.startActivity(intent);
 	}
 	

@@ -4,7 +4,9 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,6 +57,8 @@ public class StappActivity extends FragmentActivity {
 	private DataAccess mStappDataAccess;
 	private Training mCurrentTraining;
 	
+	public Context mContext;
+	
 	private SharedPreferences prefs = null;
 
 	/**
@@ -78,6 +82,8 @@ public class StappActivity extends FragmentActivity {
 
 		initBluetoothConnection();
 		initDataAccess();
+		
+		mContext = this;
 		
 		List<TrainingSession> sessions = mStappDataAccess.getSessionHistory();
 		for (TrainingSession session : sessions) {
@@ -113,7 +119,13 @@ public class StappActivity extends FragmentActivity {
 			@Override
 			public void onChange(int charge) {
 				Log.i(LOG_TAG, "Battey charge: " + charge);
-				invalidateOptionsMenu();
+				
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						invalidateOptionsMenu();
+					}
+				});
 			}
 		});
 	}
