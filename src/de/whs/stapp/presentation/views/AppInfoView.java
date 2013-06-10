@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 import de.whs.stapp.R;
-import de.whs.stapp.presentation.Constants;
-import de.whs.stapp.presentation.StappWebView;
+import de.whs.stapp.presentation.webviews.Constants;
+import de.whs.stapp.presentation.webviews.StappWebView;
 
 /**
  * 

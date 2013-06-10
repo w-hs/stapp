@@ -2,8 +2,8 @@ package de.whs.stapp.test.presentation;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
-import de.whs.stapp.presentation.Javascript;
 import de.whs.stapp.presentation.viewmodels.TrainingSession;
+import de.whs.stapp.presentation.webviews.Javascript;
 
 /**
  * Testet die Erzeugung von Javascript-Funktionsaufrufen.

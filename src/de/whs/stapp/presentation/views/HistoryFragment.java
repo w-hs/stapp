@@ -16,8 +16,8 @@ import de.whs.stapp.R;
 import de.whs.stapp.StappActivity;
 import de.whs.stapp.data.access.DataAccess;
 import de.whs.stapp.data.storage.TrainingSession;
-import de.whs.stapp.presentation.HistoryWebView;
 import de.whs.stapp.presentation.viewmodels.History;
+import de.whs.stapp.presentation.webviews.HistoryWebView;
 
 /**
  * Das History Fragment/Tab welches ein Web View über History Informationen beinhaltet.

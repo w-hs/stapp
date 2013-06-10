@@ -11,8 +11,8 @@ import de.whs.stapp.R;
 import de.whs.stapp.StappActivity;
 import de.whs.stapp.data.access.SessionDetailListener;
 import de.whs.stapp.data.storage.SessionDetail;
-import de.whs.stapp.presentation.TrainingSessionWebView;
 import de.whs.stapp.presentation.viewmodels.TrainingSession;
+import de.whs.stapp.presentation.webviews.TrainingSessionWebView;
 
 /**
  * Das Trainingseinheiten Fragment/Tab welches ein Web View über

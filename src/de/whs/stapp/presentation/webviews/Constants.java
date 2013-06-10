@@ -1,4 +1,4 @@
-package de.whs.stapp.presentation;
+package de.whs.stapp.presentation.webviews;
 
 /**
  * Diese Klasse beinhaltet Konstanten für das gesamte Projekt.

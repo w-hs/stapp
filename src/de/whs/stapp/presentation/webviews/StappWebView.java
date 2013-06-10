@@ -1,4 +1,4 @@
-package de.whs.stapp.presentation;
+package de.whs.stapp.presentation.webviews;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

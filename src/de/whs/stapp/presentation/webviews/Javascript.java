@@ -1,4 +1,4 @@
-package de.whs.stapp.presentation;
+package de.whs.stapp.presentation.webviews;
 
 import de.whs.stapp.presentation.viewmodels.StappViewModel;
 
