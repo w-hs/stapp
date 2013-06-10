@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import de.whs.stapp.R;
-import de.whs.stapp.presentation.ChartWebAppInterface;
-import de.whs.stapp.presentation.ChartWebView;
+import de.whs.stapp.presentation.webviews.ChartWebAppInterface;
+import de.whs.stapp.presentation.webviews.ChartWebView;
 
 /**
  * Das Chart Fragment/Tab welches ein Web View über Chart Informationen
