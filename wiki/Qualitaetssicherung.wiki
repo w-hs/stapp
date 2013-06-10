@@ -14,8 +14,8 @@ Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle
 
 || *User-Story* || *ID* || *StoryPrio* || *Integrationstest erfolgreich (QS-Verantwortlicher)* || *Funktionalität in Bedienungsanleitung erläutert* || *Regressionstests erfolgreich* || *Notizen* ||
 || Mit dem Device verbinden || 2 || Core || *Ja* || ? || ? ||  ||
-|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Nein,* Status ändert sich nicht, nachdem Bluetooth deaktiviert wurde. || ? || ? ||  ||
-|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Nice || *Nein,* Bluetooth wird nicht deaktiviert.  || ? || ? || ||
+|| Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja* || ? || ? ||  ||
+|| Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Nice || *Ja* || ? || ? || ||
 || Trainingseinheit löschen || 6 || Nice || *Ja, jedoch reagiert der Lösch-Button nicht immer sehr gut.* || ? || ? || ||
 || Alle Trainingseinheiten löschen || 8 || Nice || *Ja* || ? || ? || ||
 || Messdaten protokollieren || 11 || Core || *Ja* || ? || ? || ||
