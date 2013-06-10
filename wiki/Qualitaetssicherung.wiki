@@ -16,7 +16,7 @@ Die Abnahme besteht aus Integrations- und Regressionstests. In folgender Tabelle
 || Mit dem Device verbinden || 2 || Core || *Ja* || ? || ? ||  ||
 || Anzeige Bluetooth Verbindungsstatus || 3 || Core || *Ja* || ? || ? ||  ||
 || Bluetooth beim Verlassen der Anwendung deaktivieren || 4 || Nice || *Ja* || ? || ? || ||
-|| Trainingseinheit löschen || 6 || Nice || *Ja, jedoch reagiert der Lösch-Button nicht immer sehr gut.* || ? || ? || ||
+|| Trainingseinheit löschen || 6 || Nice || *Ja* || ? || ? || ||
 || Alle Trainingseinheiten löschen || 8 || Nice || *Ja* || ? || ? || ||
 || Messdaten protokollieren || 11 || Core || *Ja* || ? || ? || ||
 || Trainingseinheiten durchführen || 15 || Core || *Ja* || ? || ? || ||
