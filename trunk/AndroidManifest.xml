@@ -52,11 +52,11 @@
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
-            android:name="de.whs.stapp.presentation.views.ImpressumView"
+            android:name="de.whs.stapp.presentation.views.ImpressumActivity"
             android:label="@string/title_activity_impressum_view" >
         </activity>
         <activity
-            android:name="de.whs.stapp.presentation.views.AppInfoView"
+            android:name="de.whs.stapp.presentation.views.AppInfoActivity"
             android:label="@string/title_activity_app_info_view" >
         </activity>
         <activity

@@ -29,10 +29,10 @@ import de.whs.stapp.data.bluetooth.BluetoothAdapterDisabledException;
 import de.whs.stapp.data.bluetooth.BluetoothConnection;
 import de.whs.stapp.data.bluetooth.BluetoothException;
 import de.whs.stapp.data.storage.TrainingSession;
-import de.whs.stapp.presentation.views.AppInfoView;
+import de.whs.stapp.presentation.views.AppInfoActivity;
 import de.whs.stapp.presentation.views.GuidedTourActivity;
 import de.whs.stapp.presentation.views.HistoryFragment;
-import de.whs.stapp.presentation.views.ImpressumView;
+import de.whs.stapp.presentation.views.ImpressumActivity;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
 import de.whs.stapp.presentation.views.StappPreferenceActivity;
@@ -332,7 +332,7 @@ public class StappActivity extends FragmentActivity {
 			break;
 			
 		case R.id.about:
-			Intent impressumIntent = new Intent(this, ImpressumView.class);
+			Intent impressumIntent = new Intent(this, ImpressumActivity.class);
 			startActivity(impressumIntent);
 			break;
 		case R.id.help:
@@ -340,7 +340,7 @@ public class StappActivity extends FragmentActivity {
 			startActivity(helpIntent);
 			break;
 		case R.id.info:
-			Intent appInfoIntent = new Intent(this, AppInfoView.class);
+			Intent appInfoIntent = new Intent(this, AppInfoActivity.class);
 			startActivity(appInfoIntent);
 			break;
 	
