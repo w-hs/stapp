@@ -4,13 +4,11 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -35,7 +33,6 @@ import de.whs.stapp.presentation.views.HistoryFragment;
 import de.whs.stapp.presentation.views.ImpressumActivity;
 import de.whs.stapp.presentation.views.SessionFragment;
 import de.whs.stapp.presentation.views.StappCollectionPagerAdapter;
-import de.whs.stapp.presentation.views.StappPreferenceActivity;
 import de.whs.stapp.presentation.views.TabListener;
 
 /**

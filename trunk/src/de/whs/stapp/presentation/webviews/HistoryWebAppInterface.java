@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.webkit.JavascriptInterface;
 import de.whs.stapp.StappActivity;
 import de.whs.stapp.data.access.DataAccess;
-import de.whs.stapp.data.access.StappStorageAccess;
 import de.whs.stapp.presentation.views.ChartActivity;
 
 /**
