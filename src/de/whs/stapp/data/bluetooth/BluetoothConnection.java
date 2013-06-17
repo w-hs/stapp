@@ -96,7 +96,12 @@ public class BluetoothConnection {
 			mContext.unregisterReceiver(mDiscoveryFinishedReceiver);
 			mContext.unregisterReceiver(mDeviceFoundReceiver);
 			
-			mClient.Close();
+			try{
+				mClient.Close();
+			}catch(Exception e)
+			{
+				Log.e("Could not close bluetooth client", "");
+			}
 		}
 		if (mAdapter.isEnabled()){
 			//TODO: Ask for turning off bluetooth
