@@ -28,8 +28,8 @@ public class GuidedTourActivity extends Activity {
 	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
 	private ImageView imageSwitcher;
-	private Integer[] imageList = { R.drawable.gt_1, R.drawable.gt_2,
-			R.drawable.gt_3, R.drawable.gt_4, R.drawable.gt_5, R.drawable.gt_6,
+	private Integer[] imageList = { R.drawable.gt_3, R.drawable.gt_1, R.drawable.gt_2,
+			R.drawable.gt_5, R.drawable.gt_4,  R.drawable.gt_6,
 			R.drawable.gt_7, };
 	private int curIndex = 0;
 
