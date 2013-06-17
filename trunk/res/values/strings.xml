@@ -3,7 +3,7 @@
 
     <string name="app_name">STAPP</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="action_about">Über</string>
+    <string name="action_about">Impressum</string>
     <string name="action_help">Hilfe</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_start">Start</string>
